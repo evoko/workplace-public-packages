@@ -6,15 +6,12 @@
 // written, so a throw from a normalizer or an emitter (Button's recipe refusing a literal, after
 // the stories were rendered) stops the run with nothing on disk rewritten.
 //
-// --pending   the workbench's preview; lets TODO(reason) through
-//
 // First, before anything else loads: the Node this needs (.nvmrc).
 import '../src/util/require-node.mjs';
 import { join, relative, sep } from 'node:path';
 import * as tokens from '../src/stages/tokens.mjs';
 import * as icons from '../src/stages/icons.mjs';
 import * as components from '../src/stages/components.mjs';
-import { allowPlaceholders } from '../src/normalize/overlay.mjs';
 import { writeDeviationsReport } from '../src/report/deviations.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
 import { staleShells } from '../src/shells/index.mjs';
@@ -31,10 +28,6 @@ import {
   removeGenerated,
   wasWritten,
 } from '../src/util/write.mjs';
-
-// The workbench's preview of a pending edit, whose reason a person has not written yet
-// (scripts/workbench.mjs). Nothing else passes it: a plain run refuses the placeholder.
-if (process.argv.includes('--pending')) allowPlaceholders(true);
 
 const STAGES = [tokens, icons, components];
 

@@ -10,6 +10,7 @@
 // The viewers hear what happens by long-polling `GET /events?after=<seq>`, answered at once where
 // there is anything after `seq`, else within 25 seconds.
 import { execFileSync, spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import {
   existsSync,
   mkdirSync,
@@ -32,6 +33,48 @@ import {
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const WORKBENCH_PORT = 6011;
+
+const REPO = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+
+/**
+ * The files whose code the running service is, by path from the repository's root: this script,
+ * the session and everything beside it (packages/codegen/src/workbench/), the approvals it reads
+ * and writes (src/approvals/), the lookup it inspects by (src/explain/index.mjs), and the overlay
+ * rules it edits (src/normalize/overlay.mjs). The rest of the generator runs as its own command
+ * (`solar:codegen`), read afresh each time.
+ */
+export function codeFiles(root = REPO) {
+  const dir = (d) =>
+    readdirSync(join(root, d))
+      .filter((f) => f.endsWith('.mjs'))
+      .map((f) => `${d}/${f}`);
+  return [
+    'scripts/workbench.mjs',
+    ...dir('packages/codegen/src/workbench'),
+    ...dir('packages/codegen/src/approvals'),
+    'packages/codegen/src/explain/index.mjs',
+    'packages/codegen/src/normalize/overlay.mjs',
+  ].sort();
+}
+
+/**
+ * The version of the service's code as it is on disk: a hash of `codeFiles`, each path and its
+ * text. A service answers the one it started with (`GET /health`), and the launcher starts a fresh
+ * one where they differ (scripts/workbench-launch.mjs).
+ */
+export function codeVersion(root = REPO) {
+  const hash = createHash('sha256');
+  for (const file of codeFiles(root))
+    hash
+      .update(file)
+      .update('\0')
+      .update(readFileSync(join(root, file)))
+      .update('\0');
+  return hash.digest('hex').slice(0, 16);
+}
+
+/** The addresses of this machine itself: a stop is asked from here, never over the network. */
+const LOOPBACK = new Set(['127.0.0.1', '::1', '::ffff:127.0.0.1']);
 /** A page the service answers: served from this machine, over http. */
 const LOCAL = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 /** The Host a request to this machine names; any other is a page's DNS rebinding it here. */
@@ -67,7 +110,7 @@ const ROUTES = {
     'inspect',
     (_, q) => [q.get('name'), q.get('variant') ?? '0'],
   ],
-  'POST /set': ['set', (b) => [b]],
+  'POST /apply': ['apply', (b) => [b]],
   'POST /keep': ['keep', (b) => [b]],
   'POST /undo': ['undo', (b) => [b]],
   'POST /report': ['report', (b) => [b]],
@@ -118,9 +161,11 @@ async function bodyOf(req) {
  * workbench). `server.session` may be set later: until it is, the session's routes answer 503, so
  * the port is taken before the session is built. `idleMs: 0` never exits (the tests); otherwise
  * `onIdle` runs once nothing has been asked for `idleMs`, with no poll waiting and no request being
- * answered.
+ * answered. `version` is what `GET /health` names the service's code by (`codeVersion`), and
+ * `onShutdown` what `POST /shutdown` runs once no request is being answered: the job running
+ * finishes first, never cut mid-way, and no other starts meanwhile.
  * @param {{session?: object | null, port?: number, idleMs?: number, longPollMs?: number,
- *   onIdle?: () => void}} options
+ *   onIdle?: () => void, version?: string | null, onShutdown?: () => void}} options
  * @returns {Promise<import('node:http').Server & { session: object | null,
  *   publish(event: object): void }>}
  */
@@ -130,8 +175,11 @@ export function serve({
   idleMs = 60_000,
   longPollMs = 25_000,
   onIdle = () => process.exit(0),
+  version = null,
+  onShutdown = () => process.exit(0),
 }) {
   let seq = 0;
+  let stopping = false;
   const events = [];
   const waiting = new Set();
   let answering = 0;
@@ -171,7 +219,29 @@ export function serve({
     const where = `${req.method} ${url.pathname}`;
 
     if (where === 'GET /health')
-      return send(200, { service: 'solar-workbench' });
+      return send(200, {
+        service: 'solar-workbench',
+        version,
+        pid: process.pid,
+      });
+
+    // A stop, as the launcher asks one of an older service: from this machine alone, and never a
+    // page's (a page's request names its Origin). It ends once the job running has finished.
+    if (where === 'POST /shutdown') {
+      if (origin || !LOOPBACK.has(req.socket.remoteAddress))
+        return send(403, {
+          error: 'the workbench is stopped from this machine alone',
+        });
+      stopping = true;
+      send(202, { stopping: true });
+      const stop = () => {
+        if (answering > 0) return setTimeout(stop, 50);
+        clearInterval(idle);
+        return onShutdown();
+      };
+      stop();
+      return undefined;
+    }
 
     if (where === 'GET /events') {
       const after = Number(url.searchParams.get('after') ?? 0);
@@ -203,10 +273,18 @@ export function serve({
     const [method, argsOf] = route;
     const s = server.session;
     if (!s) return send(503, { error: 'the workbench is still starting' });
+    if (stopping) return send(503, { error: 'the workbench is stopping' });
     answering += 1;
     try {
       const body = req.method === 'POST' ? await bodyOf(req) : {};
-      return send(200, await s[method](...argsOf(body, url.searchParams)));
+      // The status names the last event sent before it was read: a bar long-polls from there,
+      // and so hears every event after what it read, and none before (a reload of an earlier job).
+      const at = seq;
+      const answer = await s[method](...argsOf(body, url.searchParams));
+      return send(
+        200,
+        where === 'GET /status' ? { ...answer, seq: at } : answer,
+      );
     } finally {
       answering -= 1;
       last = Date.now();
@@ -343,11 +421,13 @@ export function runCommand(
 }
 
 /**
- * Tells Widgetbook's `flutter run` to hot-reload (SIGUSR1), by the pid scripts/widgetbook.mjs writes
- * to `pidFile`. Nothing where there is no such file, it holds no pid, or the pid is not a flutter's
- * or dart's: a stale pid may be another program's. `commandOf` and `kill` are injected in the test.
+ * Tells Widgetbook's `flutter run` to hot-restart (SIGUSR2), by the pid scripts/widgetbook.mjs writes
+ * to `pidFile`: a restart, not a reload, so the app starts again on what was regenerated and its
+ * bar reopens the dialog where the person was (the status's `reopen`). Nothing where there is no
+ * such file, it holds no pid, or the pid is not a flutter's or dart's: a stale pid may be another
+ * program's. `commandOf` and `kill` are injected in the test.
  */
-export function reloadWidgetbook(
+export function restartWidgetbook(
   pidFile,
   {
     commandOf = (pid) =>
@@ -365,7 +445,7 @@ export function reloadWidgetbook(
   try {
     if (!/^(flutter|dart)/.test(basename(String(commandOf(pid)).trim())))
       return false;
-    kill(pid, 'SIGUSR1');
+    kill(pid, 'SIGUSR2');
     return true;
   } catch {
     // Widgetbook is not running.
@@ -379,7 +459,7 @@ async function realSession(publish) {
   const codegen = (p) =>
     pathToFileURL(join(repoRoot, 'packages/codegen/src', p)).href;
   const stage = await import(codegen('stages/components.mjs'));
-  const { allowPlaceholders, overlayDir, overlayFileOf } = await import(
+  const { overlayDir, overlayFileOf } = await import(
     codegen('normalize/overlay.mjs')
   );
   const status = await import(codegen('approvals/status.mjs'));
@@ -411,20 +491,10 @@ async function realSession(publish) {
     approvalsPath: relative(repoRoot, status.approvalsFile),
     pendingPath: '.workbench/pending.json',
     feedbackDir: 'spec/feedback',
-    // As the files are now, a pending edit's placeholder reason let through.
-    build: () => {
-      allowPlaceholders(true);
-      try {
-        return stage.build();
-      } finally {
-        allowPlaceholders(false);
-      }
-    },
-    codegen: ({ pending }) =>
-      run(process.execPath, [
-        'packages/codegen/bin/solar-codegen.mjs',
-        ...(pending ? ['--pending'] : []),
-      ]),
+    // As the files are now.
+    build: () => stage.build(),
+    codegen: () =>
+      run(process.execPath, ['packages/codegen/bin/solar-codegen.mjs']),
     status: async () => {
       const approvals = status.readApprovals();
       return {
@@ -440,7 +510,7 @@ async function realSession(publish) {
         read: (p) => (existsSync(p) ? readFileSync(p, 'utf8') : null),
         remove: (p) => rmSync(p, { force: true }),
       }),
-    reload: () => reloadWidgetbook(pidFile),
+    reload: () => restartWidgetbook(pidFile),
     today: () => new Date().toISOString().slice(0, 10),
     emit: (event) => publish(event),
   });
@@ -464,7 +534,7 @@ if (isMain()) {
   // routes answer 503 until it is built.
   let server;
   try {
-    server = await serve({});
+    server = await serve({ version: codeVersion() });
   } catch (error) {
     console.error(
       error.code === 'EADDRINUSE'

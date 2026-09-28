@@ -4,8 +4,10 @@
 // two is open at a time; Report's note is its own, so it may be saved beside a pending edit. Where
 // checks fail (a Keep's or an Approve's) and the component may change, Send to agent writes a note
 // carrying them.
-// Everything it changes goes through the workbench service (client.dart); it draws nothing where no
-// service answers. Drawn with SOLAR's own widgets. It behaves as the web's bar
+// Inspect's editor makes a draft, which Save sends with its reason; after a save (and a Keep again or
+// an Undo) the service regenerates and hot-restarts Widgetbook, and the bar that saved opens its
+// dialog again where the status's reopen says. Everything it changes goes through the workbench
+// service (client.dart); it draws nothing where no service answers. Drawn with SOLAR's own widgets. It behaves as the web's bar
 // (stories/workbench/Bar.tsx) does, which the scenarios in
 // packages/codegen/src/workbench/bar-scenarios.json, run by both bars' tests, enforce.
 //
@@ -14,6 +16,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/foundation.dart' show mapEquals;
 import 'package:flutter/material.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
@@ -75,6 +78,11 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   /// when the variant or the cell changes, or a pending edit comes or goes.
   String? _cell;
   String? _scope;
+
+  /// The draft the editor made for the chosen cell: the choice Change to took (a token's name, a
+  /// keyword or `none`), at the scope chosen; nothing is sent until Save. Discard, Close and a
+  /// save drop it.
+  String? _draft;
   _Section _section = _Section.none;
   bool get _inspecting => _section == _Section.inspect;
 
@@ -86,6 +94,14 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
 
   /// Whether an action is running: every button and Select that starts another waits for it.
   bool _working = false;
+
+  /// Whether the bar started during a job (the status's busy named one: a restart after the
+  /// regeneration, before the checks' outcome): it waits as the bar that started the job does,
+  /// until a change ends it.
+  bool _jobAtStart = false;
+
+  /// Whether the actions that start another must wait.
+  bool get _waiting => _working || _jobAtStart;
   String? _error;
   List<WorkbenchFailure>? _failures;
   final _reason = TextEditingController();
@@ -165,11 +181,14 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
       try {
         final first = await widget.client.status();
         if (!mounted) return;
+        _seq = first.seq ?? _seq;
         setState(() {
           _setStatus(first);
           _alive = true;
+          _jobAtStart = first.busy != null;
         });
         unawaited(_poll());
+        _reopen(first);
         return;
       } on WorkbenchException catch (e) {
         if (e.status != 503) return _failed(e);
@@ -178,6 +197,27 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
       }
       await Future<void>.delayed(_retry);
     }
+  }
+
+  /// How long after a regeneration the status's reopen still names where to reopen.
+  static const _reopenFor = Duration(minutes: 1);
+
+  /// Started again after a save, a Keep again or an Undo here: the dialog opens where the status's
+  /// reopen says (variant, layer, cell). Read in the first status after the start alone, never on
+  /// a refresh.
+  void _reopen(WorkbenchStatus status) {
+    final at = status.reopen;
+    if (at == null ||
+        at.platform != widget.platform ||
+        at.component != widget.component ||
+        at.age > _reopenFor.inMilliseconds ||
+        !_canInspect(status)) {
+      return;
+    }
+    _variant = at.variant;
+    _layer = at.layer;
+    _cell = at.cell;
+    unawaited(_openInspect(reopening: true));
   }
 
   /// Whether the component may be inspected, and reported on, in [status]: 🟡 here, and locked
@@ -203,6 +243,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   void _dialogGone() {
     _cell = null;
     _scope = null;
+    _dropDraft();
     if (_inspecting) _section = _Section.none;
   }
 
@@ -213,20 +254,28 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     _dialog = null;
     _cell = null;
     _scope = null;
+    _dropDraft();
     if (dialog != null && dialog.isActive) {
       dialog.navigator?.removeRoute(dialog);
     }
   }
 
+  /// The draft, and the reason typed for it, gone; Apply to back at the narrowest.
+  void _dropDraft() {
+    _draft = null;
+    _scope = null;
+    _reason.clear();
+  }
+
   /// Opens the dialog, over the page, once the inspection is read; a refused read opens none, and
-  /// is shown in the bar.
-  Future<void> _openInspect() async {
+  /// is shown in the bar. [reopening]: after a restart, at the cell the status named.
+  Future<void> _openInspect({bool reopening = false}) async {
     setState(() {
       _section = _Section.inspect;
       _saved = null;
     });
     try {
-      await _inspect();
+      await _inspect(refilter: reopening);
     } catch (e) {
       if (mounted && _inspecting) {
         setState(() {
@@ -337,15 +386,23 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
   /// Long-polls the service's events: a change (or a failure, which the action that failed shows)
   /// reads everything again; `busy` alone, the status. A read that fails is silent, and asked again
   /// after a second.
+  ///
+  /// The first poll starts from the first status's seq, so every event it hears came after the
+  /// start. A reload is the service's to act on (it hot-restarts Widgetbook), never the bar's; a
+  /// change ends the job the bar started during ([_jobAtStart]).
   Future<void> _poll() async {
     while (_live && mounted) {
       try {
         final r = await widget.client.events(_seq);
         if (!_live || !mounted) return;
         _seq = r.seq;
-        if (r.types.any((t) => t != 'busy')) {
+        final types = r.types.where((t) => t != 'reload').toList();
+        if (_jobAtStart && types.contains('changed')) {
+          setState(() => _jobAtStart = false);
+        }
+        if (types.any((t) => t != 'busy')) {
           await _read();
-        } else if (r.types.isNotEmpty) {
+        } else if (types.isNotEmpty) {
           final s = await widget.client.status();
           if (mounted) setState(() => _setStatus(s));
         }
@@ -430,24 +487,76 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     _saved = null;
   });
 
-  /// Change to in the dialog: the value set at [scope] on the cell chosen, in the variant in view.
-  void _change(String choice, String scope) {
+  /// The cell chosen, in the inspection in view.
+  WorkbenchCell? get _chosen => _inspection?.layers
+      .where((l) => l.name == _layerIn(_inspection!))
+      .firstOrNull
+      ?.cells
+      .where((c) => c.cell == _cell)
+      .firstOrNull;
+
+  /// The draft's scope: the one chosen, else the narrowest ([scopeFor]).
+  WorkbenchScope? _draftScope(WorkbenchCell cell) {
+    final key = scopeFor(cell, _scope);
+    return cell.scopes.where((s) => s.key == key).firstOrNull;
+  }
+
+  /// Whether [choice] at [scope] is Figma's own value there: the rule's removal.
+  bool _removes(String choice, WorkbenchScope scope) {
+    final figma = scope.rule?.figma;
+    return figma != null && mapEquals(figma, _valueOf(choice));
+  }
+
+  /// Save: the draft sent with its reason ('' for a removal); the service writes it, regenerates
+  /// and restarts Widgetbook. Refused, the draft stays.
+  void _save() {
     final inspection = _inspection;
-    final cell = _cell;
-    if (inspection == null || cell == null) return;
+    final cell = _chosen;
+    final choice = _draft;
+    if (inspection == null || cell == null || choice == null) return;
+    final scope = _draftScope(cell);
+    if (scope == null) return;
+    final removes = _removes(choice, scope);
     unawaited(
       _act(() async {
-        await widget.client.set(
+        await widget.client.apply(
           component: widget.component,
+          platform: widget.platform,
           variant: inspection.variant,
           layer: _layerIn(inspection),
-          cell: cell,
-          scope: scope,
+          cell: cell.cell,
+          scope: scope.key,
           value: _valueOf(choice),
           revision: inspection.revision,
+          reason: removes ? '' : _reason.text.trim(),
         );
-        if (mounted) _refilter();
+        if (mounted) setState(_dropDraft);
       }),
+    );
+  }
+
+  /// The Edit strip's draft, where there is one.
+  Widget? _draftBlock(WorkbenchInspection inspection) {
+    final cell = _chosen;
+    final choice = _draft;
+    if (cell == null || choice == null) return null;
+    final scope = _draftScope(cell);
+    if (scope == null) return null;
+    final removes = _removes(choice, scope);
+    final idle = !_waiting;
+    return WorkbenchDraftBlock(
+      title:
+          '${_layerIn(inspection)} · ${cell.cell}, for ${scope.label} (${variantsText(scope.count)}): ${cell.entry} → $choice',
+      removes: removes,
+      reason: _reason,
+      replaces: scope.rule?.reason,
+      borrowers: scope.rule?.borrowers ?? const [],
+      enabled: idle,
+      onReason: () => setState(() {}),
+      onSave: idle && (removes || _reason.text.trim().isNotEmpty)
+          ? _save
+          : null,
+      onDiscard: idle ? () => setState(_dropDraft) : null,
     );
   }
 
@@ -529,11 +638,10 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     _refocus(before);
   }
 
-  /// Keep: failing checks are the pending edit's, which the status then carries.
+  /// Keep again: the pending edit's checks run again; failing, the status carries them.
   void _keep() => unawaited(
     _act(() async {
-      final r = await widget.client.keep(widget.component, _reason.text);
-      if (r.ok) _reason.clear();
+      await widget.client.keep(widget.component, widget.platform);
     }),
   );
 
@@ -567,10 +675,9 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
     bool wide = false,
     String? title,
   }) {
-    final idle = !_working;
+    final idle = !_waiting;
     return WorkbenchPendingBlock(
       pending: pending,
-      reason: _reason,
       agentNote: _agentNote,
       canSend: _status != null && _canInspect(_status!),
       onKeep: idle ? _keep : null,
@@ -612,18 +719,19 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
       layer: layer,
       cell: _cell,
       scope: _scope,
-      editable: anyPending == null && !_working,
+      editable: anyPending == null && !_waiting,
+      choosing: anyPending == null && !_waiting && _draft == null,
       busy: status.busy,
       readOnly: anyPending == null
           ? null
           : pending != null
-          ? 'One edit at a time: Keep or Undo the pending edit below first.'
-          : "One edit at a time: Keep or Undo the pending edit in ${anyPending.component}'s Playground first.",
-      regenerating: _working || status.busy != null,
+          ? 'One edit at a time: finish the pending edit below first.'
+          : "One edit at a time: finish the pending edit in ${anyPending.component}'s Playground first.",
+      regenerating: _waiting || status.busy != null,
       filter: _filter,
       onFilter: () => setState(() {}),
       strip: pending == null
-          ? null
+          ? _draftBlock(inspection)
           : _pendingBlock(
               pending,
               wide: true,
@@ -655,7 +763,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
         }
       }),
       onScope: (key) => setState(() => _scope = key),
-      onChange: _change,
+      onChange: (choice, _) => setState(() => _draft = choice),
       onReport: _toggleReport,
       onClose: () {
         final dialog = _dialog;
@@ -668,8 +776,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
 
   void _undo() => unawaited(
     _act(() async {
-      await widget.client.undo(widget.component);
-      _reason.clear();
+      await widget.client.undo(widget.component, widget.platform);
     }),
   );
 
@@ -706,7 +813,7 @@ class _WorkbenchBarState extends State<WorkbenchBar> {
         ? anyPending
         : null;
     final failures = _failures;
-    final idle = !_working;
+    final idle = !_waiting;
     final canInspect = colour == 'yellow' && mine.editable;
     // While the dialog is open it holds the pending edit, its failures and the error, and the bar
     // behind it none: one reason field, one agent note.

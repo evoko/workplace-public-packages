@@ -53,6 +53,7 @@ class WorkbenchPending {
       key = j['key'] as String,
       value = (j['value'] as Map).cast<String, Object?>(),
       was = j['was'] as String?,
+      reason = j['reason'] as String?,
       deletes = j['deletes'] as bool,
       previousReason = j['previousReason'] as String?,
       failing = (j['failing'] as List?)
@@ -65,6 +66,9 @@ class WorkbenchPending {
 
   /// What the variant in view drew before the edit (the entry as explain reads it), or null.
   final String? was;
+
+  /// The reason written with it; null for a deleted rule.
+  final String? reason;
   final bool deletes;
   final String? previousReason;
   final List<WorkbenchFailure>? failing;
@@ -105,9 +109,21 @@ class ComponentStatus {
 class WorkbenchStatus {
   WorkbenchStatus.fromJson(Map<String, dynamic> j)
     : busy = j['busy'] as String?,
+      seq = j['seq'] as int?,
       pending = j['pending'] == null
           ? null
           : WorkbenchPending.fromJson((j['pending'] as Map).cast()),
+      reopen = switch (j['reopen']) {
+        final Map<Object?, Object?> r => (
+          platform: r['platform'] as String,
+          component: r['component'] as String,
+          variant: r['variant'] as int,
+          layer: r['layer'] as String,
+          cell: r['cell'] as String?,
+          age: r['age'] as int,
+        ),
+        _ => null,
+      },
       components = (j['components'] as Map).map(
         (k, v) =>
             MapEntry(k as String, ComponentStatus.fromJson((v as Map).cast())),
@@ -115,7 +131,24 @@ class WorkbenchStatus {
 
   /// What the service is doing, or null (always null in the answer to a POST).
   final String? busy;
+
+  /// The last event the service sent before this status was read: where the first long-poll
+  /// starts, so it hears no earlier job's reload.
+  final int? seq;
   final WorkbenchPending? pending;
+
+  /// Where the viewer that saved, kept again or undid an edit was, named for 60 s after the
+  /// service regenerated ([age] in ms): a viewer starting again in that time reopens its dialog
+  /// there. Null elsewhere.
+  final ({
+    String platform,
+    String component,
+    int variant,
+    String layer,
+    String? cell,
+    int age,
+  })?
+  reopen;
   final Map<String, ComponentStatus> components;
 }
 
@@ -130,6 +163,16 @@ typedef WorkbenchScope = ({
   String? wins,
   String? winsLabel,
   bool current,
+  WorkbenchRule? rule,
+});
+
+/// The `set` rule the overlay has at a scope's key: its reason (null where it borrows another's),
+/// the rules that borrow its reason, and Figma's own value there (a set value), which chosen
+/// removes the rule; null where Figma's is no value a draft can send.
+typedef WorkbenchRule = ({
+  String? reason,
+  List<String> borrowers,
+  Map<String, Object?>? figma,
 });
 
 /// One cell of a layer in a variant: its entry and value, where it comes from, the looks a rule may
@@ -152,6 +195,15 @@ class WorkbenchCell {
             wins: s['wins'] as String?,
             winsLabel: s['winsLabel'] as String?,
             current: s['current'] as bool,
+            rule: switch (s['rule']) {
+              final Map<Object?, Object?> r => (
+                reason: r['reason'] as String?,
+                borrowers: ((r['borrowers'] as List?) ?? const [])
+                    .cast<String>(),
+                figma: (r['figma'] as Map?)?.cast<String, Object?>(),
+              ),
+              _ => null,
+            },
           ),
       ],
       choices = [

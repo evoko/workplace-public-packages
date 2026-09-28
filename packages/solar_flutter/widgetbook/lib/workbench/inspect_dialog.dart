@@ -4,11 +4,12 @@
 // per variant axis, Report and Close; under it three columns: the layers as a tree, the variant
 // drawn large with the selected layer outlined (preview.dart), and the selected layer's
 // properties, read only, with the chosen cell's editor right under its row (Apply to, Filter
-// tokens, Change to, why it is this now); along the foot the pending edit's strip.
+// tokens, Change to, why it is this now); along the foot the Edit strip: the draft the editor made
+// (nothing is sent until Save), or this component's pending edit.
 //
 // It draws what the bar (bar.dart) gives it and keeps nothing of its own: the bar holds the
-// inspection, the layer, cell and scope chosen, and the pending edit, and the dialog is rebuilt as
-// they change. The parts carry the names bar-scenarios.json's vocabulary.dialog gives them, which
+// inspection, the layer, cell and scope chosen, the draft and the pending edit, and the dialog is
+// rebuilt as they change. The parts carry the names bar-scenarios.json's vocabulary.dialog gives them, which
 // the scenario driver finds them by. As the web's (packages/components/stories/workbench/
 // InspectDialog.tsx). Drawn with SOLAR's widgets and tokens alone.
 
@@ -178,6 +179,7 @@ class InspectDialog extends StatelessWidget {
     required this.scope,
     required this.filter,
     required this.editable,
+    required this.choosing,
     required this.onAxis,
     required this.onLayer,
     required this.onCell,
@@ -206,16 +208,19 @@ class InspectDialog extends StatelessWidget {
   final String? cell, scope;
 
   /// Filter tokens' text, which the bar keeps: it starts again at the family on another cell,
-  /// layer or variant, and after a set.
+  /// layer or variant.
   final TextEditingController filter;
 
-  /// Whether anything may be chosen or changed: no edit pending anywhere, and no action running.
+  /// Whether the editor may change the draft: no edit pending anywhere, and no action running.
   /// Otherwise Close, Report and the strip alone are enabled; the rest stays in view.
   final bool editable;
 
+  /// Whether another variant, layer or cell may be chosen: as [editable], and no draft either.
+  final bool choosing;
+
   /// Called with the variant whose axes all match the choices, the layer chosen (in the tree or by
-  /// pointing), the cell, the scope, and a value with the scope it is set at; [onFilter] when the
-  /// filter's text changed.
+  /// pointing), the cell, the scope, and a value with the scope it is drafted at (a draft: nothing
+  /// is sent until Save); [onFilter] when the filter's text changed.
   final ValueChanged<int> onAxis;
   final ValueChanged<String> onLayer, onCell, onScope;
   final VoidCallback onFilter;
@@ -227,7 +232,7 @@ class InspectDialog extends StatelessWidget {
   final String? busy, readOnly;
   final bool regenerating;
 
-  /// The pending edit's strip, where it is this component's.
+  /// The Edit strip: the draft, or this component's pending edit.
   final Widget? strip;
 
   /// What else the foot says (the file Send to agent saved).
@@ -343,7 +348,7 @@ class InspectDialog extends StatelessWidget {
           layer: _layer.name,
           layers: {for (final l in inspection.layers) l.name},
           regenerating: regenerating,
-          onPoint: editable ? onLayer : null,
+          onPoint: choosing ? onLayer : null,
         ),
       ),
       Expanded(
@@ -359,7 +364,7 @@ class InspectDialog extends StatelessWidget {
     spacing: SolarStack.sm,
     children: [
       if (strip case final strip?)
-        Semantics(container: true, label: 'Pending edit', child: strip),
+        Semantics(container: true, label: 'Edit', child: strip),
       ...foot,
     ],
   );
@@ -423,7 +428,7 @@ class InspectDialog extends StatelessWidget {
     Map<String, String> current,
   ) => SolarSelect<String>(
     size: SolarSelectSize.sm,
-    enabled: editable,
+    enabled: choosing,
     label: axis.name,
     value: current[axis.name],
     options: [
@@ -434,7 +439,7 @@ class InspectDialog extends StatelessWidget {
           enabled: _variantWith(current, axis.name, v) != null,
         ),
     ],
-    onChanged: editable
+    onChanged: choosing
         ? (v) {
             final variant = _variantWith(current, axis.name, v);
             if (variant != null && variant.index != inspection.variant) {
@@ -458,7 +463,7 @@ class InspectDialog extends StatelessWidget {
             selected: l.name == _layer.name,
             expandable: false,
             tag: _marks(l),
-            onSelect: editable ? () => onLayer(l.name) : null,
+            onSelect: choosing ? () => onLayer(l.name) : null,
           ),
       ],
     ),
@@ -645,13 +650,13 @@ class InspectDialog extends StatelessWidget {
     ({double cell, double from}) widths,
   ) => Semantics(
     button: true,
-    enabled: editable,
+    enabled: choosing,
     selected: c.cell == cell,
     label: '${c.cell} ${c.entry} ${c.value} ${originText(c.origin)}',
     excludeSemantics: true,
-    onTap: editable ? () => onCell(c.cell) : null,
+    onTap: choosing ? () => onCell(c.cell) : null,
     child: SolarPressable(
-      onPressed: editable ? () => onCell(c.cell) : null,
+      onPressed: choosing ? () => onCell(c.cell) : null,
       builder: (context, states) => Container(
         constraints: const BoxConstraints(minHeight: SolarSize.targetMin),
         padding: const EdgeInsets.symmetric(horizontal: SolarInset.xs),

@@ -5,8 +5,17 @@
  * dialog (InspectDialog.tsx), Report a note below the bar, one of the two open at a time; Report's
  * note is its own, so it may be saved beside a pending edit, and it names the layer and variant
  * last chosen in Inspect. Where checks fail (a Keep's or an Approve's) and the component may
- * change, Send to agent writes a note carrying them. A pending edit shows in the bar, and in the
- * dialog's strip while it is open (pending.tsx, one set of blocks for both).
+ * change, Send to agent writes a note carrying them. An edit is drafted in the dialog and saved
+ * there; a saved edit whose checks failed stays pending, shown in the bar and in the dialog's
+ * strip while it is open (pending.tsx, one set of blocks for both), with Keep again and Undo.
+ *
+ * After a regeneration the service sends `reload`, on which the bar reloads the page (Storybook's
+ * whole window: the preview iframe is rebuilt from the new files). It polls the events from the
+ * seq its first status names and acts on every one it then hears, so it never hears an earlier
+ * job's reload; one that starts while the status names a job still running (reloaded before its
+ * checks' outcome) waits, as the bar that started it does, until a change ends it. Its first status read after it starts (never a
+ * refresh) opens the dialog where the status's `reopen` names this viewer and component, within the
+ * minute the service keeps it.
  * Everything it changes goes through the workbench service (client.ts); it renders nothing where no
  * service answers. Drawn with SOLAR's own components. It behaves as Widgetbook's bar
  * (widgetbook/lib/workbench/bar.dart) does, which the scenarios in
@@ -27,7 +36,6 @@ import {
   type Failure,
   type Inspection,
   type Platform,
-  type SetValue,
   type Status,
   type WorkbenchClient,
 } from './client.js';
@@ -42,6 +50,7 @@ import {
   primary,
   row,
   secondary,
+  valueOf,
 } from './pending.js';
 import type { DrawVariant } from './preview.js';
 
@@ -49,20 +58,27 @@ const CIRCLE = { green: '🟢', yellow: '🟡', red: '🔴' } as const;
 
 /** How long the bar waits before asking a service that is still starting, or whose poll failed. */
 const RETRY_MS = 1000;
+/** How long after a regeneration a starting bar reopens its dialog where the edit was. */
+const REOPEN_MS = 60_000;
+/**
+ * Reloads the viewer: Storybook's whole window where the bar is in its preview iframe. Said in the
+ * console, so a reload the bar makes can be told from the ones Vite makes as files change.
+ */
+const reloadViewer = (seq: number) => {
+  // eslint-disable-next-line no-console -- dev-only: which reloads are the bar's (Vite logs its own)
+  console.info(`[workbench] reloading for the service's reload event ${seq}`);
+  try {
+    (window.top ?? window).location.reload();
+  } catch {
+    window.location.reload();
+  }
+};
 const wait = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
 
 type Dialog = null | 'approve' | 'unapprove';
 
 /** What is open beside the bar's buttons: nothing, Inspect's dialog, or Report's note below. */
 type Section = 'none' | 'inspect' | 'report';
-
-/** A set value as the Select writes it: a token's name, `FILL`, `HUG` or `none`. */
-const valueOf = (choice: string): SetValue =>
-  choice === 'none'
-    ? { none: true }
-    : choice === 'FILL' || choice === 'HUG'
-      ? { keyword: choice }
-      : { token: choice };
 
 const platformTitle = (platform: Platform) =>
   platform === 'web' ? 'the web' : 'Flutter';
@@ -108,7 +124,8 @@ export function WorkbenchBar({
   const [variant, setVariant] = useState(0);
   const [layer, setLayer] = useState('root');
   const [section, setSection] = useState<Section>('none');
-  const [reason, setReason] = useState('');
+  // The cell the dialog opens with, where it reopens after a reload.
+  const [reopenCell, setReopenCell] = useState<string | null>(null);
   const [note, setNote] = useState('');
   // Send to agent's note, its own: Report's may be open beside it.
   const [agentNote, setAgentNote] = useState('');
@@ -125,6 +142,9 @@ export function WorkbenchBar({
   // Kept while the Undo approval dialog closes, so its words stay until it has gone.
   const [withdraws, setWithdraws] = useState<string[]>([]);
   const [working, setWorking] = useState(false);
+  // Started while the status named a job still running (reloaded before its checks' outcome): the
+  // actions that start another wait, as they do in the bar that started it, until a change ends it.
+  const [joined, setJoined] = useState(false);
   // How many times Inspect has been pressed: each press reads the inspection again.
   const [opens, setOpens] = useState(0);
   const seq = useRef(0);
@@ -167,8 +187,27 @@ export function WorkbenchBar({
         try {
           const first = await client.status();
           if (!live) return;
+          // The events are polled from here on: those before this status were already in it.
+          seq.current = first.seq ?? 0;
           setStatus(first);
+          setJoined(Boolean(first.busy));
           setAlive(true);
+          // Started (a reload among them) within a minute of this viewer's save, keep again or
+          // undo: the dialog opens where it was. Read in this first status alone, never on a
+          // refresh, so the page that saved opens nothing before it reloads.
+          const at = first.reopen;
+          if (
+            at &&
+            at.platform === platform &&
+            at.component === component &&
+            at.age <= REOPEN_MS
+          ) {
+            chosen.current = at.variant;
+            setVariant(at.variant);
+            setLayer(at.layer);
+            setReopenCell(at.cell);
+            setSection('inspect');
+          }
           return;
         } catch (e) {
           if (!isStarting(e)) {
@@ -183,7 +222,7 @@ export function WorkbenchBar({
     return () => {
       live = false;
     };
-  }, [client]);
+  }, [client, component, platform]);
 
   // Inspect open, another variant or component: the inspection read again.
   useEffect(() => {
@@ -209,6 +248,7 @@ export function WorkbenchBar({
     let live = true;
     const stop = new AbortController();
     const loop = async () => {
+      // From the seq the first status named: every event after it is news, never an earlier job's.
       while (live) {
         try {
           const { seq: next, events } = await client.events(
@@ -217,6 +257,13 @@ export function WorkbenchBar({
           );
           if (!live) return;
           seq.current = next;
+          // A regeneration has finished: the viewer starts again from the new files.
+          const reload = events.find((e) => e.type === 'reload');
+          if (reload) {
+            reloadViewer(reload.seq);
+            return;
+          }
+          if (events.some((e) => e.type === 'changed')) setJoined(false);
           if (events.some((e) => e.type !== 'busy')) await latest.current();
           else if (events.length) setStatus(await client.status());
         } catch {
@@ -250,10 +297,15 @@ export function WorkbenchBar({
       </Typography>
     ) : null;
   if (!status || !mine) return null;
+  // An action runs: this bar's own, or the job it started beside.
+  const waiting = working || joined;
   const anyPending = status.pending;
   const pending = anyPending?.component === component ? anyPending : null;
 
-  /** Runs an action: its refusal shown, and what the service holds then read again. */
+  /**
+   * Runs an action: its refusal shown, and what the service holds then read again. Whether it was
+   * taken.
+   */
   const act = async (fn: () => Promise<unknown>) => {
     setError(null);
     setFailures(null);
@@ -263,9 +315,11 @@ export function WorkbenchBar({
     try {
       await fn();
       await refresh();
+      return true;
     } catch (e) {
       setError((e as Error).message);
       await refresh().catch(() => {});
+      return false;
     } finally {
       setWorking(false);
     }
@@ -314,7 +368,6 @@ export function WorkbenchBar({
           failures: shown,
         });
         setAgentNote('');
-        setReason('');
         setSent({ file, fromKeep: Boolean(pending) });
       } catch (e) {
         if (!pending) setFailures(shown);
@@ -325,23 +378,13 @@ export function WorkbenchBar({
   /** The pending edit's block, as the bar and the dialog's strip both show it. */
   const pendingProps = (edit: NonNullable<typeof pending>) => ({
     pending: edit,
-    reason,
-    onReason: setReason,
     agentNote,
     onAgentNote: setAgentNote,
-    working,
+    working: waiting,
     canSend: canInspect,
-    onKeep: () =>
-      void act(async () => {
-        // Failing checks are the pending edit's, which the status then carries.
-        const r = await client.keep(component, reason);
-        if (r.ok) setReason('');
-      }),
-    onUndo: () =>
-      void act(async () => {
-        await client.undo(component);
-        setReason('');
-      }),
+    // Failing checks are the pending edit's, which the status then carries.
+    onKeep: () => void act(() => client.keep(component, platform)),
+    onUndo: () => void act(() => client.undo(component, platform)),
     onSend: (shown: Failure[]) => void sendToAgent(shown),
   });
   const sentNotice = sent && (
@@ -371,6 +414,7 @@ export function WorkbenchBar({
             onClick={() => {
               // Opens the dialog, reading the inspection again (also after a read was refused).
               setSection('inspect');
+              setReopenCell(null);
               setOpens((n) => n + 1);
               setSaved(null);
               setError(null);
@@ -392,7 +436,7 @@ export function WorkbenchBar({
           <Button
             size="sm"
             prio="tertiary"
-            disabled={Boolean(anyPending) || working}
+            disabled={Boolean(anyPending) || waiting}
             onClick={() => setDialog('approve')}
           >
             Approve
@@ -402,7 +446,7 @@ export function WorkbenchBar({
           <Button
             size="sm"
             prio="tertiary"
-            disabled={Boolean(anyPending) || working}
+            disabled={Boolean(anyPending) || waiting}
             onClick={() =>
               act(async () => {
                 setWithdraws(
@@ -447,7 +491,7 @@ export function WorkbenchBar({
             <Button
               size="sm"
               prio="primary"
-              disabled={working || !note.trim()}
+              disabled={waiting || !note.trim()}
               onClick={() => void saveNote()}
             >
               Save note
@@ -475,7 +519,7 @@ export function WorkbenchBar({
         <SendToAgent
           note={agentNote}
           onNote={setAgentNote}
-          disabled={working}
+          disabled={waiting}
           onSend={() => void sendToAgent(failures)}
           fromKeep={false}
         />
@@ -492,8 +536,8 @@ export function WorkbenchBar({
           component={component}
           inspection={inspected}
           layer={layer}
-          editable={!anyPending && !working}
-          working={working}
+          editable={!anyPending && !waiting}
+          working={waiting}
           busy={status.busy}
           pending={pending}
           otherPending={anyPending && !pending ? anyPending.component : null}
@@ -513,16 +557,19 @@ export function WorkbenchBar({
             chosen.current = index;
             setVariant(index);
           }}
-          onSet={(cell, scope, choice) =>
-            void act(() =>
-              client.set({
+          reopenCell={reopenCell}
+          onSave={(cell, scope, choice, reason) =>
+            act(() =>
+              client.apply({
                 component,
+                platform,
                 variant: inspected.variant,
                 layer,
                 cell,
                 scope,
                 value: valueOf(choice),
                 revision: inspected.revision,
+                reason,
               }),
             )
           }
@@ -530,7 +577,10 @@ export function WorkbenchBar({
             setSection('report');
             setSaved(null);
           }}
-          onClose={() => setSection('none')}
+          onClose={() => {
+            setSection('none');
+            setReopenCell(null);
+          }}
         />
       )}
 

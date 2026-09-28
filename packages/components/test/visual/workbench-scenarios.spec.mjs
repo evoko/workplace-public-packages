@@ -21,18 +21,28 @@ const ACTIONS = vocabulary.actions;
 const OWN = vocabulary.platformActions.web;
 const SERIAL = new Set(vocabulary.serial.routes);
 const FAKE_KEYS = new Set(Object.keys(vocabulary.fake));
-const ANSWER_KEYS = new Set(['answer', 'status', 'refuse', 'events', 'hold']);
+const ANSWER_KEYS = new Set([
+  'answer',
+  'status',
+  'refuse',
+  'events',
+  'hold',
+  'reload',
+  'regenerated',
+]);
 /** The words of vocabulary.named: such an action is the word, a space and a name. */
 const NAMED = Object.keys(vocabulary.named).filter((k) => k !== 'about');
 const namedOf = (name) => NAMED.find((w) => name.startsWith(`${w} `));
 /** The controls `choose` opens: the editor's Selects and each axis. */
 const isSelect = (name) =>
   ['Change to', 'Apply to'].includes(name) || namedOf(name) === 'Axis';
-/** The actions the dialog's strip holds while an edit is pending. */
+/** The actions the dialog's Edit strip holds: a draft's, and a pending edit's. */
 const STRIP = new Set([
-  'Keep',
-  'Undo',
   'Reason',
+  'Save',
+  'Discard',
+  'Undo',
+  'Keep again',
   'Agent note',
   'Send to agent',
 ]);
@@ -162,10 +172,13 @@ function fakeService(fake) {
     pollAfter: 0,
     busy: null,
     held: {},
+    // How many times the service told the viewers to reload.
+    reloads: 0,
   };
   const sent = [];
   let waiting = [];
   service.emit = (event) => {
+    if (event.type === 'reload') service.reloads += 1;
     service.seq += 1;
     sent.push({ seq: service.seq, ...event });
     const answer = waiting;
@@ -208,6 +221,8 @@ function fakeService(fake) {
           body: {
             ...service.status,
             busy: service.busy ?? service.status.busy,
+            // The last event sent: a bar long-polls from it.
+            seq: service.seq,
           },
         };
       }
@@ -241,6 +256,11 @@ function fakeService(fake) {
         service.emit({ type: 'busy', message: service.busy });
       }
       for (const e of a.events ?? []) service.emit(e);
+      // The regeneration is done, the rest of the job not yet: the viewers reload now.
+      if (a.reload) {
+        if (a.regenerated) service.status = a.regenerated;
+        service.emit({ type: 'reload' });
+      }
       if (a.hold) {
         service.working -= 1;
         await new Promise((ok) => {
@@ -292,8 +312,10 @@ function fakeService(fake) {
         url.searchParams,
         request.postDataJSON(),
       );
-      if (a.abort) await route.abort('connectionrefused');
-      else await route.fulfill({ status: a.status, json: a.body });
+      // A page reloaded meanwhile never takes the answer.
+      if (a.abort) await route.abort('connectionrefused').catch(() => {});
+      else
+        await route.fulfill({ status: a.status, json: a.body }).catch(() => {});
     } finally {
       service.working -= 1;
       service.last = Date.now();
@@ -324,7 +346,7 @@ async function settle(page, service) {
  * The driver: the scenario's steps and expectations, as Playwright's actions and assertions, in
  * the Inspect dialog where it is open (found by vocabulary.dialog's names), else in the bar.
  */
-function driver(page, service, component, inspection) {
+function driver(page, service, component, inspection, viewer) {
   const bar = page.getByRole('region', { name: 'Workbench', exact: true });
   const inspect = page.getByRole('dialog', {
     name: `Inspect ${component}`,
@@ -357,7 +379,7 @@ function driver(page, service, component, inspection) {
         .getByRole('button', { name: leading(rest) });
     const at =
       open && STRIP.has(name)
-        ? scope.getByRole('region', { name: 'Pending edit', exact: true })
+        ? scope.getByRole('region', { name: 'Edit', exact: true })
         : scope;
     if (isSelect(name))
       return at.getByRole('combobox', { name: new RegExp(`^${escape(name)}`) });
@@ -552,6 +574,10 @@ function driver(page, service, component, inspection) {
         await expect(page.locator('body')).not.toContainText(fact);
     },
     noBar: () => expect(bar).toHaveCount(0),
+    reloads: (v) =>
+      expect
+        .poll(() => viewer.loads - 1, { message: 'the page reloaded' })
+        .toBe(v),
     oneError: async (fact) => {
       const { open } = await top();
       const alerts = (open ? inspect : page).getByRole('alert');
@@ -605,11 +631,15 @@ function driver(page, service, component, inspection) {
     },
     type: async ({ field, text }) => {
       if (!FIELD_ACTIONS[field]) throw new Error(`no such field: ${field}`);
-      await (await action(FIELD_ACTIONS[field])).fill(text);
+      const found = await action(FIELD_ACTIONS[field]);
+      await expect(found, `${FIELD_ACTIONS[field]} is offered`).toHaveCount(1);
+      await found.fill(text);
     },
     escape: async (field) => {
       if (!FIELD_ACTIONS[field]) throw new Error(`no such field: ${field}`);
-      await (await action(FIELD_ACTIONS[field])).press('Escape');
+      const found = await action(FIELD_ACTIONS[field]);
+      await expect(found, `${FIELD_ACTIONS[field]} is offered`).toHaveCount(1);
+      await found.press('Escape');
     },
     point: async (layer) => {
       await expect(preview, 'the preview').toHaveCount(1);
@@ -638,6 +668,16 @@ function driver(page, service, component, inspection) {
       throw new Error(`no such step: ${JSON.stringify(s)}`);
     await steps[kind](v);
     await settle(page, service);
+    // Told to reload, the bar reloads its page: waited for, where it does, and the bar ready again.
+    if (viewer.loads - 1 < service.reloads) {
+      for (
+        const end = Date.now() + 5000;
+        viewer.loads - 1 < service.reloads && Date.now() < end;
+      )
+        await sleep(25);
+      await page.locator('#ready').waitFor();
+      await settle(page, service);
+    }
   };
   return { check, step };
 }
@@ -661,11 +701,17 @@ for (const scenario of scenariosFor('web')) {
     // After servePages: the later route answers first.
     await page.route('http://solar.test/service/**', service.route);
     const component = scenario.fake.component ?? 'Button';
+    // The page's loads: the first, and each reload the bar makes.
+    const viewer = { loads: 0 };
+    page.on('load', () => {
+      viewer.loads += 1;
+    });
     const { check, step } = driver(
       page,
       service,
       component,
       scenario.fake.inspection,
+      viewer,
     );
     // The Playground's values the bar is given, in the page's query.
     const controls = encodeURIComponent(

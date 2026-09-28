@@ -78,7 +78,7 @@ void main() {
       (_) async => json({'error': 'Button has no pending edit'}, 409),
     );
     await expectLater(
-      c.undo('Button'),
+      c.undo('Button', 'flutter'),
       throwsA(
         isA<WorkbenchException>()
             .having((e) => e.status, 'status', 409)
@@ -102,60 +102,73 @@ void main() {
     );
   });
 
-  test(
-    'set posts the contract body; events and inspect ask as the contract says',
-    () async {
-      late Map<String, dynamic> body;
-      final c = client((r) async {
-        if (r.url.path == '/set') {
-          body = jsonDecode(r.body) as Map<String, dynamic>;
-          expect(r.headers['Content-Type'], startsWith('application/json'));
-          return json(_status);
-        }
-        if (r.url.path == '/events') {
-          return json({
-            'seq': 7,
-            'events': [
-              {'seq': 6, 'type': 'busy', 'message': 'Regenerating…'},
-              {'seq': 7, 'type': 'changed'},
-            ],
-          });
-        }
-        return json({'error': 'no such route'}, 404);
-      });
-      final status = await c.set(
-        component: 'Button',
-        variant: 2,
-        layer: 'root',
-        cell: 'radius',
-        scope: 'root.base.radius',
-        value: {'token': 'radius.pill'},
-        revision: 'r1',
-      );
-      expect(status.pending, isNull);
-      expect(body, {
+  test('apply, keep and undo post the contract bodies; events and inspect ask as the '
+      'contract says', () async {
+    final bodies = <String, Map<String, dynamic>>{};
+    final c = client((r) async {
+      if (r.method == 'POST') {
+        bodies[r.url.path] = jsonDecode(r.body) as Map<String, dynamic>;
+        expect(r.headers['Content-Type'], startsWith('application/json'));
+        return switch (r.url.path) {
+          '/undo' => json(_status),
+          _ => json({'ok': true}),
+        };
+      }
+      if (r.url.path == '/events') {
+        return json({
+          'seq': 7,
+          'events': [
+            {'seq': 6, 'type': 'busy', 'message': 'Regenerating…'},
+            {'seq': 7, 'type': 'reload'},
+          ],
+        });
+      }
+      return json({'error': 'no such route'}, 404);
+    });
+    final outcome = await c.apply(
+      component: 'Button',
+      platform: 'flutter',
+      variant: 2,
+      layer: 'root',
+      cell: 'radius',
+      scope: 'root.base.radius',
+      value: {'token': 'radius.pill'},
+      revision: 'r1',
+      reason: 'Figma draws a pill',
+    );
+    expect(outcome.ok, isTrue);
+    expect((await c.keep('Button', 'flutter')).ok, isTrue);
+    expect((await c.undo('Button', 'flutter')).pending, isNull);
+    expect(bodies, {
+      '/apply': {
         'component': 'Button',
+        'platform': 'flutter',
         'variant': 2,
         'layer': 'root',
         'cell': 'radius',
         'scope': 'root.base.radius',
         'value': {'token': 'radius.pill'},
         'revision': 'r1',
-      });
-      final events = await c.events(5);
-      expect(events.seq, 7);
-      expect(events.types, ['busy', 'changed']);
-      await expectLater(
-        c.inspect('Button Group', 1),
-        throwsA(isA<WorkbenchException>()),
-      );
-      expect(asked, [
-        'POST /set',
-        'GET /events?after=5',
-        'GET /component?name=Button+Group&variant=1',
-      ]);
-    },
-  );
+        'reason': 'Figma draws a pill',
+      },
+      '/keep': {'component': 'Button', 'platform': 'flutter'},
+      '/undo': {'component': 'Button', 'platform': 'flutter'},
+    });
+    final events = await c.events(5);
+    expect(events.seq, 7);
+    expect(events.types, ['busy', 'reload']);
+    await expectLater(
+      c.inspect('Button Group', 1),
+      throwsA(isA<WorkbenchException>()),
+    );
+    expect(asked, [
+      'POST /apply',
+      'POST /keep',
+      'POST /undo',
+      'GET /events?after=5',
+      'GET /component?name=Button+Group&variant=1',
+    ]);
+  });
 
   test('a failure in words: its message, else only the parts it has', () {
     WorkbenchFailure f(Map<String, dynamic> j) => WorkbenchFailure.fromJson(j);

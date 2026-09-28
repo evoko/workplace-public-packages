@@ -1,14 +1,22 @@
 /**
  * What the workbench bar (Bar.tsx) and its Inspect dialog (InspectDialog.tsx) both show: a pending
- * edit (the key, what the variant drew before → what it is set to, the reason to keep it with, the
- * reason it replaces and the rules that borrow it, Keep and Undo), failing checks, and Send to
- * agent beside them. One set of blocks, so the bar and the dialog's strip cannot differ.
+ * edit (the key, what the variant drew before → what it is now, Keep again and Undo), failing
+ * checks, and Send to agent beside them. One set of blocks, so the bar and the dialog's strip
+ * cannot differ.
  */
 
 import Typography from '@mui/material/Typography';
 import { Button } from '../../src/Button.js';
 import { TextArea } from '../../src/TextArea.js';
 import type { Failure, Pending, SetValue } from './client.js';
+
+/** A set value as the Select writes it: a token's name, `FILL`, `HUG` or `none`. */
+export const valueOf = (choice: string): SetValue =>
+  choice === 'none'
+    ? { none: true }
+    : choice === 'FILL' || choice === 'HUG'
+      ? { keyword: choice }
+      : { token: choice };
 
 export const valueText = (v: SetValue) =>
   'token' in v ? v.token : 'keyword' in v ? v.keyword : 'none';
@@ -90,15 +98,12 @@ export function FailureList({ failures }: { failures: Failure[] }) {
 }
 
 /**
- * A pending edit: its key, what the variant in view drew before and what it is set to (a deleting
- * edit: Figma's value, and no reason to give), the reason field with the reason it replaces, the
- * rules that borrow that reason, the failing checks of a Keep and Send to agent beside them, and
- * Keep and Undo.
+ * A pending edit (one Apply wrote whose checks failed, or one never checked after a restart): its
+ * key, what the variant in view drew before and what it is now (a deleting edit: Figma's value),
+ * the failing checks and Send to agent beside them, and Keep again (the checks again) and Undo.
  */
 export function PendingEdit({
   pending,
-  reason,
-  onReason,
   agentNote,
   onAgentNote,
   working,
@@ -111,11 +116,9 @@ export function PendingEdit({
   pending: Pending;
   /**
    * The first line where the viewer can say more than the key (the dialog's strip names the layer,
-   * the cell and the scope in plain words); by default, the key, what it was and what it becomes.
+   * the cell and the scope in plain words); by default, the key, what it was and what it is now.
    */
   summary?: string;
-  reason: string;
-  onReason: (reason: string) => void;
   agentNote: string;
   onAgentNote: (note: string) => void;
   /** An action is running: the buttons wait. */
@@ -141,24 +144,6 @@ export function PendingEdit({
           </>
         )}
       </Typography>
-      {!pending.deletes && (
-        <TextArea
-          size="sm"
-          label="Why (a reviewer must be able to check it)"
-          helper={
-            pending.previousReason
-              ? `Was: ${pending.previousReason}`
-              : undefined
-          }
-          value={reason}
-          onChange={(event) => onReason(event.target.value)}
-        />
-      )}
-      {!pending.deletes && pending.borrowers.length > 0 && (
-        <Typography variant="bodyXsRegular" style={secondary}>
-          Also the reason of: {pending.borrowers.join(', ')}
-        </Typography>
-      )}
       {pending.failing && <FailureList failures={pending.failing} />}
       {pending.failing && canSend && (
         <SendToAgent
@@ -177,7 +162,7 @@ export function PendingEdit({
           disabled={working}
           onClick={onKeep}
         >
-          Keep
+          Keep again
         </Button>
         <Button size="sm" prio="tertiary" disabled={working} onClick={onUndo}>
           Undo

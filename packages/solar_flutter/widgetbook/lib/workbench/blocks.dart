@@ -1,6 +1,6 @@
-// What the workbench bar (bar.dart) and its Inspect dialog (inspect_dialog.dart) both draw: the
-// pending edit with its reason, Keep and Undo; the failing checks; Send to agent's note and button;
-// and an error. One widget each, so the two cannot say it differently. Drawn with SOLAR's own
+// What the workbench bar (bar.dart) and its Inspect dialog (inspect_dialog.dart) draw: the pending
+// edit with Keep again and Undo; the draft with its reason, Save and Discard (the dialog's alone);
+// the failing checks; Send to agent's note and button; and an error. One widget each, so the two cannot say it differently. Drawn with SOLAR's own
 // widgets and tokens.
 
 import 'package:flutter/material.dart';
@@ -114,16 +114,15 @@ class WorkbenchSendBlock extends StatelessWidget {
   );
 }
 
-/// The one pending edit, where it is this component's: the edit (what it drew before → what it
-/// sets), the reason Keep records (the reason it replaces under it, and the rules that borrow it),
-/// its failing checks with Send to agent where [canSend], and Keep and Undo; each action disabled
-/// where its callback is null. [wide] lays it out in columns (the Inspect dialog's strip), else one
-/// under another (the bar).
+/// The one pending edit, where it is this component's: an edit saved whose checks failed (or were
+/// never run, after a restart mid-save). The edit (what it drew before → what it sets), the reason
+/// it was saved with, its failing checks with Send to agent where [canSend], and Keep again and
+/// Undo; each action disabled where its callback is null. [wide] lays it out in columns (the
+/// Inspect dialog's strip), else one under another (the bar).
 class WorkbenchPendingBlock extends StatelessWidget {
   const WorkbenchPendingBlock({
     super.key,
     required this.pending,
-    required this.reason,
     required this.agentNote,
     required this.canSend,
     required this.onKeep,
@@ -134,8 +133,10 @@ class WorkbenchPendingBlock extends StatelessWidget {
   });
 
   final WorkbenchPending pending;
-  final TextEditingController reason, agentNote;
+  final TextEditingController agentNote;
   final bool canSend;
+
+  /// Keep again, and Undo.
   final VoidCallback? onKeep, onUndo;
 
   /// Send to agent with the failing checks shown; null disables it.
@@ -152,20 +153,8 @@ class WorkbenchPendingBlock extends StatelessWidget {
     final failing = pending.failing;
     final edit = [
       Text(title ?? pending.text, style: small),
-      if (!pending.deletes)
-        SolarTextArea(
-          size: SolarTextAreaSize.sm,
-          label: 'Why (a reviewer must be able to check it)',
-          helper: pending.previousReason == null
-              ? null
-              : 'Was: ${pending.previousReason}',
-          controller: reason,
-        ),
-      if (!pending.deletes && pending.borrowers.isNotEmpty)
-        Text(
-          'Also the reason of: ${pending.borrowers.join(', ')}',
-          style: small,
-        ),
+      if (!pending.deletes && pending.reason != null)
+        Text('Saved with the reason: ${pending.reason}', style: small),
     ];
     final checks = [
       if (failing != null) ...[
@@ -179,7 +168,7 @@ class WorkbenchPendingBlock extends StatelessWidget {
       runSpacing: SolarInset.xs,
       children: [
         workbenchButton(
-          'Keep',
+          'Keep again',
           onKeep,
           // Where the checks failed, Send to agent is the step the block leads with.
           prio: failing != null && canSend
@@ -189,20 +178,93 @@ class WorkbenchPendingBlock extends StatelessWidget {
         workbenchButton('Undo', onUndo),
       ],
     );
-    Widget column(List<Widget> children) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      spacing: SolarStack.sm,
-      children: children,
-    );
-    if (!wide) return column([...edit, ...checks, actions]);
+    if (!wide || checks.isEmpty) return _column([...edit, ...checks, actions]);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: SolarInset.md,
       children: [
-        Expanded(child: column([...edit, actions])),
-        if (checks.isNotEmpty) Expanded(child: column(checks)),
+        Expanded(child: _column([...edit, actions])),
+        Expanded(child: _column(checks)),
       ],
     );
   }
 }
+
+/// The draft the Inspect dialog's editor made, before anything is sent: the edit in words, the
+/// reason to save it with (the reason of the rule it replaces, and the rules that borrow it, under
+/// the field), or, where it is Figma's own value, that the rule is removed and no reason is asked;
+/// Save and Discard, each disabled where its callback is null.
+class WorkbenchDraftBlock extends StatelessWidget {
+  const WorkbenchDraftBlock({
+    super.key,
+    required this.title,
+    required this.removes,
+    required this.reason,
+    required this.onReason,
+    required this.onSave,
+    required this.onDiscard,
+    this.replaces,
+    this.borrowers = const [],
+    this.enabled = true,
+  });
+
+  final String title;
+
+  /// Whether the draft is Figma's own value there: the rule's removal.
+  final bool removes;
+  final TextEditingController reason;
+  final VoidCallback onReason;
+  final VoidCallback? onSave, onDiscard;
+
+  /// The reason of the rule the draft replaces, and the rules that borrow it.
+  final String? replaces;
+  final List<String> borrowers;
+
+  /// Whether the reason may be typed (not while Save runs).
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    final small = workbenchSmall(SolarTheme.of(context));
+    return _column([
+      Text(title, style: small),
+      if (removes)
+        Text(
+          "Figma's own value here: the rule is removed, and needs no reason.",
+          style: small,
+        )
+      else
+        SolarTextArea(
+          size: SolarTextAreaSize.sm,
+          enabled: enabled,
+          label: 'Why (a reviewer must be able to check it)',
+          helper: [
+            if (replaces != null) 'Was: $replaces',
+            if (borrowers.isNotEmpty)
+              'Also the reason of: ${borrowers.join(', ')}',
+          ].join('\n').nonEmpty,
+          controller: reason,
+          onChanged: (_) => onReason(),
+        ),
+      Wrap(
+        spacing: SolarInset.xs,
+        runSpacing: SolarInset.xs,
+        children: [
+          workbenchButton('Save', onSave, prio: SolarButtonPrio.primary),
+          workbenchButton('Discard', onDiscard),
+        ],
+      ),
+    ]);
+  }
+}
+
+extension on String {
+  String? get nonEmpty => isEmpty ? null : this;
+}
+
+Widget _column(List<Widget> children) => Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  mainAxisSize: MainAxisSize.min,
+  spacing: SolarStack.sm,
+  children: children,
+);

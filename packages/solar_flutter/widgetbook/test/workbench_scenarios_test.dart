@@ -49,7 +49,15 @@ const _viewport = Size(1280, 720);
 var _component = 'Button';
 
 /// The actions the dialog's strip holds while an edit is pending.
-const _strip = {'Keep', 'Undo', 'Reason', 'Agent note', 'Send to agent'};
+const _strip = {
+  'Reason',
+  'Save',
+  'Discard',
+  'Undo',
+  'Keep again',
+  'Agent note',
+  'Send to agent',
+};
 
 /// The text fields, by action, and the start of each one's label: the pending edit's reason,
 /// Report's note, and Send to agent's.
@@ -83,7 +91,15 @@ Set<String> get _serial =>
     ((_vocabulary['serial'] as Map)['routes'] as List).cast<String>().toSet();
 Set<String> get _fakeKeys =>
     (_vocabulary['fake'] as Map).keys.cast<String>().toSet();
-const _answerKeys = {'answer', 'status', 'refuse', 'events', 'hold'};
+const _answerKeys = {
+  'answer',
+  'status',
+  'refuse',
+  'events',
+  'hold',
+  'reload',
+  'regenerated',
+};
 
 /// [value] with every `{ "$fixture": name, ...over }` a copy of `fixtures[name]` with the object's
 /// other keys put over it, each resolved in turn.
@@ -172,6 +188,9 @@ class _FakeService {
   /// The answers held (hold), by route, until a release step.
   final _held = <String, Completer<void>>{};
 
+  /// How many times the service told the viewers to reload: Widgetbook, it hot-restarts.
+  var reloads = 0;
+
   void release(String route) {
     final held = _held.remove(route);
     if (held == null) fail('no answer held at $route');
@@ -179,6 +198,7 @@ class _FakeService {
   }
 
   void emit(Map<String, dynamic> event) {
+    if (event['type'] == 'reload') reloads++;
     _seq++;
     _sent.add({'seq': _seq, ...event});
     final waiting = _waiting;
@@ -234,7 +254,7 @@ class _FakeService {
           final a = _answer('status');
           if (a?['refuse'] != null) return _refusal(a!);
           final now = (status! as Map).cast<String, Object?>();
-          return _json({...now, 'busy': _busy ?? now['busy']});
+          return _json({...now, 'busy': _busy ?? now['busy'], 'seq': _seq});
         case 'component':
           final asked = {
             'name': r.url.queryParameters['name'],
@@ -266,11 +286,17 @@ class _FakeService {
       for (final e in (a['events'] as List?) ?? const []) {
         emit((e as Map).cast());
       }
+      // The regeneration is done, the rest of the job not yet: Widgetbook restarts now.
+      if (a['reload'] == true) {
+        if (a.containsKey('regenerated')) status = a['regenerated'];
+        emit({'type': 'reload'});
+      }
       if (a['hold'] == true) {
         final held = _held[route] = Completer<void>();
         await held.future;
       }
       if (a.containsKey('status')) status = a['status'];
+      // A regeneration has finished: the service restarts Widgetbook (the driver does, here).
       if (serial) {
         _busy = null;
         if (a['refuse'] case final Map<Object?, Object?> r) {
@@ -358,7 +384,7 @@ Finder _action(String name) {
       );
   }
   final at = open && _strip.contains(name)
-      ? find.descendant(of: scope, matching: _labelled('Pending edit'))
+      ? find.descendant(of: scope, matching: _labelled('Edit'))
       : scope;
   if (_isSelect(name)) {
     return _within(
@@ -621,6 +647,35 @@ void main() {
       final layers = ((inspection?['layers'] as List?) ?? const [])
           .cast<Map<String, dynamic>>();
 
+      // The app, keyed: a new key is a restart, the bar's state and its polling started afresh.
+      Widget app(Key key) => MaterialApp(
+        key: key,
+        theme: solarTheme(SolarTheme.light, Brightness.light),
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                WorkbenchBar(
+                  component: _component,
+                  platform: _platform,
+                  controls:
+                      (service.fake['controls'] as Map?)
+                          ?.cast<String, Object?>() ??
+                      const {},
+                  client: HttpWorkbenchClient(
+                    'http://workbench.test',
+                    client: MockClient(service.handle),
+                  ),
+                  oracle: _oracleOf(_component),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+      var restarts = 0;
+
       Future<void> settle() => tester.pumpAndSettle();
 
       /// One expectation; [last] (or naming an action) also checks every action offered is named.
@@ -735,6 +790,8 @@ void main() {
                   reason: 'hides $fact',
                 );
               }
+            case 'reloads':
+              expect(restarts, v, reason: 'Widgetbook restarted');
             case 'noBar':
               expect(
                 find.byWidgetPredicate(
@@ -803,6 +860,7 @@ void main() {
           case 'type':
             final field = _fieldActions[v['field']];
             if (field == null) fail('no such field: ${v['field']}');
+            expect(_action(field), findsOneWidget, reason: '$field is offered');
             await tester.enterText(
               find.descendant(
                 of: _action(field),
@@ -813,6 +871,7 @@ void main() {
           case 'escape':
             final field = _fieldActions[v];
             if (field == null) fail('no such field: $v');
+            expect(_action(field), findsOneWidget, reason: '$field is offered');
             await tester.showKeyboard(
               find.descendant(
                 of: _action(field),
@@ -846,35 +905,15 @@ void main() {
             fail('no such step: $kind');
         }
         await settle();
+        // Told to reload, the service hot-restarts Widgetbook: the app starts again, afresh.
+        if (restarts < service.reloads) {
+          restarts = service.reloads;
+          await tester.pumpWidget(app(UniqueKey()));
+          await settle();
+        }
       }
 
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: solarTheme(SolarTheme.light, Brightness.light),
-          home: Scaffold(
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  WorkbenchBar(
-                    component: _component,
-                    platform: _platform,
-                    controls:
-                        (service.fake['controls'] as Map?)
-                            ?.cast<String, Object?>() ??
-                        const {},
-                    client: HttpWorkbenchClient(
-                      'http://workbench.test',
-                      client: MockClient(service.handle),
-                    ),
-                    oracle: _oracleOf(_component),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
+      await tester.pumpWidget(app(UniqueKey()));
       await settle();
       // A service still starting is asked again after a second, each time.
       for (var i = 0; i < starting; i++) {

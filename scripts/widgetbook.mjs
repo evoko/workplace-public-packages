@@ -59,8 +59,8 @@ flutter('pub', 'get');
 if (process.argv[2] === 'build') flutter('build', 'web');
 else {
   // The workbench service, for the bar above each Playground (serving only, never a build): its
-  // URL for the app, and a pid file the service signals to hot-reload after it regenerates
-  // (scripts/workbench.mjs, reloadWidgetbook). The pid file lives exactly as long as `flutter run`,
+  // URL for the app, and a pid file the service signals to hot-restart after it regenerates
+  // (scripts/workbench.mjs, restartWidgetbook). The pid file lives exactly as long as `flutter run`,
   // so a stale pid is never signalled.
   const { ensureWorkbench, WORKBENCH_URL } =
     await import('./workbench-launch.mjs');

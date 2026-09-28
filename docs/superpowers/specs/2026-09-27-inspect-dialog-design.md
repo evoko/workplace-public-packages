@@ -101,6 +101,24 @@ affects it") settled these, which override the sections above where they differ:
 - **Where a viewer cannot locate a layer** (Flutter's 9 Material-based components), the preview names
   the selected layer instead of outlining it; the web locates every layer by its recipe `selector`.
 
+### Revised again: draft, then save (owner, 2026-09-28)
+
+Choosing a token wrote the rule and regenerated at once, and the viewers' reload under the open
+dialog lost the reason being typed. So:
+
+- **Choosing a scope and a token makes a draft in the dialog;** nothing is sent. The strip shows the
+  draft (before → after), the reason, **Save** and **Discard**.
+- **Save** sends one request with the scope, the value and the reason. Only then does the service
+  write the rule with its reason, regenerate, check the approvals and run the checks.
+- **After a save the app reloads** so it is rebuilt from the new files: Storybook reloads the page,
+  Widgetbook hot-restarts. The service remembers where the person was, and the dialog reopens there,
+  showing the saved result.
+- **Failing checks** leave the edit pending with Undo, Keep again and Send to agent, as before; that
+  is the only pending state. No rule is written without its reason, so the placeholder reason and
+  `solar:codegen --pending` go.
+- The change is not shown before it is saved (a web-only restyled preview was offered and set aside,
+  so both viewers stay alike).
+
 ## What the service adds to an inspection
 
 Read from the build; nothing new is written.

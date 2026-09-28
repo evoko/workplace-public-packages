@@ -272,7 +272,6 @@ function resolveReasons(doc, fail) {
           rule.reason = sentence(section, at);
         // A rule `solar:explain --propose` wrote, pasted before its reason was.
         if (
-          !placeholders &&
           typeof rule?.reason === 'string' &&
           rule.reason.startsWith(PLACEHOLDER)
         )
@@ -281,15 +280,6 @@ function resolveReasons(doc, fail) {
           );
       }
 }
-
-/**
- * Whether `TODO(reason)` is let through: only while the workbench previews a pending edit
- * (`solar:codegen --pending`, scripts/workbench.mjs), never in a plain build, the Verify block or CI.
- */
-let placeholders = false;
-export const allowPlaceholders = (on) => {
-  placeholders = on;
-};
 
 /** How `solar:explain --propose` marks the reason a person must write (explain/propose.mjs). */
 export const PLACEHOLDER = 'TODO(reason)';

@@ -77,30 +77,24 @@ test('an event refetches: a component approved elsewhere shows 🟢', async ({
   await expect(page.getByRole('button', { name: 'Approve' })).toHaveCount(0);
 });
 
-test('a pending edit asks for a reason, names the rules that borrow it, and holds Approve', async ({
+test('a pending edit names its key and value, holds Approve, and Keep again and Undo send its platform', async ({
   page,
 }) => {
   await open(page, 'pending');
   await expect(bar(page)).toContainText(
     'Pending: root.base.radius → radius.full',
   );
-  await expect(bar(page)).toContainText('Was: Figma rounds it fully');
-  await expect(bar(page)).toContainText(
-    'Also the reason of: root.size=sm.radius',
-  );
+  // The reason was written with the edit: the bar asks none.
+  await expect(page.getByRole('textbox', { name: /Why/ })).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Approve' })).toBeDisabled();
-  const why = page.getByRole('textbox', { name: /Why/ });
-  await why.fill('The pill reads as a chip beside the Tag');
-  await page.getByRole('button', { name: 'Keep' }).click();
-  await expect(why).toHaveValue('');
-  await why.fill('A second thought');
+  await page.getByRole('button', { name: 'Keep again' }).click();
+  await expect.poll(() => calls(page)).toEqual([['keep', 'Button', 'web']]);
   await page.getByRole('button', { name: 'Undo', exact: true }).click();
-  await expect(why).toHaveValue('');
   await expect
     .poll(() => calls(page))
     .toEqual([
-      ['keep', 'Button', 'The pill reads as a chip beside the Tag'],
-      ['undo', 'Button'],
+      ['keep', 'Button', 'web'],
+      ['undo', 'Button', 'web'],
     ]);
 });
 

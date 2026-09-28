@@ -6,11 +6,13 @@
  * same terms: a component 🟡 on both platforms (or absent from one) may be changed and reported on;
  * 🟢 on either is locked; 🔴 on either waits on the components it uses.
  *
- * A look change is one overlay `set` entry, written with the placeholder reason and previewed with
- * `solar:codegen --pending`, until Keep writes a person's reason or Undo puts the file back byte for
- * byte. One such pending edit exists at a time, saved before the overlay is written, with the
- * file's bytes before it, as Set wrote it (`placeholder`) and as Keep left it (`after`), so Undo
- * survives a restart and nothing the session does overwrites an edit someone else made since.
+ * A look change is one overlay `set` entry, which the viewer drafts without a request and Apply
+ * writes whole, its reason and all, then regenerates and checks in one job: nothing is written
+ * while a person is still choosing, so no regeneration reloads a viewer under a reason being typed.
+ * Where the checks fail, the edit stays pending, as Apply wrote it: saved before the overlay is
+ * written, with the file's bytes before it and as Apply left it (`after`), so Undo survives a
+ * restart and nothing the session does overwrites an edit someone else made since. Keep runs the
+ * regeneration and the checks again; Send to agent keeps the edit and hands the failures on.
  */
 
 import { parse } from 'yaml';
@@ -64,6 +66,23 @@ const plainValue = (value) =>
       ? { keyword: value.keyword }
       : { none: true };
 
+/**
+ * A reason a reviewer can check, or why it is not: none, the proposer's placeholder, on more than
+ * one line, or the reason of the rule it replaces unchanged.
+ */
+function reasonOf(reason, previous) {
+  const why = String(reason ?? '').trim();
+  if (!why || why.startsWith(PLACEHOLDER))
+    refuse('write a reason a reviewer can check', 400);
+  if (/[\r\n]/.test(why)) refuse('write the reason on one line', 400);
+  if (typeof previous === 'string' && why === previous.trim())
+    refuse('the rule changed, so rewrite its reason', 400);
+  return why;
+}
+
+/** How long the status names where a viewer reopens its dialog, in milliseconds. */
+export const REOPEN_MS = 60_000;
+
 /** The longest note a person may write, in characters. */
 export const MAX_NOTE = 10_000;
 
@@ -111,20 +130,34 @@ const tail = (output) =>
  * @param {string} deps.pendingPath where the pending edit is saved
  * @param {string} deps.feedbackDir spec/feedback, where a Report or Send to agent note is written
  * @param {() => {built: object[], tokens: object}} deps.build `stage.build()` as the files are now
- * @param {(o: {pending: boolean}) => Promise<{ok: boolean, output: string}>} deps.codegen
- *   `solar:codegen`, with `--pending` while an edit is pending
+ * @param {() => Promise<{ok: boolean, output: string}>} deps.codegen `solar:codegen`
  * @param {() => Promise<{coloured: object, approvals: object}>} deps.status `solar:status`'s colours
  *   (`colour(scan(), approvals)`) and the approvals record
  * @param {(name: string) => Promise<{ok: boolean, failures: object[]}>} deps.checks a component's
  *   own checks
- * @param {() => void} deps.reload tells the viewers to reload what was regenerated
+ * @param {() => void} deps.reload restarts the viewer the service can restart (Widgetbook) on what
+ *   was regenerated; the session also sends the event `reload`, on which Storybook's bar reloads
  * @param {() => string} deps.today the date, `YYYY-MM-DD`
+ * @param {() => number} [deps.now] the clock, in milliseconds (`Date.now`)
  * @param {(event: {type: string, message?: string}) => void} deps.emit tells the viewers
  */
 export function createSession(deps) {
   const { files } = deps;
   let queue = Promise.resolve();
   let busy = null;
+  // While Apply runs, its record is on disk but no edit is pending yet: it is one only where the
+  // checks fail (or the service stopped mid-way, when the record is read back at the start).
+  let applying = false;
+  // Where the viewer that applied, kept or undid an edit reopens its dialog once it has reloaded,
+  // for REOPEN_MS after (its page may load several times as the regenerated files arrive), and
+  // until the next operation starts.
+  let reopen = null;
+  let reopenSince = 0;
+  const now = deps.now ?? (() => Date.now());
+  const reopenHere = (r) => {
+    reopen = r;
+    reopenSince = now();
+  };
   let pending = (() => {
     const text = files.read(deps.pendingPath);
     if (!text) return null;
@@ -138,13 +171,9 @@ export function createSession(deps) {
     } catch (error) {
       throw unreadable(error.message);
     }
-    const missing = [
-      'component',
-      'key',
-      'before',
-      'placeholder',
-      'after',
-    ].filter((field) => typeof p?.[field] !== 'string');
+    const missing = ['component', 'key', 'before', 'after'].filter(
+      (field) => typeof p?.[field] !== 'string',
+    );
     if (missing.length) throw unreadable(`no ${missing.join(', ')}`);
     return p;
   })();
@@ -166,6 +195,7 @@ export function createSession(deps) {
     const run = queue.then(async () => {
       try {
         busy = message;
+        reopen = null;
         tell({ type: 'busy', message });
         return await fn();
       } catch (error) {
@@ -224,16 +254,24 @@ export function createSession(deps) {
     ];
     return {
       busy,
-      pending: pending && {
-        component: pending.component,
-        key: pending.key,
-        value: pending.value,
-        was: pending.was ?? null,
-        deletes: pending.deletes,
-        previousReason: pending.previousReason,
-        borrowers: pending.borrowers ?? [],
-        failing: pending.failing ?? null,
-      },
+      reopen:
+        reopen && now() - reopenSince <= REOPEN_MS
+          ? { ...reopen, age: now() - reopenSince }
+          : null,
+      pending:
+        !applying && pending
+          ? {
+              component: pending.component,
+              key: pending.key,
+              value: pending.value,
+              was: pending.was ?? null,
+              reason: pending.reason ?? null,
+              deletes: pending.deletes,
+              previousReason: pending.previousReason,
+              borrowers: pending.borrowers ?? [],
+              failing: pending.failing ?? null,
+            }
+          : null,
       components: Object.fromEntries(
         names.map((n) => [n, gateOf(coloured, n)]),
       ),
@@ -272,35 +310,90 @@ export function createSession(deps) {
     );
 
   /**
-   * Puts the overlay back as it was before the pending edit, and regenerates: only where it holds
-   * one of the texts the session wrote (`wrote`), or is already back.
+   * Where the viewer on `platform` reopens its dialog after the reload: at the pending edit's
+   * variant, layer and cell (none for a record an older service wrote, which lacks them).
    */
-  const restore = async (p, wrote) => {
+  const reopenAt = (p, platform) =>
+    Number.isInteger(p?.variant) && p.layer && p.cell
+      ? {
+          platform,
+          component: p.component,
+          variant: p.variant,
+          layer: p.layer,
+          cell: p.cell,
+        }
+      : null;
+
+  /** The viewers reload what was regenerated: Widgetbook restarted, Storybook told. */
+  const reloaded = () => {
+    try {
+      deps.reload();
+    } finally {
+      tell({ type: 'reload' });
+    }
+  };
+
+  /** The texts of an edit's overlay the session wrote: Apply's, and an older record's placeholder. */
+  const wroteOf = (p) =>
+    [p.after, p.placeholder].filter((t) => t !== undefined);
+
+  /**
+   * Puts the overlay back as it was before the pending edit, and regenerates: only where it holds
+   * one of the texts the session wrote, or is already back.
+   */
+  const restore = async (p) => {
     const path = deps.overlayPath(p.component);
     const disk = files.read(path);
-    if (disk !== p.before && !wrote.includes(disk)) changedOnDisk(path);
+    if (disk !== p.before && !wroteOf(p).includes(disk)) changedOnDisk(path);
     files.write(path, p.before);
-    const generated = await deps.codegen({ pending: false });
+    const generated = await deps.codegen();
     if (!generated.ok)
       refuse(
         `the overlay is back, but regenerating failed: ${tail(generated.output)}; press Undo again`,
         500,
       );
-    deps.reload();
+  };
+
+  /** Refuses where regenerating the edit would cancel an approval, putting it back first. */
+  const mustKeepApprovals = async (p, done) => {
+    const now = new Set(heldIn((await deps.status()).coloured));
+    const lost = (p.held ?? []).filter((a) => !now.has(a));
+    if (!lost.length) return;
+    await restore(p);
+    savePending(null);
+    // Regenerated again, back as it was: the viewers reload once more.
+    reloaded();
+    refuse(`${done}, this would cancel ${lost.join(', ')}; the edit is undone`);
+  };
+
+  /**
+   * Runs the component's checks on the edit as it is regenerated: passing, the edit is kept and no
+   * longer pending; failing, it stays pending with the failures, capped so the status and a Send
+   * of them stay within the contract's limit. The viewers have reloaded already, once the regeneration was done.
+   */
+  const checked = async (name) => {
+    const result = await deps.checks(name);
+    if (!result.ok) {
+      const failing = capFailures(result.failures, name);
+      savePending({ ...pending, failing });
+      return { ok: false, failures: failing };
+    }
+    savePending(null);
+    return { ok: true };
   };
 
   /**
    * The pending edit on `name`, and its overlay as it is on disk: refused where there is none, or
    * where the file holds neither text the edit left (an editor or an agent changed it since), which
    * Keep and Undo would overwrite. Undo also takes a file already back as it was (a restore whose
-   * regeneration failed, or a Set stopped before it wrote); Keep says to press it.
+   * regeneration failed, or an Apply stopped before it wrote); Keep says to press it.
    */
   const pendingOn = (name, { undoing = false } = {}) => {
     if (!pending || pending.component !== name)
       refuse(`${name} has no pending edit`);
     const path = deps.overlayPath(name);
     const disk = files.read(path);
-    if (disk !== pending.placeholder && disk !== pending.after) {
+    if (!wroteOf(pending).includes(disk)) {
       if (disk !== pending.before) changedOnDisk(path);
       if (!undoing)
         refuse(`the edit is no longer in ${path}: press Undo to clear it`);
@@ -344,8 +437,13 @@ export function createSession(deps) {
     inspect: (name, variant) =>
       inspectNow(deps.build(), name, variant, overlayText(name)),
 
-    set: (body) =>
-      serial('Regenerating…', async () => {
+    /**
+     * Apply: the viewer's draft, written with its reason, regenerated and checked in one job. The
+     * draft is validated as the inspection offered it: the cell, the scope, the value, and a reason
+     * a reviewer can check (none where Figma's own value is chosen, which deletes the rule).
+     */
+    apply: (body) =>
+      serial('Saving…', async () => {
         const {
           component: name,
           variant: index,
@@ -353,7 +451,9 @@ export function createSession(deps) {
           cell,
           scope,
           revision,
+          platform,
         } = body;
+        mustBePlatform(platform);
         if (pending)
           refuse(`keep or undo the pending edit on ${pending.component} first`);
         const coloured = await mustEdit(name);
@@ -363,9 +463,9 @@ export function createSession(deps) {
         if (before === null)
           refuse(`${name} has no overlay file: add one by hand first`);
         if (revisionOf(before) !== revision)
-          refuse(`${path} changed on disk since the panel read it: reload`);
+          refuse(`${path} changed on disk since the dialog read it: reload`);
 
-        // What the panel was offered, read again: the cell, its scopes and its values.
+        // What the dialog was offered, read again: the cell, its scopes and its values.
         const build = deps.build();
         const inspection = inspectNow(build, name, index, before);
         const at = `${layer}.${cell}`;
@@ -397,6 +497,10 @@ export function createSession(deps) {
         // Nothing to decide where the chosen look already has exactly that entry.
         if (!deletes && same(there, value))
           refuse(`${at} already draws ${entryText(there)} there`);
+        // A borrowed reason (`{ as: … }`) is no sentence to rewrite.
+        const previousReason =
+          typeof existing?.reason === 'string' ? existing.reason : null;
+        const reason = deletes ? null : reasonOf(body.reason, previousReason);
         // A rule that borrows the entry's reason (`reason: { as: set <key> }`) blocks deleting it,
         // and takes the new reason on a replace, which the viewer says.
         const borrowers = borrowersOf(before, scope);
@@ -404,138 +508,119 @@ export function createSession(deps) {
         try {
           text = deletes
             ? writeSetEntry(before, scope, null)
-            : writeSetEntry(before, scope, value, PLACEHOLDER);
+            : writeSetEntry(before, scope, value, reason);
         } catch (error) {
           refuse(error.message);
         }
-        const held = heldIn(coloured);
         // What the variant in view draws before the edit, as explain reads it: the strip's "was".
         const was = entryText(lookupCell(spec, layer, cell, variant)?.entry);
 
-        // Saved before the file is written, so a placeholder is never on disk without the record
-        // that undoes it, whatever happens next.
-        savePending({
-          component: name,
-          key: scope,
-          value,
-          was,
-          deletes,
-          before,
-          placeholder: text,
-          after: text,
-          // A borrowed reason (`{ as: … }`) is no sentence to rewrite.
-          previousReason:
-            typeof existing?.reason === 'string' ? existing.reason : null,
-          borrowers,
-          held,
-          failing: null,
-        });
-        let regenerating = false;
+        applying = true;
         try {
-          files.write(path, text);
-          // Prove the rule reaches the variant in view before regenerating anything.
-          let now;
+          // Saved before the file is written, so the edit is never on disk without the record that
+          // undoes it, whatever happens next.
+          savePending({
+            component: name,
+            key: scope,
+            value,
+            was,
+            deletes,
+            reason,
+            before,
+            after: text,
+            previousReason,
+            borrowers,
+            held: heldIn(coloured),
+            // Where the person was, so the viewer that undoes or keeps it again reopens there too.
+            variant: inspection.variant,
+            layer,
+            cell,
+            failing: null,
+          });
+          let regenerating = false;
           try {
-            const after = builtOf(deps.build(), name);
-            now = lookupCell(
-              after.spec,
-              layer,
-              cell,
-              after.oracle.variants[inspection.variant],
-            );
-          } catch (error) {
-            refuse(`the build refused the edit: ${error.message}`, 400);
-          }
-          if (!deletes && !same(now?.entry, value))
-            refuse(
-              `the rule changes nothing in this variant: ${now?.at ?? 'another entry'} wins; choose a narrower scope`,
-            );
-          regenerating = true;
-          const generated = await deps.codegen({ pending: true });
-          if (!generated.ok)
-            refuse(
-              `the build refused the edit, which is undone: ${tail(generated.output)}`,
-              400,
-            );
-        } catch (error) {
-          // Put back only what the session wrote; someone else's edit since stays, with the record.
-          const disk = files.read(path);
-          if (disk !== text && disk !== before) changedOnDisk(path);
-          files.write(path, before);
-          savePending(null);
-          if (regenerating) {
+            files.write(path, text);
+            // Prove the rule reaches the variant in view before regenerating anything.
+            let now;
             try {
-              await deps.codegen({ pending: false });
-              deps.reload();
-            } catch {
-              // Best effort: the file is back, and the next regeneration catches up.
-            }
-          }
-          throw error instanceof WorkbenchError
-            ? error
-            : new WorkbenchError(
-                500,
-                `the edit failed, and is undone: ${error.message}`,
+              const after = builtOf(deps.build(), name);
+              now = lookupCell(
+                after.spec,
+                layer,
+                cell,
+                after.oracle.variants[inspection.variant],
               );
+            } catch (error) {
+              refuse(`the build refused the edit: ${error.message}`, 400);
+            }
+            if (!deletes && !same(now?.entry, value))
+              refuse(
+                `the rule changes nothing in this variant: ${now?.at ?? 'another entry'} wins; choose a narrower scope`,
+              );
+            regenerating = true;
+            const generated = await deps.codegen();
+            if (!generated.ok)
+              refuse(
+                `the build refused the edit, which is undone: ${tail(generated.output)}`,
+                400,
+              );
+          } catch (error) {
+            // Put back only what the session wrote; someone else's edit since stays, with the record.
+            const disk = files.read(path);
+            if (disk !== text && disk !== before) changedOnDisk(path);
+            files.write(path, before);
+            savePending(null);
+            if (regenerating) {
+              try {
+                // A failed regeneration writes nothing; one that threw may have: built back.
+                await deps.codegen();
+              } catch {
+                // Best effort: the file is back, and the next regeneration catches up.
+              }
+            }
+            throw error instanceof WorkbenchError
+              ? error
+              : new WorkbenchError(
+                  500,
+                  `the edit failed, and is undone: ${error.message}`,
+                );
+          }
+          // The viewer that saved reopens its dialog here once it has reloaded, which it does as
+          // soon as the regeneration is done: the checks' outcome comes after, as a change.
+          reopenHere(reopenAt(pending, platform));
+          reloaded();
+          await mustKeepApprovals(pending, 'saved');
+          return await checked(name);
+        } finally {
+          applying = false;
         }
-        deps.reload();
-        // The operation is finishing, and nothing else runs until it has.
-        return { ...(await statusNow()), busy: null };
       }),
 
-    keep: ({ component: name, reason }) =>
-      serial('Keeping…', async () => {
-        const { p, path, disk } = pendingOn(name);
-        if (!p.deletes) {
-          const why = String(reason ?? '').trim();
-          if (!why || why.startsWith(PLACEHOLDER))
-            refuse('write a reason a reviewer can check', 400);
-          if (/[\r\n]/.test(why)) refuse('write the reason on one line', 400);
-          const previous = p.previousReason;
-          if (typeof previous === 'string' && why === previous.trim())
-            refuse('the rule changed, so rewrite its reason', 400);
-          let text;
-          try {
-            text = writeSetEntry(disk, p.key, p.value, why);
-          } catch (error) {
-            refuse(error.message, 400);
-          }
-          savePending({ ...p, after: text });
-          files.write(path, text);
-        }
-        const generated = await deps.codegen({ pending: false });
+    /** Keep again: the pending edit regenerated as it is and its checks run again, after a fix. */
+    keep: ({ component: name, platform }) =>
+      serial('Checking again…', async () => {
+        mustBePlatform(platform);
+        pendingOn(name);
+        const generated = await deps.codegen();
         if (!generated.ok)
           refuse(
             `the build failed: ${tail(generated.output)}; the edit is still pending: Undo, or fix and Keep again`,
             400,
           );
-        const now = new Set(heldIn((await deps.status()).coloured));
-        const lost = (pending.held ?? []).filter((a) => !now.has(a));
-        if (lost.length) {
-          await restore(pending, [pending.after]);
-          savePending(null);
-          refuse(
-            `kept, this would cancel ${lost.join(', ')}; the edit is undone`,
-          );
-        }
-        const result = await deps.checks(name);
-        if (!result.ok) {
-          // Capped, so the status and a Send of them stay within the contract's limit.
-          const failing = capFailures(result.failures, name);
-          savePending({ ...pending, failing });
-          deps.reload();
-          return { ok: false, failures: failing };
-        }
-        savePending(null);
-        deps.reload();
-        return { ok: true };
+        reopenHere(reopenAt(pending, platform));
+        reloaded();
+        await mustKeepApprovals(pending, 'kept');
+        return checked(name);
       }),
 
-    undo: ({ component: name }) =>
+    undo: ({ component: name, platform }) =>
       serial('Undoing…', async () => {
+        mustBePlatform(platform);
         const { p } = pendingOn(name, { undoing: true });
-        await restore(p, [p.placeholder, p.after]);
+        await restore(p);
+        reopenHere(reopenAt(p, platform));
         savePending(null);
+        reloaded();
         return { ...(await statusNow()), busy: null };
       }),
 
@@ -586,8 +671,8 @@ export function createSession(deps) {
 
     /**
      * Send to agent: a note carrying the failing checks where the person judged the component
-     * right. From a failing Keep, the checks are the pending edit's, and the edit is then kept as
-     * Keep wrote it, its reason and all; from a refused Approve, they are the failures the viewer
+     * right. From a failing Apply or Keep, the checks are the pending edit's, and the edit is then
+     * kept as Apply wrote it, its reason and all; from a refused Approve, they are the failures the viewer
      * was given. On the same terms as Report: the agent works on components that may change.
      */
     send: ({ component: name, platform, note, failures }) =>
@@ -598,7 +683,7 @@ export function createSession(deps) {
         const words = (note ?? '').trim();
         if (words.length > MAX_NOTE)
           refuse(`the note is over ${MAX_NOTE} characters`, 400);
-        // After a failing Keep, the pending edit's own are sent, and the body's are not read.
+        // After failing checks on an edit, the pending edit's own are sent, and the body's are not read.
         const fromKeep = Boolean(
           pending?.component === name && pending.failing?.length,
         );
@@ -631,7 +716,7 @@ export function createSession(deps) {
             component: name,
             platform,
             controls: {},
-            // The rule the person kept, as Keep wrote it (none where the edit removed it).
+            // The rule the person kept, as Apply wrote it (none where the edit removed it).
             ...(fromKeep && {
               layer: pending.key.split('.')[0],
               rule: pending.key,

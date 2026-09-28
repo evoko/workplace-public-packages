@@ -12,9 +12,14 @@ import { connect } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { WORKBENCH_URL } from '../../../scripts/workbench-launch.mjs';
 import {
-  reloadWidgetbook,
+  ensureWorkbench,
+  WORKBENCH_URL,
+} from '../../../scripts/workbench-launch.mjs';
+import {
+  codeFiles,
+  codeVersion,
+  restartWidgetbook,
   serve,
   WORKBENCH_PORT,
   writeWhole,
@@ -25,8 +30,8 @@ const calls = [];
 const session = {
   status: async () => ({ busy: null, pending: null, components: {} }),
   inspect: (name, variant) => ({ component: name, variant }),
-  set: async (b) => {
-    calls.push(['set', b]);
+  apply: async (b) => {
+    calls.push(['apply', b]);
     return { ok: 1 };
   },
   keep: async () => {
@@ -108,12 +113,12 @@ describe('the workbench service', () => {
   });
 
   it('says who it is', async () => {
-    expect(await (await fetch(`${base}/health`)).json()).toEqual({
+    expect(await (await fetch(`${base}/health`)).json()).toMatchObject({
       service: 'solar-workbench',
     });
   });
 
-  it('routes a component’s inspection, and a set', async () => {
+  it('routes a component’s inspection, and an apply', async () => {
     expect(
       await (await fetch(`${base}/component?name=Button&variant=2`)).json(),
     ).toEqual({ component: 'Button', variant: '2' });
@@ -121,12 +126,14 @@ describe('the workbench service', () => {
       { component: 'Button', variant: '0' },
     );
     const r = await post(
-      `${base}/set`,
+      `${base}/apply`,
       JSON.stringify({ component: 'Button' }),
     );
     expect(r.status).toBe(200);
     expect(await r.json()).toEqual({ ok: 1 });
-    expect(calls[0]).toEqual(['set', { component: 'Button' }]);
+    expect(calls[0]).toEqual(['apply', { component: 'Button' }]);
+    for (const gone of ['/set', '/reopened'])
+      expect((await post(`${base}${gone}`, '{}')).status).toBe(404);
   });
 
   it('routes the approvals', async () => {
@@ -172,16 +179,17 @@ describe('the workbench service', () => {
 
   it('refuses a body over a megabyte, declared or sent', async () => {
     const declared = await raw(server, [
-      head(server, 'POST /set HTTP/1.1', { 'Content-Length': 2_000_000 }),
+      head(server, 'POST /apply HTTP/1.1', { 'Content-Length': 2_000_000 }),
     ]);
     expect(declared.status).toBe(413);
     expect(JSON.parse(declared.body).error).toMatch(/over/);
     const size = 1024 * 1024 + 1;
     const sent = await raw(server, [
-      head(server, 'POST /set HTTP/1.1', { 'Transfer-Encoding': 'chunked' }),
+      head(server, 'POST /apply HTTP/1.1', { 'Transfer-Encoding': 'chunked' }),
       `${size.toString(16)}\r\n${'x'.repeat(size)}\r\n0\r\n\r\n`,
     ]);
     expect(sent.status).toBe(413);
+    // The apply routed above, and nothing since.
     expect(calls.length).toBe(1);
   });
 
@@ -189,7 +197,7 @@ describe('the workbench service', () => {
     const r = await raw(server, [head(server, 'GET http://[ HTTP/1.1')]);
     expect(r.status).toBe(400);
     expect(JSON.parse(r.body)).toEqual({ error: 'http://[ is not a path' });
-    expect(await (await fetch(`${base}/health`)).json()).toEqual({
+    expect(await (await fetch(`${base}/health`)).json()).toMatchObject({
       service: 'solar-workbench',
     });
   });
@@ -210,7 +218,7 @@ describe('the workbench service', () => {
 
   it('refuses a body that is not a JSON object', async () => {
     for (const body of ['{"component":', '[1]', 'null']) {
-      const r = await post(`${base}/set`, body);
+      const r = await post(`${base}/apply`, body);
       expect(r.status).toBe(400);
       expect((await r.json()).error).toMatch(/JSON object/);
     }
@@ -268,7 +276,7 @@ describe('the workbench service', () => {
   });
 
   it('refuses another page’s preflight', async () => {
-    const r = await fetch(`${base}/set`, {
+    const r = await fetch(`${base}/apply`, {
       method: 'OPTIONS',
       headers: {
         Origin: 'https://example.com',
@@ -280,7 +288,7 @@ describe('the workbench service', () => {
   });
 
   it('answers a localhost page’s preflight', async () => {
-    const r = await fetch(`${base}/set`, {
+    const r = await fetch(`${base}/apply`, {
       method: 'OPTIONS',
       headers: {
         Origin: 'http://localhost:6006',
@@ -365,7 +373,7 @@ describe('the workbench service, whatever a session does', () => {
   it('answers 500 for an answer it cannot send, or a status no HTTP one', async () => {
     odd.session = {
       status: async () => circular,
-      set: async () => {
+      apply: async () => {
         throw Object.assign(new Error('git failed'), { status: 1 });
       },
       keep: async () => {
@@ -378,7 +386,7 @@ describe('the workbench service, whatever a session does', () => {
     const r = await fetch(`${at(odd)}/status`);
     expect(r.status).toBe(500);
     expect((await r.json()).error).toMatch(/circular/i);
-    for (const path of ['/set', '/keep', '/undo'])
+    for (const path of ['/apply', '/keep', '/undo'])
       expect((await post(`${at(odd)}${path}`, '{}')).status).toBe(500);
     expect((await fetch(`${at(odd)}/health`)).status).toBe(200);
   });
@@ -441,7 +449,7 @@ describe('the workbench service’s idle exit', () => {
     let finish;
     const slow = {
       ...session,
-      set: () => new Promise((ok) => (finish = ok)),
+      apply: () => new Promise((ok) => (finish = ok)),
     };
     const s = await serve({
       session: slow,
@@ -452,7 +460,7 @@ describe('the workbench service’s idle exit', () => {
       },
     });
     try {
-      const answer = post(`${at(s)}/set`, '{}');
+      const answer = post(`${at(s)}/apply`, '{}');
       await waitFor(400);
       expect(idle).toBe(0);
       finish({ done: true });
@@ -469,9 +477,211 @@ describe('the launcher', () => {
   it('asks the service on its port', () => {
     expect(WORKBENCH_URL).toBe(`http://127.0.0.1:${WORKBENCH_PORT}`);
   });
+
+  /**
+   * A launcher over fakes: `healths` are what GET /health answers, in turn (the last from then
+   * on), `shutdown` what POST /shutdown answers; every effect recorded.
+   */
+  const launch = async ({ healths, shutdown = 202, version = 'new' }) => {
+    const did = [];
+    let i = 0;
+    let clock = 0;
+    await ensureWorkbench({
+      version: () => version,
+      health: async () => healths[Math.min(i++, healths.length - 1)],
+      shutdown: async () => {
+        did.push(['shutdown']);
+        return shutdown;
+      },
+      start: () => {
+        did.push(['start']);
+        return { exited: () => false };
+      },
+      kill: (pid, signal) => did.push(['kill', pid, signal]),
+      sleep: async (ms) => {
+        clock += ms;
+      },
+      now: () => clock,
+      warn: (m) => did.push(['warn', m]),
+    });
+    return did;
+  };
+  const running = (version, pid = 4242) => ({
+    service: 'solar-workbench',
+    ...(version !== undefined && { version }),
+    ...(pid !== null && { pid }),
+  });
+
+  it('reuses a service on the code on disk', async () => {
+    expect(await launch({ healths: [running('new')] })).toEqual([]);
+  });
+
+  it('starts one where nothing answers', async () => {
+    expect(await launch({ healths: [null, running('new')] })).toEqual([
+      ['start'],
+    ]);
+  });
+
+  it('stops a service on other code, waits for the port, and starts a fresh one', async () => {
+    expect(
+      await launch({
+        healths: [running('old'), running('old'), null, null, running('new')],
+      }),
+    ).toEqual([['shutdown'], ['start']]);
+  });
+
+  it('starts none where another launcher’s fresh service took the port meanwhile', async () => {
+    expect(await launch({ healths: [running('old'), running('new')] })).toEqual(
+      [['shutdown']],
+    );
+  });
+
+  it('stops an older service with no /shutdown by its pid', async () => {
+    expect(
+      await launch({
+        healths: [running(undefined), null, null, running('new')],
+        shutdown: 404,
+      }),
+    ).toEqual([['shutdown'], ['kill', 4242, 'SIGTERM'], ['start']]);
+  });
+
+  it('says so, naming the port, where an older service can be told nothing', async () => {
+    const did = await launch({
+      healths: [running(undefined, null)],
+      shutdown: 404,
+    });
+    expect(did).toEqual([
+      ['shutdown'],
+      ['warn', expect.stringMatching(new RegExp(`port ${WORKBENCH_PORT}`))],
+    ]);
+  });
+
+  it('warns and starts nothing where the older service does not stop', async () => {
+    const did = await launch({ healths: [running('old')] });
+    expect(did).toEqual([
+      ['shutdown'],
+      ['warn', expect.stringMatching(/did not stop/)],
+    ]);
+  });
 });
 
-describe('reloading Widgetbook', () => {
+describe('the service’s version', () => {
+  it('hashes its own code: the script, the session’s modules, the approvals, the lookup and the overlay', () => {
+    const files = codeFiles();
+    expect(files).toContain('scripts/workbench.mjs');
+    expect(files).toContain('packages/codegen/src/workbench/session.mjs');
+    expect(files).toContain('packages/codegen/src/approvals/status.mjs');
+    expect(files).toContain('packages/codegen/src/explain/index.mjs');
+    expect(files).toContain('packages/codegen/src/normalize/overlay.mjs');
+    expect(codeVersion()).toMatch(/^[0-9a-f]{16}$/);
+    expect(codeVersion()).toBe(codeVersion());
+  });
+
+  it('changes with any of those files', () => {
+    const root = mkdtempSync(join(tmpdir(), 'workbench-code-'));
+    try {
+      for (const f of codeFiles()) {
+        mkdirSync(join(root, f, '..'), { recursive: true });
+        writeFileSync(join(root, f), 'x');
+      }
+      const before = codeVersion(root);
+      writeFileSync(
+        join(root, 'packages/codegen/src/workbench/session.mjs'),
+        'y',
+      );
+      expect(codeVersion(root)).not.toBe(before);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('the status', () => {
+  it('names the last event sent before it was read, for a bar to long-poll from', async () => {
+    const s = await serve({ session, port: 0, idleMs: 0, longPollMs: 100 });
+    try {
+      s.publish({ type: 'reload' });
+      const st = await (await fetch(`${at(s)}/status`)).json();
+      expect(st).toMatchObject({ busy: null, pending: null, seq: 1 });
+      // Polled from there, the reload before it is not heard.
+      const polled = await (
+        await fetch(`${at(s)}/events?after=${st.seq}`)
+      ).json();
+      expect(polled).toEqual({ seq: 1, events: [] });
+    } finally {
+      s.close();
+    }
+  });
+});
+
+describe('a stop', () => {
+  it('names the service’s version and pid on /health', async () => {
+    const s = await serve({ session, port: 0, idleMs: 0, version: 'v1' });
+    try {
+      expect(await (await fetch(`${at(s)}/health`)).json()).toEqual({
+        service: 'solar-workbench',
+        version: 'v1',
+        pid: process.pid,
+      });
+    } finally {
+      s.close();
+    }
+  });
+
+  it('is taken from this machine, and ends the service once the job running has finished', async () => {
+    let finish;
+    let stopped = 0;
+    const s = await serve({
+      session: { ...session, apply: () => new Promise((ok) => (finish = ok)) },
+      port: 0,
+      idleMs: 0,
+      onShutdown: () => {
+        stopped += 1;
+      },
+    });
+    try {
+      const job = post(`${at(s)}/apply`, '{}');
+      await waitFor(100);
+      const r = await post(`${at(s)}/shutdown`, '');
+      expect(r.status).toBe(202);
+      // No other job starts meanwhile, and the one running is not cut.
+      expect((await post(`${at(s)}/undo`, '{}')).status).toBe(503);
+      await waitFor(200);
+      expect(stopped).toBe(0);
+      finish({ done: true });
+      expect(await (await job).json()).toEqual({ done: true });
+      await waitFor(200);
+      expect(stopped).toBe(1);
+    } finally {
+      s.close();
+    }
+  });
+
+  it('is refused to a page', async () => {
+    let stopped = 0;
+    const s = await serve({
+      session,
+      port: 0,
+      idleMs: 0,
+      onShutdown: () => {
+        stopped += 1;
+      },
+    });
+    try {
+      const r = await fetch(`${at(s)}/shutdown`, {
+        method: 'POST',
+        headers: { Origin: 'http://localhost:6006' },
+      });
+      expect(r.status).toBe(403);
+      await waitFor(100);
+      expect(stopped).toBe(0);
+    } finally {
+      s.close();
+    }
+  });
+});
+
+describe('restarting Widgetbook', () => {
   const dir = mkdtempSync(join(tmpdir(), 'workbench-pid-'));
   const pidFile = join(dir, 'widgetbook.pid');
   afterAll(() => rmSync(dir, { recursive: true, force: true }));
@@ -480,7 +690,7 @@ describe('reloading Widgetbook', () => {
     const killed = [];
     if (text === null) rmSync(pidFile, { force: true });
     else writeFileSync(pidFile, text);
-    const sent = reloadWidgetbook(pidFile, {
+    const sent = restartWidgetbook(pidFile, {
       commandOf: () => {
         if (command instanceof Error) throw command;
         return command;
@@ -493,9 +703,9 @@ describe('reloading Widgetbook', () => {
   it('signals a flutter or dart by its pid', () => {
     expect(reload('4242\n', '/opt/flutter/bin/flutter\n')).toEqual({
       sent: true,
-      killed: [[4242, 'SIGUSR1']],
+      killed: [[4242, 'SIGUSR2']],
     });
-    expect(reload('4242', 'dart').killed).toEqual([[4242, 'SIGUSR1']]);
+    expect(reload('4242', 'dart').killed).toEqual([[4242, 'SIGUSR2']]);
   });
 
   it('signals nothing else', () => {

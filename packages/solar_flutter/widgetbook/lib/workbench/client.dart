@@ -18,17 +18,25 @@ abstract class WorkbenchClient {
   Future<bool> health();
   Future<WorkbenchStatus> status();
   Future<WorkbenchInspection> inspect(String component, int variant);
-  Future<WorkbenchStatus> set({
+
+  /// Save: the draft (the [value] at [scope] on a cell of the variant in view) written with its
+  /// [reason] ('' for a rule's removal), regenerated and checked; failing checks leave it pending.
+  /// The service then restarts Widgetbook, whose dialog reopens where it was (status.reopen).
+  Future<WorkbenchOutcome> apply({
     required String component,
+    required String platform,
     required int variant,
     required String layer,
     required String cell,
     required String scope,
     required Map<String, Object?> value,
     required String revision,
+    required String reason,
   });
-  Future<WorkbenchOutcome> keep(String component, String reason);
-  Future<WorkbenchStatus> undo(String component);
+
+  /// Keep again: the pending edit's checks run again.
+  Future<WorkbenchOutcome> keep(String component, String platform);
+  Future<WorkbenchStatus> undo(String component, String platform);
   Future<WorkbenchOutcome> approve(String component, String platform);
   Future<List<String>> unapprovePreview(String component, String platform);
   Future<List<String>> unapprove(String component, String platform);
@@ -131,35 +139,41 @@ class HttpWorkbenchClient implements WorkbenchClient {
   );
 
   @override
-  Future<WorkbenchStatus> set({
+  Future<WorkbenchOutcome> apply({
     required String component,
+    required String platform,
     required int variant,
     required String layer,
     required String cell,
     required String scope,
     required Map<String, Object?> value,
     required String revision,
-  }) async => WorkbenchStatus.fromJson(
-    await _call('/set', {
+    required String reason,
+  }) async => WorkbenchOutcome.fromJson(
+    await _call('/apply', {
       'component': component,
+      'platform': platform,
       'variant': variant,
       'layer': layer,
       'cell': cell,
       'scope': scope,
       'value': value,
       'revision': revision,
+      'reason': reason,
     }),
   );
 
   @override
-  Future<WorkbenchOutcome> keep(String component, String reason) async =>
+  Future<WorkbenchOutcome> keep(String component, String platform) async =>
       WorkbenchOutcome.fromJson(
-        await _call('/keep', {'component': component, 'reason': reason}),
+        await _call('/keep', {'component': component, 'platform': platform}),
       );
 
   @override
-  Future<WorkbenchStatus> undo(String component) async =>
-      WorkbenchStatus.fromJson(await _call('/undo', {'component': component}));
+  Future<WorkbenchStatus> undo(String component, String platform) async =>
+      WorkbenchStatus.fromJson(
+        await _call('/undo', {'component': component, 'platform': platform}),
+      );
 
   @override
   Future<WorkbenchOutcome> approve(String component, String platform) async =>

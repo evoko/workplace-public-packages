@@ -3,25 +3,26 @@
     "What the workbench bar does, once for both viewers: Storybook's Playwright suite (packages/components/test/visual/workbench-scenarios.spec.mjs) and Widgetbook's widget tests (packages/solar_flutter/widgetbook/test/workbench_scenarios_test.dart) run every scenario here against their own bar, each through a small driver over a fake of the HTTP contract (docs/engineering/architecture.md, The workbench). A step or an expectation a driver lacks fails that driver. Words may differ between the bars; the facts shown may not.",
     "A value { \"$fixture\": \"<name>\", ... } is a copy of fixtures.<name> with the object's other keys put over it, resolved in turn. The string \"$platform\" is the bar's own platform (web in Storybook, flutter in Widgetbook) and \"$other\" the other one, as a value or as an object's key. packages/codegen/test/workbench-scenarios.test.mjs checks every scenario against the vocabulary below.",
     "Every control offered must be one of vocabulary.actions or vocabulary.named (or, on one platform alone, vocabulary.platformActions: controls the scenarios never name): at the last expectation, and at any naming enabled, disabled or absent, the actions offered are exactly enabled and disabled together. The controls counted are the dialog's while the Inspect dialog is open (the bar hidden behind it counts no more, and nor does the component drawn in its preview), else the bar's. A scenario that presses, chooses, confirms or cancels names the calls it expects last, even none.",
-    "outlined and point need a component whose layers both viewers can locate in the preview (dialog.layer): the web finds every layer by its selector, Flutter only a component SolarLayers draws (keyed <prefix>.<layer>), so those scenarios use Option Card, and the rest use Button. Where a viewer cannot locate a component's layers (Flutter's Material-based widgets, Button among them), its dialog shows the selected layer's name beside the preview instead of an outline, and takes no pointing: that is a platform test's, never a shared scenario's."
+    "outlined and point need a component whose layers both viewers can locate in the preview (dialog.layer): the web finds every layer by its selector, Flutter only a component SolarLayers draws (keyed <prefix>.<layer>), so those scenarios use Option Card, and the rest use Button. Where a viewer cannot locate a component's layers (Flutter's Material-based widgets, Button among them), its dialog shows the selected layer's name beside the preview instead of an outline, and takes no pointing: that is a platform test's, never a shared scenario's.",
+    "The viewer starts again on each reload, as the service tells it to after a regeneration (Storybook's page reloads, perhaps several times as the regenerated files arrive; Widgetbook restarts): what the bar held, an open note or a draft, is gone, the dialog closed, unless the status's reopen names this viewer and component, when the dialog opens there again, on every start while the service names it."
   ],
   "vocabulary": {
     "fake": {
       "health": "false: nothing answers on the port (GET /health fails). Default true.",
       "startingTimes": "how many times GET /status answers 503 (still starting) before it answers. Default 0.",
       "component": "the component whose Playground the bar is drawn in (its name as the Status and the Inspection give it). Default Button.",
-      "status": "the Status GET /status answers, until an answer or a setStatus step changes it.",
+      "status": "the Status GET /status answers (its reopen, with its age in milliseconds, where the viewer that saved, kept or undid an edit reopens its dialog; its seq, the last event sent, the fake's own), until an answer or a setStatus step changes it.",
       "inspection": "the Inspection GET /component answers (the HTTP contract: axes, variants with their parts, each layer with its parent, each layer with its selector, each cell with its value, origin, reason and total, each scope with its plain label, count, wins, winsLabel and current), its variant set to the one asked. Its layer and class names are the real component's, since each viewer draws the preview from its own oracle.",
       "inspectionFor": "{ <variant index>: keys put over inspection where GET /component asks for that variant } (a variant that draws other layers). Default {}.",
       "controls": "the Playground's values the bar is given, by control (what Report sends as controls). Default {}.",
-      "answers": "by route (status, component, set, keep, undo, approve, unapprove/preview, unapprove, report, send): { answer, status, events, hold } or { refuse: { status, error }, events, hold }. The route's events are delivered first; where hold is true, the answer then waits for a release step; then status (where given) becomes what GET /status answers, and the answer is sent: answer, the body (omitted, the Status now), or the refusal. A GET route takes refuse alone. A POST route not listed fails the scenario; a key not named here fails it too."
+      "answers": "by route (status, component, apply, keep, undo, approve, unapprove/preview, unapprove, report, send): { answer, status, events, hold, reload, regenerated } or { refuse: { status, error }, events, hold }. The route's events are delivered first; where reload is true the service then sends reload (the regeneration is done, the rest of the job not yet), GET /status answering regenerated from then on where given; where hold is true, the answer then waits for a release step; then status (where given) becomes what GET /status answers; and the answer is sent: answer, the body (omitted, the Status now), or the refusal. A GET route takes refuse alone. A POST route not listed fails the scenario; a key not named here fails it too."
     },
     "steps": {
       "press": "presses the button of this name, which must be enabled: in the dialog where it is open, else in the bar. A Layer is the tree item, a Cell the property row.",
       "choose": "{ select, option }: opens the Select labelled select (an Axis: the axis's Select) and chooses the one option whose words contain option, or of several, the one whose words are option.",
       "confirm": "true: confirms the Confirmation Dialog open.",
       "cancel": "true: cancels the Confirmation Dialog open.",
-      "type": "{ field, text }: replaces a field's text: \"reason\", the pending edit's reason; \"note\", Report's note; \"agentNote\", the note Send to agent carries with the failing checks; or \"filter\", the editor's Filter tokens.",
+      "type": "{ field, text }: replaces a field's text: \"reason\", the draft's reason; \"note\", Report's note; \"agentNote\", the note Send to agent carries with the failing checks; or \"filter\", the editor's Filter tokens.",
       "escape": "a field (as type names them): presses Escape in it, which in a filter holding text clears it and leaves the dialog open.",
       "point": "a layer: clicks (taps) the preview at a point of that layer's box that none of the layers inside it (by parent) covers, found as dialog.layer says.",
       "event": "{ type, message? }: the service sends this event (busy, changed or failed); the step ends once the bar has asked for the events after it.",
@@ -43,14 +44,14 @@
       "hides": "facts not shown.",
       "noBar": "true: no bar is drawn.",
       "oneError": "exactly one error is shown (in the dialog where it is open, else in the bar), and it contains this fact.",
-      "noError": "true: no error is shown (in the dialog where it is open, else in the bar)."
+      "noError": "true: no error is shown (in the dialog where it is open, else in the bar).",
+      "reloads": "how many times the viewer has started again since the scenario began: Storybook's bar reloads its page on the event reload; the service hot-restarts Widgetbook, which its driver models by starting the app again."
     },
     "actions": [
       "Inspect",
       "Report",
       "Approve",
       "Undo approval",
-      "Keep",
       "Undo",
       "Reason",
       "Note",
@@ -60,7 +61,10 @@
       "Close",
       "Change to",
       "Apply to",
-      "Filter tokens"
+      "Filter tokens",
+      "Save",
+      "Discard",
+      "Keep again"
     ],
     "named": {
       "about": "Actions named by a word and a name the inspection gives: \"Axis state\", \"Layer label\", \"Cell radius\". Each is one control.",
@@ -82,18 +86,21 @@
       "why": "the editor's last line: \"Figma draws <entry>\", \"a rule at <the current scope's label> sets <entry>: <reason>\", or \"the shared defaults set <entry>: <reason>\".",
       "Preview": "the component drawn: web, the element with aria-label=\"Preview\", whose first element child is the component's root; Flutter, a Semantics(label: \"Preview\") around it. Controls inside it are the component's: never the dialog's, never counted.",
       "Selected layer outline": "the outline over the selected layer: web, the element with aria-label=\"Selected layer outline\", its border box the layer's box; Flutter, a Semantics(label: \"Selected layer outline\") whose rect is the layer's.",
-      "Pending edit": "the strip along the foot while this component's edit is pending: web, role=\"region\" named \"Pending edit\"; Flutter, a Semantics(label: \"Pending edit\"). Keep, Undo, Reason, Agent note and Send to agent are inside it. It reads \"<layer> · <cell>, for <scope label> (<count> variants): <was> → <new>\", the scope the inspection's with the pending key.",
-      "read-only": "while an edit is pending, the dialog says \"One edit at a time: Keep or Undo the pending edit below first.\" (this component's) or \"One edit at a time: Keep or Undo the pending edit in <component>'s Playground first.\" (another's); while an action runs the preview says \"Regenerating…\".",
+      "Edit": "the strip along the dialog's foot: web, role=\"region\" named \"Edit\"; Flutter, a Semantics(label: \"Edit\"). It holds the draft (below) and, where this component's edit is pending, the pending edit: \"<layer> · <cell>, for <scope label> (<count> variants): <was> → <new>\" (the scope the inspection's with that key; its was and new the entries' names), the failing checks with Agent note and Send to agent where they failed, Keep again and Undo. Its controls are inside it.",
+      "draft": "Choosing in Change to makes a draft, and nothing is sent: the Edit strip reads it as a pending edit reads (\"<layer> · <cell>, for <scope label> (<count> variants): <was> → <new>\", was the cell's entry), with the Reason field (\"Why…\"), Save and Discard; where the chosen scope has a rule, \"Was: <its reason>\" under the field, and \"Also the reason of: <borrowers>\" where others borrow it. Choosing Figma's own value there (the scope's rule.figma) drafts the rule's removal: the strip says \"the rule is removed\", and asks no reason. Apply to, Filter tokens and Change to stay usable and update the draft; the axes, the layers and the cells wait until it is saved or discarded. Save is enabled once the reason holds words (at once for a removal) and sends /apply with the reason (\"\" for a removal); Discard, and Close, drop it, sending nothing, and Apply to goes back to the narrowest scope.",
+      "reload": "On the event reload (the regeneration is done: sent at once, before the checks, and again after any later regeneration in the same job) Storybook's bar reloads its page, and the service hot-restarts Widgetbook. GET /status names seq, the last event sent before it was read: a bar's first long-poll uses status.seq, and it acts on every event it then receives, so it never hears an earlier job's reload. The checks' outcome comes after the reload, as a change (status.pending.failing where they fail). A bar that starts while status.busy names a job (reloaded before the checks' outcome) waits as the bar that started the job does: the actions that start another are disabled until a change ends it.",
+      "reopen": "The status's reopen ({ platform, component, variant, layer, cell, age }) names where the viewer that applied, kept again or undid an edit was: set by the service once it has regenerated, named for 60 s (every start of the page in that time reopens it, as the regenerated files arrive one after another), and cleared when the next operation starts. A bar reads it in its first status read after it starts alone, never on a refresh (so the saving page opens nothing before it reloads), and where it names this platform and component and its age is at most 60 000, opens its dialog at that variant, layer and cell.",
+      "read-only": "while an edit is pending, the dialog says \"One edit at a time: finish the pending edit below first.\" (this component's) or \"One edit at a time: finish the pending edit in <component>'s Playground first.\" (another's); while an action runs the preview says \"Regenerating…\".",
       "stale layer": "where the variant chosen does not draw the layer in view, the dialog selects root; Change to and Report then name root.",
       "error": "an error while the dialog is open is shown in it: web, role=\"alert\"; Flutter, a Text keyed WorkbenchBar.errorKey.",
       "layer": "a layer of the component drawn in the preview, for point and outlined: web, the element a case marks data-layer=\"<layer>\", else the one the layer's selector (inspection) finds under the component's root, the Preview's first element child (& the root itself); Flutter, the widget whose key is <prefix>.<layer> (solar_layers.dart), found by its ending \".<layer>\".",
       "plural": "Each \"variants\" above is \"variant\" after the number 1."
     },
-    "events": ["busy", "changed", "failed"],
+    "events": ["busy", "changed", "failed", "reload"],
     "serial": {
       "about": "The routes the service runs one at a time (session.mjs's serial). Unless the scenario gives the route's events itself, the fake sends busy (message \"working: <route>\", which GET /status answers as busy until the route has answered) when the request arrives, then, once the answer is decided, failed (with the refusal's error) where it refuses, and changed, before it answers.",
       "routes": [
-        "set",
+        "apply",
         "keep",
         "undo",
         "approve",
@@ -131,6 +138,7 @@
     "status": {
       "busy": null,
       "pending": null,
+      "reopen": null,
       "components": {
         "Button": {
           "$fixture": "yellow"
@@ -140,6 +148,7 @@
     "status-green": {
       "busy": null,
       "pending": null,
+      "reopen": null,
       "components": {
         "Button": {
           "$fixture": "green"
@@ -153,6 +162,7 @@
         "token": "radius.pill"
       },
       "was": "radius.control",
+      "reason": "Figma draws a pill",
       "deletes": false,
       "previousReason": null,
       "failing": null,
@@ -846,18 +856,6 @@
         }
       ]
     },
-    "set-pending": {
-      "status": {
-        "$fixture": "status",
-        "pending": {
-          "$fixture": "pending",
-          "key": "root.combined.md.prio=primary, danger=false.default.radius",
-          "value": {
-            "token": "radius.pill"
-          }
-        }
-      }
-    },
     "radius": {
       "cell": "radius",
       "total": 108,
@@ -932,6 +930,7 @@
     "status-option-card": {
       "busy": null,
       "pending": null,
+      "reopen": null,
       "components": {
         "Option Card": {
           "$fixture": "yellow"
@@ -1200,6 +1199,7 @@
     "status-button-group": {
       "busy": null,
       "pending": null,
+      "reopen": null,
       "components": {
         "Button Group": {
           "$fixture": "yellow"
@@ -1511,6 +1511,450 @@
           ]
         }
       ]
+    },
+    "applied": {
+      "answer": {
+        "ok": true
+      },
+      "reload": true
+    },
+    "status-popover": {
+      "busy": null,
+      "pending": null,
+      "reopen": null,
+      "components": {
+        "Popover": {
+          "$fixture": "yellow"
+        }
+      }
+    },
+    "popover-inspection": {
+      "component": "Popover",
+      "revision": "r1",
+      "axes": [
+        {
+          "name": "placement",
+          "values": ["top", "bottom", "left", "right"]
+        },
+        {
+          "name": "size",
+          "values": ["md", "sm"]
+        }
+      ],
+      "variants": [
+        {
+          "index": 0,
+          "name": "placement=top, size=md",
+          "parts": {
+            "placement": "top",
+            "size": "md"
+          }
+        },
+        {
+          "index": 1,
+          "name": "placement=top, size=sm",
+          "parts": {
+            "placement": "top",
+            "size": "sm"
+          }
+        },
+        {
+          "index": 2,
+          "name": "placement=bottom, size=sm",
+          "parts": {
+            "placement": "bottom",
+            "size": "sm"
+          }
+        },
+        {
+          "index": 3,
+          "name": "placement=bottom, size=md",
+          "parts": {
+            "placement": "bottom",
+            "size": "md"
+          }
+        },
+        {
+          "index": 4,
+          "name": "placement=left, size=md",
+          "parts": {
+            "placement": "left",
+            "size": "md"
+          }
+        },
+        {
+          "index": 5,
+          "name": "placement=left, size=sm",
+          "parts": {
+            "placement": "left",
+            "size": "sm"
+          }
+        },
+        {
+          "index": 6,
+          "name": "placement=right, size=sm",
+          "parts": {
+            "placement": "right",
+            "size": "sm"
+          }
+        },
+        {
+          "index": 7,
+          "name": "placement=right, size=md",
+          "parts": {
+            "placement": "right",
+            "size": "md"
+          }
+        }
+      ],
+      "variant": 0,
+      "layers": [
+        {
+          "name": "root",
+          "className": null,
+          "selector": "&",
+          "parent": null,
+          "hidden": false,
+          "cells": [
+            {
+              "cell": "shadow",
+              "total": 8,
+              "entry": "none",
+              "value": "none",
+              "at": "base",
+              "origin": "rule",
+              "reason": "Figma puts shadow/dialog on the popover's frame, which has no fill, and so draws only its first shadow, cast by the bubble and tip together, and not its 2px ring (Figma draws no spread on an unfilled frame). No box shadow draws either: one on the frame would shade the empty strip beside the tip, and SOLAR has no drop-shadow token. The bubble carries the shadow instead (content.base.shadow); the design review asks.",
+              "scopes": [
+                {
+                  "label": "every variant",
+                  "key": "root.base.shadow",
+                  "count": 8,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": true,
+                  "rule": {
+                    "reason": "Figma puts shadow/dialog on the popover's frame, which has no fill, and so draws only its first shadow, cast by the bubble and tip together, and not its 2px ring (Figma draws no spread on an unfilled frame). No box shadow draws either: one on the frame would shade the empty strip beside the tip, and SOLAR has no drop-shadow token. The bubble carries the shadow instead (content.base.shadow); the design review asks.",
+                    "borrowers": [],
+                    "figma": {
+                      "token": "shadow.dialog"
+                    }
+                  }
+                },
+                {
+                  "label": "every md",
+                  "key": "root.size.md.shadow",
+                  "count": 4,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                },
+                {
+                  "label": "top · at rest",
+                  "key": "root.appearance.placement=top.default.shadow",
+                  "count": 2,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                }
+              ],
+              "choices": [
+                {
+                  "name": "shadow.control",
+                  "value": "0px 1px 1px 0px rgba(0, 0, 0, 0.05) / 0px 1px 1px 0px rgba(0, 0, 0, 0.5)"
+                },
+                {
+                  "name": "shadow.raised",
+                  "value": "0px 1px 2px 0px rgba(0, 0, 0, 0.05) / 0px 1px 2px 0px rgba(0, 0, 0, 0.5)"
+                },
+                {
+                  "name": "shadow.overlay",
+                  "value": "0px 2px 12px 0px rgba(0, 0, 0, 0.05) / 0px 2px 12px 0px rgba(0, 0, 0, 0.5)"
+                },
+                {
+                  "name": "shadow.dialog",
+                  "value": "0px 12px 26px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 2px rgba(0, 0, 0, 0.2) / 0px 12px 26px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 2px rgba(0, 0, 0, 0.7)"
+                },
+                {
+                  "name": "shadow.strong",
+                  "value": "0px 4px 5px 0px rgba(0, 0, 0, 0.2) / 0px 4px 5px 0px rgba(0, 0, 0, 0.7)"
+                },
+                {
+                  "name": "shadow.focus.default",
+                  "value": "0px 0px 0px 2px rgba(37, 105, 253, 0.2)"
+                },
+                {
+                  "name": "shadow.focus.danger",
+                  "value": "0px 0px 0px 2px rgba(224, 3, 45, 0.2)"
+                },
+                {
+                  "name": "shadow.danger",
+                  "value": "0px 1px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 2px rgba(224, 3, 45, 0.2) / 0px 1px 1px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 2px rgba(224, 3, 45, 0.2)"
+                },
+                {
+                  "name": "shadow.warning",
+                  "value": "0px 1px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 2px rgba(207, 71, 0, 0.2) / 0px 1px 1px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 2px rgba(207, 71, 0, 0.2)"
+                }
+              ],
+              "keywords": [],
+              "none": true
+            }
+          ]
+        },
+        {
+          "name": "content",
+          "className": "SolarPopover--content",
+          "selector": "& .SolarPopover--content",
+          "parent": "root",
+          "hidden": false,
+          "cells": [
+            {
+              "cell": "background",
+              "total": 8,
+              "entry": "color.surface.raised",
+              "value": "#ffffff / #222222",
+              "at": "base",
+              "origin": "figma",
+              "reason": null,
+              "scopes": [
+                {
+                  "label": "every variant",
+                  "key": "content.base.background",
+                  "count": 8,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": true,
+                  "rule": null
+                },
+                {
+                  "label": "every md",
+                  "key": "content.size.md.background",
+                  "count": 4,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                },
+                {
+                  "label": "top · at rest",
+                  "key": "content.appearance.placement=top.default.background",
+                  "count": 2,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                }
+              ],
+              "choices": [
+                {
+                  "name": "color.brand.primary",
+                  "value": "#d22730"
+                },
+                {
+                  "name": "color.brand.secondary",
+                  "value": "#000000"
+                },
+                {
+                  "name": "color.brand.tertiary",
+                  "value": "#ffffff"
+                }
+              ],
+              "keywords": [],
+              "none": true
+            }
+          ]
+        },
+        {
+          "name": "title",
+          "className": "SolarPopover--title",
+          "selector": "& .SolarPopover--title",
+          "parent": "content",
+          "hidden": false,
+          "cells": [
+            {
+              "cell": "color",
+              "total": 8,
+              "entry": "color.text.primary",
+              "value": "#111111 / #f5f5f5",
+              "at": "base",
+              "origin": "figma",
+              "reason": null,
+              "scopes": [
+                {
+                  "label": "every variant",
+                  "key": "title.base.color",
+                  "count": 8,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": true,
+                  "rule": null
+                },
+                {
+                  "label": "every md",
+                  "key": "title.size.md.color",
+                  "count": 4,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                },
+                {
+                  "label": "top · at rest",
+                  "key": "title.appearance.placement=top.default.color",
+                  "count": 2,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                }
+              ],
+              "choices": [
+                {
+                  "name": "color.brand.primary",
+                  "value": "#d22730"
+                },
+                {
+                  "name": "color.brand.secondary",
+                  "value": "#000000"
+                },
+                {
+                  "name": "color.brand.tertiary",
+                  "value": "#ffffff"
+                }
+              ],
+              "keywords": [],
+              "none": true
+            }
+          ]
+        },
+        {
+          "name": "body",
+          "className": "SolarPopover--body",
+          "selector": "& .SolarPopover--body",
+          "parent": "content",
+          "hidden": false,
+          "cells": [
+            {
+              "cell": "color",
+              "total": 8,
+              "entry": "color.text.secondary",
+              "value": "#646464 / #a8a8a8",
+              "at": "base",
+              "origin": "figma",
+              "reason": null,
+              "scopes": [
+                {
+                  "label": "every variant",
+                  "key": "body.base.color",
+                  "count": 8,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": true,
+                  "rule": null
+                },
+                {
+                  "label": "every md",
+                  "key": "body.size.md.color",
+                  "count": 4,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                },
+                {
+                  "label": "top · at rest",
+                  "key": "body.appearance.placement=top.default.color",
+                  "count": 2,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                }
+              ],
+              "choices": [
+                {
+                  "name": "color.brand.primary",
+                  "value": "#d22730"
+                },
+                {
+                  "name": "color.brand.secondary",
+                  "value": "#000000"
+                },
+                {
+                  "name": "color.brand.tertiary",
+                  "value": "#ffffff"
+                }
+              ],
+              "keywords": [],
+              "none": true
+            }
+          ]
+        },
+        {
+          "name": "tip",
+          "className": "SolarPopover--tip",
+          "selector": "& .SolarPopover--tip",
+          "parent": "root",
+          "hidden": false,
+          "cells": [
+            {
+              "cell": "background",
+              "total": 8,
+              "entry": "color.surface.raised",
+              "value": "#ffffff / #222222",
+              "at": "base",
+              "origin": "figma",
+              "reason": null,
+              "scopes": [
+                {
+                  "label": "every variant",
+                  "key": "tip.base.background",
+                  "count": 8,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": true,
+                  "rule": null
+                },
+                {
+                  "label": "every md",
+                  "key": "tip.size.md.background",
+                  "count": 4,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                },
+                {
+                  "label": "top · at rest",
+                  "key": "tip.appearance.placement=top.default.background",
+                  "count": 2,
+                  "wins": null,
+                  "winsLabel": null,
+                  "current": false,
+                  "rule": null
+                }
+              ],
+              "choices": [
+                {
+                  "name": "color.brand.primary",
+                  "value": "#d22730"
+                },
+                {
+                  "name": "color.brand.secondary",
+                  "value": "#000000"
+                },
+                {
+                  "name": "color.brand.tertiary",
+                  "value": "#ffffff"
+                }
+              ],
+              "keywords": [],
+              "none": true
+            }
+          ]
+        }
+      ]
     }
   },
   "scenarios": [
@@ -1691,9 +2135,8 @@
         "shows": ["🟡"],
         "absent": [
           "Undo approval",
-          "Keep",
+          "Keep again",
           "Undo",
-          "Reason",
           "Note",
           "Save note",
           "Agent note",
@@ -1792,7 +2235,7 @@
       },
       "expect": {
         "shows": ["🟢"],
-        "absent": ["Inspect", "Approve", "Keep", "Undo", "Report"],
+        "absent": ["Inspect", "Approve", "Keep again", "Undo", "Report"],
         "enabled": ["Undo approval"]
       }
     },
@@ -3299,7 +3742,7 @@
       }
     },
     {
-      "name": "Filter tokens starts again at the token's family on another cell, on another variant and after a set",
+      "name": "Filter tokens starts again at the token's family on another cell and another variant, and holds while a draft is made",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -3902,21 +4345,6 @@
               ]
             }
           ]
-        },
-        "answers": {
-          "set": {
-            "status": {
-              "$fixture": "status",
-              "pending": {
-                "$fixture": "pending",
-                "key": "root.combined.md.prio=primary, danger=false.default.paddingLeft",
-                "value": {
-                  "token": "stack.sm"
-                },
-                "was": "inset.sm"
-              }
-            }
-          }
         }
       },
       "steps": [
@@ -3985,27 +4413,20 @@
         }
       ],
       "expect": {
-        "calls": [
-          [
-            "set",
-            {
-              "component": "Button",
-              "variant": 0,
-              "layer": "root",
-              "cell": "paddingLeft",
-              "scope": "root.combined.md.prio=primary, danger=false.default.paddingLeft",
-              "value": {
-                "token": "stack.sm"
-              },
-              "revision": "r1"
-            }
-          ]
-        ],
-        "filter": "inset",
+        "calls": [],
+        "filter": "12px",
         "shows": [
           "root · paddingLeft, for md · primary · at rest (6 variants): inset.sm → stack.sm"
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
+        "enabled": [
+          "Close",
+          "Report",
+          "Apply to",
+          "Filter tokens",
+          "Change to",
+          "Reason",
+          "Discard"
+        ],
         "disabled": [
           "Axis size",
           "Axis prio",
@@ -4019,9 +4440,7 @@
           "Layer counter",
           "Cell radius",
           "Cell paddingLeft",
-          "Apply to",
-          "Filter tokens",
-          "Change to"
+          "Save"
         ]
       }
     },
@@ -5374,7 +5793,7 @@
       }
     },
     {
-      "name": "Change to sends the set at the narrowest scope, and the pending edit shows in the strip",
+      "name": "Change to makes a draft, sending nothing; Save sends it with its reason, and the viewer reloads",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -5383,8 +5802,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -5400,14 +5819,89 @@
             "select": "Change to",
             "option": "radius.pill"
           }
+        },
+        {
+          "expect": {
+            "calls": [],
+            "shows": [
+              "root · radius, for md · primary · at rest (6 variants): radius.control → radius.pill"
+            ],
+            "hides": [
+              "One edit at a time: finish the pending edit below first."
+            ],
+            "enabled": [
+              "Close",
+              "Report",
+              "Apply to",
+              "Filter tokens",
+              "Change to",
+              "Reason",
+              "Discard"
+            ],
+            "disabled": [
+              "Axis size",
+              "Axis prio",
+              "Axis state",
+              "Axis danger",
+              "Layer root",
+              "Layer iconLeading",
+              "Layer spinner",
+              "Layer label",
+              "Layer iconTrailing",
+              "Layer counter",
+              "Cell radius",
+              "Cell background",
+              "Cell height",
+              "Save"
+            ]
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "expect": {
+            "enabled": [
+              "Close",
+              "Report",
+              "Apply to",
+              "Filter tokens",
+              "Change to",
+              "Reason",
+              "Save",
+              "Discard"
+            ],
+            "disabled": [
+              "Axis size",
+              "Axis prio",
+              "Axis state",
+              "Axis danger",
+              "Layer root",
+              "Layer iconLeading",
+              "Layer spinner",
+              "Layer label",
+              "Layer iconTrailing",
+              "Layer counter",
+              "Cell radius",
+              "Cell background",
+              "Cell height"
+            ]
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -5415,16 +5909,106 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "shows": [
-          "root · radius, for md · primary · at rest (6 variants): radius.control → radius.pill",
-          "One edit at a time: Keep or Undo the pending edit below first."
-        ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "the draft follows Change to and Apply to, and Discard drops it, sending nothing",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Cell radius"
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "radius.pill"
+          }
+        },
+        {
+          "choose": {
+            "select": "Apply to",
+            "option": "every variant"
+          }
+        },
+        {
+          "expect": {
+            "shows": [
+              "root · radius, for every variant (72 variants): radius.control → radius.pill"
+            ]
+          }
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "radius.dialog"
+          }
+        },
+        {
+          "expect": {
+            "shows": [
+              "root · radius, for every variant (72 variants): radius.control → radius.dialog"
+            ],
+            "enabled": [
+              "Close",
+              "Report",
+              "Apply to",
+              "Filter tokens",
+              "Change to",
+              "Reason",
+              "Discard"
+            ],
+            "disabled": [
+              "Axis size",
+              "Axis prio",
+              "Axis state",
+              "Axis danger",
+              "Layer root",
+              "Layer iconLeading",
+              "Layer spinner",
+              "Layer label",
+              "Layer iconTrailing",
+              "Layer counter",
+              "Cell radius",
+              "Cell background",
+              "Cell height",
+              "Save"
+            ]
+          }
+        },
+        {
+          "press": "Discard"
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "hides": ["radius.control → "],
+        "options": {
+          "Apply to": {
+            "chosen": "md · primary · at rest"
+          }
+        },
+        "absent": ["Save", "Discard", "Reason"],
+        "enabled": [
+          "Close",
+          "Report",
           "Axis size",
           "Axis prio",
           "Axis state",
@@ -5438,14 +6022,164 @@
           "Cell radius",
           "Cell background",
           "Cell height",
-          "Change to",
           "Apply to",
-          "Filter tokens"
+          "Filter tokens",
+          "Change to"
         ]
       }
     },
     {
-      "name": "the Apply to chosen is the scope the set is keyed on",
+      "name": "choosing Figma's own value where a rule changed it drafts the rule's removal, asks no reason, and Save sends it with none",
+      "fake": {
+        "component": "Popover",
+        "status": {
+          "$fixture": "status-popover"
+        },
+        "inspection": {
+          "$fixture": "popover-inspection"
+        },
+        "answers": {
+          "apply": {
+            "$fixture": "applied"
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Cell shadow"
+        },
+        {
+          "choose": {
+            "select": "Apply to",
+            "option": "every variant"
+          }
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "shadow.dialog"
+          }
+        },
+        {
+          "expect": {
+            "shows": [
+              "root · shadow, for every variant (8 variants): none → shadow.dialog",
+              "the rule is removed"
+            ],
+            "enabled": [
+              "Close",
+              "Report",
+              "Apply to",
+              "Filter tokens",
+              "Change to",
+              "Save",
+              "Discard"
+            ],
+            "disabled": [
+              "Axis placement",
+              "Axis size",
+              "Layer root",
+              "Layer content",
+              "Layer title",
+              "Layer body",
+              "Layer tip",
+              "Cell shadow"
+            ]
+          }
+        },
+        {
+          "press": "Save"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "apply",
+            {
+              "component": "Popover",
+              "platform": "$platform",
+              "variant": 0,
+              "layer": "root",
+              "cell": "shadow",
+              "scope": "root.base.shadow",
+              "value": {
+                "token": "shadow.dialog"
+              },
+              "revision": "r1",
+              "reason": ""
+            }
+          ]
+        ],
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a draft that replaces a rule shows the reason it replaces, and asks for a new one",
+      "fake": {
+        "component": "Popover",
+        "status": {
+          "$fixture": "status-popover"
+        },
+        "inspection": {
+          "$fixture": "popover-inspection"
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Cell shadow"
+        },
+        {
+          "choose": {
+            "select": "Apply to",
+            "option": "every variant"
+          }
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "shadow.raised"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": [
+          "root · shadow, for every variant (8 variants): none → shadow.raised",
+          "Was: Figma puts shadow/dialog on the popover's frame, which has n"
+        ],
+        "hides": ["the rule is removed"],
+        "enabled": [
+          "Close",
+          "Report",
+          "Apply to",
+          "Filter tokens",
+          "Change to",
+          "Reason",
+          "Discard"
+        ],
+        "disabled": [
+          "Axis placement",
+          "Axis size",
+          "Layer root",
+          "Layer content",
+          "Layer title",
+          "Layer body",
+          "Layer tip",
+          "Cell shadow",
+          "Save"
+        ]
+      }
+    },
+    {
+      "name": "the Apply to chosen is the scope Save sends",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -5454,8 +6188,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -5477,14 +6211,24 @@
             "select": "Change to",
             "option": "none"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -5492,33 +6236,18 @@
               "value": {
                 "none": true
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
-      "name": "an axis value chosen is the variant the set names",
+      "name": "an axis value chosen is the variant Save sends",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -6186,8 +6915,8 @@
           ]
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -6209,14 +6938,24 @@
             "select": "Change to",
             "option": "radius.pill"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 6,
               "layer": "root",
               "cell": "radius",
@@ -6224,33 +6963,18 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
-      "name": "a variant that does not draw the layer in view selects root, and Change to and Report name root",
+      "name": "a variant that does not draw the layer in view selects root, and Save names root",
       "fake": {
         "component": "Button Group",
         "status": {
@@ -6477,29 +7201,8 @@
           }
         },
         "answers": {
-          "set": {
-            "status": {
-              "busy": null,
-              "pending": {
-                "$fixture": "pending",
-                "component": "Button Group",
-                "key": "root.appearance.orientation=horizontal, type=full-width.default.radius",
-                "value": {
-                  "token": "radius.subtle"
-                },
-                "was": "none"
-              },
-              "components": {
-                "Button Group": {
-                  "$fixture": "yellow"
-                }
-              }
-            }
-          },
-          "report": {
-            "answer": {
-              "file": "spec/feedback/button-group-1.yaml"
-            }
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -6566,6 +7269,328 @@
           }
         },
         {
+          "type": {
+            "field": "reason",
+            "text": "The full-width group is flat"
+          }
+        },
+        {
+          "press": "Save"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "apply",
+            {
+              "component": "Button Group",
+              "platform": "$platform",
+              "variant": 2,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.appearance.orientation=horizontal, type=full-width.default.radius",
+              "value": {
+                "token": "radius.subtle"
+              },
+              "revision": "r1",
+              "reason": "The full-width group is flat"
+            }
+          ]
+        ],
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a variant that does not draw the layer in view selects root, and Report names root",
+      "fake": {
+        "component": "Button Group",
+        "status": {
+          "$fixture": "status-button-group"
+        },
+        "inspection": {
+          "$fixture": "button-group-inspection"
+        },
+        "inspectionFor": {
+          "2": {
+            "layers": [
+              {
+                "name": "root",
+                "className": null,
+                "selector": "&",
+                "parent": null,
+                "hidden": false,
+                "cells": [
+                  {
+                    "cell": "background",
+                    "total": 3,
+                    "entry": "none",
+                    "value": "none",
+                    "at": "base",
+                    "origin": "figma",
+                    "reason": null,
+                    "scopes": [
+                      {
+                        "label": "every variant",
+                        "key": "root.base.background",
+                        "count": 3,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": true
+                      },
+                      {
+                        "label": "horizontal, full-width · at rest",
+                        "key": "root.appearance.orientation=horizontal, type=full-width.default.background",
+                        "count": 1,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": false
+                      }
+                    ],
+                    "choices": [
+                      {
+                        "name": "color.brand.primary",
+                        "value": "#d22730"
+                      },
+                      {
+                        "name": "color.brand.secondary",
+                        "value": "#000000"
+                      },
+                      {
+                        "name": "color.brand.tertiary",
+                        "value": "#ffffff"
+                      }
+                    ],
+                    "keywords": [],
+                    "none": true
+                  },
+                  {
+                    "cell": "radius",
+                    "total": 3,
+                    "entry": "none",
+                    "value": "none",
+                    "at": "base",
+                    "origin": "figma",
+                    "reason": null,
+                    "scopes": [
+                      {
+                        "label": "every variant",
+                        "key": "root.base.radius",
+                        "count": 3,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": true
+                      },
+                      {
+                        "label": "horizontal, full-width · at rest",
+                        "key": "root.appearance.orientation=horizontal, type=full-width.default.radius",
+                        "count": 1,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": false
+                      }
+                    ],
+                    "choices": [
+                      {
+                        "name": "radius.none",
+                        "value": "0px"
+                      },
+                      {
+                        "name": "radius.subtle",
+                        "value": "4px"
+                      },
+                      {
+                        "name": "radius.control",
+                        "value": "6px"
+                      },
+                      {
+                        "name": "radius.container",
+                        "value": "8px"
+                      },
+                      {
+                        "name": "radius.dialog",
+                        "value": "12px"
+                      },
+                      {
+                        "name": "radius.pill",
+                        "value": "9999px"
+                      }
+                    ],
+                    "keywords": [],
+                    "none": true
+                  }
+                ]
+              },
+              {
+                "name": "tertiaryCTA",
+                "className": "SolarButtonGroup-tertiaryCTA",
+                "selector": "& > :nth-child(1)",
+                "parent": "root",
+                "hidden": false,
+                "cells": [
+                  {
+                    "cell": "height",
+                    "total": 3,
+                    "entry": "none",
+                    "value": "none",
+                    "at": "base",
+                    "origin": "rule",
+                    "reason": "A child's height is the Button's own (40 at md, 48 at lg); the group decides its width, not its height, so a caller's sm Buttons stay 32.",
+                    "scopes": [
+                      {
+                        "label": "every variant",
+                        "key": "tertiaryCTA.base.height",
+                        "count": 3,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": true
+                      },
+                      {
+                        "label": "horizontal, full-width · at rest",
+                        "key": "tertiaryCTA.appearance.orientation=horizontal, type=full-width.default.height",
+                        "count": 1,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": false
+                      }
+                    ],
+                    "choices": [
+                      {
+                        "name": "icon.xs",
+                        "value": "12px"
+                      },
+                      {
+                        "name": "icon.sm",
+                        "value": "16px"
+                      },
+                      {
+                        "name": "icon.md",
+                        "value": "20px"
+                      }
+                    ],
+                    "keywords": ["FILL", "HUG"],
+                    "none": true
+                  }
+                ]
+              },
+              {
+                "name": "secondaryCTA",
+                "className": "SolarButtonGroup-secondaryCTA",
+                "selector": "& > :nth-child(2)",
+                "parent": "root",
+                "hidden": false,
+                "cells": [
+                  {
+                    "cell": "height",
+                    "total": 3,
+                    "entry": "none",
+                    "value": "none",
+                    "at": "base",
+                    "origin": "rule",
+                    "reason": "As the tertiary one, the Button's own height.",
+                    "scopes": [
+                      {
+                        "label": "every variant",
+                        "key": "secondaryCTA.base.height",
+                        "count": 3,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": true
+                      },
+                      {
+                        "label": "horizontal, full-width · at rest",
+                        "key": "secondaryCTA.appearance.orientation=horizontal, type=full-width.default.height",
+                        "count": 1,
+                        "wins": null,
+                        "winsLabel": null,
+                        "current": false
+                      }
+                    ],
+                    "choices": [
+                      {
+                        "name": "icon.xs",
+                        "value": "12px"
+                      },
+                      {
+                        "name": "icon.sm",
+                        "value": "16px"
+                      },
+                      {
+                        "name": "icon.md",
+                        "value": "20px"
+                      }
+                    ],
+                    "keywords": ["FILL", "HUG"],
+                    "none": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "answers": {
+          "report": {
+            "answer": {
+              "file": "spec/feedback/button-group-1.yaml"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Layer button3"
+        },
+        {
+          "expect": {
+            "shows": ["button3: properties"]
+          }
+        },
+        {
+          "choose": {
+            "select": "Axis type",
+            "option": "full-width"
+          }
+        },
+        {
+          "expect": {
+            "reads": [
+              ["health"],
+              ["status"],
+              [
+                "component",
+                {
+                  "name": "Button Group",
+                  "variant": 0
+                }
+              ],
+              [
+                "component",
+                {
+                  "name": "Button Group",
+                  "variant": 2
+                }
+              ]
+            ],
+            "shows": ["root: properties"],
+            "hides": ["button3: properties"],
+            "enabled": [
+              "Close",
+              "Report",
+              "Axis orientation",
+              "Axis type",
+              "Layer root",
+              "Layer tertiaryCTA",
+              "Layer secondaryCTA",
+              "Cell radius",
+              "Cell background"
+            ]
+          }
+        },
+        {
           "press": "Report"
         },
         {
@@ -6581,20 +7606,6 @@
       "expect": {
         "calls": [
           [
-            "set",
-            {
-              "component": "Button Group",
-              "variant": 2,
-              "layer": "root",
-              "cell": "radius",
-              "scope": "root.appearance.orientation=horizontal, type=full-width.default.radius",
-              "value": {
-                "token": "radius.subtle"
-              },
-              "revision": "r1"
-            }
-          ],
-          [
             "report",
             {
               "component": "Button Group",
@@ -6607,12 +7618,12 @@
           ]
         ],
         "shows": ["spec/feedback/button-group-1.yaml"],
-        "enabled": ["Inspect", "Keep", "Note", "Reason", "Report", "Undo"],
-        "disabled": ["Approve", "Save note"]
+        "enabled": ["Approve", "Inspect", "Note", "Report"],
+        "disabled": ["Save note"]
       }
     },
     {
-      "name": "a layer chosen is the layer the set names",
+      "name": "a layer chosen is the layer Save sends",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -6621,8 +7632,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -6649,14 +7660,24 @@
             "select": "Change to",
             "option": "color.text.primary"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "label",
               "cell": "color",
@@ -6664,28 +7685,14 @@
               "value": {
                 "token": "color.text.primary"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell color",
-          "Cell typography",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
@@ -6698,8 +7705,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -6715,14 +7722,24 @@
             "select": "Change to",
             "option": "FILL"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "height",
@@ -6730,44 +7747,24 @@
               "value": {
                 "keyword": "FILL"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
-      "name": "after Change to and Close, the bar holds the pending edit and Approve",
+      "name": "Close drops the draft, sending nothing, and the dialog opens again with none",
       "fake": {
         "status": {
           "$fixture": "status"
         },
         "inspection": {
           "$fixture": "inspection"
-        },
-        "answers": {
-          "set": {
-            "$fixture": "set-pending"
-          }
         }
       },
       "steps": [
@@ -6781,88 +7778,37 @@
           "choose": {
             "select": "Change to",
             "option": "radius.pill"
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
           }
         },
         {
           "press": "Close"
-        }
-      ],
-      "expect": {
-        "calls": [
-          [
-            "set",
-            {
-              "component": "Button",
-              "variant": 0,
-              "layer": "root",
-              "cell": "radius",
-              "scope": "root.combined.md.prio=primary, danger=false.default.radius",
-              "value": {
-                "token": "radius.pill"
-              },
-              "revision": "r1"
-            }
-          ]
-        ],
-        "shows": [
-          "root.combined.md.prio=primary, danger=false.default.radius",
-          "radius.pill"
-        ],
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
-        "disabled": ["Approve"]
-      }
-    },
-    {
-      "name": "a set refused is shown in the dialog, and the editor stays",
-      "fake": {
-        "status": {
-          "$fixture": "status"
         },
-        "inspection": {
-          "$fixture": "inspection"
-        },
-        "answers": {
-          "set": {
-            "refuse": {
-              "status": 409,
-              "error": "the inspection is out of date: inspect again"
-            }
+        {
+          "expect": {
+            "calls": [],
+            "absent": ["Close"],
+            "enabled": ["Approve", "Inspect", "Report"]
           }
-        }
-      },
-      "steps": [
+        },
         {
           "press": "Inspect"
         },
         {
           "press": "Cell radius"
-        },
-        {
-          "choose": {
-            "select": "Change to",
-            "option": "radius.pill"
-          }
         }
       ],
       "expect": {
-        "calls": [
-          [
-            "set",
-            {
-              "component": "Button",
-              "variant": 0,
-              "layer": "root",
-              "cell": "radius",
-              "scope": "root.combined.md.prio=primary, danger=false.default.radius",
-              "value": {
-                "token": "radius.pill"
-              },
-              "revision": "r1"
-            }
-          ]
+        "calls": [],
+        "hides": [
+          "root · radius, for md · primary · at rest (6 variants): radius.control → radius.pill"
         ],
-        "oneError": "out of date",
-        "absent": ["Keep"],
+        "absent": ["Save", "Discard", "Reason"],
         "enabled": [
           "Close",
           "Report",
@@ -6879,9 +7825,101 @@
           "Cell radius",
           "Cell background",
           "Cell height",
-          "Change to",
           "Apply to",
-          "Filter tokens"
+          "Filter tokens",
+          "Change to"
+        ]
+      }
+    },
+    {
+      "name": "a Save refused is shown in the dialog, and the draft stays",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "apply": {
+            "refuse": {
+              "status": 409,
+              "error": "spec/overlay/button.yaml changed on disk since the dialog read it: reload"
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Cell radius"
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "radius.pill"
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "apply",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.combined.md.prio=primary, danger=false.default.radius",
+              "value": {
+                "token": "radius.pill"
+              },
+              "revision": "r1",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "oneError": "changed on disk",
+        "shows": [
+          "root · radius, for md · primary · at rest (6 variants): radius.control → radius.pill"
+        ],
+        "reloads": 0,
+        "enabled": [
+          "Close",
+          "Report",
+          "Apply to",
+          "Filter tokens",
+          "Change to",
+          "Reason",
+          "Save",
+          "Discard"
+        ],
+        "disabled": [
+          "Axis size",
+          "Axis prio",
+          "Axis state",
+          "Axis danger",
+          "Layer root",
+          "Layer iconLeading",
+          "Layer spinner",
+          "Layer label",
+          "Layer iconTrailing",
+          "Layer counter",
+          "Cell radius",
+          "Cell background",
+          "Cell height"
         ]
       }
     },
@@ -6927,7 +7965,7 @@
       }
     },
     {
-      "name": "while a set runs, the dialog waits",
+      "name": "while Save runs, until the regeneration is done, the dialog waits with its draft, and the preview says it is regenerating",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -6936,8 +7974,11 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending",
+          "apply": {
+            "refuse": {
+              "status": 400,
+              "error": "the build refused the edit, which is undone: no"
+            },
             "hold": true
           }
         }
@@ -6956,8 +7997,17 @@
           }
         },
         {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
+        },
+        {
           "expect": {
-            "shows": ["working: set", "Regenerating…"],
+            "shows": ["working: apply", "Regenerating…"],
             "enabled": ["Close", "Report"],
             "disabled": [
               "Axis size",
@@ -6973,22 +8023,26 @@
               "Cell radius",
               "Cell background",
               "Cell height",
-              "Change to",
               "Apply to",
-              "Filter tokens"
+              "Filter tokens",
+              "Change to",
+              "Reason",
+              "Save",
+              "Discard"
             ]
           }
         },
         {
-          "release": "set"
+          "release": "apply"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -6996,15 +8050,27 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
+        "reloads": 0,
+        "oneError": "the build refused the edit",
+        "hides": ["working: apply", "Regenerating…"],
         "shows": [
           "root · radius, for md · primary · at rest (6 variants): radius.control → radius.pill"
         ],
-        "hides": ["working: set", "Regenerating…"],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
+        "enabled": [
+          "Close",
+          "Report",
+          "Apply to",
+          "Filter tokens",
+          "Change to",
+          "Reason",
+          "Save",
+          "Discard"
+        ],
         "disabled": [
           "Axis size",
           "Axis prio",
@@ -7018,10 +8084,7 @@
           "Layer counter",
           "Cell radius",
           "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
+          "Cell height"
         ]
       }
     },
@@ -7694,8 +8757,8 @@
           ]
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -7726,14 +8789,24 @@
             "select": "Change to",
             "option": "radius.pill"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 18,
               "layer": "root",
               "cell": "radius",
@@ -7741,29 +8814,14 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
@@ -7776,8 +8834,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -7805,14 +8863,24 @@
             "select": "Change to",
             "option": "radius.pill"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -7820,29 +8888,14 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
@@ -7855,8 +8908,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -7893,14 +8946,24 @@
             "select": "Change to",
             "option": "radius.pill"
           }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -7908,33 +8971,18 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
-      "name": "Apply to goes back to the narrowest after a pending edit",
+      "name": "Apply to goes back to the narrowest after Discard",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -7943,13 +8991,8 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending"
-          },
-          "undo": {
-            "status": {
-              "$fixture": "status"
-            }
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -7973,10 +9016,145 @@
           }
         },
         {
-          "press": "Undo"
+          "press": "Discard"
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "radius.pill"
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "apply",
+            {
+              "component": "Button",
+              "platform": "$platform",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "scope": "root.combined.md.prio=primary, danger=false.default.radius",
+              "value": {
+                "token": "radius.pill"
+              },
+              "revision": "r1",
+              "reason": "Figma draws a pill"
+            }
+          ]
+        ],
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "after Save the viewer that saved reopens its dialog where it was, on every start in the next minute",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "apply": {
+            "answer": {
+              "ok": true
+            },
+            "reload": true,
+            "status": {
+              "$fixture": "status",
+              "reopen": {
+                "platform": "$platform",
+                "component": "Button",
+                "variant": 6,
+                "layer": "label",
+                "cell": "color",
+                "age": 0
+              }
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "choose": {
+            "select": "Axis size",
+            "option": "sm"
+          }
+        },
+        {
+          "press": "Layer label"
+        },
+        {
+          "press": "Cell color"
         },
         {
           "expect": {
+            "filter": "color.action.primary.text"
+          }
+        },
+        {
+          "escape": "filter"
+        },
+        {
+          "choose": {
+            "select": "Change to",
+            "option": "color.text.primary"
+          }
+        },
+        {
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
+          }
+        },
+        {
+          "press": "Save"
+        },
+        {
+          "expect": {
+            "calls": [
+              [
+                "apply",
+                {
+                  "component": "Button",
+                  "platform": "$platform",
+                  "variant": 6,
+                  "layer": "label",
+                  "cell": "color",
+                  "scope": "label.appearance.prio=primary, danger=false.default.color",
+                  "value": {
+                    "token": "color.text.primary"
+                  },
+                  "revision": "r1",
+                  "reason": "Figma draws a pill"
+                }
+              ]
+            ],
+            "reloads": 1,
+            "options": {
+              "Axis size": {
+                "chosen": "sm"
+              }
+            },
+            "shows": ["label: properties", "label · color"],
+            "absent": ["Save", "Discard", "Reason"],
+            "editorUnder": "color",
             "enabled": [
               "Close",
               "Report",
@@ -7990,61 +9168,204 @@
               "Layer label",
               "Layer iconTrailing",
               "Layer counter",
-              "Cell radius",
-              "Cell background",
-              "Cell height",
-              "Change to",
+              "Cell color",
+              "Cell typography",
               "Apply to",
-              "Filter tokens"
+              "Filter tokens",
+              "Change to"
             ]
           }
         },
         {
-          "choose": {
-            "select": "Change to",
-            "option": "radius.pill"
+          "event": {
+            "type": "reload"
           }
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
-              "variant": 0,
-              "layer": "root",
-              "cell": "radius",
-              "scope": "root.base.radius",
+              "platform": "$platform",
+              "variant": 6,
+              "layer": "label",
+              "cell": "color",
+              "scope": "label.appearance.prio=primary, danger=false.default.color",
               "value": {
-                "token": "radius.pill"
+                "token": "color.text.primary"
               },
-              "revision": "r1"
-            }
-          ],
-          [
-            "undo",
-            {
-              "component": "Button"
-            }
-          ],
-          [
-            "set",
-            {
-              "component": "Button",
-              "variant": 0,
-              "layer": "root",
-              "cell": "radius",
-              "scope": "root.combined.md.prio=primary, danger=false.default.radius",
-              "value": {
-                "token": "radius.pill"
-              },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
+        "reloads": 2,
+        "options": {
+          "Axis size": {
+            "chosen": "sm"
+          }
+        },
+        "shows": ["label: properties", "label · color"],
+        "absent": ["Save", "Discard", "Reason"],
+        "editorUnder": "color",
+        "enabled": [
+          "Close",
+          "Report",
+          "Axis size",
+          "Axis prio",
+          "Axis state",
+          "Axis danger",
+          "Layer root",
+          "Layer iconLeading",
+          "Layer spinner",
+          "Layer label",
+          "Layer iconTrailing",
+          "Layer counter",
+          "Cell color",
+          "Cell typography",
+          "Apply to",
+          "Filter tokens",
+          "Change to"
+        ]
+      }
+    },
+    {
+      "name": "a refresh never reopens the dialog: the saving page opens nothing before it reloads",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "setStatus": {
+            "$fixture": "status",
+            "reopen": {
+              "platform": "$platform",
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "age": 0
+            }
+          }
+        },
+        {
+          "event": {
+            "type": "changed"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "reloads": 0,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a start more than a minute after the edit does not reopen the dialog",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "setStatus": {
+            "$fixture": "status",
+            "reopen": {
+              "platform": "$platform",
+              "component": "Button",
+              "variant": 0,
+              "layer": "root",
+              "cell": "radius",
+              "age": 61000
+            }
+          }
+        },
+        {
+          "event": {
+            "type": "reload"
+          }
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "Undo in the strip sends undo; after the reload the dialog reopens where the edit was",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "key": "root.combined.md.prio=primary, danger=false.default.radius",
+            "failing": [
+              {
+                "platform": "flutter",
+                "message": "the label overflows"
+              }
+            ]
+          }
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "undo": {
+            "reload": true,
+            "status": {
+              "$fixture": "status",
+              "reopen": {
+                "platform": "$platform",
+                "component": "Button",
+                "variant": 0,
+                "layer": "root",
+                "cell": "radius",
+                "age": 0
+              }
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Undo"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "undo",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "reloads": 1,
+        "absent": ["Keep again", "Undo", "Save", "Discard", "Reason"],
+        "editorUnder": "radius",
+        "shows": ["root · radius"],
+        "enabled": [
+          "Close",
+          "Report",
           "Axis size",
           "Axis prio",
           "Axis state",
@@ -8058,14 +9379,153 @@
           "Cell radius",
           "Cell background",
           "Cell height",
-          "Change to",
           "Apply to",
-          "Filter tokens"
+          "Filter tokens",
+          "Change to"
         ]
       }
     },
     {
-      "name": "Keep in the strip sends the reason typed, and the dialog is editable again, read again",
+      "name": "Keep again in the strip runs the checks again; after the reload the dialog reopens where the edit was",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "key": "root.combined.md.prio=primary, danger=false.default.radius",
+            "failing": [
+              {
+                "platform": "flutter",
+                "message": "the label overflows"
+              }
+            ]
+          }
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        },
+        "answers": {
+          "keep": {
+            "answer": {
+              "ok": true
+            },
+            "reload": true,
+            "status": {
+              "$fixture": "status",
+              "reopen": {
+                "platform": "$platform",
+                "component": "Button",
+                "variant": 0,
+                "layer": "root",
+                "cell": "radius",
+                "age": 0
+              }
+            }
+          }
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        },
+        {
+          "press": "Keep again"
+        }
+      ],
+      "expect": {
+        "calls": [
+          [
+            "keep",
+            {
+              "component": "Button",
+              "platform": "$platform"
+            }
+          ]
+        ],
+        "reloads": 1,
+        "absent": [
+          "Keep again",
+          "Undo",
+          "Save",
+          "Discard",
+          "Reason",
+          "Agent note",
+          "Send to agent"
+        ],
+        "editorUnder": "radius",
+        "shows": ["root · radius"],
+        "enabled": [
+          "Close",
+          "Report",
+          "Axis size",
+          "Axis prio",
+          "Axis state",
+          "Axis danger",
+          "Layer root",
+          "Layer iconLeading",
+          "Layer spinner",
+          "Layer label",
+          "Layer iconTrailing",
+          "Layer counter",
+          "Cell radius",
+          "Cell background",
+          "Cell height",
+          "Apply to",
+          "Filter tokens",
+          "Change to"
+        ],
+        "hides": ["the label overflows"]
+      }
+    },
+    {
+      "name": "Inspect while this component's edit is pending shows it in the strip, and the rest is not editable",
+      "fake": {
+        "status": {
+          "$fixture": "status",
+          "pending": {
+            "$fixture": "pending",
+            "key": "label.base.color",
+            "value": {
+              "token": "color.text.primary"
+            },
+            "was": "color.action.primary.text.default"
+          }
+        },
+        "inspection": {
+          "$fixture": "inspection"
+        }
+      },
+      "steps": [
+        {
+          "press": "Inspect"
+        }
+      ],
+      "expect": {
+        "calls": [],
+        "shows": [
+          "label · color, for every variant (6 variants): color.action.primary.text.default → color.text.primary",
+          "One edit at a time: finish the pending edit below first."
+        ],
+        "enabled": ["Close", "Report", "Keep again", "Undo"],
+        "disabled": [
+          "Axis size",
+          "Axis prio",
+          "Axis state",
+          "Axis danger",
+          "Layer root",
+          "Layer iconLeading",
+          "Layer spinner",
+          "Layer label",
+          "Layer iconTrailing",
+          "Layer counter",
+          "Cell radius",
+          "Cell background",
+          "Cell height"
+        ]
+      }
+    },
+    {
+      "name": "a Save reloads the viewer as soon as the regeneration is done; its dialog reopens and waits for the checks, whose failures then show, with Send to agent, Keep again and Undo",
       "fake": {
         "status": {
           "$fixture": "status"
@@ -8074,18 +9534,50 @@
           "$fixture": "inspection"
         },
         "answers": {
-          "set": {
-            "$fixture": "set-pending",
-            "events": []
-          },
-          "keep": {
+          "apply": {
             "answer": {
-              "ok": true
+              "ok": false,
+              "failures": [
+                {
+                  "platform": "flutter",
+                  "message": "the label overflows"
+                }
+              ]
             },
+            "reload": true,
             "status": {
-              "$fixture": "status"
+              "$fixture": "status",
+              "pending": {
+                "$fixture": "pending",
+                "key": "root.combined.md.prio=primary, danger=false.default.radius",
+                "failing": [
+                  {
+                    "platform": "flutter",
+                    "message": "the label overflows"
+                  }
+                ]
+              },
+              "reopen": {
+                "platform": "$platform",
+                "component": "Button",
+                "variant": 0,
+                "layer": "root",
+                "cell": "radius",
+                "age": 0
+              }
             },
-            "events": []
+            "regenerated": {
+              "$fixture": "status",
+              "reopen": {
+                "platform": "$platform",
+                "component": "Button",
+                "variant": 0,
+                "layer": "root",
+                "cell": "radius",
+                "age": 0
+              }
+            },
+            "hold": true
           }
         }
       },
@@ -8109,15 +9601,45 @@
           }
         },
         {
-          "press": "Keep"
+          "press": "Save"
+        },
+        {
+          "expect": {
+            "reloads": 1,
+            "shows": ["working: apply", "Regenerating…", "root · radius"],
+            "hides": ["the label overflows"],
+            "enabled": ["Close", "Report"],
+            "disabled": [
+              "Axis size",
+              "Axis prio",
+              "Axis state",
+              "Axis danger",
+              "Layer root",
+              "Layer iconLeading",
+              "Layer spinner",
+              "Layer label",
+              "Layer iconTrailing",
+              "Layer counter",
+              "Cell radius",
+              "Cell background",
+              "Cell height",
+              "Apply to",
+              "Filter tokens",
+              "Change to"
+            ]
+          }
+        },
+        {
+          "release": "apply"
         }
       ],
       "expect": {
         "calls": [
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -8125,249 +9647,23 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
-            }
-          ],
-          [
-            "keep",
-            {
-              "component": "Button",
+              "revision": "r1",
               "reason": "Figma draws a pill"
             }
           ]
         ],
-        "reads": [
-          ["health"],
-          ["status"],
-          [
-            "component",
-            {
-              "name": "Button",
-              "variant": 0
-            }
-          ],
-          ["status"],
-          [
-            "component",
-            {
-              "name": "Button",
-              "variant": 0
-            }
-          ],
-          ["status"],
-          [
-            "component",
-            {
-              "name": "Button",
-              "variant": 0
-            }
-          ]
-        ],
-        "absent": ["Keep", "Undo", "Reason"],
-        "hides": ["root.combined.md.prio=primary, danger=false.default.radius"],
-        "enabled": [
-          "Close",
-          "Report",
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height",
-          "Change to",
-          "Apply to",
-          "Filter tokens"
-        ]
-      }
-    },
-    {
-      "name": "Undo in the strip sends undo, and the dialog is editable again",
-      "fake": {
-        "status": {
-          "$fixture": "status",
-          "pending": {
-            "$fixture": "pending"
-          }
-        },
-        "inspection": {
-          "$fixture": "inspection"
-        },
-        "answers": {
-          "undo": {
-            "status": {
-              "$fixture": "status"
-            }
-          }
-        }
-      },
-      "steps": [
-        {
-          "press": "Inspect"
-        },
-        {
-          "press": "Undo"
-        }
-      ],
-      "expect": {
-        "calls": [
-          [
-            "undo",
-            {
-              "component": "Button"
-            }
-          ]
-        ],
-        "absent": ["Keep", "Undo", "Reason"],
-        "hides": ["radius.pill"],
-        "enabled": [
-          "Close",
-          "Report",
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height"
-        ]
-      }
-    },
-    {
-      "name": "Inspect while this component's edit is pending shows it in the strip, and the rest is not editable",
-      "fake": {
-        "status": {
-          "$fixture": "status",
-          "pending": {
-            "$fixture": "pending",
-            "key": "label.base.color",
-            "value": {
-              "token": "color.text.primary"
-            },
-            "was": "color.action.primary.text.default",
-            "previousReason": "Figma rounds it fully",
-            "borrowers": [
-              "label.appearance.prio=primary, danger=false.default.color"
-            ]
-          }
-        },
-        "inspection": {
-          "$fixture": "inspection"
-        }
-      },
-      "steps": [
-        {
-          "press": "Inspect"
-        }
-      ],
-      "expect": {
-        "calls": [],
+        "reloads": 1,
         "shows": [
-          "label · color, for every variant (6 variants): color.action.primary.text.default → color.text.primary",
-          "Figma rounds it fully",
-          "label.appearance.prio=primary, danger=false.default.color",
-          "One edit at a time: Keep or Undo the pending edit below first."
+          "the label overflows",
+          "root · radius, for md · primary · at rest (6 variants): radius.control → radius.pill",
+          "One edit at a time: finish the pending edit below first."
         ],
-        "enabled": ["Close", "Report", "Keep", "Undo", "Reason"],
-        "disabled": [
-          "Axis size",
-          "Axis prio",
-          "Axis state",
-          "Axis danger",
-          "Layer root",
-          "Layer iconLeading",
-          "Layer spinner",
-          "Layer label",
-          "Layer iconTrailing",
-          "Layer counter",
-          "Cell radius",
-          "Cell background",
-          "Cell height"
-        ]
-      }
-    },
-    {
-      "name": "a Keep whose checks fail lists them in the strip, with Send to agent beside Keep and Undo",
-      "fake": {
-        "status": {
-          "$fixture": "status",
-          "pending": {
-            "$fixture": "pending"
-          }
-        },
-        "inspection": {
-          "$fixture": "inspection"
-        },
-        "answers": {
-          "keep": {
-            "answer": {
-              "ok": false,
-              "failures": [
-                {
-                  "platform": "flutter",
-                  "message": "the label overflows"
-                }
-              ]
-            },
-            "status": {
-              "$fixture": "status",
-              "pending": {
-                "$fixture": "pending",
-                "failing": [
-                  {
-                    "platform": "flutter",
-                    "message": "the label overflows"
-                  }
-                ]
-              }
-            }
-          }
-        }
-      },
-      "steps": [
-        {
-          "press": "Inspect"
-        },
-        {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
-          }
-        },
-        {
-          "press": "Keep"
-        }
-      ],
-      "expect": {
-        "calls": [
-          [
-            "keep",
-            {
-              "component": "Button",
-              "reason": "Figma draws a pill"
-            }
-          ]
-        ],
-        "shows": ["the label overflows", "radius.pill"],
         "noError": true,
         "enabled": [
           "Close",
           "Report",
-          "Keep",
           "Undo",
-          "Reason",
+          "Keep again",
           "Agent note",
           "Send to agent"
         ],
@@ -8384,8 +9680,12 @@
           "Layer counter",
           "Cell radius",
           "Cell background",
-          "Cell height"
-        ]
+          "Cell height",
+          "Apply to",
+          "Filter tokens",
+          "Change to"
+        ],
+        "hides": ["working: apply", "Regenerating…"]
       }
     },
     {
@@ -8660,7 +9960,7 @@
       }
     },
     {
-      "name": "a Keep whose checks fail keeps the edit, lists its failures, and offers Send to agent",
+      "name": "a Keep again whose checks fail keeps the edit, lists its failures, and offers Send to agent",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -8690,19 +9990,14 @@
                   }
                 ]
               }
-            }
+            },
+            "reload": true
           }
         }
       },
       "steps": [
         {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
-          }
-        },
-        {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -8711,7 +10006,7 @@
             "keep",
             {
               "component": "Button",
-              "reason": "Figma draws a pill"
+              "platform": "$platform"
             }
           ]
         ],
@@ -8720,8 +10015,7 @@
         "enabled": [
           "Agent note",
           "Inspect",
-          "Keep",
-          "Reason",
+          "Keep again",
           "Report",
           "Send to agent",
           "Undo"
@@ -8745,8 +10039,8 @@
               "error": "Button's checks are still running"
             }
           },
-          "set": {
-            "$fixture": "set-pending"
+          "apply": {
+            "$fixture": "applied"
           }
         }
       },
@@ -8775,12 +10069,13 @@
           }
         },
         {
-          "expect": {
-            "noError": true
+          "type": {
+            "field": "reason",
+            "text": "Figma draws a pill"
           }
         },
         {
-          "press": "Close"
+          "press": "Save"
         }
       ],
       "expect": {
@@ -8793,9 +10088,10 @@
             }
           ],
           [
-            "set",
+            "apply",
             {
               "component": "Button",
+              "platform": "$platform",
               "variant": 0,
               "layer": "root",
               "cell": "radius",
@@ -8803,17 +10099,19 @@
               "value": {
                 "token": "radius.pill"
               },
-              "revision": "r1"
+              "revision": "r1",
+              "reason": "Figma draws a pill"
             }
           ]
         ],
-        "noError": true,
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
-        "disabled": ["Approve"]
+        "reloads": 1,
+        "absent": ["Close"],
+        "enabled": ["Approve", "Inspect", "Report"],
+        "noError": true
       }
     },
     {
-      "name": "a pending edit shows its key and value; Keep sends the reason typed",
+      "name": "a pending edit shows its key and value; Keep again sends keep, and the viewer reloads",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -8828,7 +10126,8 @@
             },
             "status": {
               "$fixture": "status"
-            }
+            },
+            "reload": true
           }
         }
       },
@@ -8836,18 +10135,12 @@
         {
           "expect": {
             "shows": ["root.base.radius", "radius.pill"],
-            "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+            "enabled": ["Inspect", "Keep again", "Report", "Undo"],
             "disabled": ["Approve"]
           }
         },
         {
-          "type": {
-            "field": "reason",
-            "text": "The pill reads as a chip beside the Tag"
-          }
-        },
-        {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -8856,11 +10149,11 @@
             "keep",
             {
               "component": "Button",
-              "reason": "The pill reads as a chip beside the Tag"
+              "platform": "$platform"
             }
           ]
         ],
-        "absent": ["Keep", "Undo", "Reason"],
+        "absent": ["Keep again", "Undo"],
         "hides": ["radius.pill"],
         "enabled": ["Approve", "Inspect", "Report"]
       }
@@ -8878,7 +10171,8 @@
           "undo": {
             "status": {
               "$fixture": "status"
-            }
+            },
+            "reload": true
           }
         }
       },
@@ -8892,17 +10186,18 @@
           [
             "undo",
             {
-              "component": "Button"
+              "component": "Button",
+              "platform": "$platform"
             }
           ]
         ],
-        "absent": ["Keep", "Undo"],
+        "absent": ["Keep again", "Undo"],
         "hides": ["radius.pill"],
         "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
-      "name": "a Keep refused is shown, and the pending edit stays",
+      "name": "a Keep again refused is shown, and the pending edit stays",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -8921,13 +10216,7 @@
       },
       "steps": [
         {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
-          }
-        },
-        {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -8936,51 +10225,17 @@
             "keep",
             {
               "component": "Button",
-              "reason": "Figma draws a pill"
+              "platform": "$platform"
             }
           ]
         ],
         "oneError": "changed on disk",
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+        "enabled": ["Inspect", "Keep again", "Report", "Undo"],
         "disabled": ["Approve"]
       }
     },
     {
-      "name": "a pending edit shows the reason it replaces",
-      "fake": {
-        "status": {
-          "$fixture": "status",
-          "pending": {
-            "$fixture": "pending",
-            "previousReason": "Figma rounds it fully"
-          }
-        }
-      },
-      "expect": {
-        "shows": ["Figma rounds it fully"],
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
-        "disabled": ["Approve"]
-      }
-    },
-    {
-      "name": "a pending edit names the rules that borrow its reason",
-      "fake": {
-        "status": {
-          "$fixture": "status",
-          "pending": {
-            "$fixture": "pending",
-            "borrowers": ["root.size=sm.radius", "label.base.radius"]
-          }
-        }
-      },
-      "expect": {
-        "shows": ["root.size=sm.radius", "label.base.radius"],
-        "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
-        "disabled": ["Approve"]
-      }
-    },
-    {
-      "name": "a pending edit whose checks fail lists them, and offers Send to agent beside Keep and Undo",
+      "name": "a pending edit whose checks fail lists them, and offers Send to agent beside Keep again and Undo",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -9009,8 +10264,7 @@
         "enabled": [
           "Agent note",
           "Inspect",
-          "Keep",
-          "Reason",
+          "Keep again",
           "Report",
           "Send to agent",
           "Undo"
@@ -9019,7 +10273,7 @@
       }
     },
     {
-      "name": "a deleting edit names Figma's value, asks no reason, and keeps with none",
+      "name": "a pending deleting edit names Figma's value, and Keep again sends keep",
       "fake": {
         "answers": {
           "keep": {
@@ -9028,7 +10282,8 @@
             },
             "status": {
               "$fixture": "status"
-            }
+            },
+            "reload": true
           }
         },
         "status": {
@@ -9040,7 +10295,9 @@
             },
             "deletes": true,
             "previousReason": "Figma rounds it fully",
-            "borrowers": ["root.size=sm.radius"]
+            "borrowers": ["root.size=sm.radius"],
+            "was": "radius.pill",
+            "reason": null
           }
         }
       },
@@ -9053,13 +10310,12 @@
               "Figma rounds it fully",
               "root.size=sm.radius"
             ],
-            "absent": ["Reason"],
-            "enabled": ["Inspect", "Keep", "Report", "Undo"],
+            "enabled": ["Inspect", "Keep again", "Report", "Undo"],
             "disabled": ["Approve"]
           }
         },
         {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -9068,11 +10324,11 @@
             "keep",
             {
               "component": "Button",
-              "reason": ""
+              "platform": "$platform"
             }
           ]
         ],
-        "absent": ["Keep"],
+        "absent": ["Keep again"],
         "enabled": ["Approve", "Inspect", "Report"]
       }
     },
@@ -9105,10 +10361,10 @@
       "expect": {
         "calls": [],
         "shows": [
-          "One edit at a time: Keep or Undo the pending edit in Tag's Playground first."
+          "One edit at a time: finish the pending edit in Tag's Playground first."
         ],
         "hides": ["radius.pill"],
-        "absent": ["Keep", "Undo", "Reason"],
+        "absent": ["Keep again", "Undo"],
         "enabled": ["Close", "Report"],
         "disabled": [
           "Axis size",
@@ -9140,7 +10396,7 @@
       },
       "expect": {
         "shows": ["Tag"],
-        "absent": ["Keep", "Undo"],
+        "absent": ["Keep again", "Undo"],
         "disabled": ["Undo approval"]
       }
     },
@@ -9244,6 +10500,48 @@
         "noError": true,
         "hides": ["Counter"],
         "enabled": ["Approve", "Inspect", "Report"]
+      }
+    },
+    {
+      "name": "a reload another viewer caused reloads this viewer too, which then shows its bar as the status says",
+      "fake": {
+        "status": {
+          "$fixture": "status"
+        }
+      },
+      "steps": [
+        {
+          "setStatus": {
+            "$fixture": "status",
+            "pending": {
+              "$fixture": "pending",
+              "failing": [
+                {
+                  "platform": "web",
+                  "message": "the label overflows"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event": {
+            "type": "reload"
+          }
+        }
+      ],
+      "expect": {
+        "reloads": 1,
+        "shows": ["the label overflows"],
+        "enabled": [
+          "Agent note",
+          "Inspect",
+          "Keep again",
+          "Report",
+          "Send to agent",
+          "Undo"
+        ],
+        "disabled": ["Approve"]
       }
     },
     {
@@ -9543,21 +10841,16 @@
             },
             "status": {
               "$fixture": "status"
-            }
+            },
+            "reload": true
           }
         }
       },
       "steps": [
         {
           "expect": {
-            "enabled": ["Inspect", "Keep", "Reason", "Report", "Undo"],
+            "enabled": ["Inspect", "Keep again", "Report", "Undo"],
             "disabled": ["Approve"]
-          }
-        },
-        {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
           }
         },
         {
@@ -9575,12 +10868,12 @@
         {
           "expect": {
             "shows": ["spec/feedback/button-2.yaml", "radius.pill"],
-            "enabled": ["Inspect", "Keep", "Note", "Reason", "Report", "Undo"],
+            "enabled": ["Inspect", "Keep again", "Note", "Report", "Undo"],
             "disabled": ["Approve", "Save note"]
           }
         },
         {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -9598,13 +10891,13 @@
             "keep",
             {
               "component": "Button",
-              "reason": "Figma draws a pill"
+              "platform": "$platform"
             }
           ]
         ],
-        "absent": ["Keep", "Undo"],
-        "enabled": ["Approve", "Inspect", "Note", "Report"],
-        "disabled": ["Save note"]
+        "reloads": 1,
+        "absent": ["Keep again", "Undo", "Note"],
+        "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
@@ -9658,7 +10951,7 @@
       }
     },
     {
-      "name": "a Keep refused because it would cancel an approval is shown, and the edit is gone",
+      "name": "a Keep again refused because it would cancel an approval is shown, and the edit is gone",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -9680,13 +10973,7 @@
       },
       "steps": [
         {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
-          }
-        },
-        {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -9695,13 +10982,13 @@
             "keep",
             {
               "component": "Button",
-              "reason": "Figma draws a pill"
+              "platform": "$platform"
             }
           ]
         ],
         "oneError": "cancel Counter's approval",
         "hides": ["radius.pill"],
-        "absent": ["Keep", "Undo", "Reason"],
+        "absent": ["Keep again", "Undo"],
         "enabled": ["Approve", "Inspect", "Report"]
       }
     },
@@ -9756,7 +11043,7 @@
       }
     },
     {
-      "name": "while Keep runs, the actions that start another wait, and the bar says it is working",
+      "name": "while Keep again runs, the actions that start another wait, and the bar says it is working, also after the reload",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -9772,19 +11059,14 @@
             "status": {
               "$fixture": "status"
             },
-            "hold": true
+            "hold": true,
+            "reload": true
           }
         }
       },
       "steps": [
         {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
-          }
-        },
-        {
-          "press": "Keep"
+          "press": "Keep again"
         },
         {
           "expect": {
@@ -9794,12 +11076,13 @@
                 "keep",
                 {
                   "component": "Button",
-                  "reason": "Figma draws a pill"
+                  "platform": "$platform"
                 }
               ]
             ],
-            "enabled": ["Inspect", "Reason", "Report"],
-            "disabled": ["Approve", "Keep", "Undo"]
+            "enabled": ["Inspect", "Report"],
+            "disabled": ["Approve", "Keep again", "Undo"],
+            "reloads": 1
           }
         },
         {
@@ -9812,18 +11095,18 @@
             "keep",
             {
               "component": "Button",
-              "reason": "Figma draws a pill"
+              "platform": "$platform"
             }
           ]
         ],
         "hides": ["working: keep", "radius.pill"],
-        "absent": ["Keep", "Undo"],
+        "absent": ["Keep again", "Undo"],
         "noError": true,
         "enabled": ["Approve", "Inspect", "Report"]
       }
     },
     {
-      "name": "Send to agent after a failing Keep sends the note and the failures, shows the file, and the edit is no longer pending",
+      "name": "Send to agent after failing checks sends the note and the failures, shows the file, and the edit is no longer pending",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -10135,19 +11418,14 @@
             },
             "status": {
               "$fixture": "status"
-            }
+            },
+            "reload": true
           }
         }
       },
       "steps": [
         {
-          "type": {
-            "field": "reason",
-            "text": "Figma draws a pill"
-          }
-        },
-        {
-          "press": "Keep"
+          "press": "Keep again"
         }
       ],
       "expect": {
@@ -10156,7 +11434,7 @@
             "keep",
             {
               "component": "Button",
-              "reason": "Figma draws a pill"
+              "platform": "$platform"
             }
           ]
         ],
@@ -10166,7 +11444,7 @@
       }
     },
     {
-      "name": "a Send to agent refused after a failing Keep is shown once, and the edit and its failures stay",
+      "name": "a Send to agent refused after failing checks is shown once, and the edit and its failures stay",
       "fake": {
         "status": {
           "$fixture": "status",
@@ -10231,8 +11509,7 @@
         "enabled": [
           "Agent note",
           "Inspect",
-          "Keep",
-          "Reason",
+          "Keep again",
           "Report",
           "Send to agent",
           "Undo"

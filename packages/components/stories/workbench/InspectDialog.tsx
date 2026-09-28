@@ -11,7 +11,13 @@
  * the one today's value is set at marked, one a narrower rule decides here disabled), then Filter
  * tokens (starting at the current token's family) and Change to (at most 8 of the tokens it
  * matches, the current one marked, then the keywords and none), and why the cell is what it is.
- * A pending edit shows in a strip along the foot (pending.tsx, as the bar shows it); while one is
+ * Choosing in Change to makes a draft, sending nothing: the Edit strip along the foot reads it
+ * (before → after, for the scope chosen), asks the reason (with the one it replaces and the rules
+ * that borrow it), and holds Save and Discard; Apply to, Filter tokens and Change to update it,
+ * and the axes, layers and cells wait. Choosing Figma's own value where a rule changed it drafts
+ * the rule's removal, which asks no reason. Save sends it (the service then regenerates, and the
+ * viewer reloads); Discard and Close drop it. A saved edit whose checks failed stays pending, and
+ * shows in the strip (pending.tsx, as the bar shows it) with Keep again and Undo; while one is
  * pending anywhere, or an action runs, only Close, Report and the strip take input, and the dialog
  * says why.
  *
@@ -41,9 +47,10 @@ import { Scrim } from '../../src/Scrim.js';
 import { SearchField } from '../../src/SearchField.js';
 import { Select } from '../../src/Select.js';
 import { Tag } from '../../src/Tag.js';
+import { TextArea } from '../../src/TextArea.js';
 import { TreeItem } from '../../src/TreeItem.js';
 import type { Cell, Inspection, Origin, Pending, Scope } from './client.js';
-import { alert, column, primary, row, secondary } from './pending.js';
+import { alert, column, primary, row, secondary, valueOf } from './pending.js';
 import { Preview, type DrawVariant } from './preview.js';
 
 type Layer = Inspection['layers'][number];
@@ -83,6 +90,11 @@ export const scopeText = (s: Scope, total: number) =>
 /** The narrowest scope nothing overrides here (the scopes run from every variant to the narrowest). */
 const narrowestOf = (scopes: Scope[]) =>
   [...scopes].reverse().find((s) => !s.wins) ?? scopes.at(-1);
+
+/** The Apply to in force: the one chosen where nothing overrides it here, else the narrowest. */
+const applyToOf = (cell: Cell, scope: string | null) =>
+  cell.scopes.find((s) => s.key === scope && !s.wins) ??
+  narrowestOf(cell.scopes);
 
 /** Whether an entry is a token's name (not none, a keyword, a raw value). */
 const isToken = (entry: string) => /^[a-z][\w-]*(\.[\w-]+)+$/.test(entry);
@@ -216,9 +228,10 @@ export function InspectDialog({
   notice,
   strip,
   drawVariant,
+  reopenCell,
   onLayer,
   onVariant,
-  onSet,
+  onSave,
   onReport,
   onClose,
 }: {
@@ -245,8 +258,18 @@ export function InspectDialog({
   onLayer: (layer: string) => void;
   /** Reads the variant of this index. */
   onVariant: (index: number) => void;
-  /** Change to: the cell, the scope's key and the value chosen (a token, a keyword or `none`). */
-  onSet: (cell: string, scope: string, choice: string) => void;
+  /** The cell to open with, where the dialog reopens after a reload. */
+  reopenCell?: string | null;
+  /**
+   * Save: the cell, the scope's key, the value chosen (a token, a keyword or `none`) and the reason
+   * ("" for a removal); whether the service took it.
+   */
+  onSave: (
+    cell: string,
+    scope: string,
+    choice: string,
+    reason: string,
+  ) => Promise<boolean>;
   onReport: () => void;
   onClose: () => void;
 }) {
@@ -255,8 +278,11 @@ export function InspectDialog({
   const layerRoot = useRef<HTMLDivElement>(null);
   // The cell chosen, of the layer it was chosen in.
   const [chosen, setChosen] = useState<{ layer: string; cell: string } | null>(
-    null,
+    reopenCell ? { layer, cell: reopenCell } : null,
   );
+  // The draft: the value chosen in Change to, and its reason; nothing is sent until Save.
+  const [draft, setDraft] = useState<string | null>(null);
+  const [reason, setReason] = useState('');
   // The Apply to chosen (null: the narrowest) and the filter's text (null: the token's family).
   // Both start again on another variant, layer or cell, when the dialog closes (it unmounts), and
   // after an edit.
@@ -364,11 +390,76 @@ export function InspectDialog({
   };
 
   const disabled = !editable;
+  // While a draft is open, the axes, the layers and the cells wait for it to be saved or dropped.
+  const moving = disabled || draft !== null;
   const readOnly = pending
-    ? 'One edit at a time: Keep or Undo the pending edit below first.'
+    ? 'One edit at a time: finish the pending edit below first.'
     : otherPending
-      ? `One edit at a time: Keep or Undo the pending edit in ${otherPending}'s Playground first.`
+      ? `One edit at a time: finish the pending edit in ${otherPending}'s Playground first.`
       : null;
+  const applyTo = cell ? applyToOf(cell, scope) : undefined;
+  // Figma's own value where the scope has a rule: choosing it removes the rule.
+  const removal = Boolean(
+    draft !== null &&
+    applyTo?.rule?.figma &&
+    JSON.stringify(valueOf(draft)) === JSON.stringify(applyTo.rule.figma),
+  );
+  const discard = () => {
+    setDraft(null);
+    setReason('');
+    setScope(null);
+  };
+  const save = async () => {
+    if (draft === null || !cell || !applyTo) return;
+    const taken = await onSave(
+      cell.cell,
+      applyTo.key,
+      draft,
+      removal ? '' : reason.trim(),
+    );
+    if (taken) discard();
+  };
+  const drafted = draft !== null && cell && applyTo && shown && (
+    <>
+      <Typography variant="bodyXsRegular" style={secondary}>
+        {`${shown.name} · ${cell.cell}, for ${applyTo.label} (${applyTo.count} ${variantsAfter(applyTo.count)}): ${cell.entry} → ${draft}`}
+      </Typography>
+      {removal ? (
+        <Typography variant="bodyXsRegular" style={secondary}>
+          Figma&apos;s own value: the rule is removed, and needs no reason.
+        </Typography>
+      ) : (
+        <TextArea
+          size="sm"
+          label="Why (a reviewer must be able to check it)"
+          helper={
+            applyTo.rule?.reason ? `Was: ${applyTo.rule.reason}` : undefined
+          }
+          value={reason}
+          disabled={disabled}
+          onChange={(event) => setReason(event.target.value)}
+        />
+      )}
+      {!removal && (applyTo.rule?.borrowers.length ?? 0) > 0 && (
+        <Typography variant="bodyXsRegular" style={secondary}>
+          Also the reason of: {applyTo.rule?.borrowers.join(', ')}
+        </Typography>
+      )}
+      <div style={row}>
+        <Button
+          size="sm"
+          prio="primary"
+          disabled={disabled || (!removal && !reason.trim())}
+          onClick={() => void save()}
+        >
+          Save
+        </Button>
+        <Button size="sm" prio="tertiary" disabled={disabled} onClick={discard}>
+          Discard
+        </Button>
+      </div>
+    </>
+  );
   const dialog = (
     <div ref={layerRoot} style={layerStyle}>
       <Scrim />
@@ -408,7 +499,7 @@ export function InspectDialog({
                 size="sm"
                 label={axis.name}
                 value={parts[axis.name] ?? ''}
-                disabled={disabled}
+                disabled={moving}
                 onChange={(_, v) => chooseAxis(axis.name, v)}
               >
                 {axis.values.map((value) => (
@@ -468,7 +559,7 @@ export function InspectDialog({
                 <TreeItem
                   key={l.name}
                   aria-label={[l.name, ...marks].join(' ')}
-                  aria-disabled={disabled || undefined}
+                  aria-disabled={moving || undefined}
                   label={
                     <span style={l.hidden ? secondary : undefined}>
                       {l.name}
@@ -483,7 +574,7 @@ export function InspectDialog({
                   depth={depth}
                   expandable={false}
                   selected={l.name === shown?.name}
-                  onSelect={disabled ? undefined : () => chooseLayer(l.name)}
+                  onSelect={moving ? undefined : () => chooseLayer(l.name)}
                 />
               );
             })}
@@ -494,7 +585,7 @@ export function InspectDialog({
             layer={shown?.name ?? 'root'}
             drawVariant={drawVariant}
             regenerating={working || Boolean(busy)}
-            onPoint={disabled ? undefined : chooseLayer}
+            onPoint={moving ? undefined : chooseLayer}
           />
 
           <div style={{ ...scroll, ...column }}>
@@ -524,7 +615,7 @@ export function InspectDialog({
                       <div role="cell" style={spanning}>
                         <ListItem
                           selected={open}
-                          disabled={disabled}
+                          disabled={moving}
                           aria-label={`${c.cell} ${c.entry} ${c.value} ${origin}`}
                           aria-expanded={open}
                           onClick={() => chooseCell(c.cell)}
@@ -564,9 +655,7 @@ export function InspectDialog({
                             disabled={disabled}
                             onScope={setScope}
                             onFilter={setFilter}
-                            onSet={(key, choice) =>
-                              onSet(cell.cell, key, choice)
-                            }
+                            onChoose={setDraft}
                           />
                         </div>
                       </div>
@@ -578,8 +667,9 @@ export function InspectDialog({
           </div>
         </div>
 
-        {strip && (
-          <div role="region" aria-label="Pending edit" style={stripStyle}>
+        {(drafted || strip) && (
+          <div role="region" aria-label="Edit" style={stripStyle}>
+            {drafted}
             {strip}
           </div>
         )}
@@ -604,7 +694,7 @@ function Editor({
   disabled,
   onScope,
   onFilter,
-  onSet,
+  onChoose,
 }: {
   layer: string;
   cell: Cell;
@@ -615,11 +705,10 @@ function Editor({
   disabled: boolean;
   onScope: (key: string) => void;
   onFilter: (text: string) => void;
-  onSet: (scope: string, choice: string) => void;
+  /** Change to: the value chosen (a token, a keyword or `none`), which drafts it. */
+  onChoose: (choice: string) => void;
 }) {
-  const applyTo =
-    cell.scopes.find((s) => s.key === scope && !s.wins) ??
-    narrowestOf(cell.scopes);
+  const applyTo = applyToOf(cell, scope);
   const offers =
     cell.choices.length > 0 || cell.keywords.length > 0 || cell.none;
   const why = (
@@ -706,7 +795,7 @@ function Editor({
             : 'No token matches'
         }
         disabled={disabled || matched.length === 0}
-        onChange={(_, v) => onSet(applyTo.key, v)}
+        onChange={(_, v) => onChoose(v)}
       >
         {[
           ...listed.map((c) => (

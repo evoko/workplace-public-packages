@@ -48,6 +48,7 @@ const pendingOn = (component: string, over: Partial<Pending> = {}) => ({
   key: 'root.base.radius',
   value: { token: 'radius.full' },
   was: null,
+  reason: 'Figma rounds it fully',
   deletes: false,
   previousReason: 'Figma rounds it fully',
   failing: null,
@@ -62,6 +63,7 @@ const LOCKS = {
 
 const status: Status = {
   busy: null,
+  reopen: null,
   pending:
     mode === 'pending'
       ? pendingOn('Button')
@@ -155,16 +157,16 @@ const client: WorkbenchClient = {
     reads.push(['inspect', variant]);
     throw new WorkbenchRefusal(404, 'Inspect is not read on this page');
   },
-  set: async (b) => {
-    calls.push(['set', b]);
-    return status;
-  },
-  keep: async (c, r) => {
-    calls.push(['keep', c, r]);
+  apply: async (b) => {
+    calls.push(['apply', b]);
     return { ok: true };
   },
-  undo: async (c) => {
-    calls.push(['undo', c]);
+  keep: async (c, p) => {
+    calls.push(['keep', c, p]);
+    return { ok: true };
+  },
+  undo: async (c, p) => {
+    calls.push(['undo', c, p]);
     return status;
   },
   approve: async (c, p) => {

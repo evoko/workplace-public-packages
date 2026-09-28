@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { beforeAll, describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
 import { inspect } from '../src/workbench/inspect.mjs';
@@ -238,6 +239,33 @@ describe('the dialog’s fields', () => {
       ['primary, danger · at rest', null, true],
       ['md · primary, danger · at rest', null, false],
     ]);
+  });
+
+  it('gives a scope’s rule, its reason and borrowers, and Figma’s value there, which deletes it', () => {
+    const text = readFileSync(
+      new URL('../../../spec/overlay/popover.yaml', import.meta.url),
+      'utf8',
+    );
+    const shadow = cellOf(
+      inspect(build, 'Popover', 0, { overlayText: text }),
+      'root',
+      'shadow',
+    );
+    const [base, ...rest] = shadow.scopes;
+    expect(base.rule).toEqual({
+      reason: expect.any(String),
+      borrowers: [],
+      figma: { token: 'shadow.dialog' },
+    });
+    for (const scope of rest) expect(scope.rule).toBeNull();
+    // Without the overlay's text, no rule is read.
+    expect(
+      cellOf(
+        inspect(build, 'Popover', 0, { overlayText: '' }),
+        'root',
+        'shadow',
+      ).scopes[0].rule,
+    ).toBeNull();
   });
 
   it('tells apart the layers that share one selector, in the order the case draws them', () => {

@@ -117,9 +117,8 @@ control to wrap, renames, a cell that follows more axes than the model says, a r
 the token of the same value, an allowed literal (a governance gap), an accepted finding. Three
 rules make it trustworthy: **every rule has a reason**; **a rule that no longer matches the IR
 fails the build**, so a Figma change cannot leave a stale decision behind; and **order does not
-matter**. The placeholder reason `TODO(reason)`, which `solar:explain --propose` and the
-workbench's pending edit write, fails the build; only `solar:codegen --pending`, the workbench's
-preview, lets it through. `spec/overlay/defaults.yaml` holds the two decisions that hold for
+matter**. The placeholder reason `TODO(reason)`, which `solar:explain --propose` writes, fails
+the build. `spec/overlay/defaults.yaml` holds the two decisions that hold for
 every component (an unbound zero padding or gap is `inset.none` or `stack.none`); `excluded.yaml` names components
 left out (Cursor); `mui-theme.yaml` names the stock MUI components styled from recipes. Every
 rule kind is in [spec/overlay/README.md](../../spec/overlay/README.md).
@@ -390,10 +389,18 @@ an agent as a note; and approves or withdraws an approval. How to use it:
 **The service.** `scripts/workbench.mjs`, a Node process on `127.0.0.1:6011`, is the only thing
 that writes for the bars. It is for development alone: `npm run storybook` (`.storybook/main.ts`,
 in `storybook dev` only) and `npm run widgetbook` (`scripts/widgetbook.mjs`, when serving) make
-sure it runs (`scripts/workbench-launch.mjs`), reusing one that answers `GET /health` on the port or
-starting it detached, logging to `.workbench/service.log`. Each launcher asks again every 30
-seconds, which keeps the service alive and starts it again where it has stopped; it exits a minute
-after the last request, with no poll waiting. It answers only a `Host` of `127.0.0.1` or `localhost`
+sure it runs on the code on disk (`scripts/workbench-launch.mjs`): `GET /health` names the
+service's version, a hash of its own code (`codeVersion`: `scripts/workbench.mjs`,
+`packages/codegen/src/workbench/*.mjs`, `src/approvals/*.mjs`, `src/explain/index.mjs` and
+`src/normalize/overlay.mjs`; the generator runs as its own command, read afresh each time), and
+the launcher reuses a service whose version is the one on disk. One on other code it asks to stop
+(`POST /shutdown`, from this machine and no page alone, which the service answers at once and
+exits after the job it is running, taking no other meanwhile), waits up to 10 seconds for the
+port, and starts a fresh one detached, logging to `.workbench/service.log`; one too old to have
+`/shutdown` it stops by the pid its health names, and one that names none it warns about, naming
+the port. Each launcher asks again every 30 seconds, which keeps the service alive, starts it
+again where it has stopped, and picks up a change to its code; it exits a minute after the last
+request, with no poll waiting. It answers only a `Host` of `127.0.0.1` or `localhost`
 (a page that rebinds its own name to this machine is refused) and only pages served from
 `localhost` or `127.0.0.1` (CORS). Storybook draws the bar only in `storybook dev` (`import.meta.env.DEV`),
 Widgetbook only where `--dart-define=SOLAR_WORKBENCH` gives the service's URL, so no static build,
@@ -406,28 +413,37 @@ long-polling `GET /events?after=<seq>`, answered at once where there is anything
 otherwise within 25 seconds (plain HTTP, which Dart's `http` runs the same on the VM and the web).
 Every file the service writes (an overlay, the approvals, a note, the pending record) is written
 beside itself and renamed over, whole or not at all. Every command it runs (the regeneration, each
-check) is stopped after 15 minutes. A Set names the revision of the overlay the bar read (a hash of
-its text), so a file changed since is refused; Keep and Undo refuse a file that holds neither text
-the session wrote.
+check) is stopped after 15 minutes. An Apply names the revision of the overlay the dialog read (a
+hash of its text), so a file changed since is refused; Keep and Undo refuse a file that holds
+neither text the session wrote.
 
 **The lock.** What a component may do follows its circles on both platforms. 🟡 on both, or 🟡 on
 one and absent from the other, it may be inspected, changed and reported on; 🟢 on either it is
 locked, since a look change reaches both platforms and would cancel the approval; 🔴 on either it
 waits on the components it uses. Approve and Undo approval act on the bar's own platform.
 
-**The pending edit.** Inspect's choice becomes one `set` entry, spliced into the overlay's text
-(`overlay-edit.mjs`: the entry's own lines change, and every comment and every other rule stays
-byte for byte), with the reason `TODO(reason)`, and a regeneration with `solar:codegen --pending`,
-the one flag that lets the placeholder through. A plain run, the Verify block and CI refuse it, so
-an edit walked away from cannot ship unnoticed. Before the overlay is written, the edit is saved to
-`.workbench/pending.json` with the file's bytes before it, so Undo survives a restart; one exists
-at a time. Keep writes the reason and regenerates without the flag. The generator writes only the
-files whose formatted text differs from what is on disk, so a regeneration touches the edited
-component's outputs alone: Storybook's dev server reloads them, and the service signals
-Widgetbook's `flutter run` to hot-reload (`SIGUSR1`, to the pid in `.workbench/widgetbook.pid`,
-which `scripts/widgetbook.mjs` writes, and only where that pid is Flutter's or Dart's).
+**The edit.** Inspect's choices make a draft in the dialog, and nothing is written until Save: a
+regeneration reloads the viewer, and one while a person is still choosing would lose the reason
+being typed. Save is one Apply: the draft becomes one `set` entry with its reason, spliced into the
+overlay's text (`overlay-edit.mjs`: the entry's own lines change, and every comment and every other
+rule stays byte for byte), proved in memory to reach the variant in view, regenerated with a plain
+`solar:codegen`, undone where it would cancel an approval, and checked. Before the overlay is
+written, the edit is saved to `.workbench/pending.json` with the file's bytes before it; where the
+checks pass the record goes, and where they fail the edit stays pending (one at a time), with its
+failures, to Undo, Keep again or Send to agent, and Undo survives a restart. The generator writes
+only the files whose formatted text differs from what is on disk, so a regeneration touches the
+edited component's outputs alone. As soon as a regeneration is done (before the checks, and again
+after any later regeneration in the same job) the service sends the event `reload`, on which
+Storybook's bar reloads its page, and signals Widgetbook's `flutter run` to hot-restart
+(`SIGUSR2`, to the pid in `.workbench/widgetbook.pid`, which `scripts/widgetbook.mjs` writes, and
+only where that pid is Flutter's or Dart's). The status's `reopen` names where the viewer that
+saved, kept again or undid was (the pending record keeps the edit's variant, layer and cell), for a
+minute after the regeneration and until the next operation starts: a page may load several times
+as the regenerated files arrive, and each load reopens the dialog there. A bar reads it in its
+first status read after it starts alone, never on a refresh, so the saving page opens nothing
+before it reloads.
 
-**The checks.** Keep and Approve run the component's own checks, not the whole suite (`checks.mjs`):
+**The checks.** Apply, Keep and Approve run the component's own checks, not the whole suite (`checks.mjs`):
 its web visual check alone (`SOLAR_VISUAL_ONLY`), its Flutter visual check (`--name`) and the parity
 suite, one after another; each visual check's reports are deleted before it runs and read after it,
 Light and Dark, as the failures the bar lists. Which commands, and what a failure then offers:
@@ -436,28 +452,38 @@ Light and Dark, as the failures the bar lists. Which commands, and what a failur
 **The contract.** Both bars and the service use exactly this. Bodies are JSON; an error is
 `{ "error": "<one sentence>" }` with its status.
 
-| Method, path              | Body or query                                                 | Answer                                                 |
-| ------------------------- | ------------------------------------------------------------- | ------------------------------------------------------ |
-| `GET /health`             |                                                               | `{ service: "solar-workbench" }`                       |
-| `GET /status`             |                                                               | `Status`                                               |
-| `GET /component`          | `?name=Button&variant=0`                                      | `Inspection`                                           |
-| `POST /set`               | `{ component, variant, layer, cell, scope, value, revision }` | `Status`                                               |
-| `POST /keep`              | `{ component, reason }`                                       | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
-| `POST /undo`              | `{ component }`                                               | `Status`                                               |
-| `POST /report`            | `{ component, platform, controls?, layer?, variant?, note }`  | `{ file }`                                             |
-| `POST /send`              | `{ component, platform, note?, failures? }`                   | `{ file }`                                             |
-| `POST /approve`           | `{ component, platform }`                                     | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
-| `POST /unapprove/preview` | `{ component, platform }`                                     | `{ withdraws: string[] }`                              |
-| `POST /unapprove`         | `{ component, platform }`                                     | `{ withdraws: string[] }`                              |
-| `GET /events`             | `?after=<seq>`                                                | `{ seq, events: [{ seq, type, message? }] }`           |
+| Method, path              | Body or query                                                                   | Answer                                                 |
+| ------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `GET /health`             |                                                                                 | `{ service: "solar-workbench", version, pid }`         |
+| `POST /shutdown`          | (from this machine, no `Origin`)                                                | 202 `{ stopping: true }`, then exits after its job     |
+| `GET /status`             |                                                                                 | `Status`                                               |
+| `GET /component`          | `?name=Button&variant=0`                                                        | `Inspection`                                           |
+| `POST /apply`             | `{ component, platform, variant, layer, cell, scope, value, revision, reason }` | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
+| `POST /keep`              | `{ component, platform }`                                                       | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
+| `POST /undo`              | `{ component, platform }`                                                       | `Status`                                               |
+| `POST /report`            | `{ component, platform, controls?, layer?, variant?, note }`                    | `{ file }`                                             |
+| `POST /send`              | `{ component, platform, note?, failures? }`                                     | `{ file }`                                             |
+| `POST /approve`           | `{ component, platform }`                                                       | `{ ok: true }` or `{ ok: false, failures: Failure[] }` |
+| `POST /unapprove/preview` | `{ component, platform }`                                                       | `{ withdraws: string[] }`                              |
+| `POST /unapprove`         | `{ component, platform }`                                                       | `{ withdraws: string[] }`                              |
+| `GET /events`             | `?after=<seq>`                                                                  | `{ seq, events: [{ seq, type, message? }] }`           |
 
-- `Status`: `{ busy: string | null, pending: Pending | null, components: { [name]: { web: Colour | null, flutter: Colour | null, waitsOn: { web: string[], flutter: string[] }, editable: boolean, locked: string | null } } }`,
+- `Status`: `{ busy: string | null, seq: number, pending: Pending | null, reopen: { platform, component, variant, layer, cell, age } | null, components: { [name]: { web: Colour | null, flutter: Colour | null, waitsOn: { web: string[], flutter: string[] }, editable: boolean, locked: string | null } } }`,
   `Colour` one of `"green"`, `"yellow"`, `"red"`; `busy` is null in a POST's answer, since the
-  operation has finished; `locked` says why the component may not change.
-- `Pending`: `{ component, key, value, was: string | null, deletes: boolean, previousReason: string | null, borrowers: string[], failing: Failure[] | null }`;
-  `was` is the entry the variant in view drew before the edit (as `solar:explain` names it);
-  `borrowers` are the rules that borrow the entry's reason, which therefore changes too.
-- `Inspection`: `{ component, revision, axes: [{ name, values: string[] }], variants: [{ index, name, parts: { [axis]: value } }], variant, layers: [{ name, className: string | null, selector: string | null, parent: string | null, hidden: boolean, cells: [{ cell, total, entry, value, at: string | null, origin: "figma" | "rule" | "defaults", reason: string | null, scopes: [{ label, key, count, wins: string | null, winsLabel: string | null, current: boolean }], choices: [{ name, value }], keywords: string[], none: boolean, note? }] }] }`;
+  operation has finished; `seq` (in `GET /status` alone) is the last event sent before the status
+  was read, from which a bar's first long-poll starts, so it hears every event after and none
+  before; `locked` says why the component may not change; `reopen` is where the
+  viewer that applied, kept again or undid an edit reopens its dialog after reloading, `age`
+  milliseconds after the service set it (named for 60 s, and cleared when the next operation
+  starts).
+- `Pending`: `{ component, key, value, was: string | null, reason: string | null, deletes: boolean, previousReason: string | null, borrowers: string[], failing: Failure[] | null }`;
+  an edit Apply wrote whose checks failed (`failing`), or, after a restart mid-Apply, one never
+  checked (`failing` null); `was` is the entry the variant in view drew before the edit (as
+  `solar:explain` names it), `reason` the one written (none for a deleted rule); `borrowers` are the
+  rules that borrow the entry's reason, which therefore changes too.
+- `apply`'s `reason` is one line a reviewer can check, never the replaced rule's unchanged; a
+  deleting apply (Figma's own value, the scope's `rule.figma`) takes none.
+- `Inspection`: `{ component, revision, axes: [{ name, values: string[] }], variants: [{ index, name, parts: { [axis]: value } }], variant, layers: [{ name, className: string | null, selector: string | null, parent: string | null, hidden: boolean, cells: [{ cell, total, entry, value, at: string | null, origin: "figma" | "rule" | "defaults", reason: string | null, scopes: [{ label, key, count, wins: string | null, winsLabel: string | null, current: boolean, rule: { reason: string | null, borrowers: string[], figma: value | null } | null }], choices: [{ name, value }], keywords: string[], none: boolean, note? }] }] }`;
   `axes` are Figma's, values in the order the variants draw them; `selector` is where the web
   draws the layer, as the MUI recipe's slot table has it (`&` the component's root element, which a
   text MUI draws in the root shares; else a selector under it, `& .MuiButton-startIcon`), null only
@@ -471,22 +497,26 @@ Light and Dark, as the failures the bar lists. Which commands, and what a failur
   axis left out, a true one by its name, another by its value), `count` how many variants that
   draw the layer a set there would change, `wins` the position of the entry that overrides it in
   the variant in view, or null, and `winsLabel` that position in the same plain words; `current`
-  marks the scope holding the entry the variant draws now; `note`
+  marks the scope holding the entry the variant draws now; `rule` is the `set` rule the overlay
+  has at the scope's key, where one is: its reason (null where it borrows another's), the rules
+  borrowing it, and Figma's own value there (`figma`), which chosen deletes the rule; `note`
   says why a cell offers nothing (a raw value the overlay allows).
 - `value`: `{ token }`, `{ keyword }` (`FILL` or `HUG`) or `{ none: true }`, one the inspection
   offers for the cell.
 - `Failure`: `{ platform: "web" | "flutter" | "parity", variant?, layer?, property?, message?, figma?, drawn? }`,
   the first four words, `figma` and `drawn` each a scalar or a list of scalars (a dash pattern);
   a Dark report's variant ends in ` (Dark)`.
-- `/send` after a failing Keep carries the pending edit's failures, and ignores the body's; after
+- `/send` after failing checks on an edit carries the pending edit's failures, and ignores the body's; after
   a refused Approve, the body's.
 - An event's `type` is `busy` (with `message`), `changed` (read the status and the inspection
-  again) or `failed` (with `message`). The service keeps the last 100.
+  again), `failed` (with `message`) or `reload` (a regeneration is done, the checks perhaps
+  still running, whose outcome is a later `changed`: Storybook's bar reloads the page). The service
+  keeps the last 100; a bar polls from the status's `seq` and acts on every event it receives.
 - Limits: a note of 10 000 characters, 200 failures in an answer or a note (past that, the first
   199 and one counting the rest), a body of 1 MiB.
 - Statuses: 400 a request that is malformed or that the inspection or the build refuses, 403 a
   foreign `Host` or `Origin`, 404 no such route, 409 refused by the state (a lock, a pending edit,
-  a file changed on disk, a rule that changes nothing, a Keep that would cancel an approval), 413 a
+  a file changed on disk, a rule that changes nothing, an edit that would cancel an approval), 413 a
   body over 1 MiB, 500 a failure of the service's own (a regeneration that failed after Undo), 503
   still starting.
 

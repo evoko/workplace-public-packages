@@ -460,8 +460,6 @@ and `test/charts.test.mjs` checks the theme carries each cell.
   `bar-scenarios.mjs`, which reads and resolves `bar-scenarios.json` for Storybook's bar test
   (Widgetbook's resolves it the same way in Dart). `test/workbench-scenarios.test.mjs` checks every
   scenario against the file's vocabulary.
-  `solar:codegen --pending` is the workbench's preview: it lets `TODO(reason)` through, and
-  nothing else passes it.
 - **Two class name spaces.** `src/util/classes.mjs`: `Solar<Name>-<slot>` public,
   `Solar<Name>--<layer>` internal; `withLayerClasses` writes a layer named by a helper
   (`${P}-${layer}`) as its own, in the recipes and the shells.

@@ -132,29 +132,31 @@ class FakeClient implements WorkbenchClient {
         status: 500,
       );
 
-  /// Set is the dialog's, which these tests never open.
+  /// Save is the dialog's, which these tests never open.
   @override
-  Future<WorkbenchStatus> set({
+  Future<WorkbenchOutcome> apply({
     required String component,
+    required String platform,
     required int variant,
     required String layer,
     required String cell,
     required String scope,
     required Map<String, Object?> value,
     required String revision,
-  }) => throw UnimplementedError('set is the Inspect dialog\'s');
+    required String reason,
+  }) => throw UnimplementedError('apply is the Inspect dialog\'s');
 
   @override
-  Future<WorkbenchOutcome> keep(String component, String reason) async {
-    calls.add(['keep', component, reason]);
+  Future<WorkbenchOutcome> keep(String component, String platform) async {
+    calls.add(['keep', component, platform]);
     await keepGate?.future;
     pending = null;
     return WorkbenchOutcome.fromJson({'ok': true});
   }
 
   @override
-  Future<WorkbenchStatus> undo(String component) async {
-    calls.add(['undo', component]);
+  Future<WorkbenchStatus> undo(String component, String platform) async {
+    calls.add(['undo', component, platform]);
     pending = null;
     return status();
   }
@@ -269,32 +271,28 @@ void main() {
   }
 
   testWidgets(
-    'a pending edit shows the reason it replaces and the rules sharing it',
+    'a pending edit shows the reason it was saved with, and asks for none',
     (tester) async {
       final client = await pump(
         tester,
         FakeClient(
           'yellow',
-          pending: _pendingOn(
-            'Button',
-            previousReason: 'Figma rounds it',
-            borrowers: ['root.hover.radius', 'label.base.radius'],
-          ),
+          pending: {
+            ..._pendingOn('Button', previousReason: 'Figma rounds it'),
+            'reason': 'Figma draws a pill',
+          },
         ),
       );
       expect(
-        find.text('Why (a reviewer must be able to check it)'),
+        find.text('Saved with the reason: Figma draws a pill'),
         findsOneWidget,
       );
-      expect(find.text('Was: Figma rounds it'), findsOneWidget);
-      expect(
-        find.text('Also the reason of: root.hover.radius, label.base.radius'),
-        findsOneWidget,
-      );
+      expect(find.byType(SolarTextArea), findsNothing);
+      expect(find.textContaining('Figma rounds it'), findsNothing);
       await tester.tap(find.text('Undo'));
       await tester.pumpAndSettle();
       expect(client.calls, [
-        ['undo', 'Button'],
+        ['undo', 'Button', 'flutter'],
       ]);
       expect(find.textContaining('Pending:'), findsNothing);
     },
@@ -326,18 +324,18 @@ void main() {
         find.text('Pending: root.base.radius → radius.pill'),
         findsOneWidget,
       );
-      // The reason, and beside the failing checks, Send to agent's note.
-      expect(find.byType(SolarTextArea), findsNWidgets(2));
+      // Beside the failing checks, Send to agent's note alone: the reason was saved with the edit.
+      expect(find.byType(SolarTextArea), findsOneWidget);
       expect(find.bySemanticsLabel(RegExp('^Failing checks')), findsOneWidget);
       expect(
         find.text('• flutter: size=md label.x: Figma 12, drawn 14'),
         findsOneWidget,
       );
-      expect(_button('Keep'), findsOneWidget);
+      expect(_button('Keep again'), findsOneWidget);
       await tester.tap(find.text('Undo'));
       await tester.pumpAndSettle();
       expect(client.calls, [
-        ['undo', 'Button'],
+        ['undo', 'Button', 'flutter'],
       ]);
       expect(find.textContaining('flutter: size=md'), findsNothing);
     },
@@ -374,18 +372,17 @@ void main() {
         tester,
         FakeClient('yellow', pending: _pendingOn('Button'), keepGate: gate),
       );
-      await tester.enterText(find.byType(EditableText), 'Figma draws a pill');
-      await tester.tap(find.text('Keep'));
+      await tester.tap(find.text('Keep again'));
       await tester.pump();
-      expect(_onPressed(tester, 'Keep'), isNull);
+      expect(_onPressed(tester, 'Keep again'), isNull);
       expect(_onPressed(tester, 'Undo'), isNull);
-      await tester.tap(find.text('Keep'));
+      await tester.tap(find.text('Keep again'));
       await tester.tap(find.text('Undo'));
       await tester.pump();
       gate.complete();
       await tester.pumpAndSettle();
       expect(client.calls, [
-        ['keep', 'Button', 'Figma draws a pill'],
+        ['keep', 'Button', 'flutter'],
       ]);
     },
   );
@@ -556,8 +553,7 @@ void main() {
     );
     // A re-read after an action that failed: its own message.
     client.statusError = 'the scan failed';
-    await tester.enterText(find.byType(EditableText), 'Figma draws a pill');
-    await tester.tap(find.text('Keep'));
+    await tester.tap(find.text('Keep again'));
     await tester.pumpAndSettle();
     expect(find.text('the scan failed'), findsOneWidget);
     expect(find.textContaining('Workbench:'), findsNothing);

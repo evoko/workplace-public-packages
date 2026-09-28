@@ -24,7 +24,7 @@ const isSelect = (name) =>
 const EVENTS = new Set(vocabulary.events);
 const GETS = new Set(['status', 'component']);
 const POSTS = new Set([
-  'set',
+  'apply',
   'keep',
   'undo',
   'approve',
@@ -121,6 +121,8 @@ function problems(s) {
         out.push(`${at} is no ${k === 'outlined' ? 'layer' : 'cell'}`);
       else if (k === 'filter' && typeof v !== 'string')
         out.push(`${at} is no text`);
+      else if (k === 'reloads' && !(Number.isInteger(v) && v >= 0))
+        out.push(`${at} is no count`);
       else if (k === 'noBar' || k === 'noError') {
         if (v !== true) out.push(`${at} is not true`);
       } else if (k === 'oneError' && (typeof v !== 'string' || !v))
@@ -171,20 +173,35 @@ function problems(s) {
   for (const [route, a] of Object.entries(fake.answers ?? {})) {
     const at = `fake.answers.${route}`;
     if (!GETS.has(route) && !POSTS.has(route)) out.push(`${at} is no route`);
-    only(at, a, ['answer', 'status', 'refuse', 'events', 'hold']);
+    only(at, a, [
+      'answer',
+      'status',
+      'refuse',
+      'events',
+      'hold',
+      'reload',
+      'regenerated',
+    ]);
+    if ('regenerated' in a && (!a.reload || !a.regenerated?.components))
+      out.push(`${at}.regenerated is no Status after a reload`);
     if ('status' in a && !a.status?.components)
       out.push(`${at}.status is no Status`);
     if ('events' in a && !Array.isArray(a.events))
       out.push(`${at}.events is no list`);
     if ('hold' in a && (typeof a.hold !== 'boolean' || GETS.has(route)))
       out.push(`${at}.hold is no boolean on a POST route`);
+    if (
+      'reload' in a &&
+      (a.reload !== true || GETS.has(route) || 'refuse' in a)
+    )
+      out.push(`${at}.reload is not true on a POST route that answers`);
     if (a.refuse) {
       only(`${at}.refuse`, a.refuse, ['status', 'error']);
       if (typeof a.refuse.status !== 'number' || !a.refuse.error)
         out.push(`${at}.refuse needs a status and an error`);
       if ('answer' in a) out.push(`${at} both answers and refuses`);
     } else if (GETS.has(route)) out.push(`${at} takes refuse alone`);
-    else if (!['set', 'undo'].includes(route) && !('answer' in a))
+    else if (route !== 'undo' && !('answer' in a))
       out.push(`${at} needs an answer (only a Status is the default)`);
     for (const [i, e] of (Array.isArray(a.events) ? a.events : []).entries())
       event(`${at}.events[${i}]`, e);
@@ -269,8 +286,10 @@ describe("the workbench bar's scenarios", () => {
     const use = (a) => used.add(`action.${namedOf(a) ?? a}`);
     for (const s of scenarios) {
       note('fake', Object.keys(s.fake ?? {}));
-      for (const a of Object.values(s.fake?.answers ?? {}))
+      for (const a of Object.values(s.fake?.answers ?? {})) {
         for (const e of a.events ?? []) used.add(`event.${e.type}`);
+        if (a.reload) used.add('event.reload');
+      }
       const expects = [s.expect ?? {}];
       for (const st of s.steps ?? []) {
         note('step', Object.keys(st));
@@ -330,7 +349,7 @@ describe("the workbench bar's scenarios", () => {
           { point: '' },
           { escape: 'why' },
           { release: 'keep' },
-          { expect: { enabled: ['Keep'], absent: ['Keep'] } },
+          { expect: { enabled: ['Save'], absent: ['Save'], reloads: -1 } },
           {
             expect: {
               options: { Scope: {}, 'Apply to': { enabled: [[]], chosen: 1 } },
@@ -355,7 +374,8 @@ describe("the workbench bar's scenarios", () => {
       'steps[6] points at no layer',
       'steps[7] escapes no field',
       'steps[8] releases no answer held',
-      'steps[9].expect has Keep both enabled and absent',
+      'steps[9].expect has Save both enabled and absent',
+      'steps[9].expect.reloads is no count',
       'steps[10].expect.options.Scope names no Select',
       'steps[10].expect.options.Apply to.enabled is no list of options',
       'steps[10].expect.options.Apply to.chosen is no fact',
@@ -375,7 +395,7 @@ describe("the workbench bar's scenarios", () => {
           component: '',
           status: { components: {} },
           answers: {
-            keep: { answer: {}, status: {}, events: {}, hold: 1 },
+            keep: { answer: {}, status: {}, events: {}, hold: 1, reload: 1 },
             status: { refuse: { status: 500, error: 'x' }, hold: true },
           },
         },
@@ -388,6 +408,7 @@ describe("the workbench bar's scenarios", () => {
       'fake.answers.keep.status is no Status',
       'fake.answers.keep.events is no list',
       'fake.answers.keep.hold is no boolean on a POST route',
+      'fake.answers.keep.reload is not true on a POST route that answers',
       'fake.answers.status.hold is no boolean on a POST route',
     ]);
   });

@@ -5,7 +5,6 @@ import {
   loadWebCatalog,
 } from '../src/normalize/components.mjs';
 import {
-  allowPlaceholders,
   loadDefaults,
   parseOverlay,
   PLACEHOLDER,
@@ -28,26 +27,21 @@ beforeAll(() => {
   const defaults = loadDefaults();
   const loaded = loadComponent(catalog, 'Button');
   // The build as the files in memory are: Button's IR from its overlay there (none where there is
-  // no file), as the real service's build reads the files on disk, a pending placeholder let
-  // through. Every other component, and Button's oracle, as the repository builds them.
+  // no file), as the real service's build reads the files on disk. Every other component, and
+  // Button's oracle, as the repository builds them.
   buildOver = (text) => {
-    allowPlaceholders(true);
-    try {
-      const { spec } = buildComponentSpec(loaded, {
-        names,
-        fileVersion: catalog.fileVersion,
-        overlay: text === null ? null : parseOverlay(text, OVERLAY),
-        defaults,
-      });
-      return {
-        ...build,
-        built: build.built.map((b) =>
-          b.spec.component === 'Button' ? { ...b, spec } : b,
-        ),
-      };
-    } finally {
-      allowPlaceholders(false);
-    }
+    const { spec } = buildComponentSpec(loaded, {
+      names,
+      fileVersion: catalog.fileVersion,
+      overlay: text === null ? null : parseOverlay(text, OVERLAY),
+      defaults,
+    });
+    return {
+      ...build,
+      built: build.built.map((b) =>
+        b.spec.component === 'Button' ? { ...b, spec } : b,
+      ),
+    };
   };
 });
 
@@ -95,8 +89,8 @@ function world({
     pendingPath: PENDING,
     feedbackDir: 'spec/feedback',
     build: () => buildOver(files.get(OVERLAY) ?? null),
-    codegen: async ({ pending }) => {
-      calls.push(['codegen', pending]);
+    codegen: async () => {
+      calls.push(['codegen']);
       return { ok: true, output: '' };
     },
     status: async () => ({ coloured, approvals: {} }),
@@ -111,16 +105,30 @@ function world({
   return { files, calls, writes, events, deps };
 }
 
-const setBody = (s, extra = {}) => ({
+const WHY = 'The owner’s choice.';
+const applyBody = (s, extra = {}) => ({
   component: 'Button',
+  platform: 'web',
   variant: 0,
   layer: 'root',
   cell: 'background',
   scope: 'root.base.background',
   value: { token: 'color.text.primary' },
+  reason: WHY,
   revision: s.inspect('Button', extra.variant ?? 0).revision,
   ...extra,
 });
+/** Button's overlay once an apply of `applyBody` wrote its rule. */
+const APPLIED = `${BASE}\nset:\n  root.base.background:\n    token: color.text.primary\n    reason: ${WHY}\n`;
+
+/** The checks fail from now on, with these failures. */
+function failing(
+  w,
+  failures = [{ platform: 'web', layer: 'root', property: 'height' }],
+) {
+  w.deps.checks = async () => ({ ok: false, failures });
+  return failures;
+}
 
 /** The refusal an operation ends in; a test fails where it succeeds instead. */
 async function refusal(promise) {
@@ -141,15 +149,15 @@ function untouched(w, text = BASE) {
 }
 
 /**
- * Badge's approval holds until the first plain regeneration (Keep's), and not after: the Keep would
- * cancel it.
+ * Badge's approval holds until the regeneration numbered `after` (the first: Apply's), and not
+ * after: the edit would cancel it.
  */
-function losing(w) {
-  let regenerated = false;
+function losing(w, after = 1) {
+  let runs = 0;
   const codegen = w.deps.codegen;
-  w.deps.codegen = async (o) => {
-    if (!o.pending) regenerated = true;
-    return codegen(o);
+  w.deps.codegen = async () => {
+    runs += 1;
+    return codegen();
   };
   const row = (name, colour, fingerprint) => ({
     name,
@@ -162,7 +170,7 @@ function losing(w) {
     coloured: {
       web: [
         row('Button', 'yellow', 'x'),
-        row('Badge', regenerated ? 'yellow' : 'green', 'y'),
+        row('Badge', runs >= after ? 'yellow' : 'green', 'y'),
       ],
       flutter: [row('Button', 'yellow', 'z')],
     },
@@ -190,16 +198,17 @@ describe('the session', () => {
       locked: null,
     });
     expect(st.pending).toBeNull();
+    expect(st.reopen).toBeNull();
   });
 
   it('offers exactly the operations of the HTTP contract', () => {
     expect(Object.keys(s).sort()).toEqual([
+      'apply',
       'approve',
       'inspect',
       'keep',
       'report',
       'send',
-      'set',
       'status',
       'unapprove',
       'unapprovePreview',
@@ -207,140 +216,247 @@ describe('the session', () => {
     ]);
   });
 
-  it('answers Set and Undo with the status as it is once they finish: not busy', async () => {
-    expect((await s.set(setBody(s))).busy).toBeNull();
-    expect((await s.undo({ component: 'Button' })).busy).toBeNull();
-  });
-
-  it('reads the colours once for the gate and once for the answer, per Set', async () => {
-    const status = w.deps.status;
-    let reads = 0;
-    w.deps.status = async () => {
-      reads += 1;
-      return status();
-    };
-    s = createSession(w.deps);
-    await s.set(setBody(s));
-    expect(reads).toBe(2);
-  });
-
-  it('keeps no borrowed reason as the one to rewrite', async () => {
-    w.files.set(
-      OVERLAY,
-      overlay(
-        'set:\n  root.base.gap:\n    token: inset.sm\n    reason: R.\n  root.base.background:\n    token: color.text.secondary\n    reason: { as: set root.base.gap }\n',
-      ),
-    );
-    await s.set(setBody(s));
-    expect((await s.status()).pending.previousReason).toBeNull();
-    expect(JSON.parse(w.files.get(PENDING)).previousReason).toBeNull();
-  });
-
-  it('writes a pending set with the placeholder, regenerates with --pending, and reloads', async () => {
-    await s.set(setBody(s));
-    const text = w.files.get(OVERLAY);
-    expect(text).toBe(
-      `${BASE}\nset:\n  root.base.background:\n    token: color.text.primary\n    reason: TODO(reason)\n`,
-    );
-    expect(w.calls).toContainEqual(['codegen', true]);
-    expect(w.calls).toContainEqual(['reload']);
-    expect((await s.status()).pending).toMatchObject({
-      component: 'Button',
-      key: 'root.base.background',
-      value: { token: 'color.text.primary' },
-      deletes: false,
-      borrowers: [],
-    });
-    expect(JSON.parse(w.files.get(PENDING))).toMatchObject({
-      before: BASE,
-      placeholder: text,
-      after: text,
-    });
-  });
-
-  it('records what the variant in view drew before the edit, as was', async () => {
-    await s.set(setBody(s));
-    expect((await s.status()).pending.was).toBe(
-      'color.action.primary.bg.default',
-    );
-    expect(JSON.parse(w.files.get(PENDING)).was).toBe(
-      'color.action.primary.bg.default',
-    );
-  });
-
-  it('records a rule the edit replaces as was', async () => {
-    w.files.set(OVERLAY, overlay(RULE));
-    await s.set(setBody(s));
-    expect((await s.status()).pending.was).toBe('color.text.secondary');
-  });
-
-  it('saves the pending edit before it writes the overlay', async () => {
-    await s.set(setBody(s));
-    expect(w.writes.indexOf(PENDING)).toBeGreaterThanOrEqual(0);
-    expect(w.writes.indexOf(PENDING)).toBeLessThan(w.writes.indexOf(OVERLAY));
-  });
-
-  it('writes the value as exactly one of token, keyword or none', async () => {
-    await s.set(
-      setBody(s, {
-        value: { token: 'color.text.primary', none: true, keyword: 'FILL' },
-      }),
-    );
-    expect(w.files.get(OVERLAY)).not.toMatch(/none|keyword/);
-    expect((await s.status()).pending.value).toEqual({
-      token: 'color.text.primary',
-    });
-  });
-
-  it('keeps with a reason, regenerating without --pending', async () => {
-    await s.set(setBody(s));
-    const r = await s.keep({
-      component: 'Button',
-      reason: 'The owner’s choice.',
-    });
-    expect(r).toEqual({ ok: true });
-    expect(w.files.get(OVERLAY)).toContain('reason: The owner’s choice.');
+  it('writes the rule with its reason, regenerates, runs the checks, and holds no edit where they pass', async () => {
+    expect(await s.apply(applyBody(s))).toEqual({ ok: true });
+    expect(w.files.get(OVERLAY)).toBe(APPLIED);
     expect(w.files.get(OVERLAY)).not.toContain(PLACEHOLDER);
-    expect(w.calls.at(-3)).toEqual(['codegen', false]);
+    expect(w.calls.filter(([c]) => c !== 'emit')).toEqual([
+      ['codegen'],
+      ['reload'],
+    ]);
     expect((await s.status()).pending).toBeNull();
     expect(w.files.has(PENDING)).toBe(false);
   });
 
-  it('refuses Keep without a reason, with the placeholder, on two lines, or with the old reason', async () => {
+  it('tells the viewers to reload once the regeneration is done, and says where the saving viewer reopens', async () => {
+    await s.apply(applyBody(s));
+    expect(w.events).toEqual([
+      { type: 'busy', message: 'Saving…' },
+      { type: 'reload' },
+      { type: 'changed' },
+    ]);
+    expect((await s.status()).reopen).toEqual({
+      platform: 'web',
+      component: 'Button',
+      variant: 0,
+      layer: 'root',
+      cell: 'background',
+      age: expect.any(Number),
+    });
+  });
+
+  it('names where to reopen for a minute, however often it is read, and not once the next operation starts', async () => {
+    let clock = 1_000;
+    w.deps.now = () => clock;
+    s = createSession(w.deps);
+    await s.apply(applyBody(s));
+    clock += 30_000;
+    // Read by every load of the page, not used up.
+    expect((await s.status()).reopen).toMatchObject({ age: 30_000 });
+    expect((await s.status()).reopen).toMatchObject({ age: 30_000 });
+    clock += 30_001;
+    expect((await s.status()).reopen).toBeNull();
+    clock = 1_000;
+    await s.apply(
+      applyBody(s, {
+        value: { token: 'color.text.secondary' },
+        reason: 'Quieter.',
+        revision: s.inspect('Button', 0).revision,
+      }),
+    );
+    expect((await s.status()).reopen).not.toBeNull();
+    await s.report({
+      component: 'Button',
+      platform: 'web',
+      note: 'The label is too dim.',
+    });
+    expect((await s.status()).reopen).toBeNull();
+  });
+
+  it('refuses no reason, the placeholder, two lines, or the replaced rule’s reason unchanged, writing nothing', async () => {
     w.files.set(OVERLAY, overlay(RULE));
-    await s.set(setBody(s));
-    const after = w.files.get(OVERLAY);
-    expect((await s.status()).pending.previousReason).toBe('Old.');
     for (const [reason, pattern] of [
+      [undefined, /reason/],
       [' ', /reason/],
       [PLACEHOLDER, /reason/],
       [`${PLACEHOLDER} later`, /reason/],
       ['One.\nTwo.', /one line/],
       ['Old.', /rewrite/],
     ]) {
-      const error = await refusal(s.keep({ component: 'Button', reason }));
+      const error = await refusal(s.apply(applyBody(s, { reason })));
       expect(error.status).toBe(400);
       expect(error.message).toMatch(pattern);
     }
-    expect(w.files.get(OVERLAY)).toBe(after);
-    expect((await s.status()).pending).not.toBeNull();
+    untouched(w, overlay(RULE));
+    expect(w.calls.filter(([c]) => c === 'codegen')).toEqual([]);
   });
 
-  it('undoes to the exact bytes before, and regenerates', async () => {
+  it('refuses a platform other than the two', async () => {
+    const error = await refusal(s.apply(applyBody(s, { platform: undefined })));
+    expect(error.status).toBe(400);
+    untouched(w);
+  });
+
+  it('keeps the edit pending with the failures where the checks fail, as Apply wrote it', async () => {
+    const failures = failing(w);
+    expect(await s.apply(applyBody(s))).toEqual({ ok: false, failures });
+    expect(w.files.get(OVERLAY)).toBe(APPLIED);
+    expect((await s.status()).pending).toMatchObject({
+      component: 'Button',
+      key: 'root.base.background',
+      value: { token: 'color.text.primary' },
+      was: 'color.action.primary.bg.default',
+      reason: WHY,
+      deletes: false,
+      borrowers: [],
+      failing: failures,
+    });
+    expect(JSON.parse(w.files.get(PENDING))).toMatchObject({
+      before: BASE,
+      after: APPLIED,
+    });
+    // The viewers reload on the edit as it is, and the saving viewer reopens.
+    expect(w.calls).toContainEqual(['reload']);
+    expect((await s.status()).reopen).toMatchObject({ platform: 'web' });
+  });
+
+  it('records a rule the edit replaces as was, and keeps no borrowed reason as the one replaced', async () => {
+    failing(w);
+    w.files.set(OVERLAY, overlay(RULE));
+    await s.apply(applyBody(s));
+    expect((await s.status()).pending).toMatchObject({
+      was: 'color.text.secondary',
+      previousReason: 'Old.',
+    });
+    w = world();
+    failing(w);
+    w.files.set(
+      OVERLAY,
+      overlay(
+        'set:\n  root.base.gap:\n    token: inset.sm\n    reason: R.\n  root.base.background:\n    token: color.text.secondary\n    reason: { as: set root.base.gap }\n',
+      ),
+    );
+    s = createSession(w.deps);
+    await s.apply(applyBody(s));
+    expect((await s.status()).pending.previousReason).toBeNull();
+    expect(JSON.parse(w.files.get(PENDING)).previousReason).toBeNull();
+  });
+
+  it('saves the record before it writes the overlay, and shows no pending edit while it runs', async () => {
+    const seen = [];
+    const codegen = w.deps.codegen;
+    w.deps.codegen = async () => {
+      seen.push((await s.status()).pending);
+      return codegen();
+    };
+    s = createSession(w.deps);
+    await s.apply(applyBody(s));
+    expect(w.writes.indexOf(PENDING)).toBeGreaterThanOrEqual(0);
+    expect(w.writes.indexOf(PENDING)).toBeLessThan(w.writes.indexOf(OVERLAY));
+    expect(seen).toEqual([null]);
+  });
+
+  it('writes the value as exactly one of token, keyword or none', async () => {
+    await s.apply(
+      applyBody(s, {
+        value: { token: 'color.text.primary', none: true, keyword: 'FILL' },
+      }),
+    );
+    expect(w.files.get(OVERLAY)).toBe(APPLIED);
+  });
+
+  it('keeps again: regenerates and runs the checks again, and a pass ends the pending edit', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
+    w.deps.checks = async () => ({ ok: true, failures: [] });
+    w.calls.length = 0;
+    expect(await s.keep({ component: 'Button', platform: 'web' })).toEqual({
+      ok: true,
+    });
+    expect(w.files.get(OVERLAY)).toBe(APPLIED);
+    expect(w.calls.filter(([c]) => c !== 'emit')).toEqual([
+      ['codegen'],
+      ['reload'],
+    ]);
+    expect((await s.status()).pending).toBeNull();
+    expect(w.files.has(PENDING)).toBe(false);
+  });
+
+  it('keeps again with the failures where the checks fail again', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
+    const again = failing(w, [{ platform: 'flutter', message: 'still' }]);
+    expect(await s.keep({ component: 'Button', platform: 'web' })).toEqual({
+      ok: false,
+      failures: again,
+    });
+    expect((await s.status()).pending.failing).toEqual(again);
+  });
+
+  it('undoes to the exact bytes before, regenerates, and tells the viewers to reload', async () => {
     const before =
       '# kept\ncomponent: Button\nset:\n  root.base.gap:\n    token: inset.xs\n    reason: R.\n';
     w.files.set(OVERLAY, before);
-    await s.set(setBody(s));
-    await s.undo({ component: 'Button' });
+    failing(w);
+    await s.apply(applyBody(s));
+    w.calls.length = 0;
+    w.events.length = 0;
+    await s.undo({ component: 'Button', platform: 'web' });
     untouched(w, before);
-    expect(w.calls.at(-3)).toEqual(['codegen', false]);
+    expect(w.calls.filter(([c]) => c !== 'emit')).toEqual([
+      ['codegen'],
+      ['reload'],
+    ]);
+    expect(w.events.map((e) => e.type)).toEqual(['busy', 'reload', 'changed']);
+  });
+
+  it('reopens the dialog where the edit was, on the platform that undoes or keeps it again', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
+    const at = {
+      component: 'Button',
+      variant: 0,
+      layer: 'root',
+      cell: 'background',
+    };
+    expect(JSON.parse(w.files.get(PENDING))).toMatchObject({
+      variant: 0,
+      layer: 'root',
+      cell: 'background',
+    });
+    await s.keep({ component: 'Button', platform: 'flutter' });
+    expect((await s.status()).reopen).toMatchObject({
+      platform: 'flutter',
+      ...at,
+    });
+    await s.undo({ component: 'Button', platform: 'web' });
+    expect((await s.status()).pending).toBeNull();
+    expect((await s.status()).reopen).toMatchObject({ platform: 'web', ...at });
+    for (const op of [
+      () => s.keep({ component: 'Button' }),
+      () => s.undo({ component: 'Button' }),
+    ]) {
+      const error = await refusal(op());
+      expect(error.status).toBe(400);
+    }
+  });
+
+  it('answers Undo with the status as it is once it finishes: not busy', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
+    expect(
+      (await s.undo({ component: 'Button', platform: 'web' })).busy,
+    ).toBeNull();
   });
 
   it('keeps the edit pending where Undo’s regeneration fails, and Undo again finishes it', async () => {
-    await s.set(setBody(s));
+    failing(w);
+    await s.apply(applyBody(s));
     w.deps.codegen = async () => ({ ok: false, output: 'boom' });
     s = createSession(w.deps);
-    const error = await refusal(s.undo({ component: 'Button' }));
+    const error = await refusal(
+      s.undo({ component: 'Button', platform: 'web' }),
+    );
     expect(error.status).toBe(500);
     expect(error.message).toBe(
       'the overlay is back, but regenerating failed: boom; press Undo again',
@@ -348,26 +464,73 @@ describe('the session', () => {
     expect(w.files.get(OVERLAY)).toBe(BASE);
     expect((await s.status()).pending).not.toBeNull();
     w.deps.codegen = async () => ({ ok: true, output: '' });
-    await s.undo({ component: 'Button' });
+    await s.undo({ component: 'Button', platform: 'web' });
     untouched(w);
+  });
+
+  it.each([
+    ['a new rule', BASE, {}],
+    ['a rule replaced', overlay(RULE), {}],
+    [
+      'a rule deleted',
+      overlay(RULE),
+      { value: { token: 'color.action.primary.bg.default' }, reason: '' },
+    ],
+  ])(
+    'undoes an Apply that would cancel an approval, naming it: %s',
+    async (_, before, extra) => {
+      losing(w);
+      w.files.set(OVERLAY, before);
+      s = createSession(w.deps);
+      const error = await refusal(s.apply(applyBody(s, extra)));
+      expect(error.status).toBe(409);
+      expect(error.message).toMatch(/saved, this would cancel Badge \(web\)/);
+      untouched(w, before);
+      expect((await s.status()).pending).toBeNull();
+      // Regenerated with the edit and back without it: the viewers reloaded after each, and the
+      // saving one reopens where it was.
+      expect(w.events.map((e) => e.type)).toEqual([
+        'busy',
+        'reload',
+        'reload',
+        'failed',
+        'changed',
+      ]);
+      expect((await s.status()).reopen).toMatchObject({ platform: 'web' });
+    },
+  );
+
+  it('tells the viewers to reload as soon as the regeneration is done, before the checks', async () => {
+    const seen = [];
+    w.deps.checks = async () => {
+      seen.push(
+        w.events.map((e) => e.type),
+        (await s.status()).reopen,
+      );
+      return { ok: false, failures: [{ platform: 'web', message: 'x' }] };
+    };
+    s = createSession(w.deps);
+    await s.apply(applyBody(s));
+    expect(seen).toEqual([
+      ['busy', 'reload'],
+      expect.objectContaining({ platform: 'web', cell: 'background' }),
+    ]);
+    // Where to reopen is named before the reload, so the reloaded page finds it.
+    expect(w.events.map((e) => e.type)).toEqual(['busy', 'reload', 'changed']);
   });
 
   it('keeps the edit pending where the lost-approval restore’s regeneration fails', async () => {
     losing(w);
     const codegen = w.deps.codegen;
-    let plain = 0;
-    w.deps.codegen = async (o) => {
-      const r = await codegen(o);
-      if (o.pending) return r;
-      plain += 1;
-      // Keep's own regeneration passes; the restore's after it fails.
-      return plain === 1 ? r : { ok: false, output: 'boom' };
+    let runs = 0;
+    w.deps.codegen = async () => {
+      const r = await codegen();
+      runs += 1;
+      // Apply's own regeneration passes; the restore's after it fails.
+      return runs === 1 ? r : { ok: false, output: 'boom' };
     };
     s = createSession(w.deps);
-    await s.set(setBody(s));
-    const error = await refusal(
-      s.keep({ component: 'Button', reason: 'Why.' }),
-    );
+    const error = await refusal(s.apply(applyBody(s)));
     expect(error.status).toBe(500);
     expect(error.message).toMatch(
       /regenerating failed: boom; press Undo again/,
@@ -376,20 +539,41 @@ describe('the session', () => {
     expect((await s.status()).pending).not.toBeNull();
   });
 
-  it('undoes to the exact bytes before after a restart', async () => {
+  it('undoes to the exact bytes before after a restart, and comes back with the pending edit', async () => {
     const before = `# kept\n${overlay(RULE)}`;
     w.files.set(OVERLAY, before);
-    await s.set(setBody(s));
-    await createSession(w.deps).undo({ component: 'Button' });
-    untouched(w, before);
-  });
-
-  it('comes back with the pending edit after a restart', async () => {
-    await s.set(setBody(s));
+    failing(w);
+    await s.apply(applyBody(s));
     const again = createSession(w.deps);
     expect((await again.status()).pending).toMatchObject({
       component: 'Button',
     });
+    await again.undo({ component: 'Button', platform: 'web' });
+    untouched(w, before);
+  });
+
+  it('reads back a record an older service wrote, with its placeholder text, and undoes it', async () => {
+    const placeholder = `${BASE}\nset:\n  root.base.background:\n    token: color.text.primary\n    reason: ${PLACEHOLDER}\n`;
+    w.files.set(OVERLAY, placeholder);
+    w.files.set(
+      PENDING,
+      JSON.stringify({
+        component: 'Button',
+        key: 'root.base.background',
+        value: { token: 'color.text.primary' },
+        deletes: false,
+        before: BASE,
+        placeholder,
+        after: placeholder,
+        previousReason: null,
+        borrowers: [],
+        failing: null,
+      }),
+    );
+    s = createSession(w.deps);
+    expect((await s.status()).pending).toMatchObject({ was: null });
+    await s.undo({ component: 'Button', platform: 'web' });
+    untouched(w);
   });
 
   it.each([
@@ -398,7 +582,7 @@ describe('the session', () => {
     ['without its texts', '{"component":"Button","key":"root.base.gap"}'],
     [
       'with a field of the wrong type',
-      '{"component":"Button","key":1,"before":"","placeholder":"","after":""}',
+      '{"component":"Button","key":1,"before":"","after":""}',
     ],
   ])(
     'refuses to start on a pending record it cannot read (%s), naming the file and what to do',
@@ -411,9 +595,9 @@ describe('the session', () => {
   );
 
   it('refuses a component with no overlay file, writing none', async () => {
-    const body = setBody(s);
+    const body = applyBody(s);
     w.files.delete(OVERLAY);
-    const error = await refusal(s.set(body));
+    const error = await refusal(s.apply(body));
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/Button has no overlay file/);
     expect(w.files.has(OVERLAY)).toBe(false);
@@ -421,15 +605,17 @@ describe('the session', () => {
   });
 
   it('refuses a component neither viewer shows, as a bad request', async () => {
-    const error = await refusal(s.set({ ...setBody(s), component: 'Nope' }));
+    const error = await refusal(
+      s.apply({ ...applyBody(s), component: 'Nope' }),
+    );
     expect(error.status).toBe(400);
     untouched(w);
   });
 
-  it('refuses a stale revision: the file changed since the panel read it', async () => {
-    const body = setBody(s);
+  it('refuses a stale revision: the file changed since the dialog read it', async () => {
+    const body = applyBody(s);
     w.files.set(OVERLAY, overlay('bind: {}\n'));
-    const error = await refusal(s.set(body));
+    const error = await refusal(s.apply(body));
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/changed on disk/);
     untouched(w, overlay('bind: {}\n'));
@@ -444,7 +630,7 @@ describe('the session', () => {
       [{ cell: 'nope' }, /has no root\.nope/],
       [{ variant: 9999 }, /no variant/],
     ]) {
-      const error = await refusal(s.set({ ...setBody(s), ...extra }));
+      const error = await refusal(s.apply({ ...applyBody(s), ...extra }));
       expect(error.status).toBe(400);
       expect(error.message).toMatch(pattern);
     }
@@ -454,13 +640,13 @@ describe('the session', () => {
   it('refuses any value on a raw value the overlay allows, with the cell’s note', async () => {
     const text = overlay('allowLiteral:\n  counter.height:\n    reason: R.\n');
     w.files.set(OVERLAY, text);
-    const body = setBody(s, {
+    const body = applyBody(s, {
       layer: 'counter',
       cell: 'height',
       scope: 'counter.base.height',
     });
     for (const value of [{ token: 'size.control.md' }, { none: true }]) {
-      const error = await refusal(s.set({ ...body, value }));
+      const error = await refusal(s.apply({ ...body, value }));
       expect(error.status).toBe(400);
       expect(error.message).toMatch(/allowLiteral\): use Report/);
     }
@@ -469,8 +655,8 @@ describe('the session', () => {
 
   it('refuses a value the cell already draws there', async () => {
     const error = await refusal(
-      s.set(
-        setBody(s, { value: { token: 'color.action.primary.bg.default' } }),
+      s.apply(
+        applyBody(s, { value: { token: 'color.action.primary.bg.default' } }),
       ),
     );
     expect(error.status).toBe(409);
@@ -478,19 +664,21 @@ describe('the session', () => {
     untouched(w);
   });
 
-  it('deletes the rule where Figma’s own value is chosen, and keeps without a reason', async () => {
+  it('deletes the rule where Figma’s own value is chosen, asking no reason', async () => {
     w.files.set(
       OVERLAY,
       overlay(
         'set:\n  root.base.gap:\n    token: inset.sm\n    reason: R.\n  root.base.background:\n    token: color.text.secondary\n    reason: Old.\n',
       ),
     );
-    await s.set(
-      setBody(s, { value: { token: 'color.action.primary.bg.default' } }),
-    );
-    expect(w.files.get(OVERLAY)).not.toContain('root.base.background');
-    expect((await s.status()).pending).toMatchObject({ deletes: true });
-    expect(await s.keep({ component: 'Button' })).toEqual({ ok: true });
+    expect(
+      await s.apply(
+        applyBody(s, {
+          value: { token: 'color.action.primary.bg.default' },
+          reason: undefined,
+        }),
+      ),
+    ).toEqual({ ok: true });
     untouched(
       w,
       overlay('set:\n  root.base.gap:\n    token: inset.sm\n    reason: R.\n'),
@@ -503,14 +691,15 @@ describe('the session', () => {
     );
     w.files.set(OVERLAY, before);
     const error = await refusal(
-      s.set(
-        setBody(s, { value: { token: 'color.action.primary.bg.default' } }),
+      s.apply(
+        applyBody(s, { value: { token: 'color.action.primary.bg.default' } }),
       ),
     );
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/borrows its reason/);
     untouched(w, before);
-    await s.set(setBody(s));
+    failing(w);
+    await s.apply(applyBody(s));
     expect((await s.status()).pending).toMatchObject({
       deletes: false,
       previousReason: 'Old.',
@@ -518,17 +707,21 @@ describe('the session', () => {
     });
   });
 
-  it('refuses a second pending edit until the first is kept or undone', async () => {
-    await s.set(setBody(s));
-    const after = w.files.get(OVERLAY);
+  it('refuses a second edit while one is pending', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
     const error = await refusal(
-      s.set(
-        setBody(s, { cell: 'borderColor', scope: 'root.base.borderColor' }),
+      s.apply(
+        applyBody(s, {
+          cell: 'borderColor',
+          scope: 'root.base.borderColor',
+          revision: s.inspect('Button', 0).revision,
+        }),
       ),
     );
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/pending/);
-    expect(w.files.get(OVERLAY)).toBe(after);
+    expect(w.files.get(OVERLAY)).toBe(APPLIED);
   });
 
   it('refuses a rule the variant never reads (a narrower entry wins), and puts the file back', async () => {
@@ -543,57 +736,61 @@ describe('the session', () => {
           .cells.find((c) => c.cell === 'background').at !== 'base',
     );
     expect(shadowed).toBeGreaterThan(0);
-    const error = await refusal(s.set(setBody(s, { variant: shadowed })));
+    const error = await refusal(s.apply(applyBody(s, { variant: shadowed })));
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/wins/);
     untouched(w);
-    // Nothing was regenerated, so nothing needs regenerating back.
-    expect(w.calls.filter(([c]) => c === 'codegen')).toEqual([]);
+    // Nothing was regenerated, so nothing needs regenerating back, nor reloading.
+    expect(w.calls.filter(([c]) => c !== 'emit')).toEqual([]);
   });
 
-  it('rolls a set back where the build refuses it, regenerating plainly', async () => {
-    w.deps.codegen = async ({ pending }) => {
-      w.calls.push(['codegen', pending]);
-      return pending
+  it('rolls an apply back where the build refuses it, telling no viewer to reload', async () => {
+    let runs = 0;
+    w.deps.codegen = async () => {
+      runs += 1;
+      w.calls.push(['codegen']);
+      return runs === 1
         ? { ok: false, output: 'line 1\nset root.base.background: no' }
         : { ok: true, output: '' };
     };
     s = createSession(w.deps);
-    const error = await refusal(s.set(setBody(s)));
+    const error = await refusal(s.apply(applyBody(s)));
     expect(error.status).toBe(400);
     expect(error.message).toMatch(/refused the edit, which is undone: .*no$/);
     untouched(w);
     expect((await s.status()).pending).toBeNull();
-    expect(w.calls.filter(([c]) => c === 'codegen')).toEqual([
-      ['codegen', true],
-      ['codegen', false],
+    expect(w.calls.filter(([c]) => c !== 'emit')).toEqual([
+      ['codegen'],
+      ['codegen'],
     ]);
+    expect(w.events.map((e) => e.type)).not.toContain('reload');
   });
 
-  it('rolls a set back where the regeneration throws, even when regenerating back throws too', async () => {
-    w.deps.codegen = async ({ pending }) => {
-      w.calls.push(['codegen', pending]);
-      throw new Error(pending ? 'spawn failed' : 'still failing');
+  it('rolls an apply back where the regeneration throws, even when regenerating back throws too', async () => {
+    let runs = 0;
+    w.deps.codegen = async () => {
+      runs += 1;
+      throw new Error(runs === 1 ? 'spawn failed' : 'still failing');
     };
     s = createSession(w.deps);
-    const error = await refusal(s.set(setBody(s)));
+    const error = await refusal(s.apply(applyBody(s)));
     expect(error.status).toBe(500);
     expect(error.message).toMatch(/spawn failed/);
     untouched(w);
-    expect(w.calls).toContainEqual(['codegen', false]);
-    // The session goes on: a later set is taken.
+    expect(runs).toBe(2);
+    // The session goes on: a later apply is taken.
     w.deps.codegen = async () => ({ ok: true, output: '' });
-    await s.set(setBody(s));
-    expect((await s.status()).pending).not.toBeNull();
+    expect(await s.apply(applyBody(s))).toEqual({ ok: true });
   });
 
-  it('refuses Keep and Undo where the overlay changed after the set, leaving that change', async () => {
-    await s.set(setBody(s));
+  it('refuses Keep again and Undo where the overlay changed after the apply, leaving that change', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
     const edited = `${w.files.get(OVERLAY)}# a person's note\n`;
     w.files.set(OVERLAY, edited);
     for (const op of [
-      () => s.keep({ component: 'Button', reason: 'Why.' }),
-      () => s.undo({ component: 'Button' }),
+      () => s.keep({ component: 'Button', platform: 'web' }),
+      () => s.undo({ component: 'Button', platform: 'web' }),
     ]) {
       const error = await refusal(op());
       expect(error.status).toBe(409);
@@ -605,24 +802,30 @@ describe('the session', () => {
     expect((await s.status()).pending).not.toBeNull();
   });
 
-  it('keeps the edit pending with the failures where the checks fail, and Undo still restores', async () => {
-    const failures = [{ platform: 'web', layer: 'root', property: 'height' }];
-    w.deps.checks = async () => ({ ok: false, failures });
+  it('keeps the edit pending with no failures where the checks cannot run, to Undo or Keep again', async () => {
+    w.deps.checks = async () => {
+      throw new Error('the runner crashed');
+    };
     s = createSession(w.deps);
-    await s.set(setBody(s));
-    expect(await s.keep({ component: 'Button', reason: 'Why.' })).toEqual({
-      ok: false,
-      failures,
+    await expect(s.apply(applyBody(s))).rejects.toThrow(/the runner crashed/);
+    expect((await s.status()).pending).toMatchObject({ failing: null });
+    // Nothing failed to send.
+    const e = await refusal(
+      s.send({ component: 'Button', platform: 'web', note: 'x' }),
+    );
+    expect(e.status).toBe(400);
+    expect(
+      [...w.files.keys()].some((k) => k.startsWith('spec/feedback/')),
+    ).toBe(false);
+    w.deps.checks = async () => ({ ok: true, failures: [] });
+    expect(await s.keep({ component: 'Button', platform: 'web' })).toEqual({
+      ok: true,
     });
-    expect(w.files.get(OVERLAY)).toContain('reason: Why.');
-    expect((await s.status()).pending).toMatchObject({ failing: failures });
-    // Keep's own write is the edit's now, so Undo does not take it for someone else's.
-    await createSession(w.deps).undo({ component: 'Button' });
-    untouched(w);
+    expect((await s.status()).pending).toBeNull();
   });
 
-  it('sends a failing Keep to the agent: the edit stays as kept, a note carries the failures', async () => {
-    const failures = [
+  it('sends a failing apply to the agent: the edit stays as written, a note carries the failures', async () => {
+    const failures = failing(w, [
       {
         platform: 'web',
         layer: 'root',
@@ -630,14 +833,8 @@ describe('the session', () => {
         figma: 40,
         drawn: 44,
       },
-    ];
-    w.deps.checks = async () => ({ ok: false, failures });
-    s = createSession(w.deps);
-    await s.set(setBody(s));
-    expect((await s.keep({ component: 'Button', reason: 'Why.' })).ok).toBe(
-      false,
-    );
-    const kept = w.files.get(OVERLAY);
+    ]);
+    expect((await s.apply(applyBody(s))).ok).toBe(false);
     const regenerated = w.calls.filter((c) => c[0] === 'codegen').length;
     // The failures the viewer holds are the same; the pending edit's are the ones sent.
     const { file } = await s.send({
@@ -660,9 +857,8 @@ describe('the session', () => {
     });
     expect((await s.status()).pending).toBeNull();
     expect(w.files.has(PENDING)).toBe(false);
-    expect(w.files.get(OVERLAY)).toBe(kept);
-    expect(kept).toContain('reason: Why.');
-    // Nothing to regenerate: Keep already built the edit as it stays.
+    expect(w.files.get(OVERLAY)).toBe(APPLIED);
+    // Nothing to regenerate: Apply already built the edit as it stays.
     expect(w.calls.filter((c) => c[0] === 'codegen')).toHaveLength(regenerated);
     // Kept, it is no longer pending: a second Send has nothing to carry.
     const again = await refusal(
@@ -672,10 +868,10 @@ describe('the session', () => {
     expect(again.message).toBe('Button has no failing checks to send');
   });
 
-  it('caps a failing Keep’s failures, so its status and a Send of them stay within the limit', async () => {
-    w.deps.checks = async () => ({
-      ok: false,
-      failures: Array.from({ length: 450 }, (_, i) => ({
+  it('caps a failing apply’s failures, so its status and a Send of them stay within the limit', async () => {
+    failing(
+      w,
+      Array.from({ length: 450 }, (_, i) => ({
         platform: 'web',
         variant: `v${i}`,
         layer: 'root',
@@ -683,10 +879,8 @@ describe('the session', () => {
         figma: [2, 4],
         drawn: [3, 3],
       })),
-    });
-    s = createSession(w.deps);
-    await s.set(setBody(s));
-    const r = await s.keep({ component: 'Button', reason: 'Why.' });
+    );
+    const r = await s.apply(applyBody(s));
     expect(r.failures).toHaveLength(MAX_FAILURES);
     expect((await s.status()).pending.failing).toEqual(r.failures);
     const { file } = await s.send({
@@ -699,24 +893,13 @@ describe('the session', () => {
     expect((await s.status()).pending).toBeNull();
   });
 
-  it('refuses to send a pending edit whose checks have not failed', async () => {
-    await s.set(setBody(s));
-    const e = await refusal(
-      s.send({ component: 'Button', platform: 'web', note: 'x' }),
-    );
-    expect(e.status).toBe(400);
-    expect((await s.status()).pending).not.toBeNull();
-    expect(
-      [...w.files.keys()].some((k) => k.startsWith('spec/feedback/')),
-    ).toBe(false);
-  });
-
-  it('keeps the edit pending where the plain build fails, saying it can be undone', async () => {
-    await s.set(setBody(s));
+  it('keeps the edit pending where Keep again’s build fails, saying it can be undone', async () => {
+    failing(w);
+    await s.apply(applyBody(s));
     w.deps.codegen = async () => ({ ok: false, output: 'boom' });
     s = createSession(w.deps);
     const error = await refusal(
-      s.keep({ component: 'Button', reason: 'Why.' }),
+      s.keep({ component: 'Button', platform: 'web' }),
     );
     expect(error.status).toBe(400);
     expect(error.message).toMatch(
@@ -724,7 +907,21 @@ describe('the session', () => {
     );
     expect((await s.status()).pending).not.toBeNull();
     w.deps.codegen = async () => ({ ok: true, output: '' });
-    await s.undo({ component: 'Button' });
+    await s.undo({ component: 'Button', platform: 'web' });
+    untouched(w);
+  });
+
+  it('undoes a Keep again that would cancel an approval, naming it', async () => {
+    // Badge holds through Apply's regeneration and not Keep again's.
+    losing(w, 2);
+    failing(w);
+    s = createSession(w.deps);
+    await s.apply(applyBody(s));
+    const error = await refusal(
+      s.keep({ component: 'Button', platform: 'web' }),
+    );
+    expect(error.status).toBe(409);
+    expect(error.message).toMatch(/kept, this would cancel Badge \(web\)/);
     untouched(w);
   });
 
@@ -745,36 +942,11 @@ describe('the session', () => {
       editable: false,
       locked: expect.stringMatching(/waits on Button/),
     });
-    const error = await refusal(s2.set(setBody(s2)));
+    const error = await refusal(s2.apply(applyBody(s2)));
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/approved on web/);
     untouched(w2);
   });
-
-  it.each([
-    ['a new rule', BASE, {}],
-    ['a rule replaced', overlay(RULE), {}],
-    [
-      'a rule deleted',
-      overlay(RULE),
-      { value: { token: 'color.action.primary.bg.default' } },
-    ],
-  ])(
-    'undoes a Keep that would cancel an approval, naming it: %s',
-    async (_, before, extra) => {
-      losing(w);
-      w.files.set(OVERLAY, before);
-      s = createSession(w.deps);
-      await s.set(setBody(s, extra));
-      const error = await refusal(
-        s.keep({ component: 'Button', reason: 'Why.' }),
-      );
-      expect(error.status).toBe(409);
-      expect(error.message).toMatch(/Badge \(web\)/);
-      untouched(w, before);
-      expect((await s.status()).pending).toBeNull();
-    },
-  );
 
   it('refuses to approve, or withdraw an approval, while any edit is pending; a preview is read-only', async () => {
     const approvals = {
@@ -788,8 +960,9 @@ describe('the session', () => {
     });
     const status = w.deps.status;
     w.deps.status = async () => ({ ...(await status()), approvals });
+    failing(w);
     s = createSession(w.deps);
-    await s.set(setBody(s));
+    await s.apply(applyBody(s));
     for (const op of [
       () => s.approve({ component: 'Button', platform: 'web' }),
       () => s.approve({ component: 'Badge', platform: 'flutter' }),
@@ -810,23 +983,24 @@ describe('the session', () => {
   it('runs one operation at a time, in order, telling the viewers, a refusal holding up nothing', async () => {
     const seen = [];
     const codegen = w.deps.codegen;
-    w.deps.codegen = async (o) => {
+    w.deps.codegen = async () => {
       seen.push((await s.status()).busy);
-      return codegen(o);
+      return codegen();
     };
     s = createSession(w.deps);
-    const body = setBody(s);
-    const first = s.undo({ component: 'Button' });
-    const second = s.set(body);
+    const body = applyBody(s);
+    const first = s.undo({ component: 'Button', platform: 'web' });
+    const second = s.apply(body);
     const error = await refusal(first);
     expect(error.message).toMatch(/no pending edit/);
     await second;
-    expect(seen).toEqual(['Regenerating…']);
+    expect(seen).toEqual(['Saving…']);
     expect(w.events).toEqual([
       { type: 'busy', message: 'Undoing…' },
       { type: 'failed', message: 'Button has no pending edit' },
       { type: 'changed' },
-      { type: 'busy', message: 'Regenerating…' },
+      { type: 'busy', message: 'Saving…' },
+      { type: 'reload' },
       { type: 'changed' },
     ]);
     expect((await s.status()).busy).toBeNull();
@@ -837,11 +1011,11 @@ describe('the session', () => {
       throw new Error('no viewer');
     };
     s = createSession(w.deps);
-    const error = await refusal(s.undo({ component: 'Button' }));
+    const error = await refusal(
+      s.undo({ component: 'Button', platform: 'web' }),
+    );
     expect(error.message).toMatch(/no pending edit/);
-    expect((await s.set(setBody(s))).pending).toMatchObject({
-      component: 'Button',
-    });
+    expect(await s.apply(applyBody(s))).toEqual({ ok: true });
     expect((await s.status()).busy).toBeNull();
   });
 
@@ -852,46 +1026,52 @@ describe('the session', () => {
       write(p, t);
     };
     s = createSession(w.deps);
-    await expect(s.set(setBody(s))).rejects.toThrow(/disk full/);
+    await expect(s.apply(applyBody(s))).rejects.toThrow(/disk full/);
     expect((await s.status()).pending).toBeNull();
     untouched(w);
   });
 
   describe('where the overlay is already back as it was', () => {
     it('lets Undo be retried after a restore whose regeneration threw', async () => {
-      await s.set(setBody(s));
+      failing(w);
+      await s.apply(applyBody(s));
       w.deps.codegen = async () => {
         throw new Error('spawn failed');
       };
       s = createSession(w.deps);
-      await expect(s.undo({ component: 'Button' })).rejects.toThrow(
-        /spawn failed/,
-      );
+      await expect(
+        s.undo({ component: 'Button', platform: 'web' }),
+      ).rejects.toThrow(/spawn failed/);
       expect(w.files.get(OVERLAY)).toBe(BASE);
       expect((await s.status()).pending).not.toBeNull();
-      w.deps.codegen = async ({ pending }) => {
-        w.calls.push(['codegen', pending]);
+      w.deps.codegen = async () => {
+        w.calls.push(['codegen']);
         return { ok: true, output: '' };
       };
       w.calls.length = 0;
-      await s.undo({ component: 'Button' });
+      await s.undo({ component: 'Button', platform: 'web' });
       untouched(w);
-      expect(w.calls).toContainEqual(['codegen', false]);
+      expect(w.calls).toContainEqual(['codegen']);
       expect(w.calls).toContainEqual(['reload']);
     });
 
     it('lets Undo clear, after a restart, an edit saved but never written', async () => {
-      await s.set(setBody(s));
+      failing(w);
+      await s.apply(applyBody(s));
       w.files.set(OVERLAY, BASE);
-      await createSession(w.deps).undo({ component: 'Button' });
+      await createSession(w.deps).undo({
+        component: 'Button',
+        platform: 'web',
+      });
       untouched(w);
     });
 
-    it('refuses Keep, saying to press Undo', async () => {
-      await s.set(setBody(s));
+    it('refuses Keep again, saying to press Undo', async () => {
+      failing(w);
+      await s.apply(applyBody(s));
       w.files.set(OVERLAY, BASE);
       const error = await refusal(
-        s.keep({ component: 'Button', reason: 'Why.' }),
+        s.keep({ component: 'Button', platform: 'web' }),
       );
       expect(error.status).toBe(409);
       expect(error.message).toBe(
@@ -902,60 +1082,33 @@ describe('the session', () => {
     });
   });
 
-  it('takes the placeholder text again where Keep saved its record but never wrote the file', async () => {
-    await s.set(setBody(s));
-    const placeholder = w.files.get(OVERLAY);
-    const write = w.deps.files.write;
-    let fail = true;
-    w.deps.files.write = (p, t) => {
-      if (p === OVERLAY && fail) {
-        fail = false;
-        throw new Error('disk full');
-      }
-      write(p, t);
-    };
-    s = createSession(w.deps);
-    await expect(
-      s.keep({ component: 'Button', reason: 'First.' }),
-    ).rejects.toThrow(/disk full/);
-    expect(w.files.get(OVERLAY)).toBe(placeholder);
-    expect(await s.keep({ component: 'Button', reason: 'Second.' })).toEqual({
-      ok: true,
-    });
-    expect(w.files.get(OVERLAY)).toContain('reason: Second.');
-  });
-
-  it('leaves someone else’s edit, and the record, where a set fails after the file changed', async () => {
+  it('leaves someone else’s edit, and the record, where an apply fails after the file changed', async () => {
     const edited = `${BASE}# a person's note\n`;
-    w.deps.codegen = async ({ pending }) => {
-      w.calls.push(['codegen', pending]);
-      if (pending) w.files.set(OVERLAY, edited);
-      return { ok: !pending, output: 'refused' };
+    let runs = 0;
+    w.deps.codegen = async () => {
+      runs += 1;
+      if (runs === 1) w.files.set(OVERLAY, edited);
+      return { ok: runs !== 1, output: 'refused' };
     };
     s = createSession(w.deps);
-    const error = await refusal(s.set(setBody(s)));
+    const error = await refusal(s.apply(applyBody(s)));
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/changed on disk since the edit/);
     expect(w.files.get(OVERLAY)).toBe(edited);
     expect((await s.status()).pending).not.toBeNull();
   });
 
-  it('leaves someone else’s edit, and the record, where a Keep that would cancel an approval finds the file changed', async () => {
+  it('leaves someone else’s edit, and the record, where an apply that would cancel an approval finds the file changed', async () => {
     losing(w);
     const codegen = w.deps.codegen;
     let edited;
-    w.deps.codegen = async (o) => {
-      if (!o.pending) {
-        edited = `${w.files.get(OVERLAY)}# a person's note\n`;
-        w.files.set(OVERLAY, edited);
-      }
-      return codegen(o);
+    w.deps.codegen = async () => {
+      edited = `${w.files.get(OVERLAY)}# a person's note\n`;
+      w.files.set(OVERLAY, edited);
+      return codegen();
     };
     s = createSession(w.deps);
-    await s.set(setBody(s));
-    const error = await refusal(
-      s.keep({ component: 'Button', reason: 'Why.' }),
-    );
+    const error = await refusal(s.apply(applyBody(s)));
     expect(error.status).toBe(409);
     expect(error.message).toMatch(/changed on disk since the edit/);
     expect(w.files.get(OVERLAY)).toBe(edited);

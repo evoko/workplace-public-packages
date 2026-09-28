@@ -18,6 +18,7 @@ import { entryText, lookupCell } from '../explain/index.mjs';
 import { flattenSpec } from '../spec.mjs';
 import { layerClass } from '../util/classes.mjs';
 import { CELL_OF_PROPERTY } from '../verify/oracle.mjs';
+import { borrowersOf, readSetEntry } from './overlay-edit.mjs';
 import { reachOf } from './reach.mjs';
 import { plainLabel, scopesFor } from './scopes.mjs';
 import { KEYWORD_CELLS, tokenChoices, valueText } from './tokens.mjs';
@@ -138,6 +139,32 @@ function valueOf(byName, entry) {
   return typeof raw === 'object' ? JSON.stringify(raw) : String(raw);
 }
 
+/** An IR entry as the value a draft sends: `{ token }`, `{ keyword }` or `{ none: true }`, or null. */
+const draftValueOf = (entry) =>
+  entry?.token
+    ? { token: entry.token }
+    : entry?.keyword
+      ? { keyword: entry.keyword }
+      : entry?.none
+        ? { none: true }
+        : null;
+
+/**
+ * The `set` rule the overlay has at a scope's key, where one is: its reason (null where it borrows
+ * another's), the rules that borrow its reason, and Figma's own value there, which chosen deletes
+ * the rule (null where Figma's is no value a draft can send).
+ */
+function ruleAt(spec, overlayText, layer, cell, key, path) {
+  const rule = readSetEntry(overlayText, key);
+  if (!rule) return null;
+  const there = path.reduce((node, k) => node?.[k], spec.style[layer])?.[cell];
+  return {
+    reason: typeof rule.reason === 'string' ? rule.reason : null,
+    borrowers: borrowersOf(overlayText, key),
+    figma: draftValueOf(there?.replaced),
+  };
+}
+
 /** Where an entry comes from: an overlay rule, the shared defaults, or Figma's variant. */
 const originOf = (entry) =>
   entry?.from === 'overlay'
@@ -207,6 +234,7 @@ export function inspect(build, name, index, { overlayText }) {
                 wins: winner?.at ?? null,
                 winsLabel: winner ? plainLabel(winner.path) : null,
                 current: keyOf(path) === keyOf(hit?.path),
+                rule: ruleAt(spec, overlayText, layer, cell, key, path),
               };
             },
           ),

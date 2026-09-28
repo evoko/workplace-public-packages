@@ -27,7 +27,7 @@ describe('the workbench client', () => {
   it('throws the service’s sentence for an error, with its status', async () => {
     answer(409, '{"error":"Button has no pending edit"}');
     const e = await httpClient()
-      .undo('Button')
+      .undo('Button', 'web')
       .catch((x) => x);
     expect(e).toBeInstanceOf(WorkbenchRefusal);
     expect(e.status).toBe(409);

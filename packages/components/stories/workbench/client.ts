@@ -26,6 +26,8 @@ export interface Pending {
   value: SetValue;
   /** What the variant in view drew before the edit, as `solar:explain` names it. */
   was: string | null;
+  /** The reason written with it (none for a deleted rule). */
+  reason: string | null;
   deletes: boolean;
   previousReason: string | null;
   failing: Failure[] | null;
@@ -41,9 +43,26 @@ export interface ComponentStatus {
   locked: string | null;
 }
 
+/**
+ * Where the viewer that applied, kept again or undid an edit was: named for 60 s after the service
+ * regenerated (every start of the page in that time reopens it), `age` in milliseconds.
+ */
+export interface Reopen {
+  platform: Platform;
+  component: string;
+  variant: number;
+  layer: string;
+  cell: string;
+  age: number;
+}
+
 export interface Status {
   busy: string | null;
+  /** The last event sent before the status was read (GET /status alone): where polling starts. */
+  seq?: number;
+  /** An edit Apply wrote whose checks failed (or, after a restart mid-Apply, never checked). */
   pending: Pending | null;
+  reopen: Reopen | null;
   components: Record<string, ComponentStatus>;
 }
 
@@ -63,6 +82,15 @@ export interface Scope {
   wins: string | null;
   winsLabel: string | null;
   current: boolean;
+  /**
+   * The `set` rule the overlay has at this scope, where one is: its reason (null where it borrows
+   * another's), the rules borrowing it, and Figma's own value there, which chosen deletes the rule.
+   */
+  rule: {
+    reason: string | null;
+    borrowers: string[];
+    figma: SetValue | null;
+  } | null;
 }
 
 export interface Cell {
@@ -110,8 +138,21 @@ export type Outcome = { ok: true } | { ok: false; failures: Failure[] };
 
 export interface WorkbenchEvent {
   seq: number;
-  type: 'busy' | 'changed' | 'failed';
+  type: 'busy' | 'changed' | 'failed' | 'reload';
   message?: string;
+}
+
+/** What Save sends: the draft, the inspection's revision, and the reason. */
+export interface ApplyBody {
+  component: string;
+  platform: Platform;
+  variant: number;
+  layer: string;
+  cell: string;
+  scope: string;
+  value: SetValue;
+  revision: string;
+  reason: string;
 }
 
 /** A Report note: the Playground's values, the layer and variant chosen in Inspect, if any. */
@@ -136,17 +177,14 @@ export interface WorkbenchClient {
   health(): Promise<boolean>;
   status(): Promise<Status>;
   inspect(component: string, variant: number): Promise<Inspection>;
-  set(body: {
-    component: string;
-    variant: number;
-    layer: string;
-    cell: string;
-    scope: string;
-    value: SetValue;
-    revision: string;
-  }): Promise<Status>;
-  keep(component: string, reason: string): Promise<Outcome>;
-  undo(component: string): Promise<Status>;
+  /**
+   * Save: writes the rule at the scope with its reason ("" for a removal), regenerates and runs the
+   * checks; the service then tells the viewers to reload.
+   */
+  apply(body: ApplyBody): Promise<Outcome>;
+  /** Keep again: runs a pending edit's checks again. */
+  keep(component: string, platform: Platform): Promise<Outcome>;
+  undo(component: string, platform: Platform): Promise<Status>;
   approve(component: string, platform: Platform): Promise<Outcome>;
   unapprovePreview(component: string, platform: Platform): Promise<string[]>;
   unapprove(component: string, platform: Platform): Promise<string[]>;
@@ -222,9 +260,9 @@ export function httpClient(base = WORKBENCH_URL): WorkbenchClient {
       call(
         `/component?name=${encodeURIComponent(component)}&variant=${variant}`,
       ),
-    set: (body) => call('/set', body),
-    keep: (component, reason) => call('/keep', { component, reason }),
-    undo: (component) => call('/undo', { component }),
+    apply: (body) => call('/apply', body),
+    keep: (component, platform) => call('/keep', { component, platform }),
+    undo: (component, platform) => call('/undo', { component, platform }),
     approve: (component, platform) => call('/approve', { component, platform }),
     unapprovePreview: async (component, platform) =>
       (
