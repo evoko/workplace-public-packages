@@ -36,11 +36,13 @@ one Charts entry) and the components checked as another's state show no circle;
 `npm run solar:status` has their colours.
 
 Under `npm run widgetbook`, the **workbench bar** above each Playground acts for Flutter: Inspect
-sets a look to a SOLAR token as an overlay rule, Report and Send to agent save notes for
+opens a full-screen dialog that sets a look to a SOLAR token as an overlay rule (a tap on a part
+of the component in its preview chooses the layer, where `SolarLayers` draws it), Report and Send to agent save notes for
 `/solar-feedback`, and Approve and Undo approval write `spec/approvals.yaml` for the person
 pressing them. It is drawn only where the script gives the workbench service's URL
-(`--dart-define=SOLAR_WORKBENCH`), from `lib/workbench/` (`bar.dart`, `client.dart`,
-`models.dart`), and the service hot-reloads the app after each regeneration; how to use it:
+(`--dart-define=SOLAR_WORKBENCH`), from `lib/workbench/` (`bar.dart`, `inspect_dialog.dart`,
+`preview.dart`, `blocks.dart`, `client.dart`, `models.dart`), and the service hot-restarts the app
+after each regeneration; how to use it:
 [workflows.md, Fix a component in the viewer](../../../docs/engineering/workflows.md#fix-a-component-in-the-viewer).
 
 It is a web app: Widgetbook's interface is built for it, and nothing here is measured. The native
@@ -79,7 +81,8 @@ widget changes its words, though the value and the widget are right; Widgetbook 
 redraw it.
 
 `flutter test` here tests the adapter and every builder (`test/`), and the workbench bar: its
-client (`workbench_client_test.dart`), what is Flutter's own (`workbench_bar_test.dart`) and every
+client (`workbench_client_test.dart`), what is Flutter's own in the bar (`workbench_bar_test.dart`)
+and in the Inspect dialog (`workbench_dialog_test.dart`), and every
 scenario both bars share (`workbench_scenarios_test.dart`, which reads
 `../../codegen/src/workbench/bar-scenarios.json`;
 [architecture.md, The workbench](../../../docs/engineering/architecture.md#the-workbench)).

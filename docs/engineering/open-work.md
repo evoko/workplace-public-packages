@@ -202,10 +202,12 @@ the Playground builders that work around them (Tooltip's theme default on the we
 ([workflows.md, Fix a component in the viewer](workflows.md#fix-a-component-in-the-viewer)) leaves a
 person to work around these:
 
-- **Pointing at a layer is the web's alone.** Widgetbook's bar chooses the layer from the list only.
-- **No hot restart for Widgetbook.** The service hot-reloads it after a regeneration; one a hot
-  reload cannot apply (a changed enum, among others) shows only after `R` in the `flutter run`
-  terminal.
+- **Widgetbook cannot outline or point at a layer of a component Material draws.** Its Inspect
+  preview finds a layer by the key `SolarLayers` gives it (`<prefix>.<layer>`); a widget built on
+  Material's (Button among them) has no such keys, so the preview names the selected layer beside
+  it instead, and a tap there selects nothing. The web finds every layer by its recipe selector.
+- **Change to lists at most eight tokens in both viewers**, since Flutter's SolarSelect menu does
+  not scroll; Filter tokens reaches the rest.
 - **`solar:explain` shows no Dark failures.** `loadReports` reads Light's reports alone, though the
   workbench's checks and Storybook's Variants read Dark's too; a Dark failure a Keep lists is not in
   the command its summary line names.
@@ -213,14 +215,15 @@ person to work around these:
 **Check.**
 
 ```bash
-grep -n "SIGUSR" scripts/workbench.mjs
+grep -L "SolarLayers" packages/solar_flutter/lib/src/components/solar_*.dart   # no keyed layers
+grep -n "changeToCap =" packages/solar_flutter/widgetbook/lib/workbench/inspect_dialog.dart
 grep -n "reportFiles(name)" -A3 packages/codegen/src/explain/index.mjs
-grep -n "layerAt\|Point" packages/solar_flutter/widgetbook/lib/workbench/bar.dart || echo "no pointing in Widgetbook"
 ```
 
-**What to change.** Send `SIGUSR2` (a hot restart) where a reload cannot apply, or after every
-regeneration; read the `-dark` and `_dark` reports in `loadReports` and show them marked Dark;
-pointing in Widgetbook by hit-testing the Playground's render tree against the layer tree.
+**What to change.** Key the layers of the Material-based widgets as `SolarLayers` keys its own, so
+Widgetbook's preview outlines and points in them; let SolarSelect's menu scroll (a change to
+Select, so once it may be worked on), then lift the cap in both dialogs (`changeToCap`, `SHOWN`);
+read the `-dark` and `_dark` reports in `loadReports` and show them marked Dark.
 
 **Done when.** Each is done or recorded as a decision in [decisions.md](decisions.md), and
 workflows.md says so.

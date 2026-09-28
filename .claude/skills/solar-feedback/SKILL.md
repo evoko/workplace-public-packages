@@ -18,24 +18,25 @@ the service saves it as `spec/feedback/<component-slug>-<n>.yaml`. Its fields:
 | `layer`     | optional, present only once the component was inspected: the layer chosen in Inspect                                                                                                                                                                      |
 | `variant`   | optional, present only once the component was inspected: Figma's name for the variant chosen in Inspect (not necessarily what `controls` draw); pass it to `--variant` as is                                                                              |
 | `controls`  | empty in a Send to agent note; otherwise the Playground's values when the note was written; a Flutter colour arrives as `#rrggbb`, or `#aarrggbb` (alpha first) when not opaque, not CSS `#rrggbbaa`; the web sends what Storybook's colour control holds |
-| `rule`      | optional (Send to agent after a failing Keep): the overlay rule the person kept, its `set` key                                                                                                                                                            |
-| `value`     | optional (Send to agent after a failing Keep): that rule's value (`{ token }`, `{ keyword }` or `{ none: true }`), or null where the person removed the rule for Figma's own value                                                                        |
+| `rule`      | optional (Send to agent after a saved edit's checks failed): the overlay rule the person saved, its `set` key                                                                                                                                             |
+| `value`     | optional (Send to agent after a saved edit's checks failed): that rule's value (`{ token }`, `{ keyword }` or `{ none: true }`), or null where the person removed the rule for Figma's own value                                                          |
 | `failures`  | optional (Send to agent): the checks that failed, each `{ platform, variant?, layer?, property?, figma?, drawn?, message? }`; a variant from a Dark report ends in ` (Dark)`; past 199, the last one counts the rest                                      |
 
 [CLAUDE.md](../../../CLAUDE.md) holds throughout; these steps add to it.
 
 ## 0. Stop on a pending edit
 
-If `.workbench/pending.json` exists, a look edit is pending in the viewer. If
-`grep -rn "TODO(reason)" spec/overlay` finds anything, it is a pending viewer edit or a pasted
-`solar:explain --propose` rule. Either way, **stop and tell the owner**: a person presses Keep or
-Undo in the viewer, or writes the reason. Never Keep, Undo or delete the pending edit yourself.
+If `.workbench/pending.json` exists, a look edit saved in the viewer is pending, its checks
+failing. If `grep -rn "TODO(reason)" spec/overlay` finds anything, it is a pasted
+`solar:explain --propose` rule. Either way, **stop and tell the owner**: a person presses Undo,
+Keep again or Send to agent in the viewer, or writes the reason. Never Keep, Undo or delete the
+pending edit yourself.
 
-While you work, nobody presses Set, Keep or Approve in a viewer: ask the owner before starting,
+While you work, nobody presses Save, Keep again or Approve in a viewer: ask the owner before starting,
 since the workbench's checks and yours share build directories
 ([Pitfalls](../../../docs/engineering/workflows.md#pitfalls)).
 
-Never call the workbench service's Keep, Approve, Undo approval, Report or Send, never Set or Undo
+Never call the workbench service's Keep, Approve, Undo approval, Report or Send, never Save or Undo
 there, and never write `spec/approvals.yaml` (CLAUDE.md). Make every change in the files.
 
 ## 1. Read the queue
@@ -59,8 +60,8 @@ yours only if its component is 🟡 on both platforms, or 🟡 on one and absent
    [Decide where a change goes](../../../docs/engineering/workflows.md#decide-where-a-change-goes).
    A token that does not exist is a governance gap (⚠️): leave the note and report it. A note open to
    more than one reading: leave it, and ask in your report.
-3. A note with `failures` came from a Keep or an Approve whose checks failed where the person judged
-   the component right (a Keep's edit is already in the overlay, with the person's reason). Settle
+3. A note with `failures` came from a saved edit or an Approve whose checks failed where the person
+   judged the component right (a saved edit is already in the overlay, with the person's reason). Settle
    it with an overlay decision that records that judgement, so the check excuses it
    ([Decide a finding](../../../docs/engineering/workflows.md#decide-a-finding)), or by fixing the
    knock-on in the code. **Never** loosen a check or edit `spec/verify/`.

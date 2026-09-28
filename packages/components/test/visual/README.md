@@ -103,6 +103,8 @@ Chromium, against a fake service, never the real one. `workbench-scenarios.spec.
 scenario of `packages/codegen/src/workbench/bar-scenarios.json`, which Widgetbook's bar runs too,
 through the bar's real HTTP client, answering its requests as the scenario's fake
 (`workbench-scenario-page.tsx`). `workbench.spec.mjs`, on `workbench-page.tsx`, tests the bar end
-to end by its circles, and what is the web's own: pointing at a layer and the focus. That a token
-chosen in the bar reaches the component is proved by hand against the real service. Why both bars share scenarios:
+to end by its circles, and the focus. `workbench-dialog.spec.mjs`, on the scenario page, tests what
+is the web's own in the Inspect dialog: the preview's outline on the selected layer's box, pointing
+at a layer, the focus kept inside it and its keys. That a token saved in the dialog reaches the
+component is proved by hand against the real service. Why both bars share scenarios:
 [architecture.md, The workbench](../../../../docs/engineering/architecture.md#the-workbench).

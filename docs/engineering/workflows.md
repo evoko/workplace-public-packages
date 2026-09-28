@@ -242,35 +242,49 @@ component on either.
 
 ### Inspect: change a look by choosing a token
 
-1. Press **Inspect**, and choose a **Variant** (every Figma variant, states included: the
-   Playground shows only the resting state) and a **Layer**. In Storybook, **Point**, then a click
-   on the component, chooses the layer under the pointer.
-2. The bar lists the layer's cells in that variant, each with its entry and where it sits
-   (`background` · `color.action.primary.bg.default` · `base`), as `solar:explain` reads them.
-3. For one cell, choose a **Scope**, the look the rule is keyed on, from every variant down to the
-   one in view (only the scopes the build accepts are offered), and **Set to**: a semantic token
-   of the cell's kind, each with its value, `none`, or `FILL` or `HUG` for a width or a height. A
-   cell whose raw value the overlay allows (`allowLiteral`) offers nothing. A raw value, or any rule
-   but `set`, goes through Report.
-4. The service writes the `set` rule into the component's overlay with the placeholder reason and
-   regenerates with `solar:codegen --pending`, and both viewers reload. What they show is the real
-   regeneration: exactly what would ship. A scope that another entry overrides in the variant in
-   view is refused, as is a value the cell already draws.
-5. **Keep**, with a one-line reason a reviewer can check (none where the edit removes a rule), or
-   **Undo**, which puts the overlay file back byte for byte and regenerates. Where the cell had a
-   rule, its old reason is shown to rewrite, and Keep refuses it unchanged.
+1. Press **Inspect**. A full-screen dialog opens over the viewer, the same in both; Close or Escape
+   closes it. Its top row has a Select per variant axis, the state among them (every Figma variant,
+   states included: the Playground shows only the resting state); a value no drawn variant pairs
+   with the others cannot be chosen.
+2. Choose a **layer**, from the tree of the component's layers (nested as Figma nests them), or by
+   clicking its part in the preview, which draws the variant large with the selected layer
+   outlined. Widgetbook outlines and points only in a component `SolarLayers` draws; for one
+   Material draws (Button among them) it names the selected layer beside the preview instead.
+3. The layer's properties list its cells in that variant: each cell's entry (a token, `none`, a
+   keyword or a raw value), its value as a person reads it, and where it comes from, **Figma**,
+   **rule** or **defaults**, as `solar:explain` reads them.
+4. Choose a cell. Its editor opens under its row:
+   - **Apply to**: the scope, the look the rule is keyed on, from every variant down to the one in
+     view, in plain words (`every md`, `primary · at rest`), each with how many variants a change
+     there reaches. The scope that holds today's value is marked, and one a narrower rule decides
+     in the variant in view is disabled, naming that rule. Only the scopes the build accepts are
+     offered.
+   - **Filter tokens** and **Change to**: the semantic tokens of the cell's kind, each with its
+     value, `none`, and `FILL` or `HUG` for a width or a height. Change to lists at most eight of
+     the tokens the filter matches, then how many more. A cell whose raw value the overlay allows
+     (`allowLiteral`) offers nothing. A raw value, or any rule but `set`, goes through Report.
+   - a line saying why the cell is what it is now.
+5. Choosing in Change to makes a **draft**, and nothing is sent. The strip along the dialog's foot
+   shows it (the cell, the scope and its reach, before → after) and asks for a one-line reason a
+   reviewer can check (none where the edit removes a rule). Where the cell had a rule, its old
+   reason is shown to rewrite, and Save refuses it unchanged. **Discard**, or Close, drops the
+   draft.
+6. **Save** sends it. The service writes the `set` rule, with its reason, into the component's
+   overlay, proves it reaches the variant in view, and regenerates with a plain `solar:codegen`.
+   Both viewers then reload (Storybook's page; Widgetbook by a hot restart), and the dialog reopens
+   where it was. What they show is the real regeneration: exactly what would ship. An edit the
+   build refuses, one that changes nothing in the variant in view, and one that would cancel an
+   approval are undone.
+7. The component's checks run (below). When they pass, the edit is kept. When they fail, it stays
+   **pending**, its failures in the strip, and the person chooses **Undo** (the overlay file back
+   byte for byte, regenerated), **Keep again** (regenerated and checked again, after a fix) or
+   **Send to agent**.
 
 Choosing Figma's own value where a rule changed it removes the rule; a rule whose reason others
 borrow (`reason: { as: set … }`) cannot be removed, and replacing one changes their reason too. A
 component with no overlay file cannot be edited: a person adds the file first. **One edit is
-pending in the repository at a time**: until Keep or Undo, no viewer can set another, approve or
-undo an approval, and the edit survives a restart of the service.
-
-Keep regenerates without `--pending`; a regeneration that fails leaves the edit pending, to Undo or
-to fix and Keep again. An edit that would cancel an approval is undone. Then Keep runs the
-component's checks (below): when they pass the edit is kept; when they fail it stays pending, with
-its failures listed, and the person chooses Undo, Keep again (which runs the checks again, after a
-fix) or Send to agent.
+pending in the repository at a time**: while it is, no viewer can save another, approve or undo an
+approval, the dialog can be read but not edited, and the edit survives a restart of the service.
 
 ### The checks behind Keep and Approve
 
@@ -300,9 +314,9 @@ Offered beside failing checks, where the component may change (on the terms of I
 a component approved on the other platform). It writes a note to `spec/feedback/` carrying the
 failures and the person's words (none gives a default sentence):
 
-- after a failing **Keep**, the edit stays in the overlay with its reason and is no longer pending,
-  and the note records the rule and its value; the component's checks, and CI's, fail until
-  `/solar-feedback` settles it;
+- after a saved edit's checks fail (at Save or Keep again), the edit stays in the overlay with its
+  reason and is no longer pending, and the note records the rule and its value; the component's
+  checks, and CI's, fail until `/solar-feedback` settles it;
 - after a refused **Approve**, the note carries the failures shown.
 
 The agent settles it lawfully: by an overlay decision that records the person's judgement, so the
@@ -339,7 +353,7 @@ those lines.
 The bar's circle changes at once; the sidebars' when the viewer next starts.
 
 **An agent never calls the service's Keep, Approve, Undo approval, Report or Send** (a person's
-decisions and words), by any means (a browser, `curl`, a script), and calls Set only in a test or
+decisions and words), by any means (a browser, `curl`, a script), and calls Save only in a test or
 smoke run it undoes, leaving no pending edit; it may run the viewers and read from the service. The
 service is a local port and cannot tell a person's click from a request; the rule in CLAUDE.md is
 what holds.
@@ -474,10 +488,11 @@ change in the same area.
 
 **The workbench** ([Fix a component in the viewer](#fix-a-component-in-the-viewer))
 
-- A pending edit leaves `TODO(reason)` in `spec/overlay/`, so a plain `solar:codegen`, the Verify
-  block and `/solar-feedback` stop on it until a person presses Keep or Undo. The edit survives a
-  restart: start a viewer and press either. Where the service cannot start again, put the overlay
-  file back from the `before` field of `.workbench/pending.json`, then delete that file.
+- A pending edit (a saved edit whose checks failed) stays in `spec/overlay/` with its reason, so
+  the component's checks, and the Verify block's, fail on it, and `/solar-feedback` stops on it,
+  until a person presses Undo, Keep again or Send to agent. The edit survives a restart: start a
+  viewer and press one. Where the service cannot start again, put the overlay file back from the
+  `before` field of `.workbench/pending.json`, then delete that file.
 - `SOLAR_VISUAL_ONLY` left set in a shell narrows `npm run test:visual` to one component (it says
   so in a warning). Unset it before the Verify block.
 - The workbench's checks run the visual checks and the Flutter tests: do not run either yourself

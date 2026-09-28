@@ -41,11 +41,13 @@ depends on changed and the Turbo cache does not key on the record
 Charts entry) and the components checked as another's state show no circle; `npm run solar:status`
 has their colours.
 
-In `storybook dev`, the **workbench bar** above each Playground acts for the web: Inspect sets a
-look to a SOLAR token as an overlay rule (Point, then a click on the component, chooses the layer),
+In `storybook dev`, the **workbench bar** above each Playground acts for the web: Inspect opens a
+full-screen dialog that sets a look to a SOLAR token as an overlay rule (a click on a part of the
+component in its preview chooses the layer),
 Report and Send to agent save notes for `/solar-feedback`, and Approve and Undo approval write
 `spec/approvals.yaml` for the person pressing them. It is drawn only where the workbench service
-answers, from `stories/workbench/` (`Bar.tsx`, `client.ts`, `pick.ts`); how to use it:
+answers, from `stories/workbench/` (`Bar.tsx`, `InspectDialog.tsx`, `preview.tsx`, `pending.tsx`,
+`client.ts`, `pick.ts`); how to use it:
 [workflows.md, Fix a component in the viewer](../../../docs/engineering/workflows.md#fix-a-component-in-the-viewer).
 
 Not here: Figma's own renders beside the components, which the mirror does not store.

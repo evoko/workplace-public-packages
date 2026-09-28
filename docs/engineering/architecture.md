@@ -530,7 +530,7 @@ client, the requests answered as the scenario's fake; `packages/codegen/test/wor
 checks each scenario against the vocabulary. A step or an expectation a driver lacks fails that
 driver. At each expectation naming actions, and at every scenario's last, the controls a bar offers
 must be exactly those named, so neither bar can grow a control the other lacks: `platformActions`
-lists the few one platform alone has (the web's Point). Words may differ; the facts shown may not.
+lists the few one platform alone may have (none today). Words may differ; the facts shown may not.
 Each bar's own details (pointing, focus, spacing) are tested beside it (`workbench.spec.mjs`,
 `workbench_bar_test.dart`).
 
