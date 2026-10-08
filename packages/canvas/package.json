@@ -46,11 +46,11 @@
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
     "@bwp-web/styles": "*",
-    "fabric": "^7.2.0",
-    "@types/react": "^19.1.0",
+    "@types/react": "^19.3.0",
     "eslint": "^9.39.2",
-    "prettier": "^3.8.3",
+    "fabric": "7.2.0",
+    "prettier": "^3.9.9",
     "tsup": "^8.5.1",
-    "typescript": "^5.9.2"
+    "typescript": "^6.0.3"
   }
 }

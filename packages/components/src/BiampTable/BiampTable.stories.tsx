@@ -422,11 +422,7 @@ export const Interactive: Story = {
 // ---------------------------------------------------------------------------
 
 type TableState =
-  | 'loading'
-  | 'error'
-  | 'error-custom'
-  | 'empty'
-  | 'empty-custom';
+  'loading' | 'error' | 'error-custom' | 'empty' | 'empty-custom';
 
 const stateLabels: [TableState, string][] = [
   ['loading', 'Loading'],

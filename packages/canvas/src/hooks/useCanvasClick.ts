@@ -57,8 +57,7 @@ export function useCanvasClick(
     | RefObject<FabricCanvas | null>
     | ((target: FabricObject | undefined) => void),
   onClickOrOptions?:
-    | ((target: FabricObject | undefined) => void)
-    | UseCanvasClickOptions,
+    ((target: FabricObject | undefined) => void) | UseCanvasClickOptions,
   maybeOptions?: UseCanvasClickOptions,
 ): void {
   // Distinguish overloads: if the second arg is a function, the first is canvasRef

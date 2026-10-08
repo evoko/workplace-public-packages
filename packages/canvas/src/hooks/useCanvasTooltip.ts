@@ -79,8 +79,7 @@ export function useCanvasTooltip<T>(
 ): CanvasTooltipState<T>;
 export function useCanvasTooltip<T>(
   canvasRefOrOptions:
-    | RefObject<FabricCanvas | null>
-    | UseCanvasTooltipOptions<T>,
+    RefObject<FabricCanvas | null> | UseCanvasTooltipOptions<T>,
   maybeOptions?: UseCanvasTooltipOptions<T>,
 ): CanvasTooltipState<T> {
   const isContextOverload = maybeOptions === undefined;
