@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { TablePagination, type TablePaginationProps } from '@mui/material';
 import type { Table } from '@tanstack/react-table';
 
@@ -41,14 +41,15 @@ export function BiampTablePagination<TData>({
   ...paginationProps
 }: BiampTablePaginationProps<TData>) {
   const rowCount = table.getRowCount();
-  const lastRowCountRef = useRef(rowCount);
+  const [lastRowCount, setLastRowCount] = useState(rowCount);
 
-  // Update the stable count only when not loading and the count is meaningful.
-  if (!loading && rowCount >= 0) {
-    lastRowCountRef.current = rowCount;
+  // Track the last meaningful count while not loading (React's "adjust state
+  // during render" pattern; the guard makes it settle in one extra pass).
+  if (!loading && rowCount >= 0 && rowCount !== lastRowCount) {
+    setLastRowCount(rowCount);
   }
 
-  const stableCount = loading ? lastRowCountRef.current : rowCount;
+  const stableCount = loading ? lastRowCount : rowCount;
   const { pageSize, pageIndex } = table.getState().pagination;
 
   // Auto-correct page when row count drops (e.g. after filtering)

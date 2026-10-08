@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Canvas as FabricCanvas, type FabricObject, Polygon } from 'fabric';
 import {
   enablePanAndZoom,
@@ -163,7 +170,9 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const historyRef = useRef<HistoryTracker | null>(null);
   const isInitialLoadRef = useRef(false);
   const optionsRef = useRef(options);
-  optionsRef.current = options;
+  useLayoutEffect(() => {
+    optionsRef.current = options;
+  });
 
   // WeakMap to save per-object selectability before entering a mode
   const savedSelectabilityRef = useRef(

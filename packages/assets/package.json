@@ -47,7 +47,7 @@
     "@bwp-web/eslint-config": "*",
     "@mui/material": "^7.3.10",
     "@types/react": "^19.3.0",
-    "eslint": "^9.39.2",
+    "eslint": "^10.12.0",
     "prettier": "^3.9.9",
     "react": "^19.3.0",
     "tsup": "^8.5.0",

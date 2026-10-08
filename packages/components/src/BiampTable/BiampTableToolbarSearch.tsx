@@ -10,7 +10,7 @@ import {
   type TextFieldProps,
 } from '@mui/material';
 import { CloseIcon, SearchIcon } from '@bwp-web/assets';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   BIAMP_TABLE_DEBOUNCE_DELAY,
   useDebouncedCallback,
@@ -77,9 +77,13 @@ export function BiampTableToolbarSearch({
   const [isExpanded, setIsExpanded] = useState(false);
   const debouncedOnChange = useDebouncedCallback(onChange, debounceDelay);
 
-  useEffect(() => {
+  // Reset the input when `defaultValue` changes (adjust-during-render instead
+  // of an effect, so there is no extra render with the stale value).
+  const [prevDefaultValue, setPrevDefaultValue] = useState(defaultValue);
+  if (defaultValue !== prevDefaultValue) {
+    setPrevDefaultValue(defaultValue);
     setInputValue(defaultValue);
-  }, [defaultValue]);
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

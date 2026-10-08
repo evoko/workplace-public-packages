@@ -21,6 +21,26 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
+  viteFinal: async (viteConfig) => {
+    const userOnLog = viteConfig.build?.rolldownOptions?.onLog;
+    return {
+      ...viteConfig,
+      build: {
+        ...viteConfig.build,
+        rolldownOptions: {
+          ...viteConfig.build?.rolldownOptions,
+          // MUI and others ship "use client" banners. They are meaningless in
+          // this client-only bundle, and Vite 8 (Rolldown) logs ~11k of them,
+          // which makes turbo builds take minutes.
+          onLog(level, log, defaultHandler) {
+            if (log.code === 'MODULE_LEVEL_DIRECTIVE') return;
+            if (userOnLog) userOnLog(level, log, defaultHandler);
+            else defaultHandler(level, log);
+          },
+        },
+      },
+    };
+  },
 };
 
 export default config;
