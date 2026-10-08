@@ -112,4 +112,4 @@ import {
 } from '@bwp-web/canvas';
 ```
 
-> `fabric` is a peer dependency — install it alongside `@bwp-web/canvas`. The package does not bundle its own copy.
+> `fabric` (^7.2.0) is a peer dependency — install it alongside `@bwp-web/canvas`. The package does not bundle its own copy.

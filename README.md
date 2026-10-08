@@ -18,6 +18,10 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 - Node.js ^24.20.0 (24.20 or later on the 24 line)
 - npm 11.19.0
 
+### Consumer Requirements
+
+Every published package declares `engines` of Node.js >= 24.20.0 and npm >= 11.19.0, and lists `@emotion/react` and `@emotion/styled` (^11.14.0) as required peer dependencies alongside MUI. Peer ranges are capped at the major each package is built and tested against, so an untested major (e.g. MUI 9) is reported as a peer conflict at install time instead of failing at runtime. Each package README lists its full peer dependencies. Keep the `engines` floor in each package's `package.json` in step with the repo prerequisites above.
+
 ### Install
 
 ```bash

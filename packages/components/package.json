@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/components",
-  "version": "1.10.2",
+  "version": "1.11.0",
   "description": "Shared Biamp Workplace React components",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -32,12 +32,18 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=1.0.2",
-    "@bwp-web/styles": ">=1.0.13",
-    "@mui/material": ">=7.0.0",
-    "@tanstack/react-table": ">=8.0.0",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "@bwp-web/assets": "^1.0.2",
+    "@bwp-web/styles": "^1.0.13",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.0.0",
+    "@tanstack/react-table": "^8.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "engines": {
+    "node": ">=24.20.0",
+    "npm": ">=11.19.0"
   },
   "devDependencies": {
     "@bwp-web/assets": "*",

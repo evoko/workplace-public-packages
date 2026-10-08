@@ -10,10 +10,7 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@mui/material` >= 7.0.0
-- `react` >= 18.0.0
-- `react-dom` >= 18.0.0
-- `randomcolor` >= 0.6.2
+See the [`@bwp-web/components` peer dependencies](../packages/components/README.md#peer-dependencies).
 
 ## Props
 

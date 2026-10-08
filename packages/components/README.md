@@ -8,17 +8,23 @@ Shared React components for Biamp Workplace applications. Provides the full appl
 npm install @bwp-web/components
 ```
 
+### Requirements
+
+- Node.js >= 24.20.0
+- npm >= 11.19.0
+
 ### Peer Dependencies
 
-- `@bwp-web/styles` >= 1.0.13
-- `@bwp-web/assets` >= 1.0.2
-- `@mui/material` >= 7.0.0
-- `react` >= 18.0.0
-- `react-dom` >= 18.0.0
+- `@bwp-web/assets` ^1.0.2
+- `@bwp-web/styles` ^1.0.13
+- `@emotion/react` ^11.14.0
+- `@emotion/styled` ^11.14.0
+- `@mui/material` ^7.0.0
+- `@tanstack/react-table` ^8.0.0 — required even if you don't use `BiampTable`
+- `react` ^18.0.0 || ^19.0.0
+- `react-dom` ^18.0.0 || ^19.0.0
 
-For `BiampTable` only:
-
-- `@tanstack/react-table` >= 8.0.0
+`@bwp-web/styles` also brings in its own peers (`@mui/x-date-pickers` ^8.6.0). Components read Biamp-specific palette keys, so the app must be wrapped in a `ThemeProvider` with `biampTheme()` — see the [styles setup](../styles/README.md#basic-setup).
 
 ## Components
 
@@ -586,7 +592,7 @@ All three components extend their MUI base props (`PopoverProps`, `StackProps`, 
 
 A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, CSV export, and per-slot prop overrides for restyling internal MUI elements.
 
-Requires `@tanstack/react-table` >= 8.0.0 as a peer dependency.
+Uses `@tanstack/react-table` ^8.0.0, a required peer dependency of this package.
 
 ## Full Documentation
 

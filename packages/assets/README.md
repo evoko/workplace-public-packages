@@ -8,11 +8,18 @@ Shared Biamp Workplace icons and image assets. All visual assets are centralised
 npm install @bwp-web/assets
 ```
 
+### Requirements
+
+- Node.js >= 24.20.0
+- npm >= 11.19.0
+
 ### Peer Dependencies
 
-- `@mui/material` >= 7.0.0
-- `react` >= 18.0.0
-- `react-dom` >= 18.0.0
+- `@emotion/react` ^11.14.0
+- `@emotion/styled` ^11.14.0
+- `@mui/material` ^7.0.0
+- `react` ^18.0.0 || ^19.0.0
+- `react-dom` ^18.0.0 || ^19.0.0
 
 ## Icons
 

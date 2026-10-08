@@ -10,11 +10,7 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/styles` >= 1.0.5
-- `@bwp-web/assets` >= 1.0.2
-- `@mui/material` >= 7.0.0
-- `react` >= 18.0.0
-- `react-dom` >= 18.0.0
+See the [`@bwp-web/components` peer dependencies](../packages/components/README.md#peer-dependencies).
 
 ## Components
 

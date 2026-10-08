@@ -8,13 +8,22 @@ Interactive canvas editor and viewer for Biamp Workplace applications. Built on 
 npm install @bwp-web/canvas
 ```
 
+### Requirements
+
+- Node.js >= 24.20.0
+- npm >= 11.19.0
+
 ### Peer Dependencies
 
-- `react` >= 18.0.0
-- `react-dom` >= 18.0.0
-- `@mui/material` >= 7.0.0
-- `@bwp-web/styles` >= 1.0.1
-- `fabric` >= 7.2.0
+- `@bwp-web/styles` ^1.0.1
+- `@emotion/react` ^11.14.0
+- `@emotion/styled` ^11.14.0
+- `@mui/material` ^7.0.0
+- `fabric` ^7.2.0
+- `react` ^18.0.0 || ^19.0.0
+- `react-dom` ^18.0.0 || ^19.0.0
+
+`@bwp-web/styles` also brings in its own peers (`@mui/x-date-pickers` ^8.6.0).
 
 ## Quick Start
 

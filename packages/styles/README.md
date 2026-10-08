@@ -8,13 +8,20 @@ Shared MUI theme and styling utilities for Biamp Workplace applications. Provide
 npm install @bwp-web/styles
 ```
 
+### Requirements
+
+- Node.js >= 24.20.0
+- npm >= 11.19.0
+
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 1.0.2
-- `@mui/material` >= 7.0.0
-- `@mui/x-date-pickers` >= 7.0.0
-- `react` >= 18.0.0
-- `react-dom` >= 18.0.0
+- `@bwp-web/assets` ^1.0.2
+- `@emotion/react` ^11.14.0
+- `@emotion/styled` ^11.14.0
+- `@mui/material` ^7.0.0
+- `@mui/x-date-pickers` ^8.6.0 — required even if you don't render pickers, because the theme ships picker overrides
+- `react` ^18.0.0 || ^19.0.0
+- `react-dom` ^18.0.0 || ^19.0.0
 
 ## Usage
 
@@ -242,10 +249,10 @@ Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, 
 
 `DatePicker`, `TimePicker`, and `DateTimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function.
 
-Install the required packages:
+`@mui/x-date-pickers` is already a peer dependency; install a date library for the adapter (dayjs shown here):
 
 ```bash
-npm install @mui/x-date-pickers dayjs
+npm install dayjs
 ```
 
 Wrap any usage in `LocalizationProvider`:
