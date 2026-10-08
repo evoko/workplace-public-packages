@@ -15,8 +15,8 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 ### Prerequisites
 
-- Node.js >= 20
-- npm 10.9.0
+- Node.js ^24.20.0 (24.20 or later on the 24 line)
+- npm 11.19.0
 
 ### Install
 
