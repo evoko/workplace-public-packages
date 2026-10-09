@@ -1,5 +1,5 @@
 import { ColumnsIcon } from '@bwp-web/assets';
-import type { Table } from '@tanstack/react-table';
+import type { RowData } from '@tanstack/react-table';
 import React, { type ReactNode, useState } from 'react';
 import {
   BiampTableColumnVisibility,
@@ -11,10 +11,12 @@ import {
   BiampTableToolbarActionButton,
   type BiampTableToolbarActionButtonProps,
 } from './BiampTableToolbarActionButton';
+import { type BiampTableInstance } from './biampTableFeatures';
+import { useBiampTableState } from './useBiampTableState';
 
-export type BiampTableToolbarColumnVisibilityProps<TData> = {
+export type BiampTableToolbarColumnVisibilityProps<TData extends RowData> = {
   /** TanStack Table instance to connect to. */
-  table: Table<TData>;
+  table: BiampTableInstance<TData>;
   /** Icon for the toolbar trigger button. @default <ColumnsIcon variant="xs" /> */
   icon?: ReactNode;
   /** Accessible label for the toolbar trigger button. @default "Columns" */
@@ -31,7 +33,7 @@ export type BiampTableToolbarColumnVisibilityProps<TData> = {
   'icon' | 'label' | 'onClick' | 'badgeContent' | 'onChange'
 >;
 
-export function BiampTableToolbarColumnVisibility<TData>({
+export function BiampTableToolbarColumnVisibility<TData extends RowData>({
   table,
   icon = <ColumnsIcon variant="xs" />,
   label = 'Columns',
@@ -39,6 +41,7 @@ export function BiampTableToolbarColumnVisibility<TData>({
   showAllLabel,
   ...actionButtonProps
 }: BiampTableToolbarColumnVisibilityProps<TData>) {
+  useBiampTableState(table);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const defaults = defaultColumnVisibility ?? getDefaultColumnVisibility(table);

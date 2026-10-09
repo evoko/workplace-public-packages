@@ -13,6 +13,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import type { SxProps, Theme } from '@mui/material/styles';
+import { mergeSlotProps } from '@mui/material/utils';
 import { KeyArrowDownIcon, KeyArrowUpIcon, SearchIcon } from '@bwp-web/assets';
 
 // ---------------------------------------------------------------------------
@@ -371,6 +372,7 @@ export function BiampGlobalSearch({
   onChange,
   onInputChange,
   sx,
+  slotProps,
   ...props
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
@@ -463,8 +465,17 @@ export function BiampGlobalSearch({
         }
         noOptionsText={noResultsText}
         slots={{ paper: BiampGlobalSearchPaper }}
+        // Merged per slot so a consumer's slotProps add to ours: their keys
+        // win and their sx goes after ours.
         slotProps={{
-          listbox: {
+          ...slotProps,
+          // In freeSolo mode MUI 9 skips the Popper when there are no options
+          // (unless `keepMounted`), so the Paper's `noResultsText` would never
+          // show. A closed, kept-mounted Popper is `display: none`.
+          popper: mergeSlotProps(slotProps?.popper, {
+            keepMounted: !hasOptions,
+          }),
+          listbox: mergeSlotProps(slotProps?.listbox, {
             sx: {
               '& .MuiAutocomplete-option': {
                 paddingRight: '0px !important',
@@ -479,7 +490,7 @@ export function BiampGlobalSearch({
                 visibility: 'visible',
               },
             },
-          },
+          }),
         }}
         renderInput={(params) => (
           <TextField

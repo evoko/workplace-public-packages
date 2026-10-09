@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack, Typography, Paper, Box, Skeleton } from '@mui/material';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlined';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutlined';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutlineOutlined';
 import ImageIcon from '@mui/icons-material/Image';
 import { DynamicSvgIcon } from '@bwp-web/components';
 
