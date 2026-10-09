@@ -34,7 +34,7 @@
     "@bwp-web/styles": "^1.0.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.0.0",
+    "@mui/material": "^9.4.0",
     "fabric": "^7.2.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
@@ -46,11 +46,11 @@
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
     "@bwp-web/styles": "*",
-    "fabric": "^7.2.0",
-    "@types/react": "^19.1.0",
-    "eslint": "^9.39.2",
-    "prettier": "^3.8.3",
+    "@types/react": "^19.3.0",
+    "eslint": "^10.12.0",
+    "fabric": "7.2.0",
+    "prettier": "^3.9.9",
     "tsup": "^8.5.1",
-    "typescript": "^5.9.2"
+    "typescript": "^6.0.3"
   }
 }

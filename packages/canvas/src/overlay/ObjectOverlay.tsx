@@ -152,17 +152,19 @@ export function ObjectOverlay({
   return (
     <Stack
       ref={stackRef}
-      sx={{
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        pointerEvents: 'none',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1,
-        willChange: 'transform',
-        ...sx,
-      }}
+      sx={[
+        {
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          pointerEvents: 'none',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1,
+          willChange: 'transform',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...rest}
     >
       {children}

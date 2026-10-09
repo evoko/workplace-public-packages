@@ -157,9 +157,12 @@ function LoginLandingPage({
           24px padding keeps roughly the 64px band the header occupied, so the
           vertically-centred hero below it does not shift. */}
       <Stack
-        alignItems="center"
-        py={3}
-        sx={{ position: 'relative', zIndex: 1 }}
+        sx={{
+          alignItems: 'center',
+          py: 3,
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
         <BiampHeaderTitle
           title="Workplace"
@@ -167,17 +170,25 @@ function LoginLandingPage({
         />
       </Stack>
       <Stack
-        flex={1}
-        alignItems="center"
-        justifyContent="center"
-        // 54px between the hero copy and the card. The card and the help text
-        // under it keep the page's own 20px rhythm, in the nested Stack below.
-        gap="54px"
-        py={4}
-        sx={{ position: 'relative', zIndex: 1 }}
+        sx={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '54px',
+          py: 4,
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
         {/* The hero copy names the product; the card carries no heading. */}
-        <Stack alignItems="center" gap="21px" px={2} maxWidth={441}>
+        <Stack
+          sx={{
+            alignItems: 'center',
+            gap: '21px',
+            px: 2,
+            maxWidth: 441,
+          }}
+        >
           {/* `h1` for the Montserrat family and the page-title semantics; the
               rest is overridden because no theme variant is 36px/600 — the
               scale jumps from h1 (28px/500) to h0 (56px/500). Figma's
@@ -186,9 +197,9 @@ function LoginLandingPage({
               disabling here). `#FFF` is `common.white`. */}
           <Typography
             variant="h1"
-            color="common.white"
-            textAlign="center"
             sx={{
+              color: 'common.white',
+              textAlign: 'center',
               fontSize: 36,
               fontWeight: 600,
               lineHeight: 1,
@@ -197,12 +208,23 @@ function LoginLandingPage({
           >
             Welcome to Workplace
           </Typography>
-          <Typography variant="body1" color="text.sidebar" textAlign="center">
+          <Typography
+            variant="body1"
+            sx={{
+              color: 'text.sidebar',
+              textAlign: 'center',
+            }}
+          >
             Manage every space effortlessly with intuitive tools for seamless
             operations and extraordinary experiences.
           </Typography>
         </Stack>
-        <Stack alignItems="center" gap={2.5}>
+        <Stack
+          sx={{
+            alignItems: 'center',
+            gap: 2.5,
+          }}
+        >
           <LandingFormPanel
             onSubmit={handleSubmit}
             // 8px on the email step, 16px once the password field joins it.
@@ -258,23 +280,33 @@ function LoginLandingPage({
           </LandingFormPanel>
           <Typography
             variant="body2"
-            color="text.secondary"
-            textAlign="center"
-            px={2}
-            maxWidth={441}
+            sx={{
+              color: 'text.secondary',
+              textAlign: 'center',
+              px: 2,
+              maxWidth: 441,
+            }}
           >
             Trouble signing in? Contact your organization&rsquo;s administrator.
           </Typography>
         </Stack>
       </Stack>
       <Stack
-        alignItems="center"
-        gap={1}
-        py={2}
-        sx={{ position: 'relative', zIndex: 1 }}
+        sx={{
+          alignItems: 'center',
+          gap: 1,
+          py: 2,
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
         <BiampLogo style={{ width: 76, height: 'auto', color: '#ffffff' }} />
-        <Typography variant="caption" color="text.secondary">
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           {`© ${new Date().getFullYear()} Biamp Systems LLC.`}
         </Typography>
       </Stack>

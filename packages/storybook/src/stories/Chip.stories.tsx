@@ -31,7 +31,14 @@ export const AllStates: Story = {
   render: () => (
     <Stack spacing={3}>
       <Typography variant="h3">Chip States</Typography>
-      <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
         <Chip label="Default" />
         <Chip label="With Delete" onDelete={() => {}} />
         <Chip label="With Icon" icon={<SearchIcon />} />

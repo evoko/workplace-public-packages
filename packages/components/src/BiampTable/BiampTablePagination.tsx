@@ -1,10 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import { mergeSx } from '../slotProps';
 import { TablePagination, type TablePaginationProps } from '@mui/material';
-import type { Table } from '@tanstack/react-table';
+import type { RowData } from '@tanstack/react-table';
+import { type BiampTableInstance } from './biampTableFeatures';
+import { useBiampTableState } from './useBiampTableState';
 
-export type BiampTablePaginationProps<TData> = {
+export type BiampTablePaginationProps<TData extends RowData> = {
   /** TanStack Table instance to connect to. */
-  table: Table<TData>;
+  table: BiampTableInstance<TData>;
   /** Rows-per-page options. When omitted, the selector is hidden and defaults to 25. */
   rowsPerPageOptions?: number[];
   /** When true, keeps the previous row count visible instead of dropping to 0. */
@@ -31,7 +34,7 @@ const positionMap = {
   right: 'flex-end',
 };
 
-export function BiampTablePagination<TData>({
+export function BiampTablePagination<TData extends RowData>({
   table,
   rowsPerPageOptions,
   loading,
@@ -41,15 +44,16 @@ export function BiampTablePagination<TData>({
   ...paginationProps
 }: BiampTablePaginationProps<TData>) {
   const rowCount = table.getRowCount();
-  const lastRowCountRef = useRef(rowCount);
+  const [lastRowCount, setLastRowCount] = useState(rowCount);
+  const { pageSize, pageIndex } = useBiampTableState(table).pagination;
 
-  // Update the stable count only when not loading and the count is meaningful.
-  if (!loading && rowCount >= 0) {
-    lastRowCountRef.current = rowCount;
+  // Track the last meaningful count while not loading (React's "adjust state
+  // during render" pattern; the guard makes it settle in one extra pass).
+  if (!loading && rowCount >= 0 && rowCount !== lastRowCount) {
+    setLastRowCount(rowCount);
   }
 
-  const stableCount = loading ? lastRowCountRef.current : rowCount;
-  const { pageSize, pageIndex } = table.getState().pagination;
+  const stableCount = loading ? lastRowCount : rowCount;
 
   // Auto-correct page when row count drops (e.g. after filtering)
   const maxPage = Math.max(0, Math.ceil(stableCount / pageSize) - 1);
@@ -66,8 +70,8 @@ export function BiampTablePagination<TData>({
     <TablePagination
       component="div"
       count={stableCount}
-      page={table.getState().pagination.pageIndex}
-      rowsPerPage={table.getState().pagination.pageSize}
+      page={pageIndex}
+      rowsPerPage={pageSize}
       onPageChange={(_, page) => table.setPageIndex(page)}
       onRowsPerPageChange={(e) => {
         table.setPageSize(Number(e.target.value));
@@ -76,17 +80,19 @@ export function BiampTablePagination<TData>({
       rowsPerPageOptions={rowsPerPageOptions ?? []}
       showFirstButton
       showLastButton
-      sx={{
-        display: 'flex',
-        justifyContent: positionMap[position],
-        height: 40,
-        minHeight: 40,
-        '& .MuiToolbar-root': {
+      sx={mergeSx(
+        {
+          display: 'flex',
+          justifyContent: positionMap[position],
+          height: 40,
           minHeight: 40,
-          px: 0,
+          '& .MuiToolbar-root': {
+            minHeight: 40,
+            px: 0,
+          },
         },
-        ...sx,
-      }}
+        sx,
+      )}
       {...paginationProps}
     />
   );

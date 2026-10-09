@@ -16,7 +16,9 @@ export function useDebouncedCallback<Args extends unknown[]>(
   const callbackRef = useRef(callback);
 
   // Keep callback ref fresh without restarting timers.
-  callbackRef.current = callback;
+  useEffect(() => {
+    callbackRef.current = callback;
+  });
 
   useEffect(() => {
     return () => {

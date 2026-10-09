@@ -97,14 +97,16 @@ export function OverlayContent({
   return (
     <Stack
       ref={outerRef}
-      sx={{
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        ...sx,
-      }}
+      sx={[
+        {
+          width: '100%',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...rest}
     >
       <Stack

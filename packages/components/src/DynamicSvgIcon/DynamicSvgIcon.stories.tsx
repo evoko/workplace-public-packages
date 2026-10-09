@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack, Typography, Paper, Box, Skeleton } from '@mui/material';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import BrokenImageIcon from '@mui/icons-material/BrokenImage';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutlineOutlined';
 import ImageIcon from '@mui/icons-material/Image';
 import { DynamicSvgIcon } from '@bwp-web/components';
 
@@ -87,9 +87,21 @@ export const Sizes: Story = {
         <code>width</code> and <code>height</code> enforce consistent dimensions
         across all states
       </Typography>
-      <Stack direction="row" spacing={3} alignItems="flex-end">
+      <Stack
+        direction="row"
+        spacing={3}
+        sx={{
+          alignItems: 'flex-end',
+        }}
+      >
         {[16, 24, 32, 48, 64, 96].map((s) => (
-          <Stack key={s} alignItems="center" spacing={0.5}>
+          <Stack
+            key={s}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <DynamicSvgIcon
               url={ICONS.star}
               width={s}
@@ -116,14 +128,26 @@ export const NonSquareDimensions: Story = {
       <Typography variant="subtitle2">
         Different <code>width</code> and <code>height</code> values
       </Typography>
-      <Stack direction="row" spacing={4} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         {[
           { w: 48, h: 24 },
           { w: 24, h: 48 },
           { w: 64, h: 32 },
           { w: 32, h: 64 },
         ].map(({ w, h }) => (
-          <Stack key={`${w}x${h}`} alignItems="center" spacing={0.5}>
+          <Stack
+            key={`${w}x${h}`}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <Box sx={{ border: '1px dashed', borderColor: 'divider' }}>
               <DynamicSvgIcon
                 url={ICONS.star}
@@ -154,13 +178,29 @@ export const StatesOverview: Story = {
       <Typography variant="subtitle2">
         All three states rendered at 48&times;48
       </Typography>
-      <Stack direction="row" spacing={4} alignItems="center">
-        <Stack alignItems="center" spacing={1}>
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Skeleton variant="circular" sx={{ width: 48, height: 48 }} />
           <Typography variant="caption">Loading (Skeleton)</Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={INVALID_URL}
             width={48}
@@ -170,7 +210,12 @@ export const StatesOverview: Story = {
           <Typography variant="caption">Error (Fallback)</Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={ICONS.home}
             width={48}
@@ -196,15 +241,32 @@ export const SkeletonVariants: Story = {
       <Typography variant="subtitle2">
         Skeleton shapes during loading
       </Typography>
-      <Stack direction="row" spacing={4} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         {(['circular', 'rectangular', 'rounded'] as const).map((variant) => (
-          <Stack key={variant} alignItems="center" spacing={0.5}>
+          <Stack
+            key={variant}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <Skeleton variant={variant} sx={{ width: 48, height: 48 }} />
             <Typography variant="caption">{variant}</Typography>
           </Stack>
         ))}
       </Stack>
-      <Typography variant="caption" color="text.secondary">
+      <Typography
+        variant="caption"
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         Set via the <code>skeletonVariant</code> prop
       </Typography>
     </Stack>
@@ -221,7 +283,13 @@ export const SkeletonAnimations: Story = {
   render: () => (
     <Stack spacing={2}>
       <Typography variant="subtitle2">Skeleton animation types</Typography>
-      <Stack direction="row" spacing={4} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         {(
           [
             ['pulse', 'pulse'],
@@ -229,7 +297,13 @@ export const SkeletonAnimations: Story = {
             [false, 'none'],
           ] as const
         ).map(([animation, label]) => (
-          <Stack key={String(label)} alignItems="center" spacing={0.5}>
+          <Stack
+            key={String(label)}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <Skeleton
               variant="circular"
               animation={animation}
@@ -239,7 +313,12 @@ export const SkeletonAnimations: Story = {
           </Stack>
         ))}
       </Stack>
-      <Typography variant="caption" color="text.secondary">
+      <Typography
+        variant="caption"
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         Set via the <code>skeletonAnimation</code> prop
       </Typography>
     </Stack>
@@ -259,8 +338,19 @@ export const FallbackTypes: Story = {
       <Typography variant="subtitle2">
         Various fallback types on a broken URL
       </Typography>
-      <Stack direction="row" spacing={4} alignItems="center">
-        <Stack alignItems="center" spacing={0.5}>
+      <Stack
+        direction="row"
+        spacing={4}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
+        <Stack
+          spacing={0.5}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={INVALID_URL}
             width={48}
@@ -270,7 +360,12 @@ export const FallbackTypes: Story = {
           <Typography variant="caption">MUI Icon</Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={0.5}>
+        <Stack
+          spacing={0.5}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={INVALID_URL}
             width={48}
@@ -280,13 +375,23 @@ export const FallbackTypes: Story = {
           <Typography variant="caption">Colored MUI Icon</Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={0.5}>
+        <Stack
+          spacing={0.5}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={INVALID_URL}
             width={48}
             height={48}
             fallback={
-              <Typography variant="h6" color="text.secondary">
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'text.secondary',
+                }}
+              >
                 ?
               </Typography>
             }
@@ -294,7 +399,12 @@ export const FallbackTypes: Story = {
           <Typography variant="caption">Text fallback</Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={0.5}>
+        <Stack
+          spacing={0.5}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={INVALID_URL}
             width={48}
@@ -324,8 +434,19 @@ export const ReplaceColors: Story = {
         <code>currentColor</code>
       </Typography>
 
-      <Stack direction="row" spacing={6} alignItems="flex-start">
-        <Stack alignItems="center" spacing={1}>
+      <Stack
+        direction="row"
+        spacing={6}
+        sx={{
+          alignItems: 'flex-start',
+        }}
+      >
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={ICONS.colorful}
             width={48}
@@ -335,7 +456,12 @@ export const ReplaceColors: Story = {
           <Typography variant="caption">Default (original colors)</Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={ICONS.colorful}
             width={48}
@@ -348,7 +474,12 @@ export const ReplaceColors: Story = {
           </Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={ICONS.colorful}
             width={48}
@@ -362,7 +493,12 @@ export const ReplaceColors: Story = {
           </Typography>
         </Stack>
 
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={ICONS.colorful}
             width={48}
@@ -377,7 +513,12 @@ export const ReplaceColors: Story = {
         </Stack>
       </Stack>
 
-      <Typography variant="caption" color="text.secondary">
+      <Typography
+        variant="caption"
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         <code>fill=&quot;none&quot;</code> and{' '}
         <code>stroke=&quot;none&quot;</code> are preserved — only actual color
         values are replaced.
@@ -400,8 +541,19 @@ function CallbackDemo() {
       <Typography variant="subtitle2">
         <code>onLoad</code> and <code>onError</code> callbacks
       </Typography>
-      <Stack direction="row" spacing={3} alignItems="center">
-        <Stack alignItems="center" spacing={0.5}>
+      <Stack
+        direction="row"
+        spacing={3}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
+        <Stack
+          spacing={0.5}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={ICONS.home}
             width={40}
@@ -412,7 +564,12 @@ function CallbackDemo() {
           />
           <Typography variant="caption">Valid URL</Typography>
         </Stack>
-        <Stack alignItems="center" spacing={0.5}>
+        <Stack
+          spacing={0.5}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <DynamicSvgIcon
             url={INVALID_URL}
             width={40}
@@ -429,7 +586,12 @@ function CallbackDemo() {
         sx={{ p: 1.5, maxHeight: 140, overflow: 'auto' }}
       >
         {log.length === 0 ? (
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             Callback log will appear here...
           </Typography>
         ) : (
@@ -437,8 +599,10 @@ function CallbackDemo() {
             <Typography
               key={i}
               variant="caption"
-              display="block"
-              fontFamily="monospace"
+              sx={{
+                display: 'block',
+                fontFamily: 'monospace',
+              }}
             >
               {entry}
             </Typography>

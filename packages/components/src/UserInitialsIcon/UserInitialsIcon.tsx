@@ -1,10 +1,17 @@
 import { Box, BoxProps, Typography } from '@mui/material';
 import { darken } from '@mui/material/styles';
 import randomColor from 'randomcolor';
+import { mergeSx } from '../slotProps';
 
 type Props = BoxProps & {
   name: string;
   id: string;
+  /** Icon width (px number or CSS length). @default 40 */
+  width?: number | string;
+  /** Icon height (px number or CSS length). @default 40 */
+  height?: number | string;
+  /** Corner radius (multiplier of theme.shape.borderRadius, or CSS length). @default 1.5 */
+  borderRadius?: number | string;
 };
 
 const DEFAULT_SIZE = 40;
@@ -29,22 +36,26 @@ export function UserInitialsIcon({
 
   return (
     <Box
-      minWidth={width}
-      width={width}
-      minHeight={height}
-      height={height}
-      borderRadius={borderRadius}
-      bgcolor={bgColor}
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      sx={{ ...sx }}
       {...props}
+      sx={mergeSx(
+        {
+          minWidth: width,
+          width: width,
+          minHeight: height,
+          height: height,
+          borderRadius: borderRadius,
+          bgcolor: bgColor,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        sx,
+      )}
     >
       <Typography
         variant="h3"
-        color={textColor}
         sx={{
+          color: textColor,
           userSelect: 'none',
           fontSize: size !== DEFAULT_SIZE ? `${fontSize}px` : undefined,
         }}

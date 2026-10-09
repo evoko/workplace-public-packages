@@ -309,61 +309,6 @@ A styled `Popover` with a 16px border radius, no background image, a subtle bord
 | `sx` | `SxProps` | — | MUI system styles passed to the `Popover` |
 | _...rest_ | `PopoverProps` | — | All other MUI `Popover` props (e.g. `anchorEl`, `onClose`) are forwarded |
 
-### `BiampBuildAppContent`
-
-A 2-column CSS grid container with `gap: 1.5` (12px) for laying out `BiampBuildAppContentItem` tiles. Used inside `BiampAppPopover` under a "Configure & Build" section heading. Extends MUI `BoxProps`.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | _(required)_ | Grid content — typically `BiampBuildAppContentItem` elements |
-| `sx` | `SxProps` | — | MUI system styles passed to the root `Box` |
-| _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
-
-### `BiampBuildAppContentItem`
-
-A card-style tile with a 54×54 image area, a bold name, a description, and an optional action button positioned in the top-right corner. Outlined with a subtle border and rounded corners. Extends MUI `StackProps`.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `image` | `React.ReactNode` | _(required)_ | Content rendered inside the 54×54 image area |
-| `name` | `string` | _(required)_ | Bold caption label |
-| `description` | `string` | _(required)_ | Secondary caption text below the name |
-| `button` | `React.ReactNode` | — | Optional action element (e.g. a `Button`) positioned absolutely in the top-right |
-| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
-| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
-
-### `BiampEndUserAppContent`
-
-A responsive container for `BiampEndUserAppContentItem` rows with `gap: 1.5` (12px). With a single child it renders as a vertical stack; with two or more children it switches to a 2-column CSS grid (`gridTemplateColumns: '1fr 1fr'`) — matching the layout of `BiampBuildAppContent`. Used inside `BiampAppPopover` under an "End user apps" section heading. Extends MUI `StackProps`.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | _(required)_ | List content — typically `BiampEndUserAppContentItem` elements. The layout auto-switches to a 2-column grid when more than one child is provided |
-| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
-| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
-
-### `BiampEndUserAppContentItem`
-
-A horizontal row with a 32×32 image, a bold name, a description, and a trailing external-link icon. Outlined with a subtle border and rounded corners. Supports optional `href` and `target` props — when `href` is provided, the item renders as an `<a>` tag with proper link semantics. Extends MUI `StackProps`.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `image` | `React.ReactNode` | _(required)_ | Content rendered inside the 32×32 image area |
-| `name` | `string` | _(required)_ | Bold caption label |
-| `description` | `string` | _(required)_ | Secondary caption text next to the name |
-| `href` | `string` | — | Optional URL; when provided, renders the item as an `<a>` tag |
-| `target` | `string` | — | Optional link target (e.g. `_blank` for new tab) |
-| `sx` | `SxProps` | — | MUI system styles passed to the root element |
-| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
-
 ### `BiampAppListContent`
 
 A flat-list container with a `1px` divider-colored border, `8px` border radius, and `overflow: hidden` so internal `<Divider />` lines extend cleanly edge-to-edge. Renders children separated by `<Divider />` automatically. Use with `BiampAppListItem`. Extends MUI `StackProps`.
@@ -467,7 +412,3 @@ function AppLauncher() {
 - `BiampAppPopover` — Styled popover for the app-launcher content.
 - `BiampAppListContent` — Bordered flat-list container with rounded corners and auto-dividers between items.
 - `BiampAppListItem` — Horizontal app row with 40×40 icon, name, and optional `[Open | ↗]` action group.
-- `BiampBuildAppContent` — _(legacy)_ 2-column grid container for "Configure & Build" app tiles.
-- `BiampBuildAppContentItem` — _(legacy)_ App tile with image, name, description, and optional action button.
-- `BiampEndUserAppContent` — _(legacy)_ Responsive container for end-user app items: vertical stack for one child, 2-column grid for multiple.
-- `BiampEndUserAppContentItem` — _(legacy)_ Row-style app item with image, name, description, and external link; supports `href`.

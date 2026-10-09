@@ -113,6 +113,12 @@ export const appBarHeight = 64;
 
 const drawerWidth = 300;
 
+// Marks the DatePicker's PickersTextField so the MuiPickersTextField overrides
+// apply to it alone. A data attribute survives a consumer's textField props,
+// where an sx would be replaced. data-* is a valid DOM prop but isn't in MUI
+// X's slot prop types, so it is spread in rather than written inline.
+const datePickerTextFieldScope = { 'data-biamp-picker': 'date' };
+
 export const biampTheme = (
   overrideOptions: Parameters<typeof createTheme>[0] = {},
 ) =>
@@ -525,22 +531,22 @@ export const biampTheme = (
             standard: ({ theme }) => ({
               color: theme.palette.text.primary,
               border: `16px solid ${theme.palette.success.main}`,
-            }),
-            standardError: ({ theme }) => ({
-              border: `16px solid ${theme.palette.error.main}`,
-              backgroundColor: theme.palette.background.error,
-            }),
-            standardInfo: ({ theme }) => ({
-              border: `16px solid ${theme.palette.info.main}`,
-              backgroundColor: theme.palette.background.info,
-            }),
-            standardSuccess: ({ theme }) => ({
-              border: `16px solid ${theme.palette.success.main}`,
-              backgroundColor: theme.palette.background.success,
-            }),
-            standardWarning: ({ theme }) => ({
-              border: `16px solid ${theme.palette.warning.main}`,
-              backgroundColor: theme.palette.background.warning,
+              '&.MuiAlert-colorError': {
+                border: `16px solid ${theme.palette.error.main}`,
+                backgroundColor: theme.palette.background.error,
+              },
+              '&.MuiAlert-colorInfo': {
+                border: `16px solid ${theme.palette.info.main}`,
+                backgroundColor: theme.palette.background.info,
+              },
+              '&.MuiAlert-colorSuccess': {
+                border: `16px solid ${theme.palette.success.main}`,
+                backgroundColor: theme.palette.background.success,
+              },
+              '&.MuiAlert-colorWarning': {
+                border: `16px solid ${theme.palette.warning.main}`,
+                backgroundColor: theme.palette.background.warning,
+              },
             }),
           },
         },
@@ -972,17 +978,21 @@ export const biampTheme = (
         },
         MuiDrawer: {
           styleOverrides: {
+            root: ({ theme }) => ({
+              '&.MuiDrawer-anchorLeft > .MuiDrawer-paper, &.MuiDrawer-anchorRight > .MuiDrawer-paper':
+                {
+                  height: `calc(100% - ${theme.spacing(3)})`,
+                },
+              '&.MuiDrawer-anchorTop > .MuiDrawer-paper, &.MuiDrawer-anchorBottom > .MuiDrawer-paper':
+                {
+                  width: `calc(100% - ${theme.spacing(3)})`,
+                },
+            }),
             paper: ({ theme }) => ({
               width: drawerWidth,
               backgroundImage: 'none',
               margin: theme.spacing(1.5),
               borderRadius: '8px',
-              '&.MuiDrawer-paperAnchorLeft, &.MuiDrawer-paperAnchorRight': {
-                height: `calc(100% - ${theme.spacing(3)})`,
-              },
-              '&.MuiDrawer-paperAnchorTop, &.MuiDrawer-paperAnchorBottom': {
-                width: `calc(100% - ${theme.spacing(3)})`,
-              },
             }),
           },
         },
@@ -1027,6 +1037,15 @@ export const biampTheme = (
                 },
               },
             }),
+          },
+        },
+        MuiListItemIcon: {
+          styleOverrides: {
+            // MUI 9 lowered the default from 56px to 36px. Keep the old width.
+            // MenuItem still sets 36px on its own icons.
+            root: {
+              minWidth: 56,
+            },
           },
         },
         MuiTableContainer: {
@@ -1355,15 +1374,11 @@ export const biampTheme = (
               '& .MuiTabs-indicator': {
                 backgroundColor: colors.blue.main,
               },
-              '& MuiButtonBase-root': {
-                height: 32,
-                minHeight: 32,
-              },
               '& .MuiTouchRipple-root': {
                 display: 'none',
               },
             },
-            flexContainer: {
+            list: {
               gap: 20,
             },
           },
@@ -1405,6 +1420,11 @@ export const biampTheme = (
               paddingRight: '12px',
               maxWidth: 'fit-content',
             }),
+            // MUI 9 only clears the block margins of an arrow tooltip, which
+            // leaves a 2px side margin MUI 7 used to clear as well.
+            tooltipArrow: {
+              marginInline: 0,
+            },
             arrow: ({ theme }) => ({
               color: theme.palette.grey[600],
             }),
@@ -1412,8 +1432,10 @@ export const biampTheme = (
         },
         MuiTextField: {
           defaultProps: {
-            InputLabelProps: {
-              shrink: true,
+            slotProps: {
+              inputLabel: {
+                shrink: true,
+              },
             },
           },
           styleOverrides: {
@@ -1500,7 +1522,7 @@ export const biampTheme = (
               '&:not(textarea)': {
                 height: '44px',
               },
-              '&.MuiInputBase-inputMultiline': {
+              '.MuiInputBase-multiline > &': {
                 margin: theme.spacing(1),
               },
               boxSizing: 'border-box',
@@ -1650,7 +1672,6 @@ export const biampTheme = (
         },
         MuiDatePicker: {
           defaultProps: {
-            enableAccessibleFieldDOMStructure: false,
             slots: {
               openPickerIcon: CalendarIcon,
             },
@@ -1667,20 +1688,13 @@ export const biampTheme = (
                 },
               },
               textField: {
-                sx: {
-                  paddingLeft: '0px',
-                  '& .MuiInputLabel-root': {
-                    fontWeight: '600',
-                  },
-                  '& .MuiFormHelperText-root.Mui-error': {
-                    fontWeight: '400',
-                  },
-                  '& .MuiInputBase-root': {
-                    paddingLeft: '12px',
-                    paddingRight: '8px',
-                    '& .MuiInputBase-input': {
-                      padding: '0px',
-                    },
+                ...datePickerTextFieldScope,
+                slotProps: {
+                  // PickersInputBase hides the empty-field format placeholder
+                  // unless the label is shrunk, and it only reads `shrink`
+                  // from here (not from the MuiInputLabel default).
+                  inputLabel: {
+                    shrink: true,
                   },
                 },
               },
@@ -1730,9 +1744,6 @@ export const biampTheme = (
                     paddingRight: '8px',
                   },
                 },
-              },
-              digitalClockSectionItem: {
-                sx: { px: '0px', pl: '12px' },
               },
               toolbar: {
                 hidden: true,
@@ -1849,31 +1860,78 @@ export const biampTheme = (
         },
         MuiPickersTextField: {
           styleOverrides: {
-            root: {
-              '& .MuiInputBase-root': {
-                height: '44px',
-                borderRadius: '6px',
-              },
-              '& .MuiOutlinedInput-root': {
-                height: '44px',
-                borderRadius: '6px',
-              },
-              '& .MuiOutlinedInput-input': {
-                height: '44px',
-                padding: '10px 12px',
-                boxSizing: 'border-box',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                height: '44px',
-                top: 0,
-                borderRadius: '6px',
-                '& legend': {
-                  display: 'none',
-                  width: 0,
-                  height: 0,
+            // MUI X 9 always renders PickersTextField, so the MuiTextField /
+            // MuiOutlinedInput / MuiInputBase overrides the DatePicker used to
+            // get no longer apply. These recreate that look for DatePicker
+            // only (see datePickerTextFieldScope). :where() keeps the
+            // attribute from adding specificity.
+            root: ({ theme }) => ({
+              '&:where([data-biamp-picker="date"])': {
+                paddingLeft: '0px',
+                '& .MuiInputLabel-root': {
+                  fontWeight: '600',
+                },
+                '& .MuiFormHelperText-root.Mui-error': {
+                  fontWeight: '400',
+                },
+                '& .MuiPickersOutlinedInput-root': {
+                  paddingLeft: '12px',
+                  paddingRight: '8px',
+                  fontWeight: theme.typography.body2.fontWeight,
+                  letterSpacing: theme.typography.body2.letterSpacing,
+                  '&.Mui-disabled': {
+                    backgroundColor:
+                      theme.palette.mode === 'dark'
+                        ? colors.grey[800]
+                        : colors.grey[100],
+                  },
+                  // The old MuiOutlinedInput notchedOutline shadow.
+                  '& .MuiPickersOutlinedInput-notchedOutline': {
+                    boxShadow: `0px 1px 1px 0px ${alpha(colors.black, 0.05)}`,
+                  },
+                  '&:hover .MuiPickersOutlinedInput-notchedOutline': {
+                    borderColor: theme.palette.dividers.secondary,
+                  },
+                  // Doubled so focus wins over hover and the error colour by
+                  // specificity, as it did in the old look.
+                  '&.Mui-focused.Mui-focused .MuiPickersOutlinedInput-notchedOutline':
+                    {
+                      borderColor: theme.palette.text.primary,
+                    },
+                  '&.Mui-focused .MuiInputAdornment-root svg': {
+                    color: theme.palette.text.primary,
+                  },
+                  '& .MuiPickersSectionList-root, & .MuiPickersSectionList-section, & .MuiPickersSectionList-sectionContent':
+                    {
+                      lineHeight: theme.typography.body2.lineHeight,
+                    },
+                  // The intrinsic width the old native <input> had at the
+                  // 14px MuiPickersInputBase font (155px; MUI X defaults to
+                  // 182px). It is a flex-basis; fullWidth or an explicit
+                  // width still stretches it.
+                  '& .MuiPickersInputBase-sectionsContainer': {
+                    width: 'calc(155em / 14)',
+                  },
+                  // The old native <input> greyed its "DD/MM/YYYY"
+                  // placeholder whenever the input itself lacked focus, as
+                  // it does while the calendar is open. MUI X 9 only fades
+                  // the empty format while the whole field is blurred.
+                  // An empty section has no aria-valuenow.
+                  '& .MuiPickersInputBase-sectionsContainer:not(:focus-within):not(:has([aria-valuenow]))':
+                    {
+                      // MUI X's own placeholder opacity expression.
+                      opacity: theme.vars
+                        ? theme.vars.opacity.inputPlaceholder
+                        : theme.palette.mode === 'light'
+                          ? 0.42
+                          : 0.5,
+                    },
+                },
+                '& .MuiInputAdornment-positionEnd': {
+                  marginRight: '12px',
                 },
               },
-            },
+            }),
           },
         },
         MuiPickersInputBase: {
@@ -1881,23 +1939,7 @@ export const biampTheme = (
             root: {
               height: '44px !important',
               borderRadius: '6px',
-              backgroundColor: 'background.paper',
               fontSize: '14px',
-              '& .MuiInputBase-input': {
-                height: '44px',
-                padding: '10px 12px',
-                boxSizing: 'border-box',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                height: '44px',
-                top: 0,
-                borderRadius: '6px',
-                '& legend': {
-                  display: 'none',
-                  width: 0,
-                  height: 0,
-                },
-              },
             },
           },
         },
@@ -1908,27 +1950,7 @@ export const biampTheme = (
               borderRadius: '6px',
               padding: '0px 12px',
               backgroundColor: theme.palette.background.paper,
-              '& .MuiOutlinedInput-input': {
-                height: '44px',
-                padding: '10px 12px',
-                boxSizing: 'border-box',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                height: '44px',
-                top: 0,
-                borderRadius: '6px',
-                '& legend': {
-                  display: 'none',
-                  width: 0,
-                  height: 0,
-                },
-              },
             }),
-            input: {
-              height: '44px',
-              padding: '10px 12px',
-              boxSizing: 'border-box',
-            },
             notchedOutline: {
               height: '44px',
               top: 0,
@@ -1938,13 +1960,6 @@ export const biampTheme = (
                 width: 0,
                 height: 0,
               },
-            },
-          },
-        },
-        MuiPickersSectionList: {
-          styleOverrides: {
-            root: {
-              opacity: 1,
             },
           },
         },
@@ -2047,25 +2062,26 @@ export const biampTheme = (
             },
           },
         },
-        MuiPickersDay: {
+        MuiPickerDay: {
           defaultProps: {
             disableRipple: true,
           },
           styleOverrides: {
             root: ({ theme }) => ({
+              '--PickerDay-size': '40px',
+              '--PickerDay-horizontalMargin': '0px',
               fontSize: theme.typography.body2.fontSize,
               fontWeight: theme.typography.body2.fontWeight,
               letterSpacing: theme.typography.body2.letterSpacing,
               lineHeight: theme.typography.body2.lineHeight,
               color: theme.palette.text.primary,
-              minWidth: '40px',
-              minHeight: '40px',
-              marginLeft: '0px',
-              marginRight: '0px',
               borderRadius: '4px',
               '&.Mui-selected': {
                 backgroundColor: theme.palette.text.primary,
                 color: theme.palette.background.paper,
+                // MUI X 8's selected weight outranked the body2 weight above;
+                // in MUI X 9 it doesn't, so it is set here.
+                fontWeight: theme.typography.fontWeightMedium,
                 '&:hover': {
                   backgroundColor: theme.palette.text.primary,
                 },
@@ -2073,11 +2089,19 @@ export const biampTheme = (
                   backgroundColor: theme.palette.text.primary,
                 },
               },
-              '&.MuiPickersDay-today': {
-                border: `0px solid ${theme.palette.text.primary}`,
-                '&:not(.Mui-selected)': {
-                  backgroundColor: 'transparent',
-                },
+              // MUI X 9 marks today (never set on a selected day) with a 1px
+              // text.secondary outline. The look we had (and keep) is a 0.6px
+              // text.primary border.
+              '&.MuiPickerDay-today': {
+                outline: 'none',
+                border: `0.6px solid ${theme.palette.text.primary}`,
+                backgroundColor: 'transparent',
+              },
+              // The old look also drew that border on a selected today. It
+              // matches the background, so it only shows in the rounded
+              // corners' antialiasing.
+              '&.Mui-selected[aria-current="date"]': {
+                border: `0.6px solid ${theme.palette.text.primary}`,
               },
             }),
           },

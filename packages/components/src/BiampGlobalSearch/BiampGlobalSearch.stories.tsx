@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Typography } from '@mui/material';
 import {
@@ -312,18 +312,15 @@ function LoadingStateDemo() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<BiampGlobalSearchOption[]>([]);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+    setResults([]);
+    setLoading(value.length > 0);
+  };
 
   useEffect(() => {
-    clearTimeout(timerRef.current);
-    if (!inputValue) {
-      setLoading(false);
-      setResults([]);
-      return;
-    }
-    setLoading(true);
-    setResults([]);
-    timerRef.current = setTimeout(() => {
+    if (!inputValue) return;
+    const timer = setTimeout(() => {
       setResults(
         sampleOptions.filter(
           (o) =>
@@ -334,7 +331,7 @@ function LoadingStateDemo() {
       );
       setLoading(false);
     }, 1000);
-    return () => clearTimeout(timerRef.current);
+    return () => clearTimeout(timer);
   }, [inputValue]);
 
   return (
@@ -344,7 +341,7 @@ function LoadingStateDemo() {
         <BiampGlobalSearch
           options={results}
           inputValue={inputValue}
-          onInputChange={(_e, value) => setInputValue(value)}
+          onInputChange={(_e, value) => handleInputChange(value)}
           loading={loading}
           open={open && inputValue.length > 0}
           onOpen={() => setOpen(true)}

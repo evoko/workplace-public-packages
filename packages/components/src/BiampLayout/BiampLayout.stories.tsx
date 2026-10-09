@@ -118,7 +118,12 @@ function WithHeaderSidebarAndWrapperDemo() {
       }
       sidebar={
         <BiampSidebar>
-          <Stack direction="column" gap={1}>
+          <Stack
+            direction="column"
+            sx={{
+              gap: 1,
+            }}
+          >
             <BiampSidebarComponent
               sx={{
                 my: '8px',
@@ -402,7 +407,11 @@ function ResponsiveDemo() {
       }
       sidebar={
         <BiampSidebar>
-          <Stack gap={{ xs: 2, md: 0 }}>
+          <Stack
+            sx={{
+              gap: { xs: 2, md: 0 },
+            }}
+          >
             <BiampHeaderSearch
               options={sampleSearchOptions}
               sx={{
@@ -453,12 +462,22 @@ function ResponsiveDemo() {
         <Typography variant="h4" gutterBottom>
           Responsive layout
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography
+          variant="body1"
+          sx={{
+            marginBottom: '16px',
+          }}
+        >
           Resize the viewport below the <code>md</code> breakpoint (900px) to
           see the sidebar collapse into a drawer. A menu toggle appears in the
           header and the drawer auto-closes when you pick an item.
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           Tip: in the Storybook toolbar, switch the viewport to a mobile preset
           (or just narrow the browser window) to trigger drawer mode.
         </Typography>
@@ -571,7 +590,11 @@ function HeaderOnlyResponsiveDemo() {
       }
       sidebar={
         <BiampSidebar expandable={false}>
-          <Stack gap={2}>
+          <Stack
+            sx={{
+              gap: 2,
+            }}
+          >
             <BiampHeaderSearch
               options={sampleSearchOptions}
               sx={{
@@ -609,12 +632,22 @@ function HeaderOnlyResponsiveDemo() {
         <Typography variant="h4" gutterBottom>
           Header-only on desktop
         </Typography>
-        <Typography variant="body1" paragraph>
+        <Typography
+          variant="body1"
+          sx={{
+            marginBottom: '16px',
+          }}
+        >
           Above the <code>md</code> breakpoint there is no sidebar — search,
           organizations, and apps all live in the header. Below the breakpoint,
           the menu button reveals a drawer containing the same controls.
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           Set with <code>responsive</code> + <code>mobileSidebarOnly</code> on{' '}
           <code>BiampLayout</code>. The sidebar is never rendered inline.
         </Typography>

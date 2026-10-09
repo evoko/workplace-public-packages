@@ -147,64 +147,49 @@ PNG images for the app-launcher dialog tiles. Each export is a `string` that res
 
 ```tsx
 import { WorkplaceApp, DesignerApp, BookingApp } from '@bwp-web/assets';
-import {
-  BiampBuildAppContent,
-  BiampBuildAppContentItem,
-  BiampEndUserAppContent,
-  BiampEndUserAppContentItem,
-} from '@bwp-web/components';
-import { Box, Button } from '@mui/material';
+import { BiampAppListContent, BiampAppListItem } from '@bwp-web/components';
+import { Box } from '@mui/material';
 
 function AppLauncher() {
   return (
-    <>
-      <BiampBuildAppContent>
-        <BiampBuildAppContentItem
-          name="Workplace"
-          description="Monitor and manage your entire AV infrastructure."
-          image={
-            <Box
-              component="img"
-              src={WorkplaceApp}
-              alt="Workplace"
-              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          }
-        />
-        <BiampBuildAppContentItem
-          name="Designer"
-          description="Design AV systems, specify equipment."
-          image={
-            <Box
-              component="img"
-              src={DesignerApp}
-              alt="Designer"
-              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          }
-          button={
-            <Button variant="outlined" size="small">
-              Open
-            </Button>
-          }
-        />
-      </BiampBuildAppContent>
-      <BiampEndUserAppContent>
-        <BiampEndUserAppContentItem
-          name="Booking"
-          description="Find & Book rooms"
-          href="#"
-          image={
-            <Box
-              component="img"
-              src={BookingApp}
-              alt="Booking"
-              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          }
-        />
-      </BiampEndUserAppContent>
-    </>
+    <BiampAppListContent>
+      <BiampAppListItem
+        name="Workplace"
+        image={
+          <Box
+            component="img"
+            src={WorkplaceApp}
+            alt="Workplace"
+            sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        }
+      />
+      <BiampAppListItem
+        name="Designer"
+        onOpen={() => (window.location.href = '/designer')}
+        href="https://designer.example.com"
+        image={
+          <Box
+            component="img"
+            src={DesignerApp}
+            alt="Designer"
+            sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        }
+      />
+      <BiampAppListItem
+        name="Booking"
+        href="https://booking.example.com"
+        image={
+          <Box
+            component="img"
+            src={BookingApp}
+            alt="Booking"
+            sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        }
+      />
+    </BiampAppListContent>
   );
 }
 ```

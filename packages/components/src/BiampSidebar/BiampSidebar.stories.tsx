@@ -379,16 +379,37 @@ export const IconStates: Story = {
   render: () => (
     <Stack spacing={3}>
       <Typography variant="h3">BiampSidebarIcon States</Typography>
-      <Stack direction="row" spacing={3} alignItems="flex-start">
-        <Stack alignItems="center" spacing={1}>
+      <Stack
+        direction="row"
+        spacing={3}
+        sx={{
+          alignItems: 'flex-start',
+        }}
+      >
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampSidebarIcon icon={<HomeOutlinedIcon />} />
           <Typography variant="caption">Default</Typography>
         </Stack>
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampSidebarIcon selected icon={<HomeOutlinedIcon />} />
           <Typography variant="caption">Selected</Typography>
         </Stack>
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampSidebarIcon
             selected
             icon={<HomeOutlinedIcon />}
@@ -398,7 +419,12 @@ export const IconStates: Story = {
             Selected (with selectedIcon)
           </Typography>
         </Stack>
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampSidebarIcon icon={<HomeOutlinedIcon />} disabled />
           <Typography variant="caption">Disabled</Typography>
         </Stack>

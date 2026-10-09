@@ -1,4 +1,4 @@
-import { useEffect, useRef, type RefObject } from 'react';
+import { useEffect, useLayoutEffect, useRef, type RefObject } from 'react';
 import type {
   Canvas as FabricCanvas,
   CanvasEvents,
@@ -57,8 +57,7 @@ export function useCanvasClick(
     | RefObject<FabricCanvas | null>
     | ((target: FabricObject | undefined) => void),
   onClickOrOptions?:
-    | ((target: FabricObject | undefined) => void)
-    | UseCanvasClickOptions,
+    ((target: FabricObject | undefined) => void) | UseCanvasClickOptions,
   maybeOptions?: UseCanvasClickOptions,
 ): void {
   // Distinguish overloads: if the second arg is a function, the first is canvasRef
@@ -80,10 +79,11 @@ export function useCanvasClick(
     : maybeOptions;
 
   const onClickRef = useRef(onClick);
-  onClickRef.current = onClick;
-
   const optionsRef = useRef(options);
-  optionsRef.current = options;
+  useLayoutEffect(() => {
+    onClickRef.current = onClick;
+    optionsRef.current = options;
+  });
 
   useEffect(() => {
     const canvas = resolvedCanvasRef?.current;

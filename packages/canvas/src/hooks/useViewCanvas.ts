@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   enablePanAndZoom,
@@ -92,7 +99,9 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
   const canvasRef = useRef<FabricCanvas | null>(null);
   const viewportRef = useRef<ViewportController | null>(null);
   const optionsRef = useRef(options);
-  optionsRef.current = options;
+  useLayoutEffect(() => {
+    optionsRef.current = options;
+  });
 
   const [zoom, setZoom] = useState(1);
   const [objects, setObjects] = useState<FabricObject[]>([]);

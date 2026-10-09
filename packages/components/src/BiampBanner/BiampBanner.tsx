@@ -13,6 +13,7 @@ import {
   SuccessStatusIcon,
   WarningStatusIcon,
 } from '@bwp-web/assets';
+import { mergeSx } from '../slotProps';
 
 export type BiampBannerProps = {
   show: boolean;
@@ -29,15 +30,15 @@ export function BiampBanner({ show, children, severity }: BiampBannerProps) {
   return (
     <Collapse in={show} unmountOnExit component="aside">
       <Box
-        bgcolor={({ palette }) => palette.background[severity]}
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="space-between"
-        gap={1}
-        px={{ xs: 2, sm: 2.5 }}
-        minHeight={48}
         sx={{
+          bgcolor: ({ palette }) => palette.background[severity],
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 1,
+          px: { xs: 2, sm: 2.5 },
+          minHeight: 48,
           borderBottom: ({ palette }) =>
             `0.6px solid ${palette[severity].main}`,
         }}
@@ -74,7 +75,16 @@ export function BiampBannerIcon({ severity, children }: BiampBannerIconProps) {
  */
 export function BiampBannerContent({ children, ...props }: TypographyProps) {
   return (
-    <Typography textAlign="center" variant="h3" {...props}>
+    <Typography
+      variant="h3"
+      {...props}
+      sx={mergeSx(
+        {
+          textAlign: 'center',
+        },
+        props.sx,
+      )}
+    >
       {children}
     </Typography>
   );
@@ -86,7 +96,17 @@ export function BiampBannerContent({ children, ...props }: TypographyProps) {
  */
 export function BiampBannerActions({ children, ...props }: BoxProps) {
   return (
-    <Box display="flex" gap={1} alignItems="center" {...props}>
+    <Box
+      {...props}
+      sx={mergeSx(
+        {
+          display: 'flex',
+          gap: 1,
+          alignItems: 'center',
+        },
+        props.sx,
+      )}
+    >
       {children}
     </Box>
   );

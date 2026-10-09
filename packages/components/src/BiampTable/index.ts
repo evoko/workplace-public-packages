@@ -67,6 +67,17 @@ export {
 } from './BiampTableToolbarSearch';
 export { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 export {
+  biampTableFeatures,
+  createBiampColumnHelper,
+  type BiampTableFeatures,
+  type BiampTableInstance,
+  type BiampRow,
+  type BiampCell,
+  type BiampTableHeader,
+  type BiampColumnDef,
+} from './biampTableFeatures';
+export { useBiampTable, type UseBiampTableOptions } from './useBiampTable';
+export {
   useBiampServerSideTable,
   type UseBiampServerSideTableOptions,
 } from './useBiampServerSideTable';

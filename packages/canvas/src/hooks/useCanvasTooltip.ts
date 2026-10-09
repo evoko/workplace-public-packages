@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type RefObject } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from 'react';
 import type {
   Canvas as FabricCanvas,
   CanvasEvents,
@@ -79,8 +85,7 @@ export function useCanvasTooltip<T>(
 ): CanvasTooltipState<T>;
 export function useCanvasTooltip<T>(
   canvasRefOrOptions:
-    | RefObject<FabricCanvas | null>
-    | UseCanvasTooltipOptions<T>,
+    RefObject<FabricCanvas | null> | UseCanvasTooltipOptions<T>,
   maybeOptions?: UseCanvasTooltipOptions<T>,
 ): CanvasTooltipState<T> {
   const isContextOverload = maybeOptions === undefined;
@@ -106,7 +111,9 @@ export function useCanvasTooltip<T>(
   const tooltipElRef = useRef<HTMLDivElement | null>(null);
   const hoveredObjectRef = useRef<FabricObject | null>(null);
   const optionsRef = useRef(options);
-  optionsRef.current = options;
+  useLayoutEffect(() => {
+    optionsRef.current = options;
+  });
 
   useEffect(() => {
     const canvas = resolvedCanvasRef?.current;

@@ -8,10 +8,6 @@ export {
   BiampHeaderMenuButton,
   BiampHeaderProfile,
   BiampAppPopover,
-  BiampBuildAppContent,
-  BiampBuildAppContentItem,
-  BiampEndUserAppContent,
-  BiampEndUserAppContentItem,
   BiampAppListContent,
   BiampAppListItem,
 } from './BiampHeader';

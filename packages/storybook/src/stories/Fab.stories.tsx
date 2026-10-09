@@ -36,7 +36,13 @@ export const AllVariants: Story = {
     <Stack spacing={4}>
       <Typography variant="h3">FAB Variants</Typography>
 
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Fab color="primary" aria-label="add">
           <AddIcon />
         </Fab>
@@ -49,7 +55,13 @@ export const AllVariants: Story = {
       </Stack>
 
       <Typography variant="h3">Sizes</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Fab color="primary" size="small" aria-label="small">
           <AddIcon />
         </Fab>
@@ -62,7 +74,13 @@ export const AllVariants: Story = {
       </Stack>
 
       <Typography variant="h3">Extended</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Fab color="primary" variant="extended">
           <NavigationIcon sx={{ mr: 1 }} />
           Navigate

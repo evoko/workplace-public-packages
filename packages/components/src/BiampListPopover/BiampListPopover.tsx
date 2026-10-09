@@ -10,6 +10,7 @@ import {
   type SxProps,
   type Theme,
 } from '@mui/material';
+import { mergeSx } from '../slotProps';
 
 export type BiampListPopoverProps = PopoverProps & {
   children: React.ReactNode;
@@ -68,13 +69,7 @@ export function BiampListPopoverItem({
   sx,
   ...props
 }: BiampListPopoverItemProps) {
-  return (
-    <ListItem
-      dense
-      sx={[listItemSx, ...(Array.isArray(sx) ? sx : [sx])]}
-      {...props}
-    />
-  );
+  return <ListItem dense sx={mergeSx(listItemSx, sx)} {...props} />;
 }
 
 export type BiampListPopoverScrollAreaProps = BoxProps & {
@@ -90,7 +85,10 @@ export function BiampListPopoverScrollArea({
 }: BiampListPopoverScrollAreaProps) {
   return (
     <Box
-      sx={{ maxHeight, overflow: 'auto', overscrollBehavior: 'none', ...sx }}
+      sx={mergeSx(
+        { maxHeight, overflow: 'auto', overscrollBehavior: 'none' },
+        sx,
+      )}
       {...props}
     />
   );
