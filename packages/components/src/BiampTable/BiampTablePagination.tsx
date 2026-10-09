@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { mergeSx } from '../slotProps';
 import { TablePagination, type TablePaginationProps } from '@mui/material';
 import type { Table } from '@tanstack/react-table';
 
@@ -77,17 +78,19 @@ export function BiampTablePagination<TData>({
       rowsPerPageOptions={rowsPerPageOptions ?? []}
       showFirstButton
       showLastButton
-      sx={{
-        display: 'flex',
-        justifyContent: positionMap[position],
-        height: 40,
-        minHeight: 40,
-        '& .MuiToolbar-root': {
+      sx={mergeSx(
+        {
+          display: 'flex',
+          justifyContent: positionMap[position],
+          height: 40,
           minHeight: 40,
-          px: 0,
+          '& .MuiToolbar-root': {
+            minHeight: 40,
+            px: 0,
+          },
         },
-        ...sx,
-      }}
+        sx,
+      )}
       {...paginationProps}
     />
   );

@@ -130,7 +130,12 @@ export function useViewCanvasContext(): ViewCanvasContextValue {
   }
 
   return useMemo(
-    () => ({ canvasRef, ...viewport, ...state }) as ViewCanvasContextValue,
+    () =>
+      ({
+        canvasRef,
+        ...viewport,
+        ...state,
+      }) as ViewCanvasContextValue,
     [canvasRef, viewport, state],
   );
 }

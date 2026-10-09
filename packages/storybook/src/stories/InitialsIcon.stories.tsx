@@ -42,9 +42,21 @@ export const UserGrid: Story = {
       <Typography variant="subtitle2">
         Each user gets a unique color derived from their ID
       </Typography>
-      <Stack direction="row" spacing={2} flexWrap="wrap">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          flexWrap: 'wrap',
+        }}
+      >
         {SAMPLE_USERS.map((user) => (
-          <Stack key={user.id} alignItems="center" spacing={0.5}>
+          <Stack
+            key={user.id}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <UserInitialsIcon name={user.name} id={user.id} />
             <Typography variant="caption">{user.name}</Typography>
           </Stack>
@@ -60,9 +72,21 @@ export const Sizes: Story = {
       <Typography variant="subtitle2">
         Font size scales proportionally with the icon
       </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         {[24, 32, 40, 56, 72, 96].map((size) => (
-          <Stack key={size} alignItems="center" spacing={0.5}>
+          <Stack
+            key={size}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <UserInitialsIcon
               name="Jane Doe"
               id="user-sizes"
@@ -81,14 +105,26 @@ export const EdgeCases: Story = {
   render: () => (
     <Stack spacing={2}>
       <Typography variant="subtitle2">Name edge cases</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         {[
           { name: 'Single', label: 'One word' },
           { name: 'Three Word Name', label: 'Three words (uses first two)' },
           { name: '', label: 'Empty string' },
           { name: '  Padded  Name  ', label: 'Extra whitespace' },
         ].map(({ name, label }, i) => (
-          <Stack key={i} alignItems="center" spacing={0.5}>
+          <Stack
+            key={i}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <UserInitialsIcon name={name} id={`edge-${i}`} />
             <Typography
               variant="caption"
@@ -111,7 +147,13 @@ export const ConsistentColors: Story = {
       </Typography>
       <Stack direction="row" spacing={2}>
         {['Alice', 'Bob', 'Charlie'].map((name) => (
-          <Stack key={name} alignItems="center" spacing={0.5}>
+          <Stack
+            key={name}
+            spacing={0.5}
+            sx={{
+              alignItems: 'center',
+            }}
+          >
             <UserInitialsIcon name={name} id="same-id" />
             <Typography variant="caption">{name}</Typography>
           </Stack>

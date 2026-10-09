@@ -12,7 +12,7 @@ import {
   StackProps,
   Typography,
 } from '@mui/material';
-import { Children, JSX, ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 import { BiampRedLogo, ColumnsIcon, ExternalLinkIcon } from '@bwp-web/assets';
 import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
 import {
@@ -20,6 +20,7 @@ import {
   type BiampGlobalSearchOption,
   type BiampGlobalSearchProps,
 } from '../BiampGlobalSearch/BiampGlobalSearch';
+import { mergeSx } from '../slotProps';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -29,10 +30,16 @@ export function BiampHeader({ children, sx, ...props }: BiampHeaderProps) {
   return (
     <Stack
       direction="row"
-      alignItems="center"
-      gap={{ xs: 0.5, md: 3 }}
-      sx={{ px: 2.5, py: 1.5, ...sx }}
       {...props}
+      sx={mergeSx(
+        {
+          alignItems: 'center',
+          gap: { xs: 0.5, md: 3 },
+          px: 2.5,
+          py: 1.5,
+        },
+        sx,
+      )}
     >
       {children}
     </Stack>
@@ -54,12 +61,7 @@ export function BiampHeaderTitle({
 }: BiampHeaderTitleProps) {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        ...sx,
-      }}
+      sx={mergeSx({ display: 'flex', alignItems: 'center', gap: '12px' }, sx)}
       {...props}
     >
       {icon ? (
@@ -82,10 +84,20 @@ export function BiampHeaderTitle({
           sx={{ width: 24, height: 24 }}
         />
       )}
-      <Stack direction="row" gap={0.5}>
+      <Stack
+        direction="row"
+        sx={{
+          gap: 0.5,
+        }}
+      >
         {title && <Typography variant="h4">{title}</Typography>}
         {subtitle && (
-          <Typography variant="h4" color="text.secondary">
+          <Typography
+            variant="h4"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             {subtitle}
           </Typography>
         )}
@@ -118,13 +130,15 @@ export function BiampHeaderActions({
 }: BiampHeaderActionsProps) {
   return (
     <Box
-      sx={{
-        ml: 'auto',
-        gap: { xs: 1, md: 2 },
-        display: 'flex',
-        alignItems: 'center',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          ml: 'auto',
+          gap: { xs: 1, md: 2 },
+          display: 'flex',
+          alignItems: 'center',
+        },
+        sx,
+      )}
       {...props}
     >
       {children}
@@ -143,12 +157,10 @@ export function BiampHeaderButtonList({
 }: BiampHeaderButtonListProps) {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: { xs: 0, md: 0.5 },
-        ...sx,
-      }}
+      sx={mergeSx(
+        { display: 'flex', alignItems: 'center', gap: { xs: 0, md: 0.5 } },
+        sx,
+      )}
       {...props}
     >
       {children}
@@ -215,16 +227,18 @@ export function BiampHeaderButton({
       selected={selected}
       disableGutters
       disableRipple
-      sx={{
-        minWidth: '40px',
-        maxWidth: '40px',
-        minHeight: '40px',
-        maxHeight: '40px',
-        borderRadius: '4px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          minWidth: '40px',
+          maxWidth: '40px',
+          minHeight: '40px',
+          maxHeight: '40px',
+          borderRadius: '4px',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        sx,
+      )}
       {...props}
     >
       {selected ? displayedSelectedIcon : icon}
@@ -249,7 +263,7 @@ export function BiampAppPopover({
       open={open}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       transformOrigin={{ vertical: -4, horizontal: APP_POPOVER_MAX_WIDTH }}
-      sx={{ ...sx }}
+      sx={sx}
       slotProps={{
         paper: {
           sx: {
@@ -276,161 +290,6 @@ export function BiampAppPopover({
   );
 }
 
-type BiampBuildAppContentProps = BoxProps & {
-  children: React.ReactNode;
-};
-
-/** @deprecated Use `BiampAppListContent` + `BiampAppListItem` instead. */
-export function BiampBuildAppContent({
-  children,
-  sx,
-  ...props
-}: BiampBuildAppContentProps) {
-  return (
-    <Box
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 1.5,
-        ...sx,
-      }}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
-}
-
-type BiampBuildAppContentItemProps = StackProps & {
-  image: ReactNode;
-  name: string;
-  description: string;
-  button?: ReactNode;
-};
-
-/** @deprecated Use `BiampAppListItem` instead. */
-export function BiampBuildAppContentItem({
-  image,
-  name,
-  description,
-  button,
-  sx,
-  ...props
-}: BiampBuildAppContentItemProps) {
-  return (
-    <Stack
-      direction="column"
-      position="relative"
-      sx={{
-        p: 1.5,
-        borderRadius: 1.5,
-        outlineWidth: '1px',
-        outlineStyle: 'solid',
-        outlineColor: ({ palette }) => palette.dividers,
-        ...sx,
-      }}
-      {...props}
-    >
-      <Box sx={{ width: 54, height: 54 }} mb={0.5}>
-        {image}
-      </Box>
-      <Typography variant="caption" fontWeight={600} mb={0.5}>
-        {name}
-      </Typography>
-      <Typography variant="caption" color="text.secondary">
-        {description}
-      </Typography>
-      {button && (
-        <Box position="absolute" top="12px" right="12px">
-          {button}
-        </Box>
-      )}
-    </Stack>
-  );
-}
-
-type BiampEndUserAppContentProps = StackProps & {
-  children: React.ReactNode;
-};
-
-/** @deprecated Use `BiampAppListContent` + `BiampAppListItem` instead. */
-export function BiampEndUserAppContent({
-  children,
-  sx,
-  ...props
-}: BiampEndUserAppContentProps) {
-  const isGrid = Children.count(children) > 1;
-  return (
-    <Stack
-      direction="column"
-      sx={{
-        gap: 1.5,
-        ...(isGrid && {
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-        }),
-        ...sx,
-      }}
-      {...props}
-    >
-      {children}
-    </Stack>
-  );
-}
-
-type BiampEndUserAppContentItemProps = StackProps & {
-  image: ReactNode;
-  name: string;
-  description: string;
-  href?: string;
-  target?: string;
-};
-
-/** @deprecated Use `BiampAppListItem` instead. */
-export function BiampEndUserAppContentItem({
-  image,
-  name,
-  description,
-  href,
-  target,
-  sx,
-  ...props
-}: BiampEndUserAppContentItemProps) {
-  return (
-    <Stack
-      component={href ? 'a' : 'div'}
-      href={href}
-      target={target}
-      direction="row"
-      alignItems="center"
-      sx={{
-        gap: 1.5,
-        p: 1.5,
-        borderRadius: 1.5,
-        outlineWidth: '1px',
-        outlineStyle: 'solid',
-        outlineColor: ({ palette }) => palette.divider,
-        textDecoration: 'none',
-        color: 'inherit',
-        cursor: href ? 'pointer' : undefined,
-        ...sx,
-      }}
-      {...props}
-    >
-      <Box sx={{ width: 32, height: 32 }}>{image}</Box>
-      <Stack direction="column">
-        <Typography variant="caption" fontWeight={600}>
-          {name}
-        </Typography>
-        <Typography variant="caption" color="text.secondary">
-          {description}
-        </Typography>
-      </Stack>
-      <ExternalLinkIcon sx={{ width: 16, height: 16, ml: 'auto' }} />
-    </Stack>
-  );
-}
-
 type BiampAppListContentProps = Omit<StackProps, 'direction'> & {
   children: React.ReactNode;
 };
@@ -448,12 +307,14 @@ export function BiampAppListContent({
           sx={{ borderColor: ({ palette }) => palette.dividers.secondary }}
         />
       }
-      sx={{
-        borderRadius: 2,
-        border: ({ palette }) => `1px solid ${palette.dividers.secondary}`,
-        overflow: 'hidden',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          borderRadius: 2,
+          border: ({ palette }) => `1px solid ${palette.dividers.secondary}`,
+          overflow: 'hidden',
+        },
+        sx,
+      )}
       {...props}
     >
       {children}
@@ -480,12 +341,25 @@ export function BiampAppListItem({
   return (
     <Stack
       direction="row"
-      alignItems="center"
-      sx={{ gap: 1.5, py: 1.5, px: 2, ...sx }}
       {...props}
+      sx={mergeSx(
+        {
+          alignItems: 'center',
+          gap: 1.5,
+          py: 1.5,
+          px: 2,
+        },
+        sx,
+      )}
     >
       <Box sx={{ width: 40, height: 40, flexShrink: 0 }}>{image}</Box>
-      <Typography variant="body2" fontWeight={600} sx={{ flex: 1 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          fontWeight: 600,
+          flex: 1,
+        }}
+      >
         {name}
       </Typography>
       {hasActions && (
@@ -573,16 +447,18 @@ export function BiampHeaderProfile({
       selected={selected}
       disableGutters
       disableRipple
-      sx={{
-        minWidth: '36px',
-        maxWidth: '36px',
-        minHeight: '36px',
-        maxHeight: '36px',
-        borderRadius: '6px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          minWidth: '36px',
+          maxWidth: '36px',
+          minHeight: '36px',
+          maxHeight: '36px',
+          borderRadius: '6px',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        sx,
+      )}
       {...props}
     >
       {image ? (

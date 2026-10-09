@@ -525,22 +525,22 @@ export const biampTheme = (
             standard: ({ theme }) => ({
               color: theme.palette.text.primary,
               border: `16px solid ${theme.palette.success.main}`,
-            }),
-            standardError: ({ theme }) => ({
-              border: `16px solid ${theme.palette.error.main}`,
-              backgroundColor: theme.palette.background.error,
-            }),
-            standardInfo: ({ theme }) => ({
-              border: `16px solid ${theme.palette.info.main}`,
-              backgroundColor: theme.palette.background.info,
-            }),
-            standardSuccess: ({ theme }) => ({
-              border: `16px solid ${theme.palette.success.main}`,
-              backgroundColor: theme.palette.background.success,
-            }),
-            standardWarning: ({ theme }) => ({
-              border: `16px solid ${theme.palette.warning.main}`,
-              backgroundColor: theme.palette.background.warning,
+              '&.MuiAlert-colorError': {
+                border: `16px solid ${theme.palette.error.main}`,
+                backgroundColor: theme.palette.background.error,
+              },
+              '&.MuiAlert-colorInfo': {
+                border: `16px solid ${theme.palette.info.main}`,
+                backgroundColor: theme.palette.background.info,
+              },
+              '&.MuiAlert-colorSuccess': {
+                border: `16px solid ${theme.palette.success.main}`,
+                backgroundColor: theme.palette.background.success,
+              },
+              '&.MuiAlert-colorWarning': {
+                border: `16px solid ${theme.palette.warning.main}`,
+                backgroundColor: theme.palette.background.warning,
+              },
             }),
           },
         },
@@ -972,17 +972,21 @@ export const biampTheme = (
         },
         MuiDrawer: {
           styleOverrides: {
+            root: ({ theme }) => ({
+              '&.MuiDrawer-anchorLeft > .MuiDrawer-paper, &.MuiDrawer-anchorRight > .MuiDrawer-paper':
+                {
+                  height: `calc(100% - ${theme.spacing(3)})`,
+                },
+              '&.MuiDrawer-anchorTop > .MuiDrawer-paper, &.MuiDrawer-anchorBottom > .MuiDrawer-paper':
+                {
+                  width: `calc(100% - ${theme.spacing(3)})`,
+                },
+            }),
             paper: ({ theme }) => ({
               width: drawerWidth,
               backgroundImage: 'none',
               margin: theme.spacing(1.5),
               borderRadius: '8px',
-              '&.MuiDrawer-paperAnchorLeft, &.MuiDrawer-paperAnchorRight': {
-                height: `calc(100% - ${theme.spacing(3)})`,
-              },
-              '&.MuiDrawer-paperAnchorTop, &.MuiDrawer-paperAnchorBottom': {
-                width: `calc(100% - ${theme.spacing(3)})`,
-              },
             }),
           },
         },
@@ -1355,7 +1359,7 @@ export const biampTheme = (
               '& .MuiTabs-indicator': {
                 backgroundColor: colors.blue.main,
               },
-              '& MuiButtonBase-root': {
+              '& .MuiButtonBase-root': {
                 height: 32,
                 minHeight: 32,
               },
@@ -1363,7 +1367,7 @@ export const biampTheme = (
                 display: 'none',
               },
             },
-            flexContainer: {
+            list: {
               gap: 20,
             },
           },
@@ -1412,8 +1416,10 @@ export const biampTheme = (
         },
         MuiTextField: {
           defaultProps: {
-            InputLabelProps: {
-              shrink: true,
+            slotProps: {
+              inputLabel: {
+                shrink: true,
+              },
             },
           },
           styleOverrides: {
@@ -1500,7 +1506,7 @@ export const biampTheme = (
               '&:not(textarea)': {
                 height: '44px',
               },
-              '&.MuiInputBase-inputMultiline': {
+              '.MuiInputBase-multiline > &': {
                 margin: theme.spacing(1),
               },
               boxSizing: 'border-box',
@@ -1650,7 +1656,6 @@ export const biampTheme = (
         },
         MuiDatePicker: {
           defaultProps: {
-            enableAccessibleFieldDOMStructure: false,
             slots: {
               openPickerIcon: CalendarIcon,
             },
@@ -1675,12 +1680,9 @@ export const biampTheme = (
                   '& .MuiFormHelperText-root.Mui-error': {
                     fontWeight: '400',
                   },
-                  '& .MuiInputBase-root': {
+                  '& .MuiPickersOutlinedInput-root': {
                     paddingLeft: '12px',
                     paddingRight: '8px',
-                    '& .MuiInputBase-input': {
-                      padding: '0px',
-                    },
                   },
                 },
               },
@@ -1731,7 +1733,7 @@ export const biampTheme = (
                   },
                 },
               },
-              digitalClockSectionItem: {
+              digitalClockItem: {
                 sx: { px: '0px', pl: '12px' },
               },
               toolbar: {
@@ -1847,35 +1849,6 @@ export const biampTheme = (
             },
           },
         },
-        MuiPickersTextField: {
-          styleOverrides: {
-            root: {
-              '& .MuiInputBase-root': {
-                height: '44px',
-                borderRadius: '6px',
-              },
-              '& .MuiOutlinedInput-root': {
-                height: '44px',
-                borderRadius: '6px',
-              },
-              '& .MuiOutlinedInput-input': {
-                height: '44px',
-                padding: '10px 12px',
-                boxSizing: 'border-box',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                height: '44px',
-                top: 0,
-                borderRadius: '6px',
-                '& legend': {
-                  display: 'none',
-                  width: 0,
-                  height: 0,
-                },
-              },
-            },
-          },
-        },
         MuiPickersInputBase: {
           styleOverrides: {
             root: {
@@ -1883,21 +1856,6 @@ export const biampTheme = (
               borderRadius: '6px',
               backgroundColor: 'background.paper',
               fontSize: '14px',
-              '& .MuiInputBase-input': {
-                height: '44px',
-                padding: '10px 12px',
-                boxSizing: 'border-box',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                height: '44px',
-                top: 0,
-                borderRadius: '6px',
-                '& legend': {
-                  display: 'none',
-                  width: 0,
-                  height: 0,
-                },
-              },
             },
           },
         },
@@ -1908,21 +1866,6 @@ export const biampTheme = (
               borderRadius: '6px',
               padding: '0px 12px',
               backgroundColor: theme.palette.background.paper,
-              '& .MuiOutlinedInput-input': {
-                height: '44px',
-                padding: '10px 12px',
-                boxSizing: 'border-box',
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                height: '44px',
-                top: 0,
-                borderRadius: '6px',
-                '& legend': {
-                  display: 'none',
-                  width: 0,
-                  height: 0,
-                },
-              },
             }),
             input: {
               height: '44px',
@@ -2047,21 +1990,19 @@ export const biampTheme = (
             },
           },
         },
-        MuiPickersDay: {
+        MuiPickerDay: {
           defaultProps: {
             disableRipple: true,
           },
           styleOverrides: {
             root: ({ theme }) => ({
+              '--PickerDay-size': '40px',
+              '--PickerDay-horizontalMargin': '0px',
               fontSize: theme.typography.body2.fontSize,
               fontWeight: theme.typography.body2.fontWeight,
               letterSpacing: theme.typography.body2.letterSpacing,
               lineHeight: theme.typography.body2.lineHeight,
               color: theme.palette.text.primary,
-              minWidth: '40px',
-              minHeight: '40px',
-              marginLeft: '0px',
-              marginRight: '0px',
               borderRadius: '4px',
               '&.Mui-selected': {
                 backgroundColor: theme.palette.text.primary,
@@ -2073,8 +2014,8 @@ export const biampTheme = (
                   backgroundColor: theme.palette.text.primary,
                 },
               },
-              '&.MuiPickersDay-today': {
-                border: `0px solid ${theme.palette.text.primary}`,
+              '&.MuiPickerDay-today': {
+                outline: 'none',
                 '&:not(.Mui-selected)': {
                   backgroundColor: 'transparent',
                 },

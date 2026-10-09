@@ -1,4 +1,5 @@
 import { SvgIcon, Skeleton, Box } from '@mui/material';
+import { mergeSx } from '../slotProps';
 import type { SvgIconProps } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -294,13 +295,7 @@ export function DynamicSvgIcon({
     <SvgIcon
       {...svgIconProps}
       {...(svgViewBox && { viewBox: svgViewBox })}
-      sx={{
-        ...(typeof sx === 'object' && sx !== null && !Array.isArray(sx)
-          ? sx
-          : undefined),
-        width,
-        height,
-      }}
+      sx={mergeSx(sx, { width, height })}
     >
       <g dangerouslySetInnerHTML={{ __html: svgContent }} />
     </SvgIcon>

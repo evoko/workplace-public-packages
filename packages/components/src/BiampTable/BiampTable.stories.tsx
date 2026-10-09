@@ -375,8 +375,19 @@ function InteractiveDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Box display="flex" alignItems="center" justifyContent="space-between">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
         <Typography variant="body2">
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
           only Available rooms are selectable &amp; clickable
@@ -467,8 +478,19 @@ function StatesDemo() {
   };
 
   return (
-    <Stack spacing={2} height="100%">
-      <Stack direction="row" spacing={1} flexWrap="wrap">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
+      <Stack
+        direction="row"
+        spacing={1}
+        sx={{
+          flexWrap: 'wrap',
+        }}
+      >
         {stateLabels.map(([value, label]) => (
           <Chip
             key={value}
@@ -509,8 +531,19 @@ function StickyColumnsDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Box display="flex" alignItems="center" justifyContent="space-between">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
         <Typography variant="body2">
           100 rows, 10 columns + sticky action column. Scroll to test.
         </Typography>
@@ -642,7 +675,12 @@ function WithToolbarDemo() {
   };
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <BiampTableToolbar>
         <BiampTableToolbarActions>
           <BiampTableToolbarFilters
@@ -991,7 +1029,12 @@ function ExpandableDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         Click the chevron to expand/collapse floor groups.
       </Typography>
@@ -1020,7 +1063,12 @@ function ExpandableAlwaysExpandedDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         All rows stay expanded; no chevron toggles are rendered. Depth is shown
         through indentation only.
@@ -1054,7 +1102,12 @@ function ExpandableAlwaysExpandedWithGuidelinesDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         All rows stay expanded; tree guidelines visualize the parent/child
         hierarchy in place of chevron toggles.
@@ -1180,7 +1233,12 @@ function TextTruncationDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         Hover over truncated cells (with &hellip;) to see the full text in a
         tooltip. The table is constrained to 700px to force truncation.
@@ -1220,8 +1278,19 @@ function ExpandableWithSelectionDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Stack direction="row" spacing={2} alignItems="center">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Typography variant="body2">
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
           only Available rows are selectable &amp; clickable
@@ -1376,7 +1445,12 @@ function ServerSideHookDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         Uses <code>useBiampServerSideTable</code> — compare with the WithToolbar
         story that uses raw <code>useReactTable</code>. The{' '}
@@ -1451,7 +1525,12 @@ function ServerSideExpandableWithSelectionDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         Uses <code>useBiampServerSideTable</code> with expanding + selection.{' '}
         {selectedRowIds.length} row
@@ -1492,7 +1571,12 @@ function SlotPropsDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         <code>slotProps</code> merges arbitrary props onto the internal MUI
         elements. <code>sx</code> composes with the component&apos;s defaults
@@ -1604,7 +1688,12 @@ function SetRowColorDemo() {
   };
 
   return (
-    <Stack spacing={2} height="100%">
+    <Stack
+      spacing={2}
+      sx={{
+        height: '100%',
+      }}
+    >
       <Typography variant="body2">
         Rows are tinted by status via <code>setRowColor</code>. The sticky
         selection column (left) and sticky action column (right) pick up the

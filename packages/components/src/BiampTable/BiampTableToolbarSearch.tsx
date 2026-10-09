@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   type TextFieldProps,
 } from '@mui/material';
+import { mergeSx } from '../slotProps';
 import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 import { useState } from 'react';
 import {
@@ -151,11 +152,11 @@ export function BiampTableToolbarSearch({
         },
       }}
       fullWidth
-      sx={[
+      sx={mergeSx(
         searchFieldSx,
         expandable ? { width: 170 } : { maxWidth },
-        ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
-      ]}
+        sx,
+      )}
       variant="outlined"
       value={inputValue}
       onChange={handleChange}
@@ -167,13 +168,21 @@ export function BiampTableToolbarSearch({
 
   if (isMobile && enableMobileView) {
     return (
-      <Box display="flex" alignItems="center" width="100%" pr={1} gap={1}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          pr: 1,
+          gap: 1,
+        }}
+      >
         <SearchIcon sx={{ width: 16, height: 16 }} />
         <InputBase
           name="search"
           type="text"
           placeholder={placeholder}
-          inputProps={{ maxLength, 'aria-label': 'Search' }}
+          slotProps={{ input: { maxLength, 'aria-label': 'Search' } }}
           fullWidth
           value={inputValue}
           sx={{
@@ -191,7 +200,13 @@ export function BiampTableToolbarSearch({
 
   if (expandable) {
     return (
-      <Box display="flex" alignItems="center" minWidth={28}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          minWidth: 28,
+        }}
+      >
         <IconButton
           aria-label={expandLabel ?? placeholder}
           onClick={() => setIsExpanded(true)}

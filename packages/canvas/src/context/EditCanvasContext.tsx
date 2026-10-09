@@ -150,7 +150,12 @@ export function useEditCanvasContext(): EditCanvasContextValue {
   }
 
   return useMemo(
-    () => ({ canvasRef, ...viewport, ...state }) as EditCanvasContextValue,
+    () =>
+      ({
+        canvasRef,
+        ...viewport,
+        ...state,
+      }) as EditCanvasContextValue,
     [canvasRef, viewport, state],
   );
 }

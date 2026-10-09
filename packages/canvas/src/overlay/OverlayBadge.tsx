@@ -204,16 +204,18 @@ export function OverlayBadge({
   return (
     <Stack
       ref={ref}
-      sx={{
-        position: 'absolute',
-        ...positionSx,
-        transformOrigin: 'center center',
-        pointerEvents: 'auto',
-        width: 'max-content',
-        height: 'max-content',
-        flexShrink: 0,
-        ...sx,
-      }}
+      sx={[
+        {
+          position: 'absolute',
+          ...positionSx,
+          transformOrigin: 'center center',
+          pointerEvents: 'auto',
+          width: 'max-content',
+          height: 'max-content',
+          flexShrink: 0,
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...rest}
     >
       {children}

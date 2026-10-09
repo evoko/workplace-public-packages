@@ -24,7 +24,8 @@ import {
   ReactNode,
 } from 'react';
 import { ChevronRightIcon, SearchIcon } from '@bwp-web/assets';
-import { mergeSlotProps, mergeSx } from '../slotProps';
+import { mergeSlotProps } from '@mui/material/utils';
+import { mergeSx } from '../slotProps';
 
 export type OrganizationRowProps = Omit<ListItemButtonProps, 'children'> & {
   primaryText: ReactNode;
@@ -98,13 +99,21 @@ export function OrganizationRow({
         <Typography
           noWrap
           variant="body2"
-          fontWeight={600}
-          color={disabled ? 'text.secondary' : 'text.primary'}
+          sx={{
+            fontWeight: 600,
+            color: disabled ? 'text.secondary' : 'text.primary',
+          }}
         >
           {primaryText}
         </Typography>
         {secondaryText && (
-          <Typography noWrap variant="caption" color="text.secondary">
+          <Typography
+            noWrap
+            variant="caption"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             {secondaryText}
           </Typography>
         )}
@@ -215,33 +224,48 @@ export function OrganizationsEmptyState({
   return (
     <Stack
       role="status"
-      alignItems="center"
-      gap={0.5}
-      width="100%"
-      py={2}
-      px={2}
       {...stackProps}
+      sx={mergeSx(
+        {
+          alignItems: 'center',
+          gap: 0.5,
+          width: '100%',
+          py: 2,
+          px: 2,
+        },
+        stackProps.sx,
+      )}
     >
       {cloneElement(icon, {
         'aria-hidden': true,
-        sx: {
-          width: 24,
-          height: 24,
-          mb: 0.5,
-          color: 'text.secondary',
-          ...icon.props.sx,
-        },
+        sx: mergeSx(
+          {
+            width: 24,
+            height: 24,
+            mb: 0.5,
+            color: 'text.secondary',
+          },
+          icon.props.sx,
+        ),
       })}
       <Typography
         variant="body2"
-        fontWeight={600}
-        color="text.primary"
-        textAlign="center"
+        sx={{
+          fontWeight: 600,
+          color: 'text.primary',
+          textAlign: 'center',
+        }}
       >
         {title}
       </Typography>
       {description && (
-        <Typography variant="caption" color="text.secondary" textAlign="center">
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.secondary',
+            textAlign: 'center',
+          }}
+        >
           {description}
         </Typography>
       )}
@@ -341,15 +365,16 @@ export function OrganizationsPanel({
 
   return (
     <Stack
-      gap={2}
-      alignItems="center"
-      justifyContent="center"
-      p={1.5}
-      borderRadius={4}
-      width={width}
-      maxWidth="100%"
+      {...stackProps}
       sx={mergeSx(
         {
+          gap: 2,
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 1.5,
+          borderRadius: 4,
+          width: width,
+          maxWidth: '100%',
           // Figma's `background_default` (#F5F5F5) is `grey[100]` here, not
           // `palette.background.default` — that token is #FFFFFF in light mode.
           backgroundColor: ({ palette }: Theme) =>
@@ -357,7 +382,6 @@ export function OrganizationsPanel({
         },
         sx,
       )}
-      {...stackProps}
     >
       {search && (
         <TextField
@@ -379,20 +403,16 @@ export function OrganizationsPanel({
           )}
           slotProps={{
             ...searchFieldSlotProps,
-            input: mergeSlotProps(
-              {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ ml: 1 }} />
-                  </InputAdornment>
-                ),
-              },
-              searchFieldSlotProps?.input,
-            ),
-            htmlInput: mergeSlotProps(
-              { 'aria-label': search.placeholder },
-              searchFieldSlotProps?.htmlInput,
-            ),
+            input: mergeSlotProps(searchFieldSlotProps?.input, {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ ml: 1 }} />
+                </InputAdornment>
+              ),
+            }),
+            htmlInput: mergeSlotProps(searchFieldSlotProps?.htmlInput, {
+              'aria-label': search.placeholder,
+            }),
           }}
           {...searchSlotProps}
         />
@@ -427,7 +447,10 @@ export function OrganizationsPanel({
         orLabel && <TextDivider {...slotProps?.orLabel}>{orLabel}</TextDivider>
       )}
       {(joinAction || createAction) && (
-        <Stack gap={1} width="100%" {...slotProps?.actions}>
+        <Stack
+          {...slotProps?.actions}
+          sx={mergeSx({ gap: 1, width: '100%' }, slotProps?.actions?.sx)}
+        >
           {joinAction && (
             <OrganizationRowGroup {...slotProps?.joinGroup}>
               {joinAction}

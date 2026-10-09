@@ -62,7 +62,12 @@ export function BiampCheckboxListPopover({
               checked={allChecked}
               slotProps={{ input: { 'aria-label': selectAllLabel } }}
             />
-            <Typography variant="caption" fontWeight={600}>
+            <Typography
+              variant="caption"
+              sx={{
+                fontWeight: 600,
+              }}
+            >
               {selectAllLabel}
             </Typography>
           </BiampListPopoverItem>

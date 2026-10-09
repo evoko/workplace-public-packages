@@ -524,9 +524,12 @@ function EditCanvasContent({
                         <Typography variant="body2">{label}</Typography>
                         <Typography
                           variant="caption"
-                          color={
-                            hint === 'live' ? 'success.main' : 'text.disabled'
-                          }
+                          sx={{
+                            color:
+                              hint === 'live'
+                                ? 'success.main'
+                                : 'text.disabled',
+                          }}
                         >
                           ({hint})
                         </Typography>
@@ -587,7 +590,13 @@ function EditCanvasContent({
             {/* Status: selection & edit */}
             {canvas.selected.length > 0 && !canvas.isEditingVertices && (
               <div>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  sx={{
+                    color: 'text.secondary',
+                  }}
+                >
                   {canvas.selected.length} object
                   {canvas.selected.length > 1 ? 's' : ''} selected
                   {options.keyboardShortcuts ? ' · Del to remove' : ''}
@@ -627,7 +636,12 @@ function EditCanvasContent({
                       </Box>
                     ))}
                     {selectedObj instanceof Polygon && options.vertexEdit && (
-                      <Typography variant="caption" color="text.secondary">
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: 'text.secondary',
+                        }}
+                      >
                         Double-click to edit vertices.
                       </Typography>
                     )}
@@ -680,7 +694,12 @@ function EditCanvasContent({
                 {hasBackground && (
                   <>
                     <Box>
-                      <Typography variant="caption" color="text.secondary">
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: 'text.secondary',
+                        }}
+                      >
                         Contrast: {Math.round(bgContrast * 100)}%
                       </Typography>
                       <Slider
@@ -753,8 +772,11 @@ function EditCanvasContent({
               {savedCharCount !== null && (
                 <Typography
                   variant="caption"
-                  color="text.secondary"
-                  sx={{ mt: 0.5, display: 'block' }}
+                  sx={{
+                    color: 'text.secondary',
+                    mt: 0.5,
+                    display: 'block',
+                  }}
                 >
                   Saved: {savedCharCount} chars · ViewCanvas will use this
                 </Typography>
@@ -993,7 +1015,12 @@ function ViewCanvasContent({
                       sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}
                     >
                       <Typography variant="body2">{label}</Typography>
-                      <Typography variant="caption" color="text.disabled">
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          color: 'text.disabled',
+                        }}
+                      >
                         (remounts)
                       </Typography>
                     </Box>
@@ -1016,8 +1043,11 @@ function ViewCanvasContent({
                     <Box key={entry.id}>
                       <Typography
                         variant="caption"
-                        color="text.secondary"
-                        sx={{ display: 'block', mb: 0.5 }}
+                        sx={{
+                          color: 'text.secondary',
+                          display: 'block',
+                          mb: 0.5,
+                        }}
                       >
                         {entry.label}
                       </Typography>
@@ -1075,11 +1105,21 @@ function ViewCanvasContent({
           )}
 
           <Typography variant="subtitle2">View-Only Canvas</Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             Uses <code>useViewCanvas</code>. Objects cannot be selected,
             created, edited, or deleted. Drag to pan, scroll to zoom.
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             If a canvas has been saved from the <em>Edit Canvas</em> demo, it is
             loaded here automatically. Otherwise a default demo canvas is shown.
           </Typography>
@@ -1233,7 +1273,12 @@ function ViewCanvasTooltipContent() {
         </>
       }
       sidebar={
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           Hover over any shape to see the tooltip.
         </Typography>
       }
@@ -1324,7 +1369,12 @@ function ViewCanvasClickContent() {
           />
         }
         sidebar={
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             Click any shape to open a dialog with its <code>data</code>. Panning
             the canvas does not fire a click.
           </Typography>
@@ -1559,7 +1609,12 @@ function OverlayDemoContent() {
             </>
           )}
 
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             DOM overlays positioned over canvas objects using{' '}
             <code>ObjectOverlay</code> + <code>OverlayContent</code>. The icon
             scales to fill the object bounds, while labels wrapped in{' '}
@@ -1569,7 +1624,12 @@ function OverlayDemoContent() {
             <code>OverlayBadge</code> adds status dots anchored to the top-right
             corner with independent scaling.
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
             via <code>viewport.panToObject</code>.
           </Typography>
@@ -1711,7 +1771,13 @@ function StressTestContent() {
             <Typography variant="subtitle2" gutterBottom>
               Stress Test
             </Typography>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
+            <Typography
+              variant="body2"
+              gutterBottom
+              sx={{
+                color: 'text.secondary',
+              }}
+            >
               {STRESS_OBJECT_COUNT} polygons with DOM overlays (icon + name +
               badge each).
             </Typography>
@@ -1728,7 +1794,12 @@ function StressTestContent() {
 
           <Divider />
 
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             Pan (drag) and zoom (scroll) to stress test overlay positioning and
             rendering performance with a large number of objects. Toggle
             overlays off to compare canvas-only rendering speed.

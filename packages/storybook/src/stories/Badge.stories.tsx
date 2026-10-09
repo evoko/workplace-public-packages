@@ -106,8 +106,10 @@ export const Variants: Story = {
           <Stack
             direction="row"
             spacing={3}
-            alignItems="center"
-            flexWrap="wrap"
+            sx={{
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             {COLORS.map((color) =>
               inline ? (

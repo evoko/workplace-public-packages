@@ -51,7 +51,12 @@ function CheckboxListDemo({
   return (
     <Stack spacing={2} sx={{ p: 4 }}>
       <Typography variant="h3">{heading}</Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography
+        variant="body2"
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         {selectedCount} of {OPTIONS.length} selected.
       </Typography>
       <Button
@@ -62,7 +67,6 @@ function CheckboxListDemo({
       >
         Open
       </Button>
-
       <BiampCheckboxListPopover
         anchorEl={anchorRef.current}
         open={open}

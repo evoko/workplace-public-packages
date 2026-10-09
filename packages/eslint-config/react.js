@@ -1,9 +1,9 @@
 import eslintReact from '@eslint-react/eslint-plugin';
 import eslintPluginJsxA11yX from 'eslint-plugin-jsx-a11y-x';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 
-export default tseslint.config(
+export default defineConfig(
   eslintPluginJsxA11yX.configs.recommended,
   eslintReact.configs['recommended-typescript'],
   eslintPluginReactHooks.configs.flat.recommended,

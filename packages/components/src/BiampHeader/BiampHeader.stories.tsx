@@ -22,7 +22,7 @@ import {
 } from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutlined';
 import HelpIcon from '@mui/icons-material/Help';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -360,16 +360,37 @@ export const ButtonStates: Story = {
   render: () => (
     <Stack spacing={3}>
       <Typography variant="h3">BiampHeaderButton States</Typography>
-      <Stack direction="row" spacing={3} alignItems="flex-start">
-        <Stack alignItems="center" spacing={1}>
+      <Stack
+        direction="row"
+        spacing={3}
+        sx={{
+          alignItems: 'flex-start',
+        }}
+      >
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
           <Typography variant="caption">Default</Typography>
         </Stack>
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampHeaderButton selected icon={<SettingsOutlinedIcon />} />
           <Typography variant="caption">Selected</Typography>
         </Stack>
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampHeaderButton
             selected
             icon={<SettingsOutlinedIcon />}
@@ -379,7 +400,12 @@ export const ButtonStates: Story = {
             Selected (with selectedIcon)
           </Typography>
         </Stack>
-        <Stack alignItems="center" spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <BiampHeaderButton icon={<SettingsOutlinedIcon />} disabled />
           <Typography variant="caption">Disabled</Typography>
         </Stack>

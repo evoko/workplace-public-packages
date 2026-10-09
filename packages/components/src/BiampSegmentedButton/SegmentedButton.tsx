@@ -1,4 +1,5 @@
 import { Button, ButtonProps, useTheme } from '@mui/material';
+import { mergeSx } from '../slotProps';
 import { alpha } from '@mui/material/styles';
 
 type Props = ButtonProps & {
@@ -28,22 +29,24 @@ export function SegmentedButton({
   const border = active ? 'solid' : undefined;
   return (
     <Button
-      sx={{
-        backgroundColor,
-        color: textColor,
-        borderRadius: '4px',
-        border,
-        borderColor: 'divider',
-        lineHeight: 1.5,
-        px: 1.5,
-        py: 0,
-        height: small ? '22px' : '26px',
-        ...(small && { fontSize: '12px', letterSpacing: '-0.24px' }),
-        boxShadow: active
-          ? `0 1px 2px 0 ${alpha(theme.palette.common.black, 0.05)} !important`
-          : 'none !important',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          backgroundColor,
+          color: textColor,
+          borderRadius: '4px',
+          border,
+          borderColor: 'divider',
+          lineHeight: 1.5,
+          px: 1.5,
+          py: 0,
+          height: small ? '22px' : '26px',
+          ...(small && { fontSize: '12px', letterSpacing: '-0.24px' }),
+          boxShadow: active
+            ? `0 1px 2px 0 ${alpha(theme.palette.common.black, 0.05)} !important`
+            : 'none !important',
+        },
+        sx,
+      )}
       {...props}
     >
       {children}
