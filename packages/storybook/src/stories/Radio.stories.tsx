@@ -76,7 +76,13 @@ export const AllStates: Story = {
   render: () => (
     <Stack spacing={2}>
       <Typography variant="h3">Radio States</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <FormControlLabel
           control={<Radio checked={false} />}
           label="Unchecked"

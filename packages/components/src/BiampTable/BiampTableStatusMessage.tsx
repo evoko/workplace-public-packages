@@ -1,5 +1,6 @@
 import { Stack, type StackProps, Typography } from '@mui/material';
 import { cloneElement, type JSX, type ReactNode } from 'react';
+import { mergeSx } from '../slotProps';
 
 export type BiampTableStatusMessageProps = StackProps & {
   /** Required icon element rendered at 56×56. */
@@ -20,10 +21,19 @@ export function BiampTableStatusMessage({
   ...stackProps
 }: BiampTableStatusMessageProps) {
   return (
-    <Stack alignItems="center" gap={1.5} {...stackProps}>
+    <Stack
+      {...stackProps}
+      sx={mergeSx(
+        {
+          alignItems: 'center',
+          gap: 1.5,
+        },
+        stackProps.sx,
+      )}
+    >
       {cloneElement(icon, {
         'aria-hidden': true,
-        sx: { width: 56, height: 56, ...icon.props.sx },
+        sx: mergeSx({ width: 56, height: 56 }, icon.props.sx),
       })}
       <Typography variant="h2">{title}</Typography>
       {description && <Typography variant="body1">{description}</Typography>}

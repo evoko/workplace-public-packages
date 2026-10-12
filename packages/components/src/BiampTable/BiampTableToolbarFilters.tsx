@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { CloseIcon, FilterIcon } from '@bwp-web/assets';
 import { type ReactNode, useId, useState } from 'react';
+import { mergeSlotProps } from '@mui/material/utils';
 import { BiampTableToolbarActionButton } from './BiampTableToolbarActionButton';
 
 export type BiampTableToolbarFiltersProps = {
@@ -68,32 +69,37 @@ export function BiampTableToolbarFilters({
         badgeContent={activeFilterCount}
         onClick={() => setOpen(true)}
       />
-
       <Drawer
         anchor="right"
         open={open}
         onClose={handleClose}
         aria-labelledby={titleId}
         {...drawerProps}
-        PaperProps={{
-          sx: { width: { xs: '100%', sm: 480 } },
-          ...drawerProps?.PaperProps,
+        slotProps={{
+          ...drawerProps?.slotProps,
+          paper: mergeSlotProps(drawerProps?.slotProps?.paper, {
+            sx: { width: { xs: '100%', sm: 480 } },
+          }),
         }}
       >
         <Box
-          height="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
+          sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
         >
           {/* Header */}
           <Box>
             <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              px={3.5}
-              py={2.5}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                px: 3.5,
+                py: 2.5,
+              }}
             >
               <Typography id={titleId} variant="h2">
                 {title}
@@ -124,18 +130,24 @@ export function BiampTableToolbarFilters({
             <Box
               role="group"
               aria-label="Filter options"
-              display="flex"
-              flexDirection="column"
-              gap={2}
-              p={3.5}
-              overflow="auto"
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                p: 3.5,
+                overflow: 'auto',
+              }}
             >
               {children}
             </Box>
           </Box>
 
           {/* Footer */}
-          <Box display="flex">
+          <Box
+            sx={{
+              display: 'flex',
+            }}
+          >
             <Button
               variant="overlay"
               color="secondary"

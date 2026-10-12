@@ -34,7 +34,13 @@ export function ViewportControls({
           Pan
         </Button>
       </ButtonGroup>
-      <Typography variant="body2" color="text.secondary" gutterBottom>
+      <Typography
+        variant="body2"
+        gutterBottom
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         Zoom: {Math.round(zoom * 100)}%
       </Typography>
       <Button variant="outlined" size="small" fullWidth onClick={onReset}>
@@ -42,8 +48,11 @@ export function ViewportControls({
       </Button>
       <Typography
         variant="caption"
-        color="text.secondary"
-        sx={{ mt: 1, display: 'block' }}
+        sx={{
+          color: 'text.secondary',
+          mt: 1,
+          display: 'block',
+        }}
       >
         Scroll to zoom.{' '}
         {viewportMode === 'select' ? 'Cmd/Ctrl+drag to pan.' : 'Drag to pan.'}

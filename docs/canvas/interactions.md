@@ -175,8 +175,6 @@ const cleanup = enableVertexEdit(canvas, polygon, {
 });
 ```
 
-> **Deprecation note:** The positional `onExit` parameter (`enableVertexEdit(canvas, polygon, options?, onExit?)`) still works but is deprecated. Pass `onExit` inside `options` instead.
-
 ### Exit behavior
 
 - **Escape** — exits vertex edit mode

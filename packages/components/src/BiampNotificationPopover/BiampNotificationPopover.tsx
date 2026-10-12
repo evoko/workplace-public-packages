@@ -7,6 +7,7 @@ import {
   Stack,
   StackProps,
 } from '@mui/material';
+import { mergeSx } from '../slotProps';
 
 export type BiampNotificationPopoverProps = PopoverProps & {
   children: React.ReactNode;
@@ -33,7 +34,7 @@ export function BiampNotificationPopover({
         vertical: -4,
         horizontal: NOTIFICATION_POPOVER_MAX_WIDTH,
       }}
-      sx={{ ...sx }}
+      sx={sx}
       slotProps={{
         paper: {
           sx: {
@@ -70,16 +71,18 @@ export function BiampNotificationPopoverHeader({
   return (
     <Stack
       direction="row"
-      alignItems="center"
-      justifyContent="space-between"
-      sx={{
-        flexShrink: 0,
-        gap: 2,
-        px: 2,
-        pt: 2,
-        ...sx,
-      }}
       {...props}
+      sx={mergeSx(
+        {
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexShrink: 0,
+          gap: 2,
+          px: 2,
+          pt: 2,
+        },
+        sx,
+      )}
     />
   );
 }
@@ -96,15 +99,17 @@ export function BiampNotificationPopoverBody({
 }: BiampNotificationPopoverBodyProps) {
   return (
     <Box
-      sx={{
-        flex: 1,
-        minHeight: 0,
-        overflowY: 'auto',
-        overscrollBehavior: 'none',
-        px: 2,
-        pb: 2,
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          flex: 1,
+          minHeight: 0,
+          overflowY: 'auto',
+          overscrollBehavior: 'none',
+          px: 2,
+          pb: 2,
+        },
+        sx,
+      )}
       {...props}
     />
   );

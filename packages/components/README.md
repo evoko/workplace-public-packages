@@ -15,16 +15,16 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` ^1.0.2
-- `@bwp-web/styles` ^1.0.13
+- `@bwp-web/assets` ^2.0.0-alpha.0
+- `@bwp-web/styles` ^2.0.0-alpha.0
 - `@emotion/react` ^11.14.0
 - `@emotion/styled` ^11.14.0
-- `@mui/material` ^7.0.0
+- `@mui/material` ^9.5.0
 - `@tanstack/react-table` ^8.0.0 — required even if you don't use `BiampTable`
 - `react` ^18.0.0 || ^19.0.0
 - `react-dom` ^18.0.0 || ^19.0.0
 
-`@bwp-web/styles` also brings in its own peers (`@mui/x-date-pickers` ^8.6.0). Components read Biamp-specific palette keys, so the app must be wrapped in a `ThemeProvider` with `biampTheme()` — see the [styles setup](../styles/README.md#basic-setup).
+`@bwp-web/styles` also brings in its own peers (`@mui/x-date-pickers` ^9.15.0). Components read Biamp-specific palette keys, so the app must be wrapped in a `ThemeProvider` with `biampTheme()` — see the [styles setup](../styles/README.md#basic-setup).
 
 ## Components
 
@@ -52,10 +52,6 @@ npm install @bwp-web/components
 | `BiampListPopoverItem`           | Clickable, hoverable dense row for use inside `BiampListPopover`                                                                                                                                          |
 | `BiampListPopoverScrollArea`     | Overflow-scrolling region for a long list of `BiampListPopoverItem`s (default `maxHeight` 340)                                                                                                            |
 | `BiampCheckboxListPopover`       | Checkbox-list popover with an optional "select all" row (the column-visibility menu styling, decoupled from any data source)                                                                              |
-| `BiampBuildAppContent`           | 2-column grid container for "Configure & Build" app tiles                                                                                                                                                 |
-| `BiampBuildAppContentItem`       | App tile with image, name, description, and optional action button                                                                                                                                        |
-| `BiampEndUserAppContent`         | Responsive container for end-user app items: stack for one child, 2-column grid for many                                                                                                                  |
-| `BiampEndUserAppContentItem`     | Row-style app item with image, name, description, and external link; supports `href`                                                                                                                      |
 | `BiampAppListContent`            | Bordered flat-list container with rounded corners and dividers between items; use with `BiampAppListItem`                                                                                                 |
 | `BiampAppListItem`               | Horizontal row with a 40×40 icon, app name, and an optional inline `[Open \| ↗]` action group                                                                                                             |
 | `BiampBanner`                    | Full-width animated notification banner                                                                                                                                                                   |

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Status = 'idle' | 'delaying' | 'loading' | 'ending';
 
@@ -19,38 +19,24 @@ export function useLoadingDelay(
   { delay = 150, minDuration = 500 } = {},
 ): boolean {
   const [status, setStatus] = useState<Status>('idle');
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function clearPending() {
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+  // Synchronous transitions driven by `loading` happen during render.
+  if (loading && status === 'idle') {
+    setStatus('delaying');
+  } else if (!loading && (status === 'delaying' || status === 'ending')) {
+    setStatus('idle');
   }
 
+  // Timed transitions: delaying → loading after `delay`, loading → ending after
+  // `minDuration`. The cleanup cancels a pending timer when status changes.
   useEffect(() => {
-    if (loading && status === 'idle') {
-      clearPending();
-
-      // After the initial delay, show the indicator and schedule end.
-      timeoutRef.current = setTimeout(() => {
-        timeoutRef.current = setTimeout(() => {
-          setStatus('ending');
-        }, minDuration);
-
-        setStatus('loading');
-      }, delay);
-
-      setStatus('delaying');
-    }
-
-    if (!loading && status !== 'loading') {
-      clearPending();
-      setStatus('idle');
-    }
-  }, [loading, delay, minDuration, status]);
-
-  useEffect(() => clearPending, []);
+    if (status !== 'delaying' && status !== 'loading') return;
+    const timeout = setTimeout(
+      () => setStatus(status === 'delaying' ? 'loading' : 'ending'),
+      status === 'delaying' ? delay : minDuration,
+    );
+    return () => clearTimeout(timeout);
+  }, [status, delay, minDuration]);
 
   return status === 'loading' || status === 'ending';
 }

@@ -13,7 +13,12 @@ export const Default: Story = {
   render: () => (
     <Stack spacing={3}>
       <Typography variant="h3">Breadcrumbs</Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography
+        variant="body2"
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         Uses the ChevronRightIcon separator from the theme.
       </Typography>
 
@@ -24,7 +29,13 @@ export const Default: Story = {
         <Link underline="hover" color="inherit" href="#">
           Settings
         </Link>
-        <Typography color="text.secondary" variant="body2" fontWeight={600}>
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 600,
+          }}
+        >
           General
         </Typography>
       </Breadcrumbs>
@@ -41,7 +52,13 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Home
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 600,
+          }}
+        >
           Dashboard
         </Typography>
       </Breadcrumbs>
@@ -53,7 +70,13 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Users
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 600,
+          }}
+        >
           John Doe
         </Typography>
       </Breadcrumbs>
@@ -71,7 +94,13 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Network
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 600,
+          }}
+        >
           Proxy Configuration
         </Typography>
       </Breadcrumbs>
@@ -96,7 +125,13 @@ export const Collapsed: Story = {
         <Link underline="hover" color="inherit" href="#">
           Item Type
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+            fontWeight: 600,
+          }}
+        >
           Item Detail
         </Typography>
       </Breadcrumbs>

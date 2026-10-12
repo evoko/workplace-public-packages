@@ -109,8 +109,6 @@ export function enableVertexEdit(
   canvas: FabricCanvas,
   polygon: Polygon,
   options?: VertexEditOptions,
-  /** @deprecated Pass `onExit` in options instead. */
-  onExit?: () => void,
 ): () => void {
   let exited = false;
   let draggingIndex: number | null = null;
@@ -297,7 +295,7 @@ export function enableVertexEdit(
     canvas.discardActiveObject();
     canvas.requestRenderAll();
 
-    (options?.onExit ?? onExit)?.();
+    options?.onExit?.();
   }
 
   return cleanup;

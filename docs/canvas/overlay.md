@@ -141,7 +141,7 @@ import { ObjectOverlay, OverlayContent, FixedSizeContent } from '@bwp-web/canvas
 
 <ObjectOverlay object={obj}>
   <OverlayContent>
-    <Stack alignItems="center">
+    <Stack sx={{ alignItems: 'center' }}>
       <MyIcon />                      {/* scales to fit */}
       <FixedSizeContent>
         <Typography noWrap>Always 14px, truncates</Typography>

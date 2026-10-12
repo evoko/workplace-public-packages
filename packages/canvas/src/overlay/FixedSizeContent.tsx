@@ -39,7 +39,7 @@ export interface FixedSizeContentProps extends StackProps {
  * ```tsx
  * <ObjectOverlay object={obj}>
  *   <OverlayContent>
- *     <Stack alignItems="center">
+ *     <Stack sx={{ alignItems: 'center' }}>
  *       <MyIcon />                      {// scales to fit}
  *       <FixedSizeContent>
  *         <Typography noWrap>Always 14px, truncates</Typography>
@@ -149,20 +149,22 @@ export function FixedSizeContent({
   return (
     <Stack
       ref={ref}
-      sx={{
-        transform: 'scale(calc(1 / var(--overlay-scale, 1)))',
-        transformOrigin: 'center center',
-        flexShrink: 0,
-        width: 'max-content',
-        overflow: 'hidden',
-        alignItems: 'center',
-        '& > *': {
-          maxWidth: '100%',
+      sx={[
+        {
+          transform: 'scale(calc(1 / var(--overlay-scale, 1)))',
+          transformOrigin: 'center center',
+          flexShrink: 0,
+          width: 'max-content',
           overflow: 'hidden',
-          textOverflow: 'ellipsis',
+          alignItems: 'center',
+          '& > *': {
+            maxWidth: '100%',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          },
         },
-        ...sx,
-      }}
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...rest}
     >
       {children}

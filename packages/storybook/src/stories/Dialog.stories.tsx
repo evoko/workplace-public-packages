@@ -150,7 +150,12 @@ function ThreeButtonActionsDemo() {
   return (
     <Stack spacing={2}>
       <Typography variant="h3">Three-button Dialog</Typography>
-      <Typography variant="body2" color="text.secondary">
+      <Typography
+        variant="body2"
+        sx={{
+          color: 'text.secondary',
+        }}
+      >
         The theme auto-pushes the first button to the left when there are 3+
         action buttons.
       </Typography>

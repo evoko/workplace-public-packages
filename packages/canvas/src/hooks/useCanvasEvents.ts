@@ -1,4 +1,4 @@
-import { useEffect, useRef, type RefObject } from 'react';
+import { useEffect, useLayoutEffect, useRef, type RefObject } from 'react';
 import type { Canvas as FabricCanvas, CanvasEvents } from 'fabric';
 import { useCanvasRef } from '../context/useCanvasRef';
 
@@ -69,7 +69,9 @@ export function useCanvasEvents(
     : maybeEvents!;
 
   const eventsRef = useRef(events);
-  eventsRef.current = events;
+  useLayoutEffect(() => {
+    eventsRef.current = events;
+  });
 
   useEffect(() => {
     const canvas = resolvedCanvasRef?.current;

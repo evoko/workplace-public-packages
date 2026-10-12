@@ -1,4 +1,5 @@
 import React, { createContext, forwardRef, useContext, useState } from 'react';
+import { mergeSx } from '../slotProps';
 import {
   Autocomplete,
   AutocompleteProps,
@@ -12,6 +13,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import type { SxProps, Theme } from '@mui/material/styles';
+import { mergeSlotProps } from '@mui/material/utils';
 import { KeyArrowDownIcon, KeyArrowUpIcon, SearchIcon } from '@bwp-web/assets';
 
 // ---------------------------------------------------------------------------
@@ -113,8 +115,11 @@ const BiampGlobalSearchPaper = forwardRef<HTMLDivElement, PaperProps>(
         ) : (
           <Typography
             variant="body2"
-            color="text.secondary"
-            sx={{ px: 2, py: 1.5 }}
+            sx={{
+              color: 'text.secondary',
+              px: 2,
+              py: 1.5,
+            }}
           >
             {noResultsText}
           </Typography>
@@ -141,8 +146,10 @@ const BiampGlobalSearchPaper = forwardRef<HTMLDivElement, PaperProps>(
               </Box>
               <Typography
                 variant="caption"
-                fontWeight={(theme) => theme.typography.fontWeightMedium}
-                color="text.secondary"
+                sx={{
+                  fontWeight: (theme) => theme.typography.fontWeightMedium,
+                  color: 'text.secondary',
+                }}
               >
                 Select
               </Typography>
@@ -151,8 +158,10 @@ const BiampGlobalSearchPaper = forwardRef<HTMLDivElement, PaperProps>(
               <KeyCap variant="text">Enter</KeyCap>
               <Typography
                 variant="caption"
-                fontWeight={(theme) => theme.typography.fontWeightMedium}
-                color="text.secondary"
+                sx={{
+                  fontWeight: (theme) => theme.typography.fontWeightMedium,
+                  color: 'text.secondary',
+                }}
               >
                 Open
               </Typography>
@@ -255,23 +264,24 @@ function BiampGlobalSearchListItem({
           {option.icon}
         </Box>
       )}
-
       <Typography variant="body2" noWrap sx={{ flexShrink: 0 }}>
         <HighlightText text={option.title} query={query} />
       </Typography>
-
       {option.subtitle && (
         <Typography
           className="hoverContent"
           variant="body2"
-          color="text.secondary"
           noWrap
-          sx={{ flexShrink: 1, minWidth: 0, display: 'none' }}
+          sx={{
+            color: 'text.secondary',
+            flexShrink: 1,
+            minWidth: 0,
+            display: 'none',
+          }}
         >
           {option.subtitle}
         </Typography>
       )}
-
       {chips.length > 0 && (
         <Box
           className="hoverContent"
@@ -321,7 +331,6 @@ function BiampGlobalSearchListItem({
           )}
         </Box>
       )}
-
       {option.endIcon && (
         <Box
           className="endIcon"
@@ -363,6 +372,7 @@ export function BiampGlobalSearch({
   onChange,
   onInputChange,
   sx,
+  slotProps,
   ...props
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
@@ -412,26 +422,33 @@ export function BiampGlobalSearch({
         inputValue={inputValue}
         loading={loading}
         fullWidth={fullWidth}
-        sx={{
-          px: 1.5,
-          '& .MuiOutlinedInput-root': {
-            height: '40px !important',
-            minHeight: '40px',
+        sx={mergeSx(
+          {
+            px: 1.5,
+            '& .MuiOutlinedInput-root': {
+              height: '40px !important',
+              minHeight: '40px',
+            },
+            '& .MuiOutlinedInput-input': {
+              height: '40px !important',
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              height: '40px !important',
+              border: 'none',
+              boxShadow: 'none',
+            },
           },
-          '& .MuiOutlinedInput-input': {
-            height: '40px !important',
-          },
-          '& .MuiOutlinedInput-notchedOutline': {
-            height: '40px !important',
-            border: 'none',
-            boxShadow: 'none',
-          },
-          ...sx,
-        }}
+          sx,
+        )}
         onChange={handleChange}
         onInputChange={handleInputChange}
         loadingText={
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'text.secondary',
+            }}
+          >
             Loading…
           </Typography>
         }
@@ -448,8 +465,17 @@ export function BiampGlobalSearch({
         }
         noOptionsText={noResultsText}
         slots={{ paper: BiampGlobalSearchPaper }}
+        // Merged per slot so a consumer's slotProps add to ours: their keys
+        // win and their sx goes after ours.
         slotProps={{
-          listbox: {
+          ...slotProps,
+          // In freeSolo mode MUI 9 skips the Popper when there are no options
+          // (unless `keepMounted`), so the Paper's `noResultsText` would never
+          // show. A closed, kept-mounted Popper is `display: none`.
+          popper: mergeSlotProps(slotProps?.popper, {
+            keepMounted: !hasOptions,
+          }),
+          listbox: mergeSlotProps(slotProps?.listbox, {
             sx: {
               '& .MuiAutocomplete-option': {
                 paddingRight: '0px !important',
@@ -464,7 +490,7 @@ export function BiampGlobalSearch({
                 visibility: 'visible',
               },
             },
-          },
+          }),
         }}
         renderInput={(params) => (
           <TextField
@@ -476,14 +502,15 @@ export function BiampGlobalSearch({
               '& .MuiInputBase-input': { paddingLeft: '8px !important' },
             }}
             slotProps={{
+              ...params.slotProps,
               input: {
-                ...params.InputProps,
+                ...params.slotProps.input,
                 startAdornment: (
                   <>
                     <InputAdornment position="start">
                       <SearchIcon />
                     </InputAdornment>
-                    {params.InputProps.startAdornment}
+                    {params.slotProps.input.startAdornment}
                   </>
                 ),
               },

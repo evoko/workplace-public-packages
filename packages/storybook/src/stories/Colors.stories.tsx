@@ -13,7 +13,13 @@ const Swatch = ({
   label: string;
   bordered?: boolean;
 }) => (
-  <Stack alignItems="center" spacing={0.5} sx={{ width: 100 }}>
+  <Stack
+    spacing={0.5}
+    sx={{
+      alignItems: 'center',
+      width: 100,
+    }}
+  >
     <Box
       sx={{
         width: 64,
@@ -24,10 +30,20 @@ const Swatch = ({
         borderColor: 'divider',
       }}
     />
-    <Typography variant="caption" fontWeight={600}>
+    <Typography
+      variant="caption"
+      sx={{
+        fontWeight: 600,
+      }}
+    >
       {label}
     </Typography>
-    <Typography variant="caption" color="text.secondary">
+    <Typography
+      variant="caption"
+      sx={{
+        color: 'text.secondary',
+      }}
+    >
       {color}
     </Typography>
   </Stack>
@@ -47,7 +63,13 @@ const ColorGroup = ({
     <Typography variant="h2" sx={{ mb: 2 }}>
       {title}
     </Typography>
-    <Stack direction="row" flexWrap="wrap" gap={2}>
+    <Stack
+      direction="row"
+      sx={{
+        flexWrap: 'wrap',
+        gap: 2,
+      }}
+    >
       {swatches.map((s) => (
         <Swatch key={s.label} {...s} />
       ))}

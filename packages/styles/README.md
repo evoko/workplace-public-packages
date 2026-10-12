@@ -15,11 +15,11 @@ npm install @bwp-web/styles
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` ^1.0.2
+- `@bwp-web/assets` ^2.0.0-alpha.0
 - `@emotion/react` ^11.14.0
 - `@emotion/styled` ^11.14.0
-- `@mui/material` ^7.0.0
-- `@mui/x-date-pickers` ^8.6.0 — required even if you don't render pickers, because the theme ships picker overrides
+- `@mui/material` ^9.5.0
+- `@mui/x-date-pickers` ^9.15.0 — required even if you don't render pickers, because the theme ships picker overrides
 - `react` ^18.0.0 || ^19.0.0
 - `react-dom` ^18.0.0 || ^19.0.0
 

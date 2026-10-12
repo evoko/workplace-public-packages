@@ -205,14 +205,22 @@ function OrganizationSelectorLandingPage() {
         <SelectionHeader />
       </Box>
       <Stack
-        flex={1}
-        alignItems="center"
-        justifyContent="center"
-        gap={2.5}
-        py={4}
-        sx={{ position: 'relative', zIndex: 1 }}
+        sx={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 2.5,
+          py: 4,
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
-        <Typography variant="h2" color="text.sidebar">
+        <Typography
+          variant="h2"
+          sx={{
+            color: 'text.sidebar',
+          }}
+        >
           {heading}
         </Typography>
         {/* The flows take the panel's place rather than overlaying it. */}
@@ -370,13 +378,21 @@ function OrganizationSelectorLandingPage() {
         )}
       </Stack>
       <Stack
-        alignItems="center"
-        gap={1}
-        py={2}
-        sx={{ position: 'relative', zIndex: 1 }}
+        sx={{
+          alignItems: 'center',
+          gap: 1,
+          py: 2,
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
         <BiampLogo style={{ width: 76, height: 'auto', color: '#ffffff' }} />
-        <Typography variant="caption" color="text.secondary">
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           {`© ${new Date().getFullYear()} Biamp Systems LLC.`}
         </Typography>
       </Stack>

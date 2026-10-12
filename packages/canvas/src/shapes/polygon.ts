@@ -8,9 +8,6 @@ export interface PolygonOptions extends ShapeStyleOptions {
   top?: number;
 }
 
-/** @deprecated Use `ShapeStyleOptions` directly. This alias will be removed in a future major version. */
-export type PolygonStyleOptions = ShapeStyleOptions;
-
 /**
  * Create a polygon and add it to the canvas.
  * Returns the fabric Polygon instance for further manipulation.
@@ -33,7 +30,7 @@ export function createPolygon(
 export function createPolygonAtPoint(
   canvas: FabricCanvas,
   point: Point2D,
-  options: PolygonStyleOptions & { width: number; height: number },
+  options: ShapeStyleOptions & { width: number; height: number },
 ): Polygon {
   const { width, height, ...style } = options;
   const polygon = new Polygon(

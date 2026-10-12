@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, LinearProgress, Stack, StackProps } from '@mui/material';
 import { useLoadingDelay } from '../hooks';
+import { mergeSx } from '../slotProps';
 
 export type BiampWrapperProps = StackProps & {
   loading?: boolean;
@@ -36,20 +37,22 @@ export function BiampWrapper({
   return (
     <Stack
       direction="column"
-      padding="16px"
-      sx={{
-        position: 'relative',
-        flex: 1,
-        height: '100%',
-        width: '100%',
-        borderRadius: '8px',
-        overflow: 'auto',
-        overscrollBehavior: 'none',
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
-        ...sx,
-      }}
       {...props}
+      sx={mergeSx(
+        {
+          padding: '16px',
+          position: 'relative',
+          flex: 1,
+          height: '100%',
+          width: '100%',
+          borderRadius: '8px',
+          overflow: 'auto',
+          overscrollBehavior: 'none',
+          backgroundColor: ({ palette }) =>
+            palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
+        },
+        sx,
+      )}
     >
       {showLoading && (
         <Box

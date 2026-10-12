@@ -15,15 +15,15 @@ npm install @bwp-web/canvas
 
 ### Peer Dependencies
 
-- `@bwp-web/styles` ^1.0.1
+- `@bwp-web/styles` ^2.0.0-alpha.0
 - `@emotion/react` ^11.14.0
 - `@emotion/styled` ^11.14.0
-- `@mui/material` ^7.0.0
+- `@mui/material` ^9.5.0
 - `fabric` ^7.2.0
 - `react` ^18.0.0 || ^19.0.0
 - `react-dom` ^18.0.0 || ^19.0.0
 
-`@bwp-web/styles` also brings in its own peers (`@mui/x-date-pickers` ^8.6.0).
+`@bwp-web/styles` also brings in its own peers (`@mui/x-date-pickers` ^9.15.0).
 
 ## Quick Start
 

@@ -17,6 +17,9 @@
     "typecheck": {
       "dependsOn": ["^build:types", "^typecheck"]
     },
+    "test": {
+      "dependsOn": ["^build"]
+    },
     "lint": {},
     "format": {
       "inputs": ["$TURBO_DEFAULT$", "../../.prettierrc.json"]

@@ -20,7 +20,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 ### Consumer Requirements
 
-Every published package declares `engines` of Node.js >= 24.20.0 and npm >= 11.19.0, and lists `@emotion/react` and `@emotion/styled` (^11.14.0) as required peer dependencies alongside MUI. Peer ranges are capped at the major each package is built and tested against, so an untested major (e.g. MUI 9) is reported as a peer conflict at install time instead of failing at runtime. Each package README lists its full peer dependencies. Keep the `engines` floor in each package's `package.json` in step with the repo prerequisites above.
+Every published package declares `engines` of Node.js >= 24.20.0 and npm >= 11.19.0, and lists `@emotion/react` and `@emotion/styled` (^11.14.0) as required peer dependencies alongside MUI. Peer ranges are capped at the major each package is built and tested against, so an untested major (e.g. MUI 10) is reported as a peer conflict at install time instead of failing at runtime. Each package README lists its full peer dependencies. Keep the `engines` floor in each package's `package.json` in step with the repo prerequisites above.
 
 ### Install
 
@@ -85,6 +85,7 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 | [biamp-header.md](./docs/biamp-header.md)                   | BiampHeader — header with app launcher                          |
 | [biamp-banner.md](./docs/biamp-banner.md)                   | BiampBanner — notification banner                               |
 | [biamp-table.md](./docs/biamp-table.md)                     | BiampTable — TanStack-based data table                          |
+| [migration-v2.md](./docs/migration-v2.md)                   | Migrating from 1.x to 2.x (MUI 9, MUI X 9)                      |
 | [biamp-global-search.md](./docs/biamp-global-search.md)     | BiampGlobalSearch — global search component                     |
 | [dynamic-svg-icon.md](./docs/dynamic-svg-icon.md)           | DynamicSvgIcon — remote SVG icon with skeleton and fallback     |
 | [organizations-panel.md](./docs/organizations-panel.md)     | OrganizationsPanel — landing-page organization picker           |
@@ -107,11 +108,11 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 | Branch | Tracks                      | npm dist-tag |
 | ------ | --------------------------- | ------------ |
 | `main` | Current major (e.g. 2.x.y) | `latest`     |
-| `1.x`  | Previous major (1.x.y)      | `v1-latest`  |
+| `v1`   | Previous major (1.x.y)      | `v1-latest`  |
 
-Active development happens on `main`. When a new major version is released, create a maintenance branch for the previous major (e.g. `1.x`) before merging breaking changes into `main`. Cherry-pick or backport bug fixes and security patches to the maintenance branch as needed.
+Active development happens on `main`. When a new major version is released, create a maintenance branch for the previous major (e.g. `v1`) before merging breaking changes into `main`. Cherry-pick or backport bug fixes and security patches to the maintenance branch as needed.
 
-If you later need to maintain v2 while developing v3, the pattern extends naturally: `main` becomes v3, and you create a `2.x` branch.
+If you later need to maintain v2 while developing v3, the pattern extends naturally: `main` becomes v3, and you create a `v2` branch.
 
 ### Tagging a Release
 
@@ -152,6 +153,18 @@ npm dist-tag add @bwp-web/canvas@2.2.0 latest
 npm publish -w packages/canvas --access public --tag v1-latest
 ```
 
+#### Prereleases
+
+npm 11 refuses to publish a prerelease (`x.y.z-alpha.n`) without `--tag`. Publish alphas under
+`alpha`; never touch `latest`:
+
+```bash
+npm publish -w packages/assets --access public --tag alpha
+npm publish -w packages/styles --access public --tag alpha
+npm publish -w packages/components --access public --tag alpha
+npm publish -w packages/canvas --access public --tag alpha
+```
+
 > **Warning:** Never publish from a maintenance branch without `--tag` or with `--tag latest`. This will overwrite `latest` and accidentally downgrade everyone running `npm install`.
 
 #### Dist-tag conventions
@@ -159,6 +172,7 @@ npm publish -w packages/canvas --access public --tag v1-latest
 | Dist tag       | Points to                  | Who updates it            |
 | -------------- | -------------------------- | ------------------------- |
 | `latest`       | Highest stable version     | Only from `main`          |
+| `alpha`        | Latest 2.x prerelease      | Prerelease publishes only |
 | `v1-latest`    | Highest stable 1.x.y       | From `v1` branch          |
 | `v2-latest`    | Highest stable 2.x.y       | From `main` or `v2` branch |
 | `v3-latest`    | Highest stable 3.x.y       | From `main` or `v3` branch |

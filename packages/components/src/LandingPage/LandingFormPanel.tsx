@@ -11,8 +11,9 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/material';
-import { FormEvent, ReactNode, useId } from 'react';
-import { mergeSlotProps, mergeSx } from '../slotProps';
+import { ReactNode, SubmitEvent, useId } from 'react';
+import { mergeSlotProps } from '@mui/material/utils';
+import { mergeSx } from '../slotProps';
 
 /**
  * The root is a `<form>`, so every form attribute passes through —
@@ -54,7 +55,7 @@ export function LandingFormPanel({
 }: LandingFormPanelProps) {
   // Always preventDefault, handler or not, so a panel without `onSubmit` never
   // navigates the page.
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit?.();
   };
@@ -65,13 +66,14 @@ export function LandingFormPanel({
       component="form"
       onSubmit={handleSubmit}
       noValidate={noValidate}
-      gap={2}
-      p={1.5}
-      borderRadius={4}
-      width={width}
-      maxWidth="100%"
+      {...stackProps}
       sx={mergeSx(
         {
+          gap: 2,
+          p: 1.5,
+          borderRadius: 4,
+          width: width,
+          maxWidth: '100%',
           // Figma's `background_default` (#F5F5F5) is `grey[100]` here, not
           // `palette.background.default` — that token is #FFFFFF in light mode.
           backgroundColor: ({ palette }: Theme) =>
@@ -79,7 +81,6 @@ export function LandingFormPanel({
         },
         sx,
       )}
-      {...stackProps}
     >
       {children}
     </Stack>
@@ -144,8 +145,8 @@ export function LandingFormField({
   ...textFieldProps
 }: LandingFormFieldProps) {
   // This component's own two slots; what is left is `TextField`'s own bag.
-  // Both targets carry no `sx` of their own, so they take a plain spread —
-  // only the field below needs its `sx` and `slotProps` merged.
+  // Both targets take a plain spread, with their defaults merged under the
+  // caller's `sx`; the field below needs its `sx` and `slotProps` merged.
   const {
     container: containerSlotProps,
     label: labelSlotProps,
@@ -161,15 +162,17 @@ export function LandingFormField({
   const labelId = labelSlotProps?.id ?? `${fieldId}-label`;
 
   return (
-    <Stack gap={0.5} width="100%" {...containerSlotProps}>
+    <Stack
+      {...containerSlotProps}
+      sx={mergeSx({ gap: 0.5, width: '100%' }, containerSlotProps?.sx)}
+    >
       <Typography
         component="label"
         id={labelId}
         htmlFor={fieldId}
-        fontSize={12}
-        fontWeight={600}
-        color="text.primary"
+        color="textPrimary"
         {...labelSlotProps}
+        sx={mergeSx({ fontSize: 12, fontWeight: 600 }, labelSlotProps?.sx)}
       >
         {label}
       </Typography>
@@ -184,7 +187,7 @@ export function LandingFormField({
           // itself, so the name would come out as the selected value. Naming
           // the label explicitly is what MUI's own floating label does.
           // Inert on a text field: `slotProps.select` only reaches a `Select`.
-          select: mergeSlotProps({ labelId }, fieldSlotProps.select),
+          select: mergeSlotProps(fieldSlotProps.select, { labelId }),
         }}
         sx={mergeSx(fieldSx, sx)}
         {...textFieldProps}
@@ -201,7 +204,19 @@ export type LandingFormActionsProps = StackProps;
  * on the right, but that is the consumer's to pass.
  */
 export function LandingFormActions(props: LandingFormActionsProps) {
-  return <Stack direction="row" gap={1} width="100%" {...props} />;
+  return (
+    <Stack
+      direction="row"
+      {...props}
+      sx={mergeSx(
+        {
+          gap: 1,
+          width: '100%',
+        },
+        props.sx,
+      )}
+    />
+  );
 }
 
 export type LandingFormCheckboxProps = Omit<
@@ -248,10 +263,9 @@ export function LandingFormCheckbox({
       label={label}
       slotProps={{
         ...labelSlotProps,
-        typography: mergeSlotProps(
-          { variant: 'body2' },
-          labelSlotProps.typography,
-        ),
+        typography: mergeSlotProps(labelSlotProps.typography, {
+          variant: 'body2',
+        }),
       }}
       {...formControlLabelProps}
       // MUI's own -11px/16px margins would break the same rhythm.

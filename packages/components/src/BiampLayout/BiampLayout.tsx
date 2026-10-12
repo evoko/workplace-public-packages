@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import { CloseIcon } from '@bwp-web/assets';
+import { mergeSx } from '../slotProps';
 
 type BiampLayoutDrawerContextValue = {
   isDrawer: boolean;
@@ -87,23 +88,27 @@ export function BiampLayout({
     <BiampLayoutDrawerContext.Provider value={ctx}>
       <Stack
         direction="column"
-        height="100vh"
-        sx={{
-          backgroundColor: ({ palette }) =>
-            palette.mode === 'dark' ? palette.grey[900] : palette.grey[100],
-          ...sx,
-        }}
         {...props}
+        sx={mergeSx(
+          {
+            height: '100vh',
+            backgroundColor: ({ palette }) =>
+              palette.mode === 'dark' ? palette.grey[900] : palette.grey[100],
+          },
+          sx,
+        )}
       >
         {header}
         <Stack
           direction="row"
-          flex={1}
-          minHeight={0}
-          gap={{ xs: 1.5, md: 2.5 }}
-          px={{ xs: 1.5, md: 2.5 }}
-          pb={{ xs: 1.5, md: 2.5 }}
-          pt={{ xs: header ? 0 : 1.5, md: header ? 0 : 2.5 }}
+          sx={{
+            flex: 1,
+            minHeight: 0,
+            gap: { xs: 1.5, md: 2.5 },
+            px: { xs: 1.5, md: 2.5 },
+            pb: { xs: 1.5, md: 2.5 },
+            pt: { xs: header ? 0 : 1.5, md: header ? 0 : 2.5 },
+          }}
         >
           {!isDrawer && !(responsive && mobileSidebarOnly) && sidebar}
           {children}
@@ -129,9 +134,13 @@ export function BiampLayout({
           >
             <Stack
               direction="row"
-              alignItems="center"
-              gap={1}
-              sx={{ height: 40, mb: 1.5, flexShrink: 0 }}
+              sx={{
+                alignItems: 'center',
+                gap: 1,
+                height: 40,
+                mb: 1.5,
+                flexShrink: 0,
+              }}
             >
               <IconButton
                 variant="none"

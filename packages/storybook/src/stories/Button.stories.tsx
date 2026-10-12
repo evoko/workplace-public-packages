@@ -40,7 +40,13 @@ export const ContainedButtons: Story = {
   render: () => (
     <Stack spacing={3}>
       <Typography variant="h3">Contained Buttons</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Button variant="contained" color="primary">
           Primary
         </Button>
@@ -54,7 +60,13 @@ export const ContainedButtons: Story = {
       <Typography variant="h3" sx={{ pt: 2 }}>
         Small Contained
       </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Button variant="contained" color="primary" size="small">
           Primary Small
         </Button>
@@ -73,7 +85,13 @@ export const OutlinedButtons: Story = {
   render: () => (
     <Stack spacing={3}>
       <Typography variant="h3">Outlined Buttons</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Button variant="outlined" color="primary">
           Primary
         </Button>
@@ -87,7 +105,13 @@ export const OutlinedButtons: Story = {
       <Typography variant="h3" sx={{ pt: 2 }}>
         Small Outlined
       </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          alignItems: 'center',
+        }}
+      >
         <Button variant="outlined" color="primary" size="small">
           Primary Small
         </Button>
@@ -131,7 +155,13 @@ export const WithIcons: Story = {
     <Stack spacing={4}>
       <Typography variant="h3">Contained with Icon</Typography>
       <Stack spacing={2}>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Button variant="contained" color="primary" startIcon={<AddIcon />}>
             Primary
           </Button>
@@ -147,7 +177,13 @@ export const WithIcons: Story = {
             Disabled
           </Button>
         </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Button variant="contained" color="primary" endIcon={<AddIcon />}>
             Primary
           </Button>
@@ -163,7 +199,13 @@ export const WithIcons: Story = {
             Disabled
           </Button>
         </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Button
             variant="contained"
             color="primary"
@@ -209,7 +251,13 @@ export const WithIcons: Story = {
 
       <Typography variant="h3">Outlined with Icon</Typography>
       <Stack spacing={2}>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Button variant="outlined" color="primary" startIcon={<AddIcon />}>
             Primary
           </Button>
@@ -225,7 +273,13 @@ export const WithIcons: Story = {
             Disabled
           </Button>
         </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Button variant="outlined" color="primary" endIcon={<AddIcon />}>
             Primary
           </Button>
@@ -241,7 +295,13 @@ export const WithIcons: Story = {
             Disabled
           </Button>
         </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+          }}
+        >
           <Button
             variant="outlined"
             color="primary"
@@ -348,7 +408,9 @@ export const AllVariantsAndColors: Story = {
                   key={variant}
                   direction="row"
                   spacing={2}
-                  alignItems="center"
+                  sx={{
+                    alignItems: 'center',
+                  }}
                 >
                   <Typography
                     variant="caption"

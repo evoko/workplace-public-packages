@@ -212,13 +212,15 @@ export function BiampTable<TData>({
       component={Box}
       {...boxProps}
       ref={containerRef}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        position: 'relative',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          position: 'relative',
+        },
+        sx,
+      )}
     >
       <MuiTable
         aria-busy={showLoading || undefined}

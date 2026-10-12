@@ -21,6 +21,7 @@ import {
   Theme,
   Typography,
 } from '@mui/material';
+import { mergeSx } from '../slotProps';
 import { Children, Fragment, isValidElement, ReactNode } from 'react';
 import {
   ChevronDownIcon,
@@ -45,19 +46,21 @@ export function OrganizationSelector({
 }: OrganizationSelectorProps) {
   return (
     <Stack
-      sx={{
-        width: 'min(370px, calc(100vw - 24px))',
-        minHeight: 64,
-        maxHeight: 'min(700px, 90vh)',
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
-        borderRadius: 3,
-        p: 1.5,
-        boxShadow: ({ palette }) =>
-          `0 4px 24px 0 ${alpha(palette.common.black, 0.15)}`,
-        overflow: 'auto',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          width: 'min(370px, calc(100vw - 24px))',
+          minHeight: 64,
+          maxHeight: 'min(700px, 90vh)',
+          backgroundColor: ({ palette }) =>
+            palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
+          borderRadius: 3,
+          p: 1.5,
+          boxShadow: ({ palette }) =>
+            `0 4px 24px 0 ${alpha(palette.common.black, 0.15)}`,
+          overflow: 'auto',
+        },
+        sx,
+      )}
       {...props}
     >
       {loading ? (
@@ -93,19 +96,21 @@ export function OrganizationItemList({
     <>
       <List
         disablePadding
-        sx={{
-          border: 0.6,
-          borderColor: ({ palette }) =>
-            palette.mode === 'dark'
-              ? alpha(palette.common.white, 0.12)
-              : alpha(palette.grey[900], 0.15),
-          borderRadius: 2,
-          ...(maxHeight !== undefined && {
-            overflow: 'auto',
-            maxHeight,
-          }),
-          ...sx,
-        }}
+        sx={mergeSx(
+          {
+            border: 0.6,
+            borderColor: ({ palette }) =>
+              palette.mode === 'dark'
+                ? alpha(palette.common.white, 0.12)
+                : alpha(palette.grey[900], 0.15),
+            borderRadius: 2,
+            ...(maxHeight !== undefined && {
+              overflow: 'auto',
+              maxHeight,
+            }),
+          },
+          sx,
+        )}
       >
         {items.map((item, i) => (
           <Fragment key={item.key ?? i}>
@@ -147,9 +152,11 @@ function renderText(
     return (
       <Typography
         variant={defaults.variant}
-        fontWeight={defaults.fontWeight}
-        color={defaults.color}
         noWrap
+        sx={{
+          fontWeight: defaults.fontWeight,
+          color: defaults.color,
+        }}
       >
         {value}
       </Typography>
@@ -178,13 +185,10 @@ export function OrganizationItem({
       <ListItemButton
         disabled={disabled ?? isCurrent}
         disableRipple
-        sx={{
-          p: 1,
-          pr: 1.5,
-          gap: 1.5,
-          '&.Mui-disabled': { opacity: 1 },
-          ...sx,
-        }}
+        sx={mergeSx(
+          { p: 1, pr: 1.5, gap: 1.5, '&.Mui-disabled': { opacity: 1 } },
+          sx,
+        )}
         {...props}
       >
         <Box
@@ -214,12 +218,24 @@ export function OrganizationItem({
             logo
           )}
         </Box>
-        <Stack gap={0.25} sx={{ width: '100%', minWidth: 0 }}>
-          <Stack direction="row" justifyContent="space-between" gap={1}>
+        <Stack
+          sx={{
+            gap: 0.25,
+            width: '100%',
+            minWidth: 0,
+          }}
+        >
+          <Stack
+            direction="row"
+            sx={{
+              justifyContent: 'space-between',
+              gap: 1,
+            }}
+          >
             {renderText(primaryText, {
               variant: 'body2',
               fontWeight: 600,
-              color: 'primary',
+              color: 'primary.main',
             })}
             {meta &&
               renderText(meta, { variant: 'body2', color: 'text.secondary' })}
@@ -276,23 +292,27 @@ export function OrganizationSelectorButton({
   return (
     <ButtonBase
       disableRipple
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 1,
-        borderRadius: 1,
-        p: 0.75,
-        border: ({ palette }) => `0.6px solid ${palette.dividers.secondary}`,
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+          borderRadius: 1,
+          p: 0.75,
+          border: ({ palette }) => `0.6px solid ${palette.dividers.secondary}`,
+        },
+        sx,
+      )}
       {...props}
     >
       {icon}
       <Typography
         variant="caption"
-        fontWeight={600}
         noWrap
-        sx={{ flexShrink: 0 }}
+        sx={{
+          fontWeight: 600,
+          flexShrink: 0,
+        }}
       >
         {name}
       </Typography>

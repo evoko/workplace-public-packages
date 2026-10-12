@@ -1,4 +1,5 @@
 import { SvgIcon, Skeleton, Box } from '@mui/material';
+import { mergeSx } from '../slotProps';
 import type { SvgIconProps } from '@mui/material';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +9,28 @@ interface SvgCacheEntry {
 }
 
 const svgCache = new Map<string, SvgCacheEntry>();
+
+interface IconState {
+  url: string;
+  svgContent: string | null;
+  svgViewBox: string | null;
+  loading: boolean;
+  error: string | null;
+}
+
+function iconStateFor(
+  url: string,
+  transform: (s: string) => string,
+): IconState {
+  const cached = url ? svgCache.get(url) : undefined;
+  return {
+    url,
+    svgContent: cached ? transform(cached.innerContent) : null,
+    svgViewBox: cached?.viewBox ?? null,
+    loading: !!url && !cached,
+    error: url ? null : 'No URL provided',
+  };
+}
 
 /** Clear the internal SVG fetch cache. Useful for testing or forcing a refetch. */
 export function clearDynamicSvgIconCache() {
@@ -76,79 +99,76 @@ export function useDynamicSvgIcon(
 
   const transform = replaceColors ? applyCurrentColor : (s: string) => s;
 
-  const [svgContent, setSvgContent] = useState<string | null>(() => {
-    const cached = svgCache.get(url);
-    return cached ? transform(cached.innerContent) : null;
-  });
-  const [svgViewBox, setSvgViewBox] = useState<string | null>(() => {
-    const cached = svgCache.get(url);
-    return cached?.viewBox ?? null;
-  });
-  const [loading, setLoading] = useState(() => !svgCache.has(url));
-  const [error, setError] = useState<string | null>(null);
+  const [state, setState] = useState(() => iconStateFor(url, transform));
+  // Reset to the cached / empty state synchronously when the URL changes.
+  if (state.url !== url) {
+    setState(iconStateFor(url, transform));
+  }
 
   useEffect(() => {
-    if (!url) {
-      setLoading(false);
-      setError('No URL provided');
-      setSvgContent(null);
-      setSvgViewBox(null);
+    if (!url) return;
+
+    // `loading` is false here only when this render already took the content
+    // from the cache.
+    if (!state.loading) {
+      onLoad?.();
       return;
     }
 
     let cancelled = false;
 
-    const cached = svgCache.get(url);
-    if (cached) {
-      setSvgContent(transform(cached.innerContent));
-      setSvgViewBox(cached.viewBox);
-      setLoading(false);
-      setError(null);
-      onLoad?.();
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-    setSvgContent(null);
-    setSvgViewBox(null);
-
     (async () => {
       try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(
-            `Failed to fetch SVG: ${response.status} ${response.statusText}`,
-          );
+        // The cache may have been filled (by another instance) since this render.
+        let entry = svgCache.get(url);
+        if (!entry) {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(
+              `Failed to fetch SVG: ${response.status} ${response.statusText}`,
+            );
+          }
+
+          const contentType = response.headers.get('content-type') ?? '';
+          const text = await response.text();
+
+          if (!text.includes('<svg') && !contentType.includes('svg')) {
+            throw new Error('Response is not an SVG');
+          }
+
+          const viewBoxMatch = text.match(/viewBox="([^"]*)"/);
+          const viewBox = viewBoxMatch ? viewBoxMatch[1] : null;
+
+          const svgMatch = text.match(/<svg[^>]*>([\s\S]*?)<\/svg>/);
+          const innerContent = svgMatch ? svgMatch[1] : text;
+
+          entry = { innerContent, viewBox };
+          svgCache.set(url, entry);
         }
-
-        const contentType = response.headers.get('content-type') ?? '';
-        const text = await response.text();
-
-        if (!text.includes('<svg') && !contentType.includes('svg')) {
-          throw new Error('Response is not an SVG');
-        }
-
-        const viewBoxMatch = text.match(/viewBox="([^"]*)"/);
-        const viewBox = viewBoxMatch ? viewBoxMatch[1] : null;
-
-        const svgMatch = text.match(/<svg[^>]*>([\s\S]*?)<\/svg>/);
-        const innerContent = svgMatch ? svgMatch[1] : text;
-
-        svgCache.set(url, { innerContent, viewBox });
 
         if (!cancelled) {
-          setSvgContent(transform(innerContent));
-          setSvgViewBox(viewBox);
-          setLoading(false);
+          const { innerContent, viewBox } = entry;
+          setState((prev) =>
+            prev.url === url
+              ? {
+                  ...prev,
+                  svgContent: transform(innerContent),
+                  svgViewBox: viewBox,
+                  loading: false,
+                }
+              : prev,
+          );
           onLoad?.();
         }
       } catch (err) {
         if (!cancelled) {
           const message =
             err instanceof Error ? err.message : 'Failed to load SVG';
-          setError(message);
-          setLoading(false);
+          setState((prev) =>
+            prev.url === url
+              ? { ...prev, error: message, loading: false }
+              : prev,
+          );
           onError?.(message);
         }
       }
@@ -160,6 +180,7 @@ export function useDynamicSvgIcon(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
+  const { loading, error, svgContent, svgViewBox } = state;
   return { loading, error, svgContent, svgViewBox };
 }
 
@@ -274,13 +295,7 @@ export function DynamicSvgIcon({
     <SvgIcon
       {...svgIconProps}
       {...(svgViewBox && { viewBox: svgViewBox })}
-      sx={{
-        ...(typeof sx === 'object' && sx !== null && !Array.isArray(sx)
-          ? sx
-          : undefined),
-        width,
-        height,
-      }}
+      sx={mergeSx(sx, { width, height })}
     >
       <g dangerouslySetInnerHTML={{ __html: svgContent }} />
     </SvgIcon>

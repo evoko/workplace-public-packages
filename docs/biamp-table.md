@@ -135,7 +135,7 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `alwaysExpanded`           | `boolean`                       | `false`      | When paired with `enableExpanding`, every row stays open and the chevron toggles are not rendered. Useful when the hierarchy is informational rather than interactive                                  |
 | `showExpandGuidelines`     | `boolean`                       | `false`      | Draws non-interactive tree guidelines (verticals + elbow connectors) linking parent rows to their children. Only applies when `alwaysExpanded` is also `true`                                          |
 | `hideSelectAll`            | `boolean`                       | —            | Hides the "select all" header checkbox while keeping individual row checkboxes                                                                                                                        |
-| `selectChildrenWithParent` | `boolean`                       | `true`       | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
+| `selectChildrenWithParent` | `boolean`                       | `false`      | When `true`, selecting a parent row also selects its children. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel`              | `(row: TData) => string`        | —            | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index                                                         |
 | `setRowColor`              | `(row: TData) => string \| undefined` | —      | Returns a background color (any valid CSS color) for the row. Applied to the row and to sticky cells (selection column, sticky action columns) so the row reads as a single tinted band. Hover and selected backgrounds fully override the custom color. See [Row Coloring](#row-coloring) |
 | `slotProps`                | `BiampTableSlotProps<TData>`    | —            | Per-slot props merged onto the internal MUI elements. `sx` composes with the component's defaults instead of replacing them. See [Slot Props](#slot-props)                                            |
@@ -156,14 +156,14 @@ const table = useReactTable({
 <BiampTable table={table} enableRowSelection getRowLabel={(row) => row.name} />;
 ```
 
-By default, selecting a parent row cascades to all its children. To make parent and child selections independent, pass `selectChildrenWithParent={false}`:
+By default, parent and child selections are independent. To make selecting a parent cascade to its children, pass `selectChildrenWithParent`:
 
 ```tsx
 <BiampTable
   table={table}
   enableRowSelection
   enableExpanding
-  selectChildrenWithParent={false}
+  selectChildrenWithParent
 />
 ```
 
@@ -327,10 +327,11 @@ const table = useReactTable({
 **Memoize function-form callbacks.** The body rows are memoized on slot-prop identity, so passing a fresh arrow each render will break row memoization. Wrap the callbacks in `useCallback` (or hoist them to module scope if they don't close over state).
 
 ```tsx
-const rowSlot = useCallback<
-  NonNullable<BiampTableSlotProps<Room>['row']>
->(
-  ({ row }) =>
+import { type TableRowProps } from '@mui/material';
+import { type Row } from '@tanstack/react-table';
+
+const rowSlot = useCallback(
+  ({ row }: { row: Row<Room> }): TableRowProps =>
     row.original.status === 'Occupied'
       ? { sx: { bgcolor: 'action.hover' } }
       : {},
@@ -977,6 +978,7 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `getOrderFieldMappings`              | function  | Build column ID ↔ order field bidirectional maps            |
 | `getDefaultColumnVisibilityFromDefs` | function  | Derive default visibility from column defs                  |
 | `getDirtyColumnVisibility`           | function  | Strip default-matching entries from visibility state        |
+| `getNonHideableColumnIds`            | function  | IDs of columns declared non-hideable (`enableHiding: false`) |
 | `exportToCsv`                        | function  | Convert rows + columns to CSV and download                  |
 | `buildCsvString`                     | function  | Build CSV string (no download)                              |
 | `UseBiampServerSideTableOptions`     | type      | Options for `useBiampServerSideTable`                       |

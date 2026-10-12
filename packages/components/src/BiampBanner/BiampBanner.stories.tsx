@@ -39,7 +39,11 @@ function DefaultDemo() {
           </Button>
         </BiampBannerActions>
       </BiampBanner>
-      <Stack p={3}>
+      <Stack
+        sx={{
+          p: 3,
+        }}
+      >
         <Button
           variant="contained"
           onClick={() => setShow(true)}
@@ -67,7 +71,11 @@ export const Default: Story = {
  */
 export const AllSeverities: Story = {
   render: () => (
-    <Stack gap={1}>
+    <Stack
+      sx={{
+        gap: 1,
+      }}
+    >
       <BiampBanner show severity="info">
         <BiampBannerIcon severity="info" />
         <BiampBannerContent>
@@ -186,7 +194,11 @@ function IndependentTogglesDemo() {
 
   return (
     <Stack>
-      <Stack gap={1}>
+      <Stack
+        sx={{
+          gap: 1,
+        }}
+      >
         {severities.map((s) => (
           <BiampBanner key={s} show={visible[s]} severity={s}>
             <BiampBannerIcon severity={s} />
@@ -204,7 +216,14 @@ function IndependentTogglesDemo() {
           </BiampBanner>
         ))}
       </Stack>
-      <Stack direction="row" gap={1} p={2} flexWrap="wrap">
+      <Stack
+        direction="row"
+        sx={{
+          gap: 1,
+          p: 2,
+          flexWrap: 'wrap',
+        }}
+      >
         {severities.map((s) => (
           <Button
             key={s}

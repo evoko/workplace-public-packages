@@ -33,7 +33,11 @@ type Story = StoryObj<typeof BiampWrapper>;
  */
 export const Default: Story = {
   render: () => (
-    <Stack height="100vh">
+    <Stack
+      sx={{
+        height: '100vh',
+      }}
+    >
       <BiampWrapper>
         <Box>
           <Typography variant="h4" gutterBottom>
@@ -56,7 +60,11 @@ export const Default: Story = {
  */
 export const WithCards: Story = {
   render: () => (
-    <Stack height="100vh">
+    <Stack
+      sx={{
+        height: '100vh',
+      }}
+    >
       <BiampWrapper>
         <Box sx={{ p: 3 }}>
           <Typography variant="h4" gutterBottom>
@@ -67,7 +75,12 @@ export const WithCards: Story = {
               <Card key={title} sx={{ flex: 1 }}>
                 <CardContent>
                   <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                    }}
+                  >
                     Manage your {title.toLowerCase()} here.
                   </Typography>
                 </CardContent>
@@ -90,7 +103,11 @@ export const Mobile: Story = {
     },
   },
   render: () => (
-    <Stack height="100vh">
+    <Stack
+      sx={{
+        height: '100vh',
+      }}
+    >
       <BiampWrapper>
         <Box sx={{ p: 2 }}>
           <Typography variant="h5" gutterBottom>
@@ -105,7 +122,12 @@ export const Mobile: Story = {
               <Card key={title}>
                 <CardContent>
                   <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                    }}
+                  >
                     Manage your {title.toLowerCase()} here.
                   </Typography>
                 </CardContent>
@@ -127,7 +149,11 @@ export const Mobile: Story = {
 export const Loading: Story = {
   args: { loading: true },
   render: (args) => (
-    <Stack height="100vh">
+    <Stack
+      sx={{
+        height: '100vh',
+      }}
+    >
       <BiampWrapper {...args}>
         <Box>
           <Typography variant="h4" gutterBottom>
@@ -159,7 +185,11 @@ export const LoadingInteractive: Story = {
       }
 
       return (
-        <Stack height="100vh">
+        <Stack
+          sx={{
+            height: '100vh',
+          }}
+        >
           <BiampWrapper loading={loading}>
             <Stack spacing={2}>
               <Typography variant="h4">Simulated Load</Typography>
@@ -191,7 +221,11 @@ export const LoadingInteractive: Story = {
  */
 export const WithStickyTop: Story = {
   render: () => (
-    <Stack height="100%">
+    <Stack
+      sx={{
+        height: '100%',
+      }}
+    >
       <BiampWrapper
         stickyTop={
           <Box
@@ -203,7 +237,12 @@ export const WithStickyTop: Story = {
             }}
           >
             <Typography variant="h5">Sticky Header</Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              sx={{
+                color: 'text.secondary',
+              }}
+            >
               Pinned to the wrapper&apos;s top edge — ignores the 16px padding
               and stays visible as the rest of the content scrolls.
             </Typography>
@@ -218,7 +257,12 @@ export const WithStickyTop: Story = {
             <Card key={i}>
               <CardContent>
                 <Typography variant="h6">Card {i + 1}</Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'text.secondary',
+                  }}
+                >
                   Scroll the wrapper to see the sticky header stay pinned at the
                   top while these cards pass underneath.
                 </Typography>
@@ -237,7 +281,11 @@ export const WithStickyTop: Story = {
  */
 export const Empty: Story = {
   render: () => (
-    <Box height="100vh">
+    <Box
+      sx={{
+        height: '100vh',
+      }}
+    >
       <BiampWrapper />
     </Box>
   ),
@@ -249,7 +297,12 @@ export const Empty: Story = {
  */
 export const MultipleSideBySide: Story = {
   render: () => (
-    <Stack height="100vh" gap={2}>
+    <Stack
+      sx={{
+        height: '100vh',
+        gap: 2,
+      }}
+    >
       <BiampWrapper>
         <Box>
           <Typography variant="h5" gutterBottom>
@@ -283,8 +336,19 @@ export const MultipleSideBySide: Story = {
  */
 export const FourSideBySide: Story = {
   render: () => (
-    <Stack height="100vh" gap={2}>
-      <Stack direction={'row'} gap={2} flex={1}>
+    <Stack
+      sx={{
+        height: '100vh',
+        gap: 2,
+      }}
+    >
+      <Stack
+        direction={'row'}
+        sx={{
+          gap: 2,
+          flex: 1,
+        }}
+      >
         <BiampWrapper>
           <Box>
             <Typography variant="h5" gutterBottom>
@@ -310,7 +374,13 @@ export const FourSideBySide: Story = {
         </BiampWrapper>
       </Stack>
 
-      <Stack direction={'row'} gap={2} flex={1}>
+      <Stack
+        direction={'row'}
+        sx={{
+          gap: 2,
+          flex: 1,
+        }}
+      >
         <BiampWrapper>
           <Box>
             <Typography variant="h5" gutterBottom>

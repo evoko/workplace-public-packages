@@ -293,7 +293,12 @@ export const AllIcons: Story = {
     <Box sx={{ color: iconColor || 'inherit' }}>
       <Stack spacing={3}>
         <Typography variant="h3">Layout Icons</Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           Icons used in the Biamp Workplace shell (header, sidebar, app
           launcher). See the <strong>Icon Groups</strong> story for the full
           catalog.
@@ -317,7 +322,12 @@ export const AllIcons: Story = {
         <Typography variant="h3" sx={{ pt: 2 }}>
           Theme Icons
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           Icons used internally by the theme for MUI component overrides
           (alerts, checkboxes, radio buttons). Status icons are theme-aware and
           adapt to dark/light mode.
@@ -350,7 +360,12 @@ export const AllIcons: Story = {
         <Typography variant="h3" sx={{ pt: 2 }}>
           Images
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           Static image assets exported as data URLs.
         </Typography>
 
@@ -383,7 +398,12 @@ export const AllIcons: Story = {
         <Typography variant="h3" sx={{ pt: 2 }}>
           App Images
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           PNG images for the app-launcher dialog tiles. Each export is a data
           URL string.
         </Typography>
@@ -445,13 +465,23 @@ export const IconGroups: Story = {
   render: ({ iconColor }) => (
     <Box sx={{ color: iconColor || 'inherit' }}>
       <Stack spacing={6}>
-        <Typography variant="h3" color="text.primary">
+        <Typography
+          variant="h3"
+          sx={{
+            color: 'text.primary',
+          }}
+        >
           Icon Groups by Size
         </Typography>
 
         {/* xxxxs — 6px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xxxxs — 6px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -469,7 +499,12 @@ export const IconGroups: Story = {
 
         {/* xxxs — 8px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xxxs — 8px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -484,7 +519,12 @@ export const IconGroups: Story = {
 
         {/* xxs — 12px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xxs — 12px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -622,7 +662,12 @@ export const IconGroups: Story = {
 
         {/* xs — 16px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xs — 16px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1015,7 +1060,12 @@ export const IconGroups: Story = {
 
         {/* sm — 20px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             sm — 20px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1105,7 +1155,12 @@ export const IconGroups: Story = {
 
         {/* md — 24px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             md — 24px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1438,7 +1493,12 @@ export const IconGroups: Story = {
 
         {/* lg — 32px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             lg — 32px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1477,7 +1537,12 @@ export const IconGroups: Story = {
 
         {/* xl — 40px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xl — 40px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1498,7 +1563,12 @@ export const IconGroups: Story = {
 
         {/* xxl — 56px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xxl — 56px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1546,7 +1616,12 @@ export const IconGroups: Story = {
 
         {/* xxxl — 72px */}
         <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             xxxl — 72px
           </Typography>
           <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
@@ -1582,7 +1657,12 @@ export const Sizes: Story = {
           {[14, 16, 20, 24, 32, 48].map((size) => (
             <Box key={size} sx={{ textAlign: 'center' }}>
               <SuccessStatusIcon sx={{ width: size, height: size }} />
-              <Typography variant="caption" display="block">
+              <Typography
+                variant="caption"
+                sx={{
+                  display: 'block',
+                }}
+              >
                 {size}px
               </Typography>
             </Box>

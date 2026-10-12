@@ -35,7 +35,12 @@ export function CustomCalendarHeader(props: PickersCalendarHeaderProps) {
           <ChevronLeftIcon variant="xs" />
         </IconButton>
       </Stack>
-      <Typography variant="body2" fontWeight="fontWeightMedium">
+      <Typography
+        variant="body2"
+        sx={{
+          fontWeight: 'fontWeightMedium',
+        }}
+      >
         {`${adapter.format(currentMonth, 'month')} ${adapter.format(currentMonth, 'year')}`}
       </Typography>
       <Stack spacing={1} direction="row">

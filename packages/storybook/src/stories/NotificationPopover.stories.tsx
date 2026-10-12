@@ -52,7 +52,13 @@ function makeNotifications(count: number): NotificationItem[] {
 
 function NotificationRow({ item }: { item: NotificationItem }) {
   return (
-    <Stack direction="row" gap={1.5} sx={{ py: 1 }}>
+    <Stack
+      direction="row"
+      sx={{
+        gap: 1.5,
+        py: 1,
+      }}
+    >
       <Box
         sx={{
           width: 8,
@@ -63,14 +69,34 @@ function NotificationRow({ item }: { item: NotificationItem }) {
           bgcolor: 'primary.main',
         }}
       />
-      <Stack gap={0.25} sx={{ minWidth: 0 }}>
-        <Typography variant="body2" fontWeight={600}>
+      <Stack
+        sx={{
+          gap: 0.25,
+          minWidth: 0,
+        }}
+      >
+        <Typography
+          variant="body2"
+          sx={{
+            fontWeight: 600,
+          }}
+        >
           {item.title}
         </Typography>
-        <Typography variant="caption" color="text.secondary">
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
           {item.body}
         </Typography>
-        <Typography variant="caption" color="text.disabled">
+        <Typography
+          variant="caption"
+          sx={{
+            color: 'text.disabled',
+          }}
+        >
           {item.time}
         </Typography>
       </Stack>
@@ -86,7 +112,13 @@ function PopoverDemo({ count, heading }: { count: number; heading: string }) {
   return (
     <Stack spacing={2} sx={{ p: 4 }}>
       <Typography variant="h3">{heading}</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 480 }}>
+      <Typography
+        variant="body2"
+        sx={{
+          color: 'text.secondary',
+          maxWidth: 480,
+        }}
+      >
         {count} notifications. The popover caps at <code>maxHeight: 650px</code>{' '}
         — once the content is taller than that it should scroll inside the
         popover.
@@ -100,7 +132,6 @@ function PopoverDemo({ count, heading }: { count: number; heading: string }) {
           Open notifications ({count})
         </Button>
       </Box>
-
       <BiampNotificationPopover
         open={open}
         anchorEl={anchorRef.current}

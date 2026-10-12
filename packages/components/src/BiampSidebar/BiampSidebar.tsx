@@ -7,6 +7,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import { mergeSx } from '../slotProps';
 import { BiampLogoIcon, SquareRoundedArrowRightIcon } from '@bwp-web/assets';
 import { JSX, createContext, useContext, useState } from 'react';
 import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
@@ -63,19 +64,21 @@ export function BiampSidebar({
   return (
     <BiampSidebarContext.Provider value={{ expanded }}>
       <Stack
-        sx={{
-          width,
-          minWidth: width,
-          height: '100%',
-          transition: ({ transitions }) =>
-            transitions.create(['width', 'min-width'], {
-              easing: transitions.easing.sharp,
-              duration: expanded
-                ? transitions.duration.enteringScreen
-                : transitions.duration.leavingScreen,
-            }),
-          ...sx,
-        }}
+        sx={mergeSx(
+          {
+            width,
+            minWidth: width,
+            height: '100%',
+            transition: ({ transitions }) =>
+              transitions.create(['width', 'min-width'], {
+                easing: transitions.easing.sharp,
+                duration: expanded
+                  ? transitions.duration.enteringScreen
+                  : transitions.duration.leavingScreen,
+              }),
+          },
+          sx,
+        )}
         {...props}
       >
         <Stack sx={{ flex: 1, minHeight: 0 }}>{children}</Stack>
@@ -98,9 +101,12 @@ export function BiampSidebar({
         )}
         <Stack
           direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ mt: 2, overflow: 'hidden' }}
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            mt: 2,
+            overflow: 'hidden',
+          }}
         >
           {bottomLogoIcon ?? (
             <BiampLogoIcon
@@ -110,10 +116,10 @@ export function BiampSidebar({
           {bottomLogoText && (
             <Typography
               variant="caption"
-              fontWeight={500}
-              color="text.secondary"
               noWrap
               sx={{
+                fontWeight: 500,
+                color: 'text.secondary',
                 opacity: expanded ? 1 : 0,
                 transition: ({ transitions }) =>
                   transitions.create('opacity', {
@@ -146,14 +152,16 @@ export function BiampSidebarIconList({
 }: BiampSidebarIconList) {
   return (
     <Stack
-      sx={{
-        flex: 1,
-        minHeight: 0,
-        gap: '4px',
-        overflowY: 'auto',
-        overscrollBehavior: 'none',
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          flex: 1,
+          minHeight: 0,
+          gap: '4px',
+          overflowY: 'auto',
+          overscrollBehavior: 'none',
+        },
+        sx,
+      )}
       {...props}
     >
       {children}
@@ -199,21 +207,23 @@ export function BiampSidebarIcon({
           layoutDrawer.setOpen(false);
         }
       }}
-      sx={{
-        minWidth: '48px',
-        minHeight: '48px',
-        maxHeight: '48px',
-        borderRadius: '8px',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        padding: 0,
-        overflow: 'hidden',
-        color: 'text.secondary',
-        '&.Mui-selected': {
-          color: 'primary.main',
+      sx={mergeSx(
+        {
+          minWidth: '48px',
+          minHeight: '48px',
+          maxHeight: '48px',
+          borderRadius: '8px',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: 0,
+          overflow: 'hidden',
+          color: 'text.secondary',
+          '&.Mui-selected': {
+            color: 'primary.main',
+          },
         },
-        ...sx,
-      }}
+        sx,
+      )}
       {...props}
     >
       <Tooltip
@@ -238,10 +248,10 @@ export function BiampSidebarIcon({
       {name && (
         <Typography
           variant="body1"
-          fontWeight={600}
-          color="inherit"
           noWrap
           sx={{
+            fontWeight: 600,
+            color: 'inherit',
             pr: 2,
             opacity: expanded ? 1 : 0,
             transition: ({ transitions }) =>
@@ -270,18 +280,20 @@ export function BiampSidebarComponent({
 }: BiampSidebarComponentProps) {
   return (
     <Box
-      sx={{
-        minWidth: '48px',
-        maxWidth: '48px',
-        minHeight: '48px',
-        maxHeight: '48px',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-        border: ({ palette }) => `0.6px solid ${palette.divider}`,
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          minWidth: '48px',
+          maxWidth: '48px',
+          minHeight: '48px',
+          maxHeight: '48px',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          justifyContent: 'center',
+          alignItems: 'center',
+          border: ({ palette }) => `0.6px solid ${palette.divider}`,
+        },
+        sx,
+      )}
       {...props}
     >
       {children}
