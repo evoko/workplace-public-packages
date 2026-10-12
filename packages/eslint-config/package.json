@@ -11,7 +11,7 @@
     "format": "prettier --check . --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "@eslint-react/eslint-plugin": "^5.24.9",
+    "@eslint-react/eslint-plugin": "^5.26.1",
     "@eslint/compat": "^2.1.1",
     "@eslint/js": "^10.0.1",
     "eslint-config-prettier": "^10.1.8",
@@ -20,6 +20,6 @@
     "typescript-eslint": "^8.71.1"
   },
   "devDependencies": {
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.10"
   }
 }

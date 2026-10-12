@@ -63,8 +63,8 @@ export type BiampColumnDef<
 > = ColumnDef<BiampTableFeatures, TData, TValue>;
 
 /**
- * `createColumnHelper` bound to `BiampTableFeatures`. Wrap mixed-type column
- * arrays in `helper.columns([...])` before passing them to `useBiampTable`.
+ * `createColumnHelper` bound to `BiampTableFeatures`. Plain arrays of its
+ * columns and `helper.columns([...])` both work with `useBiampTable`.
  */
 export function createBiampColumnHelper<TData extends RowData>() {
   return createColumnHelper<BiampTableFeatures, TData>();

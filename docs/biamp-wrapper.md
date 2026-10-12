@@ -38,7 +38,7 @@ import { Typography, Box } from '@mui/material';
 
 function MyPage() {
   return (
-    <Box height="100vh">
+    <Box sx={{ height: '100vh' }}>
       <BiampWrapper>
         <Box>
           <Typography variant="h4" gutterBottom>
@@ -66,7 +66,7 @@ import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 
 function Dashboard() {
   return (
-    <Stack height="100vh">
+    <Stack sx={{ height: '100vh' }}>
       <BiampWrapper>
         <Box sx={{ p: 3 }}>
           <Typography variant="h4" gutterBottom>
@@ -77,7 +77,7 @@ function Dashboard() {
               <Card key={title} sx={{ flex: 1 }}>
                 <CardContent>
                   <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     Manage your {title.toLowerCase()} here.
                   </Typography>
                 </CardContent>
@@ -101,7 +101,7 @@ import { Box, Stack, Typography } from '@mui/material';
 
 function MultipleWrappers() {
   return (
-    <Stack height="100vh" gap={2}>
+    <Stack sx={{ height: '100vh', gap: 2 }}>
       <BiampWrapper>
         <Box>
           <Typography variant="h5" gutterBottom>
@@ -183,7 +183,7 @@ import { Typography, Box } from '@mui/material';
 
 function CustomWrapper() {
   return (
-    <Box height="100vh">
+    <Box sx={{ height: '100vh' }}>
       <BiampWrapper
         sx={{
           backgroundColor: 'primary.main',
@@ -192,7 +192,7 @@ function CustomWrapper() {
         }}
       >
         <Box>
-          <Typography variant="h5" color="primary.contrastText">
+          <Typography variant="h5" sx={{ color: 'primary.contrastText' }}>
             Custom Styled Wrapper
           </Typography>
         </Box>

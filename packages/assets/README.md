@@ -17,7 +17,7 @@ npm install @bwp-web/assets
 
 - `@emotion/react` ^11.14.0
 - `@emotion/styled` ^11.14.0
-- `@mui/material` ^7.0.0
+- `@mui/material` ^9.5.0
 - `react` ^18.0.0 || ^19.0.0
 - `react-dom` ^18.0.0 || ^19.0.0
 

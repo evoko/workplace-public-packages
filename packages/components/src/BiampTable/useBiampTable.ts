@@ -1,4 +1,5 @@
 import {
+  type ColumnDef,
   type ReactTable,
   type RowData,
   type TableOptions,
@@ -12,8 +13,11 @@ import './tanstack-meta';
 
 export type UseBiampTableOptions<TData extends RowData> = Omit<
   TableOptions<BiampTableFeatures, TData>,
-  'features'
+  'features' | 'columns'
 > & {
+  /** Column definitions. Plain arrays of `createBiampColumnHelper` columns are accepted. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: ReadonlyArray<ColumnDef<BiampTableFeatures, TData, any>>;
   /**
    * Paginate rows client-side using `state.pagination` /
    * `initialState.pagination` (default page size 10). When `false`, every row
@@ -34,6 +38,11 @@ export function useBiampTable<TData extends RowData>({
 }: UseBiampTableOptions<TData>): ReactTable<BiampTableFeatures, TData> {
   return useTable<BiampTableFeatures, TData>({
     ...options,
+    // TanStack types `columns` as `unknown`-valued for variance; we accept
+    // `any`-valued defs (plain arrays of helper columns) as v8 did.
+    columns: options.columns as ReadonlyArray<
+      ColumnDef<BiampTableFeatures, TData, unknown>
+    >,
     features: biampTableFeatures,
     // The shared features always register the paginated row model, which
     // paginates unless pagination is manual — so "no pagination" means manual.

@@ -28,6 +28,7 @@ import {
   ClockTimeIcon,
   DropdownChevronDuoIcon,
 } from '@bwp-web/assets';
+import IconButton from '@mui/material/IconButton';
 import { alpha, createTheme, type Theme } from '@mui/material/styles';
 import { CustomCalendarHeader } from './custom-components/CustomCalendarHeader';
 import { CustomCalendarActionBar } from './custom-components/CustomCalendarActionBar';
@@ -1193,6 +1194,18 @@ export const biampTheme = (
             },
             actions: {
               marginLeft: 36,
+            },
+          },
+        },
+        MuiTablePaginationActions: {
+          defaultProps: {
+            // MUI 9.5 wraps each page button in a Tooltip. Plain IconButtons
+            // keep the previous look: no tooltip, only the native title.
+            slots: {
+              firstButton: IconButton,
+              previousButton: IconButton,
+              nextButton: IconButton,
+              lastButton: IconButton,
             },
           },
         },
