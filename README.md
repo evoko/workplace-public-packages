@@ -85,7 +85,7 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 | [biamp-header.md](./docs/biamp-header.md)                   | BiampHeader — header with app launcher                          |
 | [biamp-banner.md](./docs/biamp-banner.md)                   | BiampBanner — notification banner                               |
 | [biamp-table.md](./docs/biamp-table.md)                     | BiampTable — TanStack-based data table                          |
-| [migration-v2.md](./docs/migration-v2.md)                   | Migrating from 1.x to 2.x (MUI 9, TanStack Table 9)             |
+| [migration-v2.md](./docs/migration-v2.md)                   | Migrating from 1.x to 2.x (MUI 9, MUI X 9)                      |
 | [biamp-global-search.md](./docs/biamp-global-search.md)     | BiampGlobalSearch — global search component                     |
 | [dynamic-svg-icon.md](./docs/dynamic-svg-icon.md)           | DynamicSvgIcon — remote SVG icon with skeleton and fallback     |
 | [organizations-panel.md](./docs/organizations-panel.md)     | OrganizationsPanel — landing-page organization picker           |

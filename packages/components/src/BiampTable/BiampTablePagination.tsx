@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { mergeSx } from '../slotProps';
 import { TablePagination, type TablePaginationProps } from '@mui/material';
-import type { RowData } from '@tanstack/react-table';
-import { type BiampTableInstance } from './biampTableFeatures';
-import { useBiampTableState } from './useBiampTableState';
+import type { Table } from '@tanstack/react-table';
 
-export type BiampTablePaginationProps<TData extends RowData> = {
+export type BiampTablePaginationProps<TData> = {
   /** TanStack Table instance to connect to. */
-  table: BiampTableInstance<TData>;
+  table: Table<TData>;
   /** Rows-per-page options. When omitted, the selector is hidden and defaults to 25. */
   rowsPerPageOptions?: number[];
   /** When true, keeps the previous row count visible instead of dropping to 0. */
@@ -34,7 +32,7 @@ const positionMap = {
   right: 'flex-end',
 };
 
-export function BiampTablePagination<TData extends RowData>({
+export function BiampTablePagination<TData>({
   table,
   rowsPerPageOptions,
   loading,
@@ -45,7 +43,6 @@ export function BiampTablePagination<TData extends RowData>({
 }: BiampTablePaginationProps<TData>) {
   const rowCount = table.getRowCount();
   const [lastRowCount, setLastRowCount] = useState(rowCount);
-  const { pageSize, pageIndex } = useBiampTableState(table).pagination;
 
   // Track the last meaningful count while not loading (React's "adjust state
   // during render" pattern; the guard makes it settle in one extra pass).
@@ -54,6 +51,7 @@ export function BiampTablePagination<TData extends RowData>({
   }
 
   const stableCount = loading ? lastRowCount : rowCount;
+  const { pageSize, pageIndex } = table.getState().pagination;
 
   // Auto-correct page when row count drops (e.g. after filtering)
   const maxPage = Math.max(0, Math.ceil(stableCount / pageSize) - 1);
@@ -70,8 +68,8 @@ export function BiampTablePagination<TData extends RowData>({
     <TablePagination
       component="div"
       count={stableCount}
-      page={pageIndex}
-      rowsPerPage={pageSize}
+      page={table.getState().pagination.pageIndex}
+      rowsPerPage={table.getState().pagination.pageSize}
       onPageChange={(_, page) => table.setPageIndex(page)}
       onRowsPerPageChange={(e) => {
         table.setPageSize(Number(e.target.value));

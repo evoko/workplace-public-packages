@@ -1,15 +1,13 @@
 import { type PopoverProps } from '@mui/material';
-import type { ColumnVisibilityState, RowData } from '@tanstack/react-table';
+import type { Table, VisibilityState } from '@tanstack/react-table';
 import {
   BiampCheckboxListPopover,
   type BiampCheckboxListItem,
 } from '../BiampCheckboxListPopover';
-import { type BiampTableInstance } from './biampTableFeatures';
-import { useBiampTableState } from './useBiampTableState';
 import './tanstack-meta';
 
 /**
- * A looser alternative to TanStack's `ColumnVisibilityState` (`Record<string, boolean>`).
+ * A looser alternative to TanStack's `VisibilityState` (`Record<string, boolean>`).
  * Accepts `Partial<Record<string, boolean>>` so callers don't need to cast
  * from URL params or partial objects. Internally, `undefined` values are
  * treated as `true` (visible).
@@ -17,13 +15,13 @@ import './tanstack-meta';
 export type ColumnVisibility = Partial<Record<string, boolean>>;
 
 /**
- * Converts a `ColumnVisibility` to TanStack's `ColumnVisibilityState`.
- * Use this when passing to `useBiampTable({ state: { columnVisibility } })`.
+ * Converts a `ColumnVisibility` to TanStack's `VisibilityState`.
+ * Use this when passing to `useReactTable({ state: { columnVisibility } })`.
  */
 export function toVisibilityState(
   visibility: ColumnVisibility,
-): ColumnVisibilityState {
-  return visibility as ColumnVisibilityState;
+): VisibilityState {
+  return visibility as VisibilityState;
 }
 
 /**
@@ -31,8 +29,8 @@ export function toVisibilityState(
  * `ColumnVisibility` map. Columns without `defaultVisible` are omitted
  * (treated as visible by default).
  */
-export function getDefaultColumnVisibility<TData extends RowData>(
-  table: BiampTableInstance<TData>,
+export function getDefaultColumnVisibility<TData>(
+  table: Table<TData>,
 ): ColumnVisibility {
   const result: ColumnVisibility = {};
   for (const col of table.getAllLeafColumns()) {
@@ -47,11 +45,11 @@ export function getDefaultColumnVisibility<TData extends RowData>(
  * When `defaultVisibility` is omitted, auto-derives from `meta.defaultVisible`
  * on each column definition.
  */
-export function getColumnVisibilityDirtyCount<TData extends RowData>(
-  table: BiampTableInstance<TData>,
+export function getColumnVisibilityDirtyCount<TData>(
+  table: Table<TData>,
   defaultVisibility?: ColumnVisibility,
 ): number {
-  const current = table.store.state.columnVisibility;
+  const current = table.getState().columnVisibility;
   const defaults = defaultVisibility ?? getDefaultColumnVisibility(table);
   let count = 0;
   for (const col of table.getAllLeafColumns()) {
@@ -62,17 +60,17 @@ export function getColumnVisibilityDirtyCount<TData extends RowData>(
   return count;
 }
 
-export type BiampTableColumnVisibilityProps<TData extends RowData> = Omit<
+export type BiampTableColumnVisibilityProps<TData> = Omit<
   PopoverProps,
   'open'
 > & {
   /** TanStack Table instance to connect to. */
-  table: BiampTableInstance<TData>;
+  table: Table<TData>;
   /** Label for the "show all" toggle. @default "Show all" */
   showAllLabel?: string;
 };
 
-export function BiampTableColumnVisibility<TData extends RowData>({
+export function BiampTableColumnVisibility<TData>({
   table,
   showAllLabel = 'Show all',
   anchorEl,
@@ -81,8 +79,6 @@ export function BiampTableColumnVisibility<TData extends RowData>({
   slotProps,
   ...popoverProps
 }: BiampTableColumnVisibilityProps<TData>) {
-  useBiampTableState(table);
-
   // Only columns the user is allowed to toggle. A column with
   // `enableHiding: false` (`getCanHide() === false`) is never offered here —
   // and `useBiampServerSideTable` also keeps such columns force-visible.

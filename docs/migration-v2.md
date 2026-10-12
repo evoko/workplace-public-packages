@@ -1,7 +1,7 @@
 # Migrating to @bwp-web 2.x
 
-2.x moves the packages to MUI 9, MUI X Date Pickers 9 and TanStack Table 9. Upgrade all four
-`@bwp-web/*` packages together.
+2.x moves the packages to MUI 9 and MUI X Date Pickers 9; TanStack Table stays on v8. Upgrade
+all four `@bwp-web/*` packages together.
 
 The 2.x components were checked pixel by pixel against 1.x and look the same, apart from the
 changes listed below.
@@ -12,10 +12,9 @@ changes listed below.
 |---|---|---|
 | `@mui/material` | ^7.0.0 | ^9.5.0 |
 | `@mui/x-date-pickers` | ^8.6.0 | ^9.15.0 |
-| `@tanstack/react-table` | ^8.0.0 | ^9.2.8 |
 | `@bwp-web/*` (internal peers) | ^1.x | ^2.0.0-alpha.0 |
 
-Unchanged: React `^18 || ^19`, Emotion `^11.14.0`, fabric `^7.2.0`, Node `>=24.20.0`, npm `>=11.19.0`.
+Unchanged: React `^18 || ^19`, TanStack Table (`@tanstack/react-table`) `^8.0.0`, Emotion `^11.14.0`, fabric `^7.2.0`, Node `>=24.20.0`, npm `>=11.19.0`.
 
 Remove any `overrides` that pin `@mui/*` to 7.x in your app's `package.json`.
 
@@ -74,65 +73,3 @@ What this means for `@bwp-web` components:
 > imports them, the visually identical replacements are `HelpOutlineOutlined` and
 > `ErrorOutlineOutlined`. Do not use `HelpOutlined` / `ErrorOutlined`: those are the filled
 > variants.
-
-## 3. TanStack Table 9 and BiampTable
-
-Build tables with `useBiampTable` instead of `useReactTable`. It already includes the features
-BiampTable needs (sorting, pagination, selection, expanding, column visibility):
-
-```tsx
-// 1.x
-import { useReactTable, getCoreRowModel, getSortedRowModel, getPaginationRowModel, createColumnHelper } from '@tanstack/react-table';
-const columnHelper = createColumnHelper<Device>();
-const table = useReactTable({
-  data, columns,
-  getCoreRowModel: getCoreRowModel(),
-  getSortedRowModel: getSortedRowModel(),
-  getPaginationRowModel: getPaginationRowModel(),
-});
-
-// 2.x
-import { useBiampTable, createBiampColumnHelper } from '@bwp-web/components';
-const columnHelper = createBiampColumnHelper<Device>();
-const columns = [
-  columnHelper.accessor('name', { header: 'Name' }),
-  columnHelper.accessor('location', { header: 'Location' }),
-];
-const table = useBiampTable({ data, columns, paginate: true });
-```
-
-- Remove every `get*RowModel` option. Sorting and expanding work automatically.
-- **Header clicks now sort rows.** In 1.x, a table without `getSortedRowModel` only toggled
-  the sort arrow on a header click. In 2.x, clicking a sortable column header reorders the
-  rows client-side. Set `manualSorting: true` (server-side sorting) or `enableSorting: false`
-  (on the table or on a column) to opt out.
-- **Pagination is opt-in:** pass `paginate: true` where you used `getPaginationRowModel`.
-  Without it, all rows render.
-- **Types:**
-  - `createColumnHelper<T>()` → `createBiampColumnHelper<T>()`
-  - `ColumnDef<T, V>` → `BiampColumnDef<T, V>`
-  - `Table<T>` → `BiampTableInstance<T>`
-  - `Row<T>` → `BiampRow<T>`
-  - `VisibilityState` → `ColumnVisibilityState` (from `@tanstack/react-table`; or use our looser `ColumnVisibility`)
-  - `Cell` and `Header` types: `BiampCell` and `BiampTableHeader`
-- **Row data must be an object or array.** v9's `RowData` excludes primitives.
-- **State reads:** `table.getState()` is gone. On the table returned by `useBiampTable` /
-  `useBiampServerSideTable`, read `table.state`. Where you only have a `BiampTableInstance<T>`
-  (for example a helper's parameter), read `table.store.state` or a slice such as
-  `table.atoms.sorting.get()`.
-- **Sorting function names:** `sortingFn` → `sortFn`.
-- **Column pinning is not available.** `biampTableFeatures` does not include TanStack's
-  `columnPinningFeature`, so `column.pin()`, `state.columnPinning` and `enableColumnPinning`
-  don't exist on BiampTable tables. For sticky columns use `meta.sticky: 'left' | 'right'`
-  (unchanged).
-- **`useBiampServerSideTable`:** call sites are unchanged apart from the column typing above.
-- If your code augments `ColumnMeta` / `TableMeta`, the declaration must match TanStack's type
-  parameters: `interface ColumnMeta<TFeatures extends TableFeatures, TData extends RowData,
-  TValue extends CellData = CellData>` and `interface TableMeta<TFeatures extends TableFeatures,
-  TData extends RowData>` (import `TableFeatures`, `RowData` and `CellData` from
-  `@tanstack/react-table`).
-- **Options are merged, not replaced.** TanStack 9 merges each render's options into the
-  previous ones. If you conditionally spread an option (`...(cond && { getSubRows })`), pass it
-  explicitly as `undefined` when off, or the previous value stays active.
-
-TanStack's guide: https://tanstack.com/table/latest/docs/framework/react/guide/migrating

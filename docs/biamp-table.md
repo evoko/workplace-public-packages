@@ -1,6 +1,6 @@
 # BiampTable
 
-A composable, accessible data table built on [TanStack Table](https://tanstack.com/table) v9 and MUI. Provides sorting, row selection, pagination, column visibility, toolbar actions, search, filters, and export — all wired to a single TanStack table instance built with `useBiampTable`.
+A composable, accessible data table built on [TanStack React Table](https://tanstack.com/table) and MUI. Provides sorting, row selection, pagination, column visibility, toolbar actions, search, filters, and export — all wired to a single TanStack `Table` instance.
 
 ## Installation
 
@@ -22,13 +22,18 @@ import {
   BiampTableToolbar,
   BiampTableToolbarSearch,
   BiampTableToolbarActions,
-  useBiampTable,
-  createBiampColumnHelper,
 } from '@bwp-web/components';
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getPaginationRowModel,
+  createColumnHelper,
+} from '@tanstack/react-table';
 
 type Device = { name: string; location: string; status: string };
 
-const columnHelper = createBiampColumnHelper<Device>();
+const columnHelper = createColumnHelper<Device>();
 
 const columns = [
   columnHelper.accessor('name', {
@@ -46,7 +51,13 @@ const columns = [
 ];
 
 function DeviceTable({ data }: { data: Device[] }) {
-  const table = useBiampTable({ data, columns, paginate: true });
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
 
   return (
     <BiampTableContainer>
@@ -107,13 +118,13 @@ Layout wrapper that stacks toolbar, table, and pagination into a full-width, ful
 
 ### `BiampTable`
 
-The core table renderer. Connects to a `BiampTableInstance` (from `useBiampTable`) and renders a scrollable MUI table with sorting, selection, sticky columns, and accessible keyboard navigation. Extends MUI `BoxProps`.
+The core table renderer. Connects to a TanStack `Table` instance and renders a scrollable MUI table with sorting, selection, sticky columns, and accessible keyboard navigation. Extends MUI `BoxProps`.
 
 #### Props
 
 | Prop                       | Type                            | Default      | Description                                                                                                                                                                                           |
 | -------------------------- | ------------------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `table`                    | `BiampTableInstance<TData>`                  | _(required)_ | TanStack Table instance                                                                                                                                                                               |
+| `table`                    | `Table<TData>`                  | _(required)_ | TanStack Table instance                                                                                                                                                                               |
 | `onRowClick`               | `(row: TData) => void`          | —            | Called when a clickable body row is clicked with the row's original data                                                                                                                              |
 | `isRowClickable`           | `(row: TData) => boolean`       | —            | Controls which rows are clickable. When omitted, all rows are clickable if `onRowClick` is provided                                                                                                   |
 | `loading`                  | `boolean`                       | —            | Reduces body opacity (debounced to avoid flicker on fast responses)                                                                                                                                   |
@@ -135,10 +146,11 @@ The core table renderer. Connects to a `BiampTableInstance` (from `useBiampTable
 A checkbox column is rendered only when `enableRowSelection` is passed to `BiampTable`. You must also enable selection on the TanStack table instance:
 
 ```tsx
-const table = useBiampTable({
+const table = useReactTable({
   data,
   columns,
   enableRowSelection: true, // or (row) => row.original.canSelect
+  getCoreRowModel: getCoreRowModel(),
 });
 
 <BiampTable table={table} enableRowSelection getRowLabel={(row) => row.name} />;
@@ -175,13 +187,15 @@ const table = useBiampServerSideTable({
 <BiampTable table={table} enableExpanding getRowLabel={(row) => row.name} />;
 ```
 
-Or with `useBiampTable` directly:
+Or with `useReactTable` directly:
 
 ```tsx
-const table = useBiampTable({
+const table = useReactTable({
   data,
   columns,
   getSubRows: (row) => row.children,
+  getCoreRowModel: getCoreRowModel(),
+  getExpandedRowModel: getExpandedRowModel(),
 });
 
 <BiampTable table={table} enableExpanding getRowLabel={(row) => row.name} />;
@@ -246,10 +260,15 @@ When `onRowClick` is provided, rows receive `role="button"`, `tabIndex={0}`, a p
 
 #### Sorting
 
-Sorting is handled by TanStack and works out of the box with `useBiampTable`. Clicking a sortable column header reorders rows client-side; pass `manualSorting: true` (server-side sorting) or `enableSorting: false` to opt out. The table renders custom Biamp sort icons via the theme (`DropdownChevronUpIcon`, `DropdownChevronDownIcon`, `DropdownChevronDuoIcon`). Header cells include `aria-sort` attributes.
+Sorting is handled by TanStack. The table renders custom Biamp sort icons via the theme (`DropdownChevronUpIcon`, `DropdownChevronDownIcon`, `DropdownChevronDuoIcon`). Header cells include `aria-sort` attributes.
 
 ```tsx
-const table = useBiampTable({ data, columns });
+const table = useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+  getSortedRowModel: getSortedRowModel(),
+});
 ```
 
 #### Slot Props
@@ -308,11 +327,11 @@ const table = useBiampTable({ data, columns });
 **Memoize function-form callbacks.** The body rows are memoized on slot-prop identity, so passing a fresh arrow each render will break row memoization. Wrap the callbacks in `useCallback` (or hoist them to module scope if they don't close over state).
 
 ```tsx
-import { type BiampRow } from '@bwp-web/components';
 import { type TableRowProps } from '@mui/material';
+import { type Row } from '@tanstack/react-table';
 
 const rowSlot = useCallback(
-  ({ row }: { row: BiampRow<Room> }): TableRowProps =>
+  ({ row }: { row: Row<Room> }): TableRowProps =>
     row.original.status === 'Occupied'
       ? { sx: { bgcolor: 'action.hover' } }
       : {},
@@ -326,13 +345,13 @@ const rowSlot = useCallback(
 
 ### `BiampTablePagination`
 
-Pagination controls connected to a `BiampTableInstance` (from `useBiampTable`). Extends MUI `TablePaginationProps`.
+Pagination controls connected to a TanStack Table instance. Extends MUI `TablePaginationProps`.
 
 #### Props
 
 | Prop                 | Type                            | Default      | Description                                                                |
 | -------------------- | ------------------------------- | ------------ | -------------------------------------------------------------------------- |
-| `table`              | `BiampTableInstance<TData>`                  | _(required)_ | TanStack Table instance                                                    |
+| `table`              | `Table<TData>`                  | _(required)_ | TanStack Table instance                                                    |
 | `rowsPerPageOptions` | `number[]`                      | —            | Rows-per-page selector options. When omitted, the selector is hidden       |
 | `loading`            | `boolean`                       | —            | When `true`, keeps the previous row count visible instead of dropping to 0 |
 | `autoHide`           | `boolean`                       | `true`       | Hide pagination when all rows fit on one page                              |
@@ -516,7 +535,7 @@ Popover with a checklist for toggling column visibility. Extends MUI `PopoverPro
 
 | Prop           | Type           | Default      | Description                                 |
 | -------------- | -------------- | ------------ | ------------------------------------------- |
-| `table`        | `BiampTableInstance<TData>` | _(required)_ | TanStack Table instance                     |
+| `table`        | `Table<TData>` | _(required)_ | TanStack Table instance                     |
 | `showAllLabel` | `string`       | `'Show all'` | Label for the "show all" toggle             |
 | _...rest_      | `PopoverProps` | —            | All other MUI `Popover` props are forwarded |
 
@@ -546,7 +565,7 @@ Self-managing column visibility button that renders both the trigger button and 
 
 | Prop                      | Type                                 | Default           | Description                                                                                   |
 | ------------------------- | ------------------------------------ | ----------------- | --------------------------------------------------------------------------------------------- |
-| `table`                   | `BiampTableInstance<TData>`                       | _(required)_      | TanStack Table instance                                                                       |
+| `table`                   | `Table<TData>`                       | _(required)_      | TanStack Table instance                                                                       |
 | `icon`                    | `ReactNode`                          | `<ColumnsIcon />` | Icon for the trigger button                                                                   |
 | `label`                   | `string`                             | `'Columns'`       | Accessible label for the trigger button                                                       |
 | `defaultColumnVisibility` | `ColumnVisibility`                   | —                 | Default visibility map for badge count. When omitted, auto-derived from `meta.defaultVisible` |
@@ -632,40 +651,9 @@ import { BiampTableTruncatedCell } from '@bwp-web/components';
 
 ## Utilities
 
-### `useBiampTable`
-
-`useTable` from TanStack Table v9 with `biampTableFeatures` already registered: sorting, pagination, row selection, expanding and column visibility, plus their row models and every built-in sort function. Its options are TanStack's `TableOptions` minus `features`, plus `paginate`, with `columns` widened so plain arrays of `createBiampColumnHelper` columns are accepted.
-
-| Option     | Type      | Default | Description                                                                                                                                                                                  |
-| ---------- | --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paginate` | `boolean` | `false` | Paginate rows client-side from `state.pagination` / `initialState.pagination` (page size 10 by default). When `false`, every row renders. An explicit `manualPagination` always wins          |
-| `columns`  | `ReadonlyArray<BiampColumnDef<TData, any>>` | _(required)_ | Column definitions. Plain arrays of `createBiampColumnHelper` columns and `columnHelper.columns([...])` both work |
-| _...rest_  | `Omit<TableOptions<BiampTableFeatures, TData>, 'features' \| 'columns'>` | — | Every other TanStack table option                                                                                                                      |
-
-Pass `paginate: true` whenever you render `BiampTablePagination` for client-side data. For server-side data use `manualPagination` (or `useBiampServerSideTable`).
-
-Sorting and expanding work without any `get*RowModel` option. Clicking a sortable column header reorders rows client-side; set `manualSorting: true` or `enableSorting: false` to opt out.
-
-Related exports:
-
-- `biampTableFeatures`: the feature set itself. Use it with `useTable({ features: biampTableFeatures, ... })` if you need TanStack's hook directly.
-- `createBiampColumnHelper<TData>()`: TanStack's `createColumnHelper` bound to `biampTableFeatures`. Plain arrays of its columns and `columnHelper.columns([...])` both work.
-- Types: `BiampTableFeatures`, `BiampTableInstance<TData>`, `BiampRow<TData>`, `BiampCell<TData, TValue>`, `BiampTableHeader<TData, TValue>`, `BiampColumnDef<TData, TValue>` and `UseBiampTableOptions<TData>`.
-
-```tsx
-import { useBiampTable, createBiampColumnHelper } from '@bwp-web/components';
-
-const columnHelper = createBiampColumnHelper<Device>();
-const columns = [columnHelper.accessor('name', { header: 'Name' })];
-
-const table = useBiampTable({ data, columns, paginate: true });
-```
-
-Upgrading from 1.x? See the [2.x migration guide](./migration-v2.md).
-
 ### `useBiampServerSideTable`
 
-Wraps [`useBiampTable`](#usebiamptable) with the standard server-side configuration: manual sorting, manual pagination, column visibility with dirty-tracking, optional row selection with ID-based state, and optional expandable rows. Eliminates ~40 lines of boilerplate per table implementation.
+Wraps `useReactTable` with the standard server-side configuration: manual sorting, manual pagination, column visibility with dirty-tracking, optional row selection with ID-based state, and optional expandable rows. Eliminates ~40 lines of boilerplate per table implementation.
 
 All feature groups (sorting, pagination, column visibility, row selection, expanding) are independently optional — only pass the props you need.
 
@@ -676,7 +664,7 @@ All feature groups (sorting, pagination, column visibility, row selection, expan
 | Option                     | Type                                        | Default           | Description                                                                                   |
 | -------------------------- | ------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------------- |
 | `data`                     | `TData[]`                                   | _(required)_      | Row data array                                                                                |
-| `columns`                  | `BiampColumnDef<TData, any>[]`              | _(required)_      | TanStack column definitions. Use `meta.orderField` to map columns to server-side order fields |
+| `columns`                  | `ColumnDef<TData, any>[]`                   | _(required)_      | TanStack column definitions. Use `meta.orderField` to map columns to server-side order fields |
 | `getRowId`                 | `(row: TData) => string`                    | `(row) => row.id` | Extracts a unique ID from each row                                                            |
 | `order`                    | `ServerSideOrder<F>`                        | —                 | Current server-side order. `undefined` means no sorting                                       |
 | `onOrderChange`            | `(order?: ServerSideOrder<F>) => void`      | —                 | Called when the user changes sorting. `undefined` means sorting was cleared                   |
@@ -688,14 +676,14 @@ All feature groups (sorting, pagination, column visibility, row selection, expan
 | `onColumnVisibilityChange` | `(visibility: ColumnVisibility) => void`    | —                 | Called with only the entries that differ from defaults (for URL persistence)                  |
 | `selectedRowIds`           | `string[]`                                  | —                 | Currently selected row IDs                                                                    |
 | `onSelectedRowIdsChange`   | `(ids: string[]) => void`                   | —                 | Called when selection changes                                                                 |
-| `enableRowSelection`       | `boolean \| ((row: BiampRow<TData>) => boolean)` | `true`            | Enable row selection. Only used when `selectedRowIds` is provided                             |
+| `enableRowSelection`       | `boolean \| ((row: Row<TData>) => boolean)` | `true`            | Enable row selection. Only used when `selectedRowIds` is provided                             |
 | `expanded`                 | `ExpandedState`                             | —                 | Current expanded state. `{}` means nothing expanded; `true` expands all                       |
 | `onExpandedChange`         | `(expanded: ExpandedState) => void`         | —                 | Called when the user expands/collapses rows                                                   |
 | `getSubRows`               | `(row: TData) => TData[] \| undefined`      | —                 | Returns child rows for a given row (enables sub-row expanding)                                |
 
 #### Returns
 
-The hooks return `ReactTable<BiampTableFeatures, TData>`, which is assignable to `BiampTableInstance<TData>` and has `table.state` for render reads. It is ready to pass to `<BiampTable table={table} />`.
+`Table<TData>` — a TanStack Table instance ready to pass to `<BiampTable table={table} />`.
 
 #### Example
 
@@ -711,13 +699,13 @@ import {
   useBiampServerSideTable,
   type ColumnVisibility,
   type ServerSideOrder,
-  createBiampColumnHelper,
 } from '@bwp-web/components';
+import { createColumnHelper } from '@tanstack/react-table';
 
 type Device = { id: string; name: string; location: string; status: string };
 type DeviceOrderField = 'NAME' | 'LOCATION' | 'STATUS';
 
-const columnHelper = createBiampColumnHelper<Device>();
+const columnHelper = createColumnHelper<Device>();
 
 const columns = [
   columnHelper.accessor('name', {
@@ -814,24 +802,20 @@ const defaults = getDefaultColumnVisibility(table);
 
 ### `toVisibilityState`
 
-Converts a `ColumnVisibility` to TanStack's `ColumnVisibilityState`. Use when passing to `useBiampTable({ state: { columnVisibility } })`.
+Converts a `ColumnVisibility` to TanStack's `VisibilityState`. Use when passing to `useReactTable({ state: { columnVisibility } })`.
 
 ```tsx
 import { toVisibilityState } from '@bwp-web/components';
-import { functionalUpdate } from '@tanstack/react-table';
 
-const table = useBiampTable({
-  data,
-  columns,
+const table = useReactTable({
   state: { columnVisibility: toVisibilityState(visibility) },
-  onColumnVisibilityChange: (updater) =>
-    setVisibility(functionalUpdate(updater, toVisibilityState(visibility))), // updates URL params, etc.
+  onColumnVisibilityChange: setVisibility, // updates URL params, etc.
 });
 ```
 
 ### `ColumnVisibility`
 
-Type alias for `Partial<Record<string, boolean>>` — a looser alternative to TanStack's `ColumnVisibilityState` (`Record<string, boolean>`). Eliminates the need for `as ColumnVisibilityState` casts when working with URL params or partial objects.
+Type alias for `Partial<Record<string, boolean>>` — a looser alternative to TanStack's `VisibilityState` (`Record<string, boolean>`). Eliminates the need for `as VisibilityState` casts when working with URL params or partial objects.
 
 ```tsx
 import { type ColumnVisibility } from '@bwp-web/components';
@@ -966,13 +950,6 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | Export                               | Type      | Description                                                 |
 | ------------------------------------ | --------- | ----------------------------------------------------------- |
 | `BiampTable`                         | component | Core table renderer                                         |
-| `useBiampTable`                      | hook      | TanStack `useTable` with `biampTableFeatures` built in      |
-| `biampTableFeatures`                 | constant  | TanStack feature set BiampTable renders against             |
-| `createBiampColumnHelper`            | function  | `createColumnHelper` bound to `biampTableFeatures`          |
-| `UseBiampTableOptions`               | type      | Options for `useBiampTable`                                 |
-| `BiampTableFeatures`                 | type      | Type of `biampTableFeatures`                                |
-| `BiampTableInstance`                 | type      | Table instance type (replaces `Table<T>`)                   |
-| `BiampRow` / `BiampCell` / `BiampTableHeader` / `BiampColumnDef` | type | Row, cell, header and column-def types bound to the features |
 | `BiampTableContainer`                | component | Layout wrapper for table + toolbar + pagination             |
 | `BiampTableCellActionButton`         | component | Icon button with tooltip for cell actions                   |
 | `BiampTableColumnVisibility`         | component | Column visibility popover                                   |
@@ -989,11 +966,11 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `BiampTableToolbarFilters`           | component | Filter drawer with reset/apply                              |
 | `BiampTableToolbarSearch`            | component | Debounced search input                                      |
 | `BiampTableTruncatedCell`            | component | Single-line truncation with overflow tooltip                |
-| `useBiampServerSideTable`            | hook      | Server-side table hook wrapping `useBiampTable`             |
+| `useBiampServerSideTable`            | hook      | Server-side table hook wrapping `useReactTable`             |
 | `useDebouncedCallback`               | hook      | Generic debounced callback                                  |
 | `getColumnVisibilityDirtyCount`      | function  | Count columns with non-default visibility                   |
 | `getDefaultColumnVisibility`         | function  | Derive default visibility from column meta (table instance) |
-| `toVisibilityState`                  | function  | Convert `ColumnVisibility` to TanStack `ColumnVisibilityState`|
+| `toVisibilityState`                  | function  | Convert `ColumnVisibility` to TanStack `VisibilityState`    |
 | `orderToSorting`                     | function  | Convert `ServerSideOrder` to TanStack `SortingState`        |
 | `sortingToOrder`                     | function  | Convert TanStack `SortingState` to `ServerSideOrder`        |
 | `selectedIdsToRowSelection`          | function  | Convert `string[]` to TanStack `RowSelectionState`          |

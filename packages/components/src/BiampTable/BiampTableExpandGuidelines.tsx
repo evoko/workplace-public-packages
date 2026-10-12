@@ -1,6 +1,5 @@
 import { Box, type Theme } from '@mui/material';
-import { type RowData } from '@tanstack/react-table';
-import { type BiampRow } from './biampTableFeatures';
+import { type Row } from '@tanstack/react-table';
 import { type ReactNode } from 'react';
 
 // ── Expand guideline geometry ────────────────────────────────────
@@ -21,39 +20,31 @@ const guidelineFirstChildTopExtension = 12;
 const guidelineColor = ({ palette }: Theme) => palette.dividers.secondary;
 const guidelineStroke = '0.6px';
 
-function isLastChildOfParent<TData extends RowData>(
-  row: BiampRow<TData>,
-): boolean {
+function isLastChildOfParent<TData>(row: Row<TData>): boolean {
   const parent = row.getParentRow();
   if (!parent) return false;
   const siblings = parent.subRows;
   return siblings[siblings.length - 1]?.id === row.id;
 }
 
-function isFirstChildOfParent<TData extends RowData>(
-  row: BiampRow<TData>,
-): boolean {
+function isFirstChildOfParent<TData>(row: Row<TData>): boolean {
   const parent = row.getParentRow();
   if (!parent) return false;
   return parent.subRows[0]?.id === row.id;
 }
 
-function getAncestorAtDepth<TData extends RowData>(
-  row: BiampRow<TData>,
+function getAncestorAtDepth<TData>(
+  row: Row<TData>,
   targetDepth: number,
-): BiampRow<TData> | undefined {
-  let current: BiampRow<TData> | undefined = row;
+): Row<TData> | undefined {
+  let current: Row<TData> | undefined = row;
   while (current && current.depth > targetDepth) {
     current = current.getParentRow();
   }
   return current && current.depth === targetDepth ? current : undefined;
 }
 
-export function ExpandGuidelines<TData extends RowData>({
-  row,
-}: {
-  row: BiampRow<TData>;
-}) {
+export function ExpandGuidelines<TData>({ row }: { row: Row<TData> }) {
   const verticalX = (k: number) =>
     guidelineCellPaddingLeft +
     (k - 1) * guidelineIndent +

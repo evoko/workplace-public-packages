@@ -1,16 +1,13 @@
 import {
   type ColumnDef,
   type ExpandedState,
-  functionalUpdate,
-  type PaginationState,
-  type ReactTable,
+  getCoreRowModel,
+  getExpandedRowModel,
   type Row,
-  type RowData,
-  type RowSelectionState,
-  type Updater,
+  type Table,
+  useReactTable,
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
-import { type BiampTableFeatures } from './biampTableFeatures';
 import {
   toVisibilityState,
   type ColumnVisibility,
@@ -26,21 +23,19 @@ import {
   selectedIdsToRowSelection,
   rowSelectionToSelectedIds,
 } from './serverSideTableUtils';
-import { useBiampTable } from './useBiampTable';
 import './tanstack-meta';
 
-// Stable reference — avoid re-creating on every render.
+// Stable references — avoid re-creating on every render.
+const coreRowModel = getCoreRowModel();
+const expandedRowModel = getExpandedRowModel();
 const defaultGetRowId = (row: Record<string, string>) => row.id;
 
-export type UseBiampServerSideTableOptions<
-  TData extends RowData,
-  F extends string = string,
-> = {
+export type UseBiampServerSideTableOptions<TData, F extends string = string> = {
   /** Row data array. */
   data: TData[];
   /** TanStack column definitions. Use `meta.orderField` to map columns to server-side order fields. */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  columns: ColumnDef<BiampTableFeatures, TData, any>[];
+  columns: ColumnDef<TData, any>[];
   /** Extracts a unique ID from each row. @default `(row) => (row as any).id` */
   getRowId?: (row: TData) => string;
 
@@ -72,8 +67,7 @@ export type UseBiampServerSideTableOptions<
   /** Called when selection changes. */
   onSelectedRowIdsChange?: (ids: string[]) => void;
   /** Enable row selection. Pass `true` for all rows, or a predicate. */
-  enableRowSelection?:
-    boolean | ((row: Row<BiampTableFeatures, TData>) => boolean);
+  enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
 
   // ── Expanding ──────────────────────────────────────────────────
   /** Current expanded state. `{}` means nothing expanded; `true` expands all. */
@@ -85,16 +79,13 @@ export type UseBiampServerSideTableOptions<
 };
 
 /**
- * Wraps `useBiampTable` with the standard server-side configuration:
+ * Wraps `useReactTable` with the standard server-side configuration:
  * manual sorting, manual pagination, column visibility with dirty-tracking,
  * and optional row selection with ID-based state.
  *
  * Eliminates ~40 lines of boilerplate per table implementation.
  */
-export function useBiampServerSideTable<
-  TData extends RowData,
-  F extends string = string,
->({
+export function useBiampServerSideTable<TData, F extends string = string>({
   data,
   columns,
   getRowId = defaultGetRowId as (row: TData) => string,
@@ -112,10 +103,7 @@ export function useBiampServerSideTable<
   expanded,
   onExpandedChange,
   getSubRows,
-}: UseBiampServerSideTableOptions<TData, F>): ReactTable<
-  BiampTableFeatures,
-  TData
-> {
+}: UseBiampServerSideTableOptions<TData, F>): Table<TData> {
   // ── Derived state (memoized) ─────────────────────────────────────
 
   const {
@@ -166,9 +154,10 @@ export function useBiampServerSideTable<
 
   // ── Table instance ───────────────────────────────────────────────
 
-  return useBiampTable<TData>({
+  return useReactTable({
     data,
     columns,
+    getCoreRowModel: coreRowModel,
     getRowId,
 
     // Server-side tables manage their own state — disable TanStack's auto-reset
@@ -188,27 +177,37 @@ export function useBiampServerSideTable<
       ...(expanded != null && { expanded }),
     },
     onSortingChange: onOrderChange
-      ? (updater) =>
-          onOrderChange(
-            sortingToOrder(functionalUpdate(updater, sorting), columnIdToField),
-          )
+      ? (updater) => {
+          const next =
+            typeof updater === 'function' ? updater(sorting) : updater;
+          onOrderChange(sortingToOrder(next, columnIdToField));
+        }
       : undefined,
 
-    // Pagination — manual only when page/rowsPerPage are provided; otherwise
-    // useBiampTable renders every row.
+    // Pagination — only when page/rowsPerPage are provided
     ...(hasPagination && {
       manualPagination: true,
       rowCount: rowCount ?? 0,
       onPaginationChange: onPageChange
-        ? (updater: Updater<PaginationState>) =>
-            onPageChange(functionalUpdate(updater, pagination!).pageIndex)
+        ? (
+            updater: Parameters<
+              NonNullable<
+                Parameters<typeof useReactTable>[0]['onPaginationChange']
+              >
+            >[0],
+          ) => {
+            const next =
+              typeof updater === 'function' ? updater(pagination!) : updater;
+            onPageChange(next.pageIndex);
+          }
         : undefined,
     }),
 
     // Column visibility
     onColumnVisibilityChange: onColumnVisibilityChange
       ? (updater) => {
-          const next = functionalUpdate(updater, mergedVisibility);
+          const next =
+            typeof updater === 'function' ? updater(mergedVisibility) : updater;
           const dirty = getDirtyColumnVisibility(next, defaultColumnVisibility);
           // Never persist non-hideable columns — they are always visible.
           for (const id of nonHideableColumnIds) {
@@ -222,26 +221,38 @@ export function useBiampServerSideTable<
     ...(hasSelection && {
       enableRowSelection: enableRowSelection ?? true,
       onRowSelectionChange: onSelectedRowIdsChange
-        ? (updater: Updater<RowSelectionState>) =>
-            onSelectedRowIdsChange(
-              rowSelectionToSelectedIds(
-                functionalUpdate(updater, rowSelection!),
-              ),
-            )
+        ? (
+            updater: Parameters<
+              NonNullable<
+                Parameters<typeof useReactTable>[0]['onRowSelectionChange']
+              >
+            >[0],
+          ) => {
+            const next =
+              typeof updater === 'function' ? updater(rowSelection!) : updater;
+            onSelectedRowIdsChange(rowSelectionToSelectedIds(next));
+          }
         : undefined,
     }),
 
-    // Expanding — only when expanded state is provided. Unless both expanded
-    // state and getSubRows are provided, the expanded row model is skipped
-    // (manualExpanding) so it doesn't recompute on every state change, matching
-    // v8's conditional getExpandedRowModel. Always set explicitly: v9 merges
-    // options into the previous ones, so a dropped key would go stale.
-    manualExpanding: !(expanded != null && getSubRows),
+    // Expanding — only when expanded state is provided
     ...(expanded != null && {
-      ...(getSubRows && { getSubRows }),
+      // Only attach getExpandedRowModel when getSubRows is provided.
+      // Without it, the expanded model recomputes on every state change
+      // (including selection), adding unnecessary overhead.
+      ...(getSubRows && { getExpandedRowModel: expandedRowModel, getSubRows }),
       onExpandedChange: onExpandedChange
-        ? (updater: Updater<ExpandedState>) =>
-            onExpandedChange(functionalUpdate(updater, expanded))
+        ? (
+            updater: Parameters<
+              NonNullable<
+                Parameters<typeof useReactTable>[0]['onExpandedChange']
+              >
+            >[0],
+          ) => {
+            const next =
+              typeof updater === 'function' ? updater(expanded) : updater;
+            onExpandedChange(next);
+          }
         : undefined,
     }),
   });

@@ -20,7 +20,7 @@ npm install @bwp-web/components
 - `@emotion/react` ^11.14.0
 - `@emotion/styled` ^11.14.0
 - `@mui/material` ^9.5.0
-- `@tanstack/react-table` ^9.2.8 — required even if you don't use `BiampTable`
+- `@tanstack/react-table` ^8.0.0 — required even if you don't use `BiampTable`
 - `react` ^18.0.0 || ^19.0.0
 - `react-dom` ^18.0.0 || ^19.0.0
 
@@ -586,9 +586,9 @@ All three components extend their MUI base props (`PopoverProps`, `StackProps`, 
 
 ### BiampTable
 
-A composable data table built on TanStack Table v9 with support for sorting, row selection, pagination, column visibility, global search, column filters, CSV export, and per-slot prop overrides for restyling internal MUI elements.
+A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, CSV export, and per-slot prop overrides for restyling internal MUI elements.
 
-Uses `@tanstack/react-table` ^9.2.8, a required peer dependency of this package. Build tables with `useBiampTable`, which wraps TanStack's `useTable` with `biampTableFeatures` (sorting, pagination, row selection, expanding, column visibility) and a `paginate` option; `createBiampColumnHelper` types columns against the same features. See [biamp-table.md](../../docs/biamp-table.md) and the [2.x migration guide](../../docs/migration-v2.md).
+Uses `@tanstack/react-table` ^8.0.0, a required peer dependency of this package.
 
 ## Full Documentation
 

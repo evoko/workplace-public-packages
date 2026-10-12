@@ -20,7 +20,13 @@ import {
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
-import { flexRender, type RowData } from '@tanstack/react-table';
+import {
+  flexRender,
+  type Cell,
+  type Header,
+  type Row,
+  type Table,
+} from '@tanstack/react-table';
 import { type ReactNode, useEffect, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
@@ -28,17 +34,10 @@ import { BiampTableRow } from './BiampTableRow';
 import { useLoadingDelay } from '../hooks';
 import { mergeSx, resolveSlot, type SlotPropsOrFn } from '../slotProps';
 import { cellSx } from './cellSx';
-import {
-  type BiampCell,
-  type BiampTableHeader,
-  type BiampRow,
-  type BiampTableInstance,
-} from './biampTableFeatures';
-import { useBiampTableState } from './useBiampTableState';
 
 // ── Slot props ─────────────────────────────────────────────────────
 
-export type BiampTableSlotProps<TData extends RowData> = {
+export type BiampTableSlotProps<TData> = {
   /** Props merged onto the MUI `<Table>`. `sx` composes with defaults. */
   table?: MuiTableProps;
   /** Props merged onto the `<TableHead>`. `sx` composes with defaults. */
@@ -50,16 +49,16 @@ export type BiampTableSlotProps<TData extends RowData> = {
   /** Props merged onto each header `<TableCell>`. Pass a function for per-column overrides. `sx` composes with defaults. */
   headerCell?: SlotPropsOrFn<
     MuiTableCellProps,
-    { header: BiampTableHeader<TData> }
+    { header: Header<TData, unknown> }
   >;
   /** Props merged onto each body `<TableRow>`. Pass a function for per-row overrides. `sx` composes with defaults. */
-  row?: SlotPropsOrFn<MuiTableRowProps, { row: BiampRow<TData> }>;
+  row?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
   /** Props merged onto each body `<TableCell>`. Pass a function for per-cell overrides. `sx` composes with defaults. */
-  cell?: SlotPropsOrFn<MuiTableCellProps, { cell: BiampCell<TData> }>;
+  cell?: SlotPropsOrFn<MuiTableCellProps, { cell: Cell<TData, unknown> }>;
 };
 
 // ── Row-click props ────────────────────────────────────────────────
-type RowClickProps<TData extends RowData> =
+type RowClickProps<TData> =
   | {
       /** Called when a clickable body row is clicked. Receives the row's original data. */
       onRowClick: (row: TData) => void;
@@ -90,11 +89,11 @@ type SelectionExpandingProps = {
   showExpandGuidelines?: boolean;
 };
 
-export type BiampTableProps<TData extends RowData> = BoxProps &
+export type BiampTableProps<TData> = BoxProps &
   RowClickProps<TData> &
   SelectionExpandingProps & {
     /** TanStack Table instance to connect to. */
-    table: BiampTableInstance<TData>;
+    table: Table<TData>;
     /** When true, shows a LinearProgress bar below the table header. */
     loading?: boolean;
     /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
@@ -148,7 +147,7 @@ const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;
 
 // ── Component ────────────────────────────────────────────────────
 
-export function BiampTable<TData extends RowData>({
+export function BiampTable<TData>({
   table,
   onRowClick,
   isRowClickable,
@@ -167,10 +166,6 @@ export function BiampTable<TData extends RowData>({
   sx,
   ...boxProps
 }: BiampTableProps<TData>) {
-  // Re-render on every table state change, even if the consumer's useTable
-  // selector is narrower (v9 subscribes React per selector).
-  useBiampTableState(table);
-
   const { sx: userTableSx, ...restTableSlotProps } = slotProps?.table ?? {};
   const { sx: userHeadSx, ...restHeadSlotProps } = slotProps?.head ?? {};
   const { sx: userBodySx, ...restBodySlotProps } = slotProps?.body ?? {};
@@ -198,8 +193,6 @@ export function BiampTable<TData extends RowData>({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // v9: `table` identity changes per render; toggleAllRowsExpanded(true) is a
-  // no-op once expanded or when no row can expand.
   useEffect(() => {
     if (enableExpanding && alwaysExpanded) {
       table.toggleAllRowsExpanded(true);
@@ -249,10 +242,7 @@ export function BiampTable<TData extends RowData>({
                   {!hideSelectAll && (
                     <Checkbox
                       checked={table.getIsAllPageRowsSelected()}
-                      indeterminate={
-                        table.getIsSomePageRowsSelected() &&
-                        !table.getIsAllPageRowsSelected()
-                      }
+                      indeterminate={table.getIsSomePageRowsSelected()}
                       onChange={table.getToggleAllPageRowsSelectedHandler()}
                       sx={
                         rows.length === 0 ? checkboxHiddenHeaderSx : undefined

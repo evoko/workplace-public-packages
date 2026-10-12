@@ -8,13 +8,12 @@ import {
   type TableRowProps as MuiTableRowProps,
 } from '@mui/material';
 import { ChevronDownIcon, ChevronRightIcon } from '@bwp-web/assets';
-import { flexRender, type RowData } from '@tanstack/react-table';
+import { flexRender, type Cell, type Row } from '@tanstack/react-table';
 import React, { type ReactNode } from 'react';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 import { mergeSx, resolveSlot, type SlotPropsOrFn } from '../slotProps';
 import { cellSx, stickyHoverBg } from './cellSx';
 import { ExpandGuidelines } from './BiampTableExpandGuidelines';
-import { type BiampCell, type BiampRow } from './biampTableFeatures';
 
 // ── Hoisted sx (avoid re-creating per row per render) ───────────
 
@@ -40,13 +39,13 @@ const expandPlaceholderSx = { width: 28 } as const;
 
 // ── Expand chevron / placeholder ─────────────────────────────────
 
-function ExpandToggle<TData extends RowData>({
+function ExpandToggle<TData>({
   row,
   isExpanded,
   hasExpandableRows,
   rowLabel,
 }: {
-  row: BiampRow<TData>;
+  row: Row<TData>;
   isExpanded: boolean;
   hasExpandableRows: boolean;
   rowLabel: string;
@@ -85,7 +84,7 @@ function ExpandToggle<TData extends RowData>({
 // toggleable expand — top to bottom with early returns instead of nested
 // ternaries. Called once per cell from the row body.
 
-function renderCellContent<TData extends RowData>({
+function renderCellContent<TData>({
   cell,
   row,
   isExpandCell,
@@ -94,8 +93,8 @@ function renderCellContent<TData extends RowData>({
   hasExpandableRows,
   getRowLabel,
 }: {
-  cell: BiampCell<TData>;
-  row: BiampRow<TData>;
+  cell: Cell<TData, unknown>;
+  row: Row<TData>;
   isExpandCell: boolean;
   alwaysExpanded: boolean;
   isExpanded: boolean;
@@ -149,8 +148,8 @@ function renderCellContent<TData extends RowData>({
 
 // ── Memoized row ─────────────────────────────────────────────────
 
-export type BiampTableRowProps<TData extends RowData> = {
-  row: BiampRow<TData>;
+export type BiampTableRowProps<TData> = {
+  row: Row<TData>;
   /**
    * Snapshot of the visible leaf column ids (in order), e.g. `"name,status,size"`.
    * Used by the memo comparator to detect column visibility/order changes — the
@@ -170,13 +169,16 @@ export type BiampTableRowProps<TData extends RowData> = {
   getRowLabel?: (row: TData) => string;
   hasExpandableRows: boolean;
   customColor?: string;
-  rowSlotProps?: SlotPropsOrFn<MuiTableRowProps, { row: BiampRow<TData> }>;
-  cellSlotProps?: SlotPropsOrFn<MuiTableCellProps, { cell: BiampCell<TData> }>;
+  rowSlotProps?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
+  cellSlotProps?: SlotPropsOrFn<
+    MuiTableCellProps,
+    { cell: Cell<TData, unknown> }
+  >;
 };
 
 // `visibleColumnsKey` is intentionally not destructured here — it's only read by
 // the memo comparator below, not by the render body.
-function BiampTableRowInner<TData extends RowData>({
+function BiampTableRowInner<TData>({
   row,
   isExpanded,
   isSelected,
@@ -317,7 +319,7 @@ function BiampTableRowInner<TData extends RowData>({
   );
 }
 
-function biampTableRowPropsAreEqual<TData extends RowData>(
+function biampTableRowPropsAreEqual<TData>(
   prev: BiampTableRowProps<TData>,
   next: BiampTableRowProps<TData>,
 ) {

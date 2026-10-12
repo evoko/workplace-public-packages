@@ -34,21 +34,32 @@ import {
   BiampTableToolbarSearch,
   getColumnVisibilityDirtyCount,
   useBiampServerSideTable,
-  useBiampTable,
-  createBiampColumnHelper,
   useDebouncedCallback,
   type ColumnVisibility,
   type ServerSideOrder,
 } from '@bwp-web/components';
 import { ColumnsIcon, DeleteIcon, DownloadIcon } from '@bwp-web/assets';
 import {
-  type ColumnVisibilityState,
-  type ExpandedState,
+  createColumnHelper,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
   type PaginationState,
   type RowSelectionState,
   type SortingState,
+  type ExpandedState,
+  type VisibilityState,
+  getExpandedRowModel,
 } from '@tanstack/react-table';
-import { expect, userEvent, waitFor, within } from 'storybook/test';
+
+// Row model factories must be stable references — calling getCoreRowModel() etc.
+// inside the render function creates new references every render, causing TanStack
+// to invalidate memoized row models and trigger autoResetPageIndex loops.
+const coreRowModel = getCoreRowModel();
+const sortedRowModel = getSortedRowModel();
+const paginationRowModel = getPaginationRowModel();
+const expandedRowModel = getExpandedRowModel();
 
 // ---------------------------------------------------------------------------
 // Room data
@@ -62,9 +73,9 @@ type Room = {
   floor: string;
 };
 
-const columnHelper = createBiampColumnHelper<Room>();
+const columnHelper = createColumnHelper<Room>();
 
-const columns = columnHelper.columns([
+const columns = [
   columnHelper.accessor('name', {
     header: 'Room Name',
     // `enableHiding: false` keeps this column out of the visibility menu, so the
@@ -75,7 +86,7 @@ const columns = columnHelper.columns([
   columnHelper.accessor('status', { header: 'Status' }),
   columnHelper.accessor('capacity', { header: 'Capacity' }),
   columnHelper.accessor('floor', { header: 'Floor' }),
-]);
+];
 
 const rows: Room[] = [
   {
@@ -226,8 +237,8 @@ const locations = [
 const buildings = ['HQ', 'Annex', 'East Wing'];
 const statuses = ['Online', 'Offline', 'Warning'];
 
-const deviceColumnHelper = createBiampColumnHelper<Device>();
-const deviceColumns = deviceColumnHelper.columns([
+const deviceColumnHelper = createColumnHelper<Device>();
+const deviceColumns = [
   deviceColumnHelper.accessor('name', {
     header: 'Device Name',
     // `enableHiding: false` keeps this column out of the visibility menu, so the
@@ -274,9 +285,9 @@ const deviceColumns = deviceColumnHelper.columns([
     header: 'Last Seen',
     meta: { minWidth: 160 },
   }),
-]);
+];
 
-const deviceColumnsWithAction = deviceColumnHelper.columns([
+const deviceColumnsWithAction = [
   ...deviceColumns,
   deviceColumnHelper.display({
     id: 'actions',
@@ -286,7 +297,7 @@ const deviceColumnsWithAction = deviceColumnHelper.columns([
       <BiampTableCellActionButton label={'delete'} icon={<DeleteIcon />} />
     ),
   }),
-]);
+];
 
 const deviceRows: Device[] = Array.from({ length: 100 }, (_, i) => {
   const n = i + 1;
@@ -323,9 +334,10 @@ type Story = StoryObj;
 // ---------------------------------------------------------------------------
 
 function DefaultDemo() {
-  const table = useBiampTable({
+  const table = useReactTable({
     data: rows5,
     columns,
+    getCoreRowModel: coreRowModel,
   });
 
   return <BiampTable table={table} />;
@@ -343,15 +355,16 @@ export const Default: Story = {
 function InteractiveDemo() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const [columnVisibility, setColumnVisibility] =
-    useState<ColumnVisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const selectedCount = Object.keys(rowSelection).length;
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data: rows,
     columns,
-    paginate: true,
+    getCoreRowModel: coreRowModel,
+    getSortedRowModel: sortedRowModel,
+    getPaginationRowModel: paginationRowModel,
     getRowId: (row) => String(row.id),
     enableRowSelection: (row) => row.original.status === 'Available',
     state: { sorting, rowSelection, columnVisibility },
@@ -435,9 +448,10 @@ function StatesDemo() {
 
   const data = state === 'loading' ? rows5 : emptyRows;
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data,
     columns,
+    getCoreRowModel: coreRowModel,
   });
 
   const stateProps: Record<
@@ -503,13 +517,14 @@ export const States: Story = {
 
 function StickyColumnsDemo() {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnVisibility, setColumnVisibility] =
-    useState<ColumnVisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data: deviceRows,
     columns: deviceColumnsWithAction,
+    getCoreRowModel: coreRowModel,
+    getSortedRowModel: sortedRowModel,
     state: { sorting, columnVisibility },
     onSortingChange: setSorting,
     onColumnVisibilityChange: setColumnVisibility,
@@ -614,8 +629,7 @@ function WithToolbarDemo() {
     pageIndex: 0,
     pageSize: 5,
   });
-  const [columnVisibility, setColumnVisibility] =
-    useState<ColumnVisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const [data, setData] = useState<Room[]>([]);
@@ -640,9 +654,10 @@ function WithToolbarDemo() {
     debouncedFetch();
   }, [search, filterStatus, sorting, pagination, debouncedFetch]);
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data,
     columns,
+    getCoreRowModel: coreRowModel,
     manualSorting: true,
     manualPagination: true,
     rowCount: total,
@@ -775,8 +790,8 @@ type Building = {
   children?: Building[];
 };
 
-const buildingColumnHelper = createBiampColumnHelper<Building>();
-const buildingColumns = buildingColumnHelper.columns([
+const buildingColumnHelper = createColumnHelper<Building>();
+const buildingColumns = [
   buildingColumnHelper.accessor('name', {
     header: 'Name',
     meta: { minWidth: 200 },
@@ -784,7 +799,7 @@ const buildingColumns = buildingColumnHelper.columns([
   buildingColumnHelper.accessor('status', { header: 'Status' }),
   buildingColumnHelper.accessor('capacity', { header: 'Capacity' }),
   buildingColumnHelper.accessor('floor', { header: 'Floor' }),
-]);
+];
 
 const buildingRows: Building[] = [
   {
@@ -1002,9 +1017,11 @@ const buildingRows: Building[] = [
 function ExpandableDemo() {
   const [expanded, setExpanded] = useState<ExpandedState>({});
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data: buildingRows,
     columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
     getSubRows: (row) => row.children,
     getRowId: (row) => String(row.id),
     state: { expanded },
@@ -1036,9 +1053,11 @@ export const Expandable: Story = {
 // ---------------------------------------------------------------------------
 
 function ExpandableAlwaysExpandedDemo() {
-  const table = useBiampTable({
+  const table = useReactTable({
     data: buildingRows,
     columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
     getSubRows: (row) => row.children,
     getRowId: (row) => String(row.id),
   });
@@ -1073,9 +1092,11 @@ export const ExpandableAlwaysExpanded: Story = {
 // ---------------------------------------------------------------------------
 
 function ExpandableAlwaysExpandedWithGuidelinesDemo() {
-  const table = useBiampTable({
+  const table = useReactTable({
     data: buildingRows,
     columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
     getSubRows: (row) => row.children,
     getRowId: (row) => String(row.id),
   });
@@ -1126,8 +1147,8 @@ type LongTextRoom = {
   notes: string;
 };
 
-const longTextColumnHelper = createBiampColumnHelper<LongTextRoom>();
-const longTextColumns = longTextColumnHelper.columns([
+const longTextColumnHelper = createColumnHelper<LongTextRoom>();
+const longTextColumns = [
   longTextColumnHelper.accessor('name', {
     header: 'Room Name',
     meta: { minWidth: 150 },
@@ -1153,7 +1174,7 @@ const longTextColumns = longTextColumnHelper.columns([
     header: 'Notes',
     meta: { minWidth: 200 },
   }),
-]);
+];
 
 const longTextRows: LongTextRoom[] = [
   {
@@ -1205,9 +1226,10 @@ const longTextRows: LongTextRoom[] = [
 ];
 
 function TextTruncationDemo() {
-  const table = useBiampTable({
+  const table = useReactTable({
     data: longTextRows,
     columns: longTextColumns,
+    getCoreRowModel: coreRowModel,
   });
 
   return (
@@ -1242,9 +1264,11 @@ function ExpandableWithSelectionDemo() {
     useState(true);
   const selectedCount = Object.keys(rowSelection).length;
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data: buildingRows,
     columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
     getSubRows: (row) => row.children,
     getRowId: (row) => String(row.id),
     enableRowSelection: (row) => row.original.status === 'Available',
@@ -1312,8 +1336,8 @@ const RoomOrderField = {
 } as const;
 type RoomOrderField = (typeof RoomOrderField)[keyof typeof RoomOrderField];
 
-const serverSideColumnHelper = createBiampColumnHelper<Room>();
-const serverSideColumns = serverSideColumnHelper.columns([
+const serverSideColumnHelper = createColumnHelper<Room>();
+const serverSideColumns = [
   serverSideColumnHelper.accessor('name', {
     header: 'Room Name',
     // `enableHiding: false` keeps this column out of the visibility menu and —
@@ -1334,7 +1358,7 @@ const serverSideColumns = serverSideColumnHelper.columns([
     header: 'Floor',
     meta: { orderField: RoomOrderField.Floor, defaultVisible: false },
   }),
-]);
+];
 
 function simulateServerFetch(params: {
   search: string;
@@ -1429,9 +1453,10 @@ function ServerSideHookDemo() {
     >
       <Typography variant="body2">
         Uses <code>useBiampServerSideTable</code> — compare with the WithToolbar
-        story that uses <code>useBiampTable</code>. The <code>Room Name</code>{' '}
-        column is <code>enableHiding: false</code>, so it is absent from the
-        column-visibility menu and forced visible regardless of persisted state.
+        story that uses raw <code>useReactTable</code>. The{' '}
+        <code>Room Name</code> column is <code>enableHiding: false</code>, so it
+        is absent from the column-visibility menu and forced visible regardless
+        of persisted state.
       </Typography>
       <BiampTableToolbar>
         <BiampTableToolbarActions>
@@ -1471,7 +1496,7 @@ function ServerSideHookDemo() {
 /**
  * Demonstrates `useBiampServerSideTable` — the hook that replaces ~40 lines
  * of boilerplate per table. Compare with the `WithToolbar` story which uses
- * `useBiampTable`. The `Room Name` column uses `enableHiding: false`, so it
+ * raw `useReactTable`. The `Room Name` column uses `enableHiding: false`, so it
  * is excluded from the column-visibility menu and forced visible regardless of
  * persisted state — the table can never hide every column.
  */
@@ -1538,9 +1563,10 @@ export const ServerSideExpandableWithSelection: Story = {
 // ---------------------------------------------------------------------------
 
 function SlotPropsDemo() {
-  const table = useBiampTable({
+  const table = useReactTable({
     data: rows5,
     columns,
+    getCoreRowModel: coreRowModel,
     getRowId: (row) => String(row.id),
   });
 
@@ -1620,7 +1646,7 @@ export const SlotProps: Story = {
 function SetRowColorDemo() {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  const rowColorColumns = columnHelper.columns([
+  const rowColorColumns = [
     columnHelper.accessor('name', {
       header: 'Room Name',
       meta: { minWidth: 200 },
@@ -1636,11 +1662,12 @@ function SetRowColorDemo() {
         <BiampTableCellActionButton label="delete" icon={<DeleteIcon />} />
       ),
     }),
-  ]);
+  ];
 
-  const table = useBiampTable({
+  const table = useReactTable({
     data: rows,
     columns: rowColorColumns,
+    getCoreRowModel: coreRowModel,
     getRowId: (row) => String(row.id),
     state: { rowSelection },
     onRowSelectionChange: setRowSelection,
@@ -1693,52 +1720,4 @@ function SetRowColorDemo() {
  */
 export const SetRowColor: Story = {
   render: () => <SetRowColorDemo />,
-};
-
-// ---------------------------------------------------------------------------
-// Regression tests (v9 behaviour traps)
-// ---------------------------------------------------------------------------
-
-function SelectAllDemo() {
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const table = useBiampTable({
-    data: rows5,
-    columns,
-    getRowId: (row) => String(row.id),
-    state: { rowSelection },
-    onRowSelectionChange: setRowSelection,
-  });
-  return <BiampTable table={table} enableRowSelection />;
-}
-
-/** Selecting every row leaves the header checkbox checked, not indeterminate. */
-export const SelectAllIsNotIndeterminate: Story = {
-  tags: ['!autodocs'],
-  render: () => <SelectAllDemo />,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const selectAll = canvas.getByRole('checkbox', { name: 'Select all rows' });
-    await userEvent.click(selectAll);
-    // Wait for the state update to render before asserting on the attributes.
-    await waitFor(() => expect(selectAll).toBeChecked());
-    await waitFor(() =>
-      expect(selectAll).toHaveAttribute('data-indeterminate', 'false'),
-    );
-  },
-};
-
-function UnpaginatedDemo() {
-  const table = useBiampTable({ data: rows, columns });
-  return <BiampTable table={table} />;
-}
-
-/** Without `paginate`, every row renders (v9 would otherwise cap at 10). */
-export const RendersAllRowsWithoutPaginate: Story = {
-  tags: ['!autodocs'],
-  render: () => <UnpaginatedDemo />,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    // +1 for the header row
-    await expect(canvas.getAllByRole('row')).toHaveLength(rows.length + 1);
-  },
 };
