@@ -241,9 +241,12 @@ Three variants are available: `contained` (default), `outlined`, and `overlay`.
 
 Only the `standard` variant is enabled. MUI's `filled` and `outlined` variants are disabled.
 
+Each severity sets a border and background colour. An `sx` you pass overrides them, for example
+`<Alert sx={{ bgcolor: 'background.paper', borderColor: 'grey.400' }}>` for a neutral alert.
+
 ### Other Components
 
-Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Select`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `TimePicker`, `DateTimePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
+Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Select`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `TimePicker`, `DateTimePicker`, `PickerDay`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
 
 ### DatePicker, TimePicker & DateTimePicker
 

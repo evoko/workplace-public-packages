@@ -529,26 +529,37 @@ export const biampTheme = (
               paddingBottom: 0,
               alignItems: 'center',
             },
-            standard: ({ theme }) => ({
-              color: theme.palette.text.primary,
-              border: `16px solid ${theme.palette.success.main}`,
-              '&.MuiAlert-colorError': {
-                border: `16px solid ${theme.palette.error.main}`,
-                backgroundColor: theme.palette.background.error,
-              },
-              '&.MuiAlert-colorInfo': {
-                border: `16px solid ${theme.palette.info.main}`,
-                backgroundColor: theme.palette.background.info,
-              },
-              '&.MuiAlert-colorSuccess': {
-                border: `16px solid ${theme.palette.success.main}`,
-                backgroundColor: theme.palette.background.success,
-              },
-              '&.MuiAlert-colorWarning': {
-                border: `16px solid ${theme.palette.warning.main}`,
-                backgroundColor: theme.palette.background.warning,
-              },
-            }),
+            // MUI 9 dropped the combined keys (standardError etc.). Their
+            // styles are picked from ownerState here rather than nested under
+            // a class selector, so they stay root-level declarations and a
+            // consumer's sx still wins, as it did in MUI 7.
+            standard: ({ theme, ownerState }) => {
+              const severity = ownerState.color ?? ownerState.severity;
+              const severityColors = {
+                error: [
+                  theme.palette.error.main,
+                  theme.palette.background.error,
+                ],
+                info: [theme.palette.info.main, theme.palette.background.info],
+                success: [
+                  theme.palette.success.main,
+                  theme.palette.background.success,
+                ],
+                warning: [
+                  theme.palette.warning.main,
+                  theme.palette.background.warning,
+                ],
+              };
+              const [borderColor, backgroundColor] =
+                severityColors[
+                  (severity ?? 'success') as keyof typeof severityColors
+                ] ?? [];
+              return {
+                color: theme.palette.text.primary,
+                border: `16px solid ${borderColor ?? theme.palette.success.main}`,
+                backgroundColor,
+              };
+            },
           },
         },
         MuiButton: {
@@ -2102,9 +2113,17 @@ export const biampTheme = (
                   backgroundColor: theme.palette.text.primary,
                 },
               },
+              // MUI X 8 greyed disabled days at this specificity; MUI X 9
+              // moved it into a root variant, which the `color` above
+              // outranks.
+              '&.Mui-disabled:not(.Mui-selected)': {
+                color: theme.palette.text.disabled,
+              },
               // MUI X 9 marks today (never set on a selected day) with a 1px
               // text.secondary outline. The look we had (and keep) is a 0.6px
-              // text.primary border.
+              // text.primary border. In 1.x the today rule set `0px solid`,
+              // but the MuiCssBaseline `[class*="Mui"]` border-width rule
+              // outranked its width, so the ring showed at 0.6px.
               '&.MuiPickerDay-today': {
                 outline: 'none',
                 border: `0.6px solid ${theme.palette.text.primary}`,
