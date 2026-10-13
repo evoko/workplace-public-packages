@@ -277,9 +277,11 @@ const table = useReactTable({
 
 A column's TanStack `footer` definition renders in a footer row under the body — e.g. totals that line up with their columns, because they are cells of the same table. The row only appears when at least one visible column defines a `footer`; other columns get an empty cell. Only the leaf-level footers render, as a single row.
 
-It is styled as a totals band: the default background, a hairline above, semibold primary text. With `stickyFooter` it stays at the bottom of the table's scroll area while the rows scroll under it — which needs the table to be the thing that scrolls, i.e. a bounded height, just like the sticky header.
+It is styled as a totals band: the header's grey background, a hairline above, semibold primary text. With `stickyFooter` it stays at the bottom of the table's scroll area while the rows scroll under it — which needs the table to be the thing that scrolls, i.e. a bounded height, just like the sticky header.
 
 With only a few rows, a sticky footer still follows the last row. Add `fitHeight` to stretch the table to its container, so the footer sits at the bottom with the empty space above it.
+
+With `enableExpanding`, the footer's first cell isn't indented by the expand chevron the way the body's first column is, so a label there (e.g. "Total") sits slightly left of the row names. Indent it through `slotProps.footerCell` if that matters.
 
 ```tsx
 const columns = [

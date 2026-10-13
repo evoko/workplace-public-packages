@@ -209,6 +209,13 @@ const stickyFooterSx = {
 
 const fillerRowSx = { height: '100%' } as const;
 
+// The filler row is the body's last child, which takes the theme's "no border
+// under the last row" rule away from the real last row. Hand it back, or that
+// row's divider doubles up with the footer's hairline.
+const fitHeightBodySx = {
+  '& > tr:nth-last-of-type(2) > td': { borderBottom: 'none' },
+} as const;
+
 const fillerCellSx = {
   height: 'auto',
   p: 0,
@@ -393,7 +400,11 @@ export function BiampTable<TData>({
 
         <TableBody
           {...restBodySlotProps}
-          sx={mergeSx({ opacity: showLoading ? 0.3 : 1 }, userBodySx)}
+          sx={mergeSx(
+            { opacity: showLoading ? 0.3 : 1 },
+            fitHeight && !showError ? fitHeightBodySx : undefined,
+            userBodySx,
+          )}
         >
           {!showError &&
             rows.map((row) => (
