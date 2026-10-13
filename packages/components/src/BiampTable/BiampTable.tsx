@@ -136,6 +136,13 @@ export type BiampTableProps<TData> = BoxProps &
      * defines a `footer`. @default false
      */
     stickyFooter?: boolean;
+    /**
+     * Stretches the table to its container's full height, so the footer row
+     * sits at the bottom even when there are too few rows to fill it. Rows
+     * keep their height; an invisible filler row takes up the space left
+     * over. @default false
+     */
+    fitHeight?: boolean;
   };
 
 // ── Local sx helpers ─────────────────────────────────────────────
@@ -200,6 +207,14 @@ const stickyFooterSx = {
   filter: 'drop-shadow(0px -1px 3.5px rgba(0, 0, 0, 0.05))',
 } as const;
 
+const fillerRowSx = { height: '100%' } as const;
+
+const fillerCellSx = {
+  height: 'auto',
+  p: 0,
+  border: 'none',
+} as const;
+
 // ── Component ────────────────────────────────────────────────────
 
 export function BiampTable<TData>({
@@ -219,6 +234,7 @@ export function BiampTable<TData>({
   setRowColor,
   slotProps,
   stickyFooter = false,
+  fitHeight = false,
   sx,
   ...boxProps
 }: BiampTableProps<TData>) {
@@ -290,7 +306,11 @@ export function BiampTable<TData>({
         aria-busy={showLoading || undefined}
         {...restTableSlotProps}
         sx={mergeSx(
-          { minWidth: tableMinWidth, tableLayout: 'auto' },
+          {
+            minWidth: tableMinWidth,
+            tableLayout: 'auto',
+            ...(fitHeight && { height: '100%' }),
+          },
           userTableSx,
         )}
       >
@@ -397,6 +417,20 @@ export function BiampTable<TData>({
                 cellSlotProps={slotProps?.cell}
               />
             ))}
+          {/* Takes whatever height the rows leave, so a table stretched to
+              its container keeps its rows at their own height and its footer
+              at the bottom. Zero tall once the rows overflow. */}
+          {fitHeight && !showError && (
+            <TableRow aria-hidden sx={fillerRowSx}>
+              <TableCell
+                colSpan={
+                  table.getVisibleLeafColumns().length +
+                  (enableRowSelection ? 1 : 0)
+                }
+                sx={fillerCellSx}
+              />
+            </TableRow>
+          )}
         </TableBody>
 
         {hasFooter && footerGroup && !showError && (

@@ -1649,11 +1649,17 @@ const manyRooms: Room[] = Array.from({ length: 60 }, (_, index) => ({
   name: `${rows[index % rows.length].name} (${Math.floor(index / rows.length) + 1})`,
 }));
 
-function FooterDemo() {
+function FooterDemo({
+  data,
+  description,
+}: {
+  data: Room[];
+  description: ReactNode;
+}) {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const table = useReactTable({
-    data: manyRooms,
+    data,
     columns: [
       columnHelper.accessor('name', {
         header: 'Room Name',
@@ -1682,17 +1688,13 @@ function FooterDemo() {
 
   return (
     <Stack spacing={2} height="100%">
-      <Typography variant="body2">
-        Columns define a <code>footer</code>, and <code>stickyFooter</code>{' '}
-        keeps that row at the bottom of the table&apos;s scroll area while the
-        rows scroll, the way the header stays at the top. Its cells line up with
-        their columns because they are cells of the same table.
-      </Typography>
+      <Typography variant="body2">{description}</Typography>
       <Box flex={1} minHeight={0}>
         <BiampTable
           table={table}
           enableRowSelection
           stickyFooter
+          fitHeight
           getRowLabel={(row: Room) => row.name}
         />
       </Box>
@@ -1706,5 +1708,37 @@ function FooterDemo() {
  * scroll. Only rendered when at least one visible column defines a footer.
  */
 export const Footer: Story = {
-  render: () => <FooterDemo />,
+  render: () => (
+    <FooterDemo
+      data={manyRooms}
+      description={
+        <>
+          Columns define a <code>footer</code>, and <code>stickyFooter</code>{' '}
+          keeps that row at the bottom of the table&apos;s scroll area while the
+          rows scroll, the way the header stays at the top. Its cells line up
+          with their columns because they are cells of the same table.
+        </>
+      }
+    />
+  ),
+};
+
+/**
+ * The same table with only a few rows. `fitHeight` stretches the table to
+ * its container, so the footer still sits at the bottom, with the rows kept
+ * at their own height above the empty space.
+ */
+export const FooterFitHeight: Story = {
+  render: () => (
+    <FooterDemo
+      data={rows5}
+      description={
+        <>
+          Only a few rows: <code>fitHeight</code> stretches the table to its
+          container, so the footer stays at the bottom instead of following the
+          last row.
+        </>
+      }
+    />
+  ),
 };
