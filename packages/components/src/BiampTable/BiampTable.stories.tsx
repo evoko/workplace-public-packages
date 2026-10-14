@@ -1636,3 +1636,109 @@ function SetRowColorDemo() {
 export const SetRowColor: Story = {
   render: () => <SetRowColorDemo />,
 };
+
+// ---------------------------------------------------------------------------
+// 14. Footer — a totals row, pinned to the bottom while the rows scroll
+// ---------------------------------------------------------------------------
+
+// Enough rows to overflow any canvas, so the sticky footer has something to
+// stay put over.
+const manyRooms: Room[] = Array.from({ length: 60 }, (_, index) => ({
+  ...rows[index % rows.length],
+  id: index + 1,
+  name: `${rows[index % rows.length].name} (${Math.floor(index / rows.length) + 1})`,
+}));
+
+function FooterDemo({
+  data,
+  description,
+}: {
+  data: Room[];
+  description: ReactNode;
+}) {
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+  const table = useReactTable({
+    data,
+    columns: [
+      columnHelper.accessor('name', {
+        header: 'Room Name',
+        meta: { minWidth: 240 },
+        footer: 'Total',
+      }),
+      columnHelper.accessor('status', { header: 'Status' }),
+      columnHelper.accessor('floor', { header: 'Floor' }),
+      columnHelper.accessor('capacity', {
+        header: 'Capacity',
+        meta: { minWidth: 120 },
+        // A footer is any header-like renderer; this one sums the selection,
+        // or every row when nothing is selected.
+        footer: ({ table: t }) => {
+          const selected = t.getSelectedRowModel().rows;
+          const counted = selected.length ? selected : t.getRowModel().rows;
+          return counted.reduce((sum, row) => sum + row.original.capacity, 0);
+        },
+      }),
+    ],
+    getCoreRowModel: coreRowModel,
+    getRowId: (row) => String(row.id),
+    state: { rowSelection },
+    onRowSelectionChange: setRowSelection,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">{description}</Typography>
+      <Box flex={1} minHeight={0}>
+        <BiampTable
+          table={table}
+          enableRowSelection
+          stickyFooter
+          fitHeight
+          getRowLabel={(row: Room) => row.name}
+        />
+      </Box>
+    </Stack>
+  );
+}
+
+/**
+ * A footer row from each column's `footer` definition — totals that line up
+ * with their columns. With `stickyFooter` it stays visible while the rows
+ * scroll. Only rendered when at least one visible column defines a footer.
+ */
+export const Footer: Story = {
+  render: () => (
+    <FooterDemo
+      data={manyRooms}
+      description={
+        <>
+          Columns define a <code>footer</code>, and <code>stickyFooter</code>{' '}
+          keeps that row at the bottom of the table&apos;s scroll area while the
+          rows scroll, the way the header stays at the top. Its cells line up
+          with their columns because they are cells of the same table.
+        </>
+      }
+    />
+  ),
+};
+
+/**
+ * The same table with only a few rows. `fitHeight` stretches the table to
+ * its container, so the footer still sits at the bottom, with the rows kept
+ * at their own height above the empty space.
+ */
+export const FooterFitHeight: Story = {
+  render: () => (
+    <FooterDemo
+      data={rows5}
+      description={
+        <>
+          Only a few rows: <code>fitHeight</code> stretches the table to its
+          container, so the footer stays at the bottom instead of following the
+          last row.
+        </>
+      }
+    />
+  ),
+};

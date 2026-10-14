@@ -8,6 +8,8 @@ import {
   TableCell,
   type TableCellProps as MuiTableCellProps,
   TableContainer,
+  TableFooter,
+  type TableFooterProps as MuiTableFooterProps,
   TableHead,
   type TableHeadProps as MuiTableHeadProps,
   type TableProps as MuiTableProps,
@@ -55,6 +57,15 @@ export type BiampTableSlotProps<TData> = {
   row?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
   /** Props merged onto each body `<TableCell>`. Pass a function for per-cell overrides. `sx` composes with defaults. */
   cell?: SlotPropsOrFn<MuiTableCellProps, { cell: Cell<TData, unknown> }>;
+  /** Props merged onto the `<TableFooter>`. `sx` composes with defaults. */
+  footer?: MuiTableFooterProps;
+  /** Props merged onto the footer `<TableRow>`. `sx` composes with defaults. */
+  footerRow?: MuiTableRowProps;
+  /** Props merged onto each footer `<TableCell>`. Pass a function for per-column overrides. `sx` composes with defaults. */
+  footerCell?: SlotPropsOrFn<
+    MuiTableCellProps,
+    { header: Header<TData, unknown> }
+  >;
 };
 
 // ── Row-click props ────────────────────────────────────────────────
@@ -119,6 +130,19 @@ export type BiampTableProps<TData> = BoxProps &
      * avoid breaking row memoization.
      */
     slotProps?: BiampTableSlotProps<TData>;
+    /**
+     * Keeps the footer row pinned to the bottom of the table's scroll area,
+     * the way the header is pinned to the top. Only applies when a column
+     * defines a `footer`. @default false
+     */
+    stickyFooter?: boolean;
+    /**
+     * Stretches the table to its container's full height, so the footer row
+     * sits at the bottom even when there are too few rows to fill it. Rows
+     * keep their height; an invisible filler row takes up the space left
+     * over. @default false
+     */
+    fitHeight?: boolean;
   };
 
 // ── Local sx helpers ─────────────────────────────────────────────
@@ -145,6 +169,59 @@ const headerSelectionCellSx = {
 
 const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;
 
+// A totals band in the header's grey (light: grey[100]), set off from the
+// rows by a hairline and a soft upward shadow, with no column dividers — the
+// header's live on `.MuiTableCell-head` only. Opaque, so a sticky footer
+// covers the rows scrolling under it.
+const footerBg = ({ palette }: Theme) =>
+  palette.mode === 'dark' ? palette.grey[900] : palette.grey[100];
+
+// The grey is painted on the row, not the cells: cells start at fractional
+// pixels, and a cell's own background anti-aliases at its edges, letting
+// whatever is behind show through as a hairline between columns. Over the
+// row's grey, that edge is invisible.
+const footerRowSx = { bgcolor: footerBg } as const;
+
+const footerCellSx = {
+  height: 44,
+  color: 'text.primary',
+  fontSize: 14,
+  fontWeight: 600,
+  lineHeight: 1.5,
+  borderTop: ({ palette }: Theme) => `0.6px solid ${palette.divider}`,
+  borderBottom: 'none',
+} as const;
+
+// Cells pinned to the left or right edge still need their own background, to
+// cover the footer cells scrolling under them horizontally.
+const footerPinnedCellSx = { bgcolor: footerBg } as const;
+
+// Sticky as a whole (rather than per cell, like the header) so the row's
+// background travels with it. The shadow is one drop-shadow over the whole
+// footer: a box-shadow per cell overlaps its neighbours at their shared
+// edge and reads as a divider between columns.
+const stickyFooterSx = {
+  position: 'sticky',
+  bottom: 0,
+  zIndex: 2,
+  filter: 'drop-shadow(0px -1px 3.5px rgba(0, 0, 0, 0.05))',
+} as const;
+
+const fillerRowSx = { height: '100%' } as const;
+
+// The filler row is the body's last child, which takes the theme's "no border
+// under the last row" rule away from the real last row. Hand it back, or that
+// row's divider doubles up with the footer's hairline.
+const fitHeightBodySx = {
+  '& > tr:nth-last-of-type(2) > td': { borderBottom: 'none' },
+} as const;
+
+const fillerCellSx = {
+  height: 'auto',
+  p: 0,
+  border: 'none',
+} as const;
+
 // ── Component ────────────────────────────────────────────────────
 
 export function BiampTable<TData>({
@@ -163,6 +240,8 @@ export function BiampTable<TData>({
   getRowLabel,
   setRowColor,
   slotProps,
+  stickyFooter = false,
+  fitHeight = false,
   sx,
   ...boxProps
 }: BiampTableProps<TData>) {
@@ -207,6 +286,16 @@ export function BiampTable<TData>({
   const showError = !!error && !loading;
   const showEmpty = !showError && !loading && rows.length === 0;
 
+  // Leaf-level only (TanStack lists footer groups innermost first): one
+  // footer row, so a sticky one has a single row to pin.
+  const footerGroup = table.getFooterGroups()[0];
+  const hasFooter = table
+    .getVisibleLeafColumns()
+    .some((col) => col.columnDef.footer !== undefined);
+  const { sx: userFooterSx, ...restFooterSlotProps } = slotProps?.footer ?? {};
+  const { sx: userFooterRowSx, ...restFooterRowSlotProps } =
+    slotProps?.footerRow ?? {};
+
   return (
     <TableContainer
       component={Box}
@@ -224,7 +313,11 @@ export function BiampTable<TData>({
         aria-busy={showLoading || undefined}
         {...restTableSlotProps}
         sx={mergeSx(
-          { minWidth: tableMinWidth, tableLayout: 'auto' },
+          {
+            minWidth: tableMinWidth,
+            tableLayout: 'auto',
+            ...(fitHeight && { height: '100%' }),
+          },
           userTableSx,
         )}
       >
@@ -307,7 +400,11 @@ export function BiampTable<TData>({
 
         <TableBody
           {...restBodySlotProps}
-          sx={mergeSx({ opacity: showLoading ? 0.3 : 1 }, userBodySx)}
+          sx={mergeSx(
+            { opacity: showLoading ? 0.3 : 1 },
+            fitHeight && !showError ? fitHeightBodySx : undefined,
+            userBodySx,
+          )}
         >
           {!showError &&
             rows.map((row) => (
@@ -331,7 +428,76 @@ export function BiampTable<TData>({
                 cellSlotProps={slotProps?.cell}
               />
             ))}
+          {/* Takes whatever height the rows leave, so a table stretched to
+              its container keeps its rows at their own height and its footer
+              at the bottom. Zero tall once the rows overflow. */}
+          {fitHeight && !showError && (
+            <TableRow aria-hidden sx={fillerRowSx}>
+              <TableCell
+                colSpan={
+                  table.getVisibleLeafColumns().length +
+                  (enableRowSelection ? 1 : 0)
+                }
+                sx={fillerCellSx}
+              />
+            </TableRow>
+          )}
         </TableBody>
+
+        {hasFooter && footerGroup && !showError && (
+          <TableFooter
+            {...restFooterSlotProps}
+            sx={mergeSx(
+              stickyFooter ? stickyFooterSx : undefined,
+              userFooterSx,
+            )}
+          >
+            <TableRow
+              {...restFooterRowSlotProps}
+              sx={mergeSx(footerRowSx, userFooterRowSx)}
+            >
+              {enableRowSelection && (
+                <TableCell
+                  padding="checkbox"
+                  sx={mergeSx(footerCellSx, footerPinnedCellSx, {
+                    position: 'sticky',
+                    left: 0,
+                    zIndex: 1,
+                  })}
+                />
+              )}
+              {footerGroup.headers.map((header) => {
+                const sticky = header.column.columnDef.meta?.sticky;
+                const resolvedFooterCell = resolveSlot(slotProps?.footerCell, {
+                  header,
+                });
+                const { sx: userFooterCellSx, ...restFooterCellProps } =
+                  resolvedFooterCell ?? {};
+                return (
+                  <TableCell
+                    key={header.id}
+                    {...restFooterCellProps}
+                    data-sticky={sticky || undefined}
+                    sx={mergeSx(
+                      cellSx(sticky, header.column.columnDef.meta?.minWidth, 3),
+                      footerCellSx,
+                      sticky ? footerPinnedCellSx : undefined,
+                      sticky ? { zIndex: 1 } : undefined,
+                      userFooterCellSx,
+                    )}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.footer,
+                          header.getContext(),
+                        )}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          </TableFooter>
+        )}
       </MuiTable>
 
       {showError && (

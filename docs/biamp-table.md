@@ -138,6 +138,8 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `selectChildrenWithParent` | `boolean`                       | `true`       | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel`              | `(row: TData) => string`        | —            | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index                                                         |
 | `setRowColor`              | `(row: TData) => string \| undefined` | —      | Returns a background color (any valid CSS color) for the row. Applied to the row and to sticky cells (selection column, sticky action columns) so the row reads as a single tinted band. Hover and selected backgrounds fully override the custom color. See [Row Coloring](#row-coloring) |
+| `stickyFooter`             | `boolean`                       | `false`      | Keeps the footer row pinned to the bottom of the table's scroll area, the way the header is pinned to the top. Only applies when a column defines a `footer`. See [Footer Row](#footer-row) |
+| `fitHeight`                | `boolean`                       | `false`      | Stretches the table to its container's full height, so the footer sits at the bottom even when the rows don't fill it. Rows keep their own height; an invisible filler row takes the leftover space. See [Footer Row](#footer-row) |
 | `slotProps`                | `BiampTableSlotProps<TData>`    | —            | Per-slot props merged onto the internal MUI elements. `sx` composes with the component's defaults instead of replacing them. See [Slot Props](#slot-props)                                            |
 | _...rest_                  | `BoxProps`                      | —            | All other MUI `Box` props are forwarded                                                                                                                                                               |
 
@@ -271,6 +273,33 @@ const table = useReactTable({
 });
 ```
 
+#### Footer Row
+
+A column's TanStack `footer` definition renders in a footer row under the body — e.g. totals that line up with their columns, because they are cells of the same table. The row only appears when at least one visible column defines a `footer`; other columns get an empty cell. Only the leaf-level footers render, as a single row.
+
+It is styled as a totals band: the header's grey background, a hairline above, semibold primary text. With `stickyFooter` it stays at the bottom of the table's scroll area while the rows scroll under it — which needs the table to be the thing that scrolls, i.e. a bounded height, just like the sticky header.
+
+With only a few rows, a sticky footer still follows the last row. Add `fitHeight` to stretch the table to its container, so the footer sits at the bottom with the empty space above it.
+
+With `enableExpanding`, the footer's first cell isn't indented by the expand chevron the way the body's first column is, so a label there (e.g. "Total") sits slightly left of the row names. Indent it through `slotProps.footerCell` if that matters.
+
+```tsx
+const columns = [
+  columnHelper.accessor('name', { header: 'Room Name', footer: 'Total' }),
+  columnHelper.accessor('capacity', {
+    header: 'Capacity',
+    footer: ({ table }) =>
+      table
+        .getRowModel()
+        .rows.reduce((sum, row) => sum + row.original.capacity, 0),
+  }),
+];
+
+<Box height={320}>
+  <BiampTable table={table} stickyFooter fitHeight />
+</Box>;
+```
+
 #### Slot Props
 
 `slotProps` lets you merge arbitrary props onto the internal MUI elements without forking the component. `sx` composes with the component's defaults (via an array) rather than replacing them, so partial overrides don't clobber internal styling.
@@ -284,8 +313,11 @@ const table = useReactTable({
 | `headerCell` | `TableCellProps \| ({ header }) => TableCellProps`                  | Props merged onto each header `<TableCell>`       |
 | `row`        | `TableRowProps \| ({ row }) => TableRowProps`                       | Props merged onto each body `<TableRow>`          |
 | `cell`       | `TableCellProps \| ({ cell }) => TableCellProps`                    | Props merged onto each body `<TableCell>`         |
+| `footer`     | `TableFooterProps`                                                  | Props merged onto the `<TableFooter>`             |
+| `footerRow`  | `TableRowProps`                                                     | Props merged onto the footer `<TableRow>`         |
+| `footerCell` | `TableCellProps \| ({ header }) => TableCellProps`                  | Props merged onto each footer `<TableCell>`       |
 
-`row`, `cell`, and `headerCell` accept either a static props object or a function that receives the TanStack `Row` / `Cell` / `Header` for data-aware overrides.
+`row`, `cell`, `headerCell`, and `footerCell` accept either a static props object or a function that receives the TanStack `Row` / `Cell` / `Header` for data-aware overrides.
 
 ```tsx
 <BiampTable
