@@ -1430,6 +1430,16 @@ export const biampTheme = (
           },
         },
         MuiTooltip: {
+          defaultProps: {
+            slotProps: {
+              popper: {
+                // Popper's default `absolute` strategy lets a tooltip near the
+                // viewport edge grow the document, popping a page scrollbar that
+                // makes the layout jiggle with layout-consuming scrollbars.
+                popperOptions: { strategy: 'fixed' },
+              },
+            },
+          },
           styleOverrides: {
             tooltip: ({ theme }) => ({
               backgroundColor: theme.palette.grey[600],
